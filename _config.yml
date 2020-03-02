@@ -1,5 +1,5 @@
 # site settings
-title: Moar Guitars | Handmade in Copenhagen
+title: Moar Guitars | Hand made in Copenhagen
 subtitle: 2020
 email: mail@moarguitars.com
 description:  Totally hand made guitars from Copenhagen, Denmark. I exclusively use the best quality woods, top end hardware, and custom boutique pickups built to the customers specifications to create a guitar that has a timeless feel, unmatched playability and sculpted tone that will last a lifetime.
@@ -7,10 +7,10 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: http://moarguitars.github.io/moarguitars/ # the base hostname & protocol for your site
 author:
 street_address: 
-city: 
+city: Copenhagen
 state: 
 zip_code: 
-country: 
+country: Denmark
 phone: 
 permalink: /:title/
 
