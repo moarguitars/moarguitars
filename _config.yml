@@ -7,8 +7,8 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: http://moarguitars.github.io/moarguitars/ # the base hostname & protocol for your site
 author:
 street_address: 
-city: Copenhagen
-state: 
+city: Amager
+state: Copenhagen
 zip_code: 
 country: Denmark
 phone: 
@@ -22,7 +22,7 @@ tiles-count: 6
 facebook_url: https://www.facebook.com/moarguitars/ 
 instagram_url: https://www.instagram.com/moarguitars/
 linkedin_url: 
-twitter_url: http://moarguitars.com/#
+twitter_url: http://twitter.com/moarguitars
 
 # build settings
 markdown: kramdown
@@ -31,6 +31,5 @@ sass:
   style: compressed
 
 # sitemap
-url: "https://thegreatfire.co.uk" # the base hostname & protocol for your site
 plugins:
   - jekyll-sitemap
