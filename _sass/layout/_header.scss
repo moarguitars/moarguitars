@@ -9,16 +9,18 @@
 #header-logo-container {
 	text-decoration:none;
 	display:flex;
+	justify-content: flex-start;
 	width:30%;
 	height:inherit;
 	max-width:30%;
+	max-height:120px;
 	border:0;
 }
 
 #header-logo {
+	
 	display:block;
 	margin:0;
-	width:100%
 }
 
 
