@@ -2,7 +2,6 @@
 layout: page
 title: ABOUT
 description: 'Find out moar'
-image: 'assets/images/default--wayfair.png'
 seo_description:
 nav-menu: true
 ---
