@@ -1,0 +1,10 @@
+///
+/// John's Code
+///
+
+/* Guitar Page */
+
+.guitarhero {
+	background: url('{{ page.image-hero | relative_url }}') no-repeat center; 
+	background-size: cover;
+}
