@@ -18,20 +18,46 @@
 
 
 
-<!-- One -->
-<section id="one" class="guitarhero" style="background: rgba(0, 0, 0, 0.5) url('{{ page.image-hero | relative_url }}') no-repeat center; background-size: cover; margin-top:6em;">
-	<div class="inner" >
+<!-- Header -->
+<section id="one" class="guitarhero" style="background: url('{{ page.image-hero | relative_url }}') no-repeat center; background-size: cover; margin-top:6em;">
+	<div class="inner">
 		<header class="major">
 			<h1>{{ page.title }}</h1>
+			<h3>{{ page.description }}</h3>
 		</header>
 	</div>
 </section>
+
+<!-- Guitar -->
 <section id="one" >
 	<div class="inner" >
-		<!-- {% if page.image %}<span class="image main"><img src="{{ site.baseurl }}/{{ page.image }}" alt="" /></span>{% endif %} -->
-		<h3>{{ page.description }}</h3>
-		<p>{{ page.address }}</p>
 		<p>{{ content }}</p>
+	</div>
+	<div class="row 100% uniform">
+    <div class="4u 12u$(medium)">
+      <img style="padding:0; width: 100%;" src="{{ page.image-1 | relative_url }}" />
+    </div>
+    <div class="4u 12u$(medium)">
+      <img style="padding:0; width: 100%;" src="{{ page.image-2 | relative_url }}" />
+    </div>
+    <div class="4u 12u$(medium)">
+      <img style="padding:0; width: 100%;" src="{{ page.image-3 | relative_url }}" />
+    </div>
+  </div>
+</section>
+
+<!-- Player -->
+<section id="one" >
+	<div class="inner" >
+		<div class="row 100% uniform">
+		    <div class="8u 12u$(medium)">
+		      <h2>{{ page.player-name }}</h2>
+		      <p>{{ content }}</p>
+		    </div>
+		    <div class="4u 12u$(medium)">
+		      <img class="fit" style="padding:0; width: 100%;" src="{{ page.image-player | relative_url }}" />
+		    </div>
+	  	</div>
 	</div>
 </section>
 
