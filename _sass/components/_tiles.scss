@@ -25,6 +25,7 @@
 				'-webkit-filter 1s ease'
 			));
 			@include padding(4em, 4em);
+			background: url("{{ post.image }}");
 			background-position: center;
 			background-repeat: no-repeat;
 			background-size: cover;
