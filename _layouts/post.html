@@ -48,13 +48,15 @@
 
 <!-- Player -->
 <section id="one" >
-	<div class="row 100% uniform">
-		<div class="8u 12u$(medium) inner" style="padding:3em">
-	      <h2>{{ page.player-name }}</h2>
-	      <p>{{ content }}</p>
-		</div>
-	    <div class="4u 12u$(medium)" style="padding:0; "> 
-	      <img class="fit" style="width: 100%;" src="{{ page.image-player | relative_url }}" />
+	<div class="inner" >
+		<div class="row 100% uniform">
+		    <div class="8u 12u$(medium)">
+		      <h2>{{ page.player-name }}</h2>
+		      <p>{{ content }}</p>
+		    </div>
+		    <div class="4u 12u$(medium)" style="padding:0; "> 
+		      <img class="fit" style="width: 100%;" src="{{ page.image-player | relative_url }}" />
+		    </div>
 	  	</div>
 	</div>
 </section>
