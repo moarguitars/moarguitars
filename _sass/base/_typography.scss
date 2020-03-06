@@ -60,6 +60,7 @@
 	}
 
 	h1, h2, h3, h4, h5, h6 {
+		font-family: _font(header); 
 		color: _palette(fg-bold);
 		font-weight: _font(weight-bold);
 		line-height: 1.65;
@@ -72,17 +73,14 @@
 	}
 
 	h1 {
-		font-family: _font(header);
 		font-size: 3em;
 	}
 
 	h2 {
-		font-family: _font(header); 
 		font-size: 2em;
 	}
 
 	h3 {	
-		font-family: _font(header); 
 		font-size: 1.5em;
 	}
 
