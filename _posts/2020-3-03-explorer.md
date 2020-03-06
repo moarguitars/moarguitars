@@ -2,6 +2,7 @@
 layout: post
 title: Explorer
 nav-menu: true
+date: 2020-03-10 19:45:00
 
 description: A wafer thin semi-hollow 
 image: 'assets/images/explorer-outside.jpg'
