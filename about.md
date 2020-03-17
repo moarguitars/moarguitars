@@ -1,9 +1,10 @@
 ---
 layout: page
-title: ABOUT
+title: About
 description: 'Find out moar'
 seo_description:
 nav-menu: true
+show_tile: false
 ---
 
 <!-- Main -->

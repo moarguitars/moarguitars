@@ -35,6 +35,9 @@
 <loc>http://localhost:4000/moarguitars/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/moarguitars/meet/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/moarguitars/pickups/</loc>
 </url>
 <url>
