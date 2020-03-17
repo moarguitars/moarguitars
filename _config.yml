@@ -2,16 +2,16 @@
 title: Moar Guitars | Hand made in Copenhagen
 subtitle: 2020
 email: mail@moarguitars.com
-description:  From my workshop in Copenhagen, Denmark, I have sent custom guitars to almost all the continents on the globe. What started as a small local business has in the space of a few years grown into a global company, but what hasn't changed is that I still work with each customer on a one on one basis, meticulously designing each and every aspect of the build. I don't have someone taking care of my social media or responding to emails, it's all done by me. So the same person that responds to your messages, is the same person that's winding your pickups. The same guy taking photos for Instagram is the same person carving your guitars top.This way I can personally make sure that you get exactly the guitar you want.
+description:  
 baseurl: "/moarguitars" # the subpath of your site, e.g. /blog
 url: https://moarguitars.github.io # the base hostname & protocol for your site
 author:
 street_address: 
-city: Amager
-state: Copenhagen
+city: Copenhagen S
+state: 
 zip_code: 
 country: Denmark
-phone: 07555 555 555
+phone: (0045) 5387 2888
 permalink: /:title/
 
 # homepage tiles
