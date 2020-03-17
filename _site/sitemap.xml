@@ -13,6 +13,10 @@
 <lastmod>2020-03-08T19:45:00+00:00</lastmod>
 </url>
 <url>
+<loc>http://localhost:4000/moarguitars/t-type/</loc>
+<lastmod>2020-03-09T19:45:00+00:00</lastmod>
+</url>
+<url>
 <loc>http://localhost:4000/moarguitars/404/</loc>
 </url>
 <url>
@@ -29,6 +33,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/moarguitars/pickups/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/pricing-and-shipping/</loc>

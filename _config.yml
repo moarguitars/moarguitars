@@ -15,14 +15,13 @@ phone: 07555 555 555
 permalink: /:title/
 
 # homepage tiles
-tiles-source: posts # accepts "posts" or "pages"
+tiles-source: pages # accepts "posts" or "pages"
 tiles-count: 6
 
 # social settings
 facebook_url: https://www.facebook.com/moarguitars/ 
 instagram_url: https://www.instagram.com/moarguitars/
 linkedin_url: 
-twitter_url: http://twitter.com/moarguitars
 
 # build settings
 markdown: kramdown
