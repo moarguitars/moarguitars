@@ -22,3 +22,4 @@ nav-menu: false
 	</div>
 </section>
 
+</div>

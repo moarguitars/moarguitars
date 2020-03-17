@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Meet the builder
+title: Guitars
 description: 'More information about pricing and shipping'
 seo_description:
 show_tile: true
@@ -21,5 +21,5 @@ nav-menu: false
 		</section>
 	</div>
 </section>
-</div>
 
+</div>
