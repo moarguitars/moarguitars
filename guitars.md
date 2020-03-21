@@ -69,7 +69,7 @@ nav-menu: true
 					<p>A wafer thin semi-hollow</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
-	                    <li><a href="/wayfair" class="button scrolly special">Find Out More</a></li>
+	                    <li><a href="/guitars/wayfair" class="button scrolly special">Find Out More</a></li>
 	                </ul>
 				</div>
 			</div>
