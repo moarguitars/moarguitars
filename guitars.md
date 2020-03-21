@@ -27,7 +27,7 @@ nav-menu: true
 	<section class="spotlights">
 		<!-- Hollow T -->
 		<section>
-			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/default-t-type.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -42,7 +42,7 @@ nav-menu: true
 		</section>
 		<!-- Solid T -->
 		<section>
-			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/t-type-on-bench.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -57,7 +57,7 @@ nav-menu: true
 		</section>
 		<!-- Wayfair -->
 		<section>
-			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/default-wayfair.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -73,7 +73,7 @@ nav-menu: true
 		</section>
 		<!-- Moar Offset -->
 		<section>
-			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/explorer-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
