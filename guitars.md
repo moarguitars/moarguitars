@@ -13,10 +13,10 @@ nav-menu: true
 
 
 <!-- Intro -->
-<section id="contact">
+<section id="intro" style="margin-top:2em;">
 	<div class="inner">
 		<section>
-			<h2 style="text-transform: uppercase;">Contact Us</h2>
+			<h2 style="text-transform: uppercase;">Guitars</h2>
 			<p>If you have a question or would like to find out more about owning one of our custom-built guitars, please use the form below to get in touch.</p> 
 		</section>
 	</div>
