@@ -141,7 +141,8 @@ nav-menu: true
 		</div>
 	</section>
 </div>
-	<!-- <section id="one">
+
+<!-- <section id="one">
 		<div class="inner">
 			<header class="major">
 				<h2>Drums</h2>
