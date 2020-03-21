@@ -14,8 +14,8 @@ nav-menu: false
 
 <!-- Intro -->
 <section id="contact">
-	<div class="inner">
-		<section>
+	<div class="inner row">
+		<section class="6u">
 			<h2 style="text-transform: uppercase;">{{ page.title }}</h2>
 			<p>My background is actually much more as a player then as a woodworker. Growing up I always modded my own guitars, but playing was much more at the forefront of my mind, rather then building. In my 20’s I had a bit of success as a guitarist and a songwriter, touring a little, recording a lot, gigging loads and trying (unsuccessfully!) to get various projects off the ground. It was during this time that I started cutting comfort cuts into tele’s, stripping finish off of necks, and gradually easing my way into more and more difficult “luthier” type tasks. I made a bit of a name for myself as a guitar tech locally in Copenhagen, repairing, modding and customising guitars for other guys on the scene, and eventually took the courage to make my first guitar.</p> 
 			<p>To my amazement this guitar sold very quickly, then the next, then someone wanted one built a little like it, but with a different wood, and I have had commissions ever since.</p>
