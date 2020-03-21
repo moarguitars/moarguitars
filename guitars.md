@@ -34,6 +34,7 @@ nav-menu: true
 						<h2>Hollow T</h2>
 					</header>
 					<p>A semi-hollow t-type</p>
+					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="/t-type" class="button scrolly special">Find Out More</a></li>
 	                </ul>
@@ -49,6 +50,7 @@ nav-menu: true
 						<h2>Solid T</h2>
 					</header>
 					<p>Description</p>
+					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
 	                </ul>
@@ -65,6 +67,7 @@ nav-menu: true
 						<h4>Also Wayfair Bass</h4>
 					</header>
 					<p>A wafer thin semi-hollow</p>
+					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
 	                </ul>
@@ -80,6 +83,7 @@ nav-menu: true
 						<h2>Moar Offset</h2>
 					</header>
 					<p>Description</p>
+					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
 	                </ul>
