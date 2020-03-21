@@ -13,7 +13,7 @@ nav-menu: true
 
 
 <!-- Intro -->
-<section id="intro" style="margin-top:2em;">
+<section id="intro" style="margin-top:6em;">
 	<div class="inner">
 		<section>
 			<h2 style="text-transform: uppercase;">Guitars</h2>
