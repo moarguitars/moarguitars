@@ -27,7 +27,7 @@ nav-menu: true
 	<section class="spotlights">
 		<!-- Hollow T -->
 		<section>
-			<div style="background:url('../assets/images/default-t-type.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/default--t-type.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -57,7 +57,7 @@ nav-menu: true
 		</section>
 		<!-- Wayfair -->
 		<section>
-			<div style="background:url('../assets/images/default-wayfair.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/default--wayfair.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
