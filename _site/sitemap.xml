@@ -46,4 +46,7 @@
 <url>
 <loc>http://localhost:4000/moarguitars/pricing-and-shipping/</loc>
 </url>
+<url>
+<loc>http://localhost:4000/moarguitars/guitars/wayfair/</loc>
+</url>
 </urlset>
