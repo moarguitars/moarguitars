@@ -30,76 +30,17 @@ nav-menu: true
 			<div class="content">
 				<div class="inner">
 					<header class="major">
-						<h2>Stacey Hollobone, Vocals</h2>
-						<ul class="icons">
-							<li><a href="https://instagram.com/bakedbystacey" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-						</ul>
+						<h2>Wayfair</h2>
 					</header>
-					<p>A front woman whose unique energy and powerful soprano vocals set <a href="set_list">our set list</a> alight.</p>
-					<h4>Favourite Artists</h4>
-					<ul class="alt">
-						<li>Whitney Houston</li>
-						<li>Nerina Pallot</li>
-						<li>Jocelyn Brown</li>
-					</ul> 
+					<p>Description</p>
+					<ul class="actions">
+	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
+	                </ul>
 				</div>
 			</div>
 		</section>
-		<section>
-			<div style="background:url('../assets/images/john-guitar.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
-			<div class="content">
-				<div class="inner">
-					<header class="major">
-						<h2>John Haynes, Guitar</h2>
-						<ul class="icons">
-							<li><a href="https://instagram.com/johnhayn_es" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="https://twitter.com/johnhayn_es" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-						</ul>
-					</header>
-					<p>A creative guitarist that blends soulful blues and squealing fuzzy rock with syncopated funk rhythmns.</p>
-					<h4>Influences</h4>
-					<ul class="alt">
-						<li>John Mayer</li>
-						<li>John Frusciante</li>
-						<li>Cory Wong</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<section>
-			<div style="background:url('../assets/images/rick-bass.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
-			<div class="content">
-				<div class="inner">
-					<header class="major">
-						<h2>Rick Baldwin, Bass</h2>
-					</header>
-					<p>Rick holds down the low end with a thick, funky bass tone and playing that's right in the pocket.</p>
-					<h4>Influences</h4>
-					<ul class="alt">
-						<li>John Entwistle</li>
-						<li>John Paul Jones</li>
-						<li>Pino Palladino</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-		<section>
-			<div style="background:url('../assets/images/alex-drums.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
-			<div class="content">
-				<div class="inner">
-					<header class="major">
-						<h2>Alex Knight, Drums</h2>
-					</header>
-					<p>Providing steady grooves, Alex’s rhythms are sure to get your feet moving.</p>
-					<h4>Top Influences</h4>
-					<ul class="alt">
-						<li>John Bonham</li>
-						<li>Dave Grohl</li>
-						<li>Kevin Parker</li>
-					</ul>
-				</div>
-			</div>
-		</section>
+		
+
 	</section>
 </section>
 	<!-- Gear -->
