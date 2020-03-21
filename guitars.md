@@ -17,7 +17,7 @@ nav-menu: true
 	<div class="inner">
 		<section>
 			<h2 style="text-transform: uppercase;">Guitars</h2>
-			<p>If you have a question or would like to find out more about owning one of our custom-built guitars, please use the form below to get in touch.</p> 
+			<p>I have a few central design elements that run through all my instruments. They need to be comfortable to play for long periods of time, they need to be resonant and inspiring to play acoustically, they need to be reliable in a professional setting, they need to be long lasting, they need to be versatile in terms of sounds, genres, and playing styles. </p> 
 		</section>
 	</div>
 </section>
@@ -25,6 +25,37 @@ nav-menu: true
 <!-- About -->	
 <section id="Guitars">
 	<section class="spotlights">
+		<!-- Hollow T -->
+		<section>
+			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h2>Hollow T</h2>
+					</header>
+					<p>Description</p>
+					<ul class="actions">
+	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
+	                </ul>
+				</div>
+			</div>
+		</section>
+		<!-- Solid T -->
+		<section>
+			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h2>Solid T</h2>
+					</header>
+					<p>Description</p>
+					<ul class="actions">
+	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
+	                </ul>
+				</div>
+			</div>
+		</section>
+		<!-- Wayfair -->
 		<section>
 			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
@@ -39,8 +70,21 @@ nav-menu: true
 				</div>
 			</div>
 		</section>
-		
-
+		<!-- Moar Offset -->
+		<section>
+			<div style="background:url('../assets/images/stacey-singer.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h2>Moar Offset</h2>
+					</header>
+					<p>Description</p>
+					<ul class="actions">
+	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
+	                </ul>
+				</div>
+			</div>
+		</section>
 	</section>
 </section>
 	<!-- Gear -->
