@@ -33,9 +33,9 @@ nav-menu: true
 					<header class="major">
 						<h2>Hollow T</h2>
 					</header>
-					<p>Description</p>
+					<p>A semi-hollow t-type</p>
 					<ul class="actions">
-	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
+	                    <li><a href="/t-type" class="button scrolly special">Find Out More</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -64,7 +64,7 @@ nav-menu: true
 						<h2>Wayfair</h2>
 						<h4>Also Wayfair Bass</h4>
 					</header>
-					<p>Description</p>
+					<p>A wafer thin semi-hollow</p>
 					<ul class="actions">
 	                    <li><a href="events" class="button scrolly special">Find Out More</a></li>
 	                </ul>
