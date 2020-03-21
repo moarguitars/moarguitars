@@ -1,7 +1,8 @@
 ---
-layout: post
+layout: page
 title: Wayfair
-nav-menu: true
+nav-menu: false
+show_tile: false
 date: 2020-03-08 19:45:00
 
 description: A wafer thin semi-hollow 
