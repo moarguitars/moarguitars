@@ -62,6 +62,7 @@ nav-menu: true
 				<div class="inner">
 					<header class="major">
 						<h2>Wayfair</h2>
+						<h4>Also Wayfair Bass</h4>
 					</header>
 					<p>Description</p>
 					<ul class="actions">
