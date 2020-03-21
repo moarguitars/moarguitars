@@ -15,23 +15,15 @@
 				<div class="4u 12u$(medium) links">
 					<div class="box">
 						<h3>Moar Guitars</h3>
+						<p style="margin-top:0; margin-bottom:0;">{{ site.street_address }}</p>
 						<p style="margin-top:0; margin-bottom:0;">{{ site.city }}</p>
+						<p style="margin-top:0; margin-bottom:0;">{{ site.state }}</p>
 						<p style="margin-top:0;">{{ site.country }}</p>
 						<p style="margin-top:0; margin-bottom:0;">{{ site.phone }}</p>
-						<li>&copy; {{ site.title }} {{ site.subtitle }}</li>
-						{% if site.facebook_url %}
-						<li><a href="{{ site.facebook_url }}" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
-						{% endif %}
-						{% if site.twitter_url %}
-						<li><a href="{{ site.twitter_url }}" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
-						{% endif %}
-						{% if site.instagram_url %}
-						<li><a href="{{ site.instagram_url }}" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-						{% endif %}
-						{% if site.linkedin_url %}
-						<li><a href="{{ site.linkedin_url }}" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
-						{% endif %}
-						<li>Guitars proudly hand-built in Copenhagen. Website proudly hand-built by <a href="johnhayn.es" target="_blank">John Haynes</a></li>
+						<ul class="copyright">
+							<li>&copy; {{ site.title }} {{ site.subtitle }}</li>
+							<li>Guitars proudly hand-built in Copenhagen. Website proudly hand-built by <a href="johnhayn.es" target="_blank">John Haynes</a></li>
+						</ul>
 					</div>
 				</div>
 				<div class="4u 12u$(medium) links">
@@ -46,6 +38,23 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="inner">
+			<ul class="icons">
+				{% if site.facebook_url %}
+				<li><a href="{{ site.facebook_url }}" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
+				{% endif %}
+				{% if site.twitter_url %}
+				<li><a href="{{ site.twitter_url }}" class="icon alt fa-twitter" target="_blank"><span class="label">Twitter</span></a></li>
+				{% endif %}
+				{% if site.instagram_url %}
+				<li><a href="{{ site.instagram_url }}" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
+				{% endif %}
+				{% if site.linkedin_url %}
+				<li><a href="{{ site.linkedin_url }}" class="icon alt fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>
+				{% endif %}
+			</ul>
+			
 		</div>
 	</footer>
 
