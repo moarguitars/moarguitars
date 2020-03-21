@@ -3,7 +3,7 @@ layout: page
 title: About
 description: 'Find out moar'
 seo_description:
-nav-menu: true
+nav-menu: false
 show_tile: false
 ---
 
