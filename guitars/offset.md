@@ -1,7 +1,7 @@
 ---
 layout: post
-title: Explorer
-nav-menu: true
+title: Offset
+nav-menu: false
 show_tile: false
 date: 2020-02-10 19:45:00
 

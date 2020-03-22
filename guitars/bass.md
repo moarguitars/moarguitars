@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bass
-nav-menu: true
+nav-menu: false
 show_tile: false
 date: 2020-02-11 19:45:00
 

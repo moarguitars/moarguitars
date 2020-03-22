@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Hollow-T
-nav-menu: true
+nav-menu: false
 show_tile: false
 date: 2020-03-09 19:45:00
 
