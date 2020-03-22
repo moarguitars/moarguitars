@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Hollow-T
 nav-menu: true
 show_tile: false

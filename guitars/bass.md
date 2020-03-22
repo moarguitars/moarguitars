@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Bass
 nav-menu: true
 show_tile: false

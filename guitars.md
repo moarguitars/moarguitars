@@ -38,7 +38,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 					<p>A semi-hollow t-type</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
-	                    <li><a href="{{ /wayfair  | relative_url }}" class="button scrolly special">Find Out More</a></li>
+	                    <li><a href="{{ "/guitars/t-type"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -55,7 +55,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 					<p>A wafer thin semi-hollow</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
-	                    <li><a href="{{ '/wayfair'  | relative_url }}" class="button scrolly special">Find Out More</a></li>
+	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -71,7 +71,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 					<p>Description</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
-	                    <li><a href="{{ '/wayfair'  | relative_url }}" class="button scrolly special">Find Out More</a></li>
+	                    <li><a href="{{ "/guitars/offset" | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
 				</div>
 			</div>
