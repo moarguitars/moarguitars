@@ -6,16 +6,16 @@ show_tile: false
 date: 2020-03-09 19:45:00
 
 description: A semi-hollow t-type
-image: 'assets/images/default--t-type.jpg'
+image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 image-alt: 
-image-hero: 'assets/images/default--t-type.jpg'
+image-hero: 'assets/images/t-type/t-type-hollow-dark.jpg'
 image-hero-alt:
 
-image-1: 'assets/images/t-tyoe-play-in-workshop.jpg'
+image-1: 'assets/images/t-type/t-type-hollow-light-workshop.jpg'
 image-1-alt:
-image-2: 'assets/images/t-type-bodies.jpg'
+image-2: 'assets/images/t-type/t-type-hollow-workshop.jpg'
 image-2-alt:
-image-3: 'assets/images/t-type-on-bench.jpg'
+image-3: 'assets/images/t-type/t-type-hollow-brown.jpg'
 image-3-alt:
 
 playername: 'A Player'
