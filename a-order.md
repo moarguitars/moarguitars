@@ -4,7 +4,7 @@ title: Order Your Guitar
 description: 'Step by step guide from the first message to receiving your guitar'
 seo_description:
 show_tile: true
-nav-menu: false
+nav-menu: true
 image: 'assets/images/workshop/workshop-guitar-neck.jpg'
 ---
 
