@@ -21,7 +21,7 @@ image-3-alt:
 playername: 'A Player'
 player: 'Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod.'
 
-image-player: 'assets/images/t-type-in-case.jpg'
+image-player: 'assets/images/t-type/t-type-hollow-dark.jpg'
 image-player-alt:
 ---
 
