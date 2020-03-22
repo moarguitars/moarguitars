@@ -17,7 +17,7 @@ image: 'assets/images/misc/guitar-neck-carve.jpg'
 <section id="contact">
 	<div class="inner" style="margin-top: 6em">
 		<section>
-			<h2 style="text-transform: uppercase;">Contact Us</h2>
+			<h2>Contact Us</h2>
 			<p>If you have a question or would like to find out more about owning one of our custom-built guitars, please use the form below to get in touch.</p> 
 			<form action="https://formspree.io/{{ site.email }}" method="POST">
 				<div class="field half first">
