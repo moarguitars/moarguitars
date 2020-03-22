@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: page
 title: Explorer
 nav-menu: true
 date: 2020-02-10 19:45:00

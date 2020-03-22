@@ -1,8 +1,8 @@
 ---
-layout: post
-title: Hollow-T
+layout: page
+title: Bass
 nav-menu: true
-date: 2020-03-09 19:45:00
+date: 2020-02-11 19:45:00
 
 description: A semi-hollow t-type
 image: 'assets/images/default--t-type.jpg'

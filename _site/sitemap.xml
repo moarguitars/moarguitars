@@ -1,20 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:4000/moarguitars/explorer/</loc>
-<lastmod>2020-02-10T19:45:00+00:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/moarguitars/bass/</loc>
-<lastmod>2020-02-11T19:45:00+00:00</lastmod>
-</url>
-<url>
 <loc>http://localhost:4000/moarguitars/wayfair/</loc>
 <lastmod>2020-03-08T19:45:00+00:00</lastmod>
-</url>
-<url>
-<loc>http://localhost:4000/moarguitars/t-type/</loc>
-<lastmod>2020-03-09T19:45:00+00:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/404/</loc>
@@ -24,6 +12,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/about/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/moarguitars/guitars/bass/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/contact/</loc>
@@ -38,10 +29,16 @@
 <loc>http://localhost:4000/moarguitars/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/moarguitars/guitars/offset/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/moarguitars/pickups/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/pricing-and-shipping/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/moarguitars/guitars/t-type/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/moarguitars/video-gallery/</loc>

@@ -3,7 +3,7 @@ layout: page
 title: Pricing & Shipping
 description: 'More information about pricing and shipping'
 seo_description:
-show_tile: false
+show_tile: true
 nav-menu: true
 ---
 
