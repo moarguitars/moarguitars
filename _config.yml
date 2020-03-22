@@ -16,7 +16,7 @@ permalink: /:title/
 
 # homepage tiles
 tiles-source: pages # accepts "posts" or "pages"
-tiles-count: 6
+tiles-count: 5
 
 # social settings
 facebook_url: https://www.facebook.com/moarguitars/ 
