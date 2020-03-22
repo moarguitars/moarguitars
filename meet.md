@@ -21,7 +21,7 @@ nav-menu: false
 			<p>To my amazement this guitar sold very quickly, then the next, then someone wanted one built a little like it, but with a different wood, and I have had commissions ever since.</p>
 			<p>I think my unique approach to guitars comes from my perspective as a player, rather then as a carpenter. I used to cycle around Copenhagen with a guitar on my back all day, going from rehearsals in the morning, to teaching private guitar classes in the afternoon, and then gigging the same night. So to me a guitar has to be light (as it’s always on you) has to be inspiring to play acoustically, has to be set up to be comfortable to play for 8 hours a day, has to be versatile, comfortable on the body, has to stay in tune and be reliable in a professional setting, has to resonate. These are the key elements to me when building a good guitar.</p>
 		</div>
-		<div class="6u$ 12u$(small)"><span class="image fit"><img src="../assets/images/default--wayfair.jpg" alt=""></span></div>
+		<span class="image fit 6u$ 12u$(small)"><img src="../assets/images/default--wayfair.jpg" alt=""></span>
 	</div>
 </section>
 </div>
