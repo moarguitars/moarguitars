@@ -13,7 +13,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 
 
 
-Intro -->
+<!-- Intro -->
 <section id="intro" style="margin-top:6em;">
 	<div class="inner">
 		<section>
