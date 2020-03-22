@@ -4,7 +4,7 @@ title: Meet the builder
 description: 'More information about pricing and shipping'
 seo_description:
 show_tile: true
-nav-menu: true
+nav-menu: false
 image: 'assets/images/misc/guitar-carve.jpg'
 ---
 
