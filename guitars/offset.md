@@ -2,6 +2,7 @@
 layout: page
 title: Explorer
 nav-menu: true
+show_tile: false
 date: 2020-02-10 19:45:00
 
 description: A wafer thin semi-hollow 

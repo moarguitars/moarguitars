@@ -2,6 +2,7 @@
 layout: page
 title: Bass
 nav-menu: true
+show_tile: false
 date: 2020-02-11 19:45:00
 
 description: A semi-hollow t-type
