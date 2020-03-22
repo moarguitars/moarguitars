@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Gallery
+title: Videos & Photos
 description: 'View the Moar collection'
 seo_description:
 nav-menu: true
