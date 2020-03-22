@@ -5,6 +5,7 @@ description: 'More information about pricing and shipping'
 seo_description:
 show_tile: true
 nav-menu: true
+image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 ---
 
 <!-- Main -->
