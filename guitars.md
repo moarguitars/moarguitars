@@ -18,7 +18,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 	<div class="inner">
 		<section>
 			<h2 style="text-transform: uppercase;">Guitars</h2>
-			<p>I have a few central design elements that run through all my instruments. They need to be comfortable to play for long periods of time, they need to be resonant and inspiring to play acoustically, they need to be reliable in a professional setting, they need to be long lasting, they need to be versatile in terms of sounds, genres, and playing styles. </p> 
+			<p>I have a few central design elements that run through all my instruments. They need to be comfortable to play for long periods of time, they need to be resonant and inspiring to play acoustically, they need to be reliable in a professional setting, they need to be long lasting, they need to be versatile in terms of sounds, genres, and playing styles.</p> 
 		</section>
 	</div>
 </section>

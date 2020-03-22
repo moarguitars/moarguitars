@@ -35,13 +35,13 @@
 	</div>
 	<div class="row 100% uniform">
     <div class="4u 12u$(medium)">
-      <img style="padding:0; width: 100%;" src="{{ page.image-1 | relative_url }}" />
+      <span class="image fit"><img src="{{ page.image-1 | relative_url }}" alt="{{ page.image-1-alt }}"></span>
     </div>
     <div class="4u 12u$(medium)">
-      <img style="padding:0; width: 100%;" src="{{ page.image-2 | relative_url }}" />
+      <span class="image fit"><img src="{{ page.image-2 | relative_url }}" alt="{{ page.image-2-alt }}"></span>
     </div>
     <div class="4u 12u$(medium)">
-      <img style="padding:0; width: 100%;" src="{{ page.image-3 | relative_url }}" />
+      <span class="image fit"><img src="{{ page.image-3 | relative_url }}" alt="{{ page.image-3-alt }}"></span>
     </div>
   </div>
 </section>
@@ -51,8 +51,13 @@
 	<div class="inner">
 		<div class="row 100% uniform">
 		    <div class="8u 12u$(medium)">
-		      <h2>{{ page.player-name }}</h2>
-		      <p>{{ content }}</p>
+		      	<h2>Build your own {{ page.title }}</h2>
+		      	<p>{{ page.buildtext }}</p>
+		      	<ul class="actions fit">
+					<li>
+						<a href="{{ "/contact" | relative_url }}" class="button special">Contact Moar</a>
+					</li>
+				</ul>
 		    </div>
 		    <div class="4u 12u$(medium)"> 
 		      <img class="fit" style="width: 100%;" src="{{ page.image-player | relative_url }}" />
