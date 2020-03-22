@@ -13,7 +13,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 
 
 
-<!-- Intro -->
+Intro -->
 <section id="intro" style="margin-top:6em;">
 	<div class="inner">
 		<section>
@@ -28,11 +28,12 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 	<section class="spotlights">
 		<!-- Hollow T -->
 		<section>
-			<div style="background:url('../assets/images/default--t-type.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/t-type/t-type-hollow-dark-workshop.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
 						<h2>Hollow T</h2>
+						Also available as solid-body
 					</header>
 					<p>A semi-hollow t-type</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
@@ -42,25 +43,9 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				</div>
 			</div>
 		</section>
-		<!-- Solid T -->
-		<section>
-			<div style="background:url('../assets/images/t-type-on-bench.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
-			<div class="content">
-				<div class="inner">
-					<header class="major">
-						<h2>Solid T</h2>
-					</header>
-					<p>Description</p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
-					<ul class="actions">
-	                    <li><a href="{{ /wayfair  | relative_url }}" class="button scrolly special">Find Out More</a></li>
-	                </ul>
-				</div>
-			</div>
-		</section>
 		<!-- Wayfair -->
 		<section>
-			<div style="background:url('../assets/images/default--wayfair.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/wayfair/wayfair-light-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -77,7 +62,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 		</section>
 		<!-- Moar Offset -->
 		<section>
-			<div style="background:url('../assets/images/explorer-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div style="background:url('../assets/images/offset/offset-dark-workshop.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
@@ -94,7 +79,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 	</section>
 </section>
 	<!-- Gear -->
-	<section id="one">
+	<!-- <section id="one">
 		<div class="inner">
 			<header class="major">
 				<h2>The Guitars</h2>
@@ -130,7 +115,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 </div>
 
 <!-- <section id="one">
@@ -164,4 +149,4 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				</div>
 			</div>
 		</div>
-	</section> -->
+	</section>
