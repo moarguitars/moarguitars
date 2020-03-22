@@ -22,7 +22,7 @@ image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 			<p>Each pickup I wind is made specifically for each build. I don’t have a stock of pre-wound pickups, (mainly because I don’t have the time to wind them!) but you can be sure that when you order one of my guitars the pickup in it was made especially for you!</p>
 			<p>So whatever you have in mind, however bizarre or classic, get in touch. I can make it work.</p>
 		</section>
-		<div class="row 6u$ 12u$(small)">
+		<div class="6u$ 12u$(small)">
 			<div class="12u$">
 				<span class="image fit"><img src="../assets/images/pickups/pickups-wayfair-dark.jpg" alt=""></span>
 			</div>
