@@ -153,6 +153,7 @@
 	body.is-menu-visible {
 		#wrapper {
 			@include vendor('filter', 'blur(0.2em)');
+			opacity: 0.5;
 		}
 
 		#menu {
