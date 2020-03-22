@@ -33,7 +33,7 @@ Intro -->
 				<div class="inner">
 					<header class="major">
 						<h2>Hollow T</h2>
-						Also available as solid-body
+						<h4>Also available as solid-body</h4>
 					</header>
 					<p>A semi-hollow t-type</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
