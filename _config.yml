@@ -1,6 +1,6 @@
 # site settings
 title: Moar Guitars 
-subtitle: Hand made in Copenhagen
+subtitle: Hand-made in Copenhagen
 email: mail@moarguitars.com
 description:  
 baseurl: "/moarguitars" # the subpath of your site, e.g. /blog
