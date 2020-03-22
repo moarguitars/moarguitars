@@ -5,7 +5,7 @@ nav-menu: false
 show_tile: false
 date: 2020-03-09 19:45:00
 
-description: A semi-hollow t-type
+description: A semi-hollow or solid t-type
 image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 image-alt: 
 image-hero: 'assets/images/t-type/t-type-hollow-dark.jpg'
