@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Guitars
-description: 'More information about pricing and shipping'
+description: 'View our collection of unique, hand-made instruments'
 seo_description:
 show_tile: true
 nav-menu: true

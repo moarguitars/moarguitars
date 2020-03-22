@@ -1,9 +1,9 @@
 ---
 layout: page
 title: Videos & Photos
-description: 'View the Moar collection'
+description: 'Watch videos and view photos'
 seo_description:
-nav-menu: true
+nav-menu: false
 image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 ---
 

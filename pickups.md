@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Pickups
-description: 'More information about pricing and shipping'
+description: 'Hand-wound, bespoke pickups'
 seo_description:
 show_tile: true
 nav-menu: true
