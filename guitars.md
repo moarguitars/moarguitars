@@ -50,12 +50,29 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Wayfair</h2>
-						<h4>Also Wayfair Bass</h4>
+						<h4>A semi-hollow thinline</h4>
 					</header>
 					<p>A wafer thin semi-hollow</p>
 					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
+	                </ul>
+				</div>
+			</div>
+		</section>
+		<!-- Wayfair -->
+		<section>
+			<div style="background:url('../assets/images/bass/bass-held-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h2>Bass</h2>
+						<h4>A bass</h4>
+					</header>
+					<p>A wafer thin semi-hollow</p>
+					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
+					<ul class="actions">
+	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
 				</div>
 			</div>
