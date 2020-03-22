@@ -8,7 +8,7 @@ date: 2020-02-10 19:45:00
 description: A wafer thin semi-hollow 
 image: 'assets/images/offset/offset-dark-workshop.jpg'
 image-alt: 
-image-hero: 'assets/images/offset/explorer-outside.jpg'
+image-hero: 'assets/images/offset/offset-dark-workshop.jpg'
 image-hero-alt:
 
 image-1: 
