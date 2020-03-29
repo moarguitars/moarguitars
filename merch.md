@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Pickups
-description: 'Hand-wound, bespoke pickups'
+title: Merch
+description: 'Support Moar and buy a t-shirt'
 seo_description:
-show_tile: true
-nav-menu: true
+show_tile: false
+nav-menu: false
 image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 ---
 
