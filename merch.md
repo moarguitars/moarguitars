@@ -33,9 +33,6 @@ image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 			<div class="12u$">
 				<span class="image fit"><img src="../assets/images/pickups/pickups-wayfair-dark.jpg" alt=""></span>
 			</div>
-			<div class="12u$">
-				<span class="image fit"><img src="../assets/images/pickups/pickups-dark.jpg" alt=""></span>
-			</div>
 		</div>
 	</div>
 </section>
