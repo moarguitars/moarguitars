@@ -11,10 +11,13 @@
 		.links {
 			font-size: 1em;
 		}
+
 		.footerbox {
 		font-size: 0.8em;
 		list-style: none;
 		padding-left: 0;
+		display: flex;
+		align-contents:flex-start;
 		}
 
 		.copyright {

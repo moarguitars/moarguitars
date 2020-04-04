@@ -57,6 +57,7 @@
 			padding: 0 !important;
 			position: relative;
 			z-index: 2;
+			margin: 6em auto 0;
 
 			.image {
 				display: none;
@@ -161,6 +162,7 @@
 			@include padding(4em, 0, (2em, 0, 0, 0));
 
 			> .inner {
+				margin-top: 0;
 				.content {
 					p {
 						br {
