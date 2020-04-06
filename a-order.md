@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Order Your Guitar
+title: The Order Process
 description: 'Step by step guide from the first message to receiving your guitar'
 seo_description:
 show_tile: true
