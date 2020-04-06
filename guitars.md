@@ -14,14 +14,13 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 
 
 <!-- Intro -->
-<section id="intro" style="margin-top:6em;">
+<!-- <section id="intro" style="margin-top:6em;">
 	<div class="inner">
 		<section>
 			<h2>Guitars</h2>
-			<p>I have a few central design elements that run through all my instruments. They need to be comfortable to play for long periods of time, they need to be resonant and inspiring to play acoustically, they need to be reliable in a professional setting, they need to be long lasting, they need to be versatile in terms of sounds, genres, and playing styles.</p> 
 		</section>
 	</div>
-</section>
+</section> -->
 
 <!-- About -->	
 <section id="Guitars">
@@ -33,10 +32,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>T-Type</h2>
-						<h4>Also available as solid-body</h4>
+						<h4>A distilled, pure and simple instrument</h4>
 					</header>
-					<p>A semi-hollow t-type</p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/t-type"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
@@ -50,10 +47,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Wayfair</h2>
-						<h4>A semi-hollow thinline</h4>
+						<h4>The natural evolution of the traditional jazz box</h4>
 					</header>
-					<p>A wafer thin semi-hollow</p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
@@ -67,10 +62,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Bass</h2>
-						<h4>A bass</h4>
+						<h4>All models are also available as basses</h4>
 					</header>
-					<p>A wafer thin semi-hollow</p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
@@ -84,10 +77,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Moar Offset</h2>
-						<h4>The offset of choice</h4>
+						<h4>The most recent addition to the Moar line-up</h4>
 					</header>
-					<p>Description</p>
-					<p>Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum.</p>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/offset" | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
