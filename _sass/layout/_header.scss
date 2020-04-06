@@ -177,6 +177,11 @@
 		}
 
 		@include breakpoint(xlarge) {
+			
+			#header {
+			padding:1em;
+			}
+
 			nav {
 				a {
 					&[href="#menu"] {
@@ -214,9 +219,6 @@
 				
 			}
 
-			#header {
-			padding:1em;
-			}
 
 			#header-logo-container {
 			width:60%;
