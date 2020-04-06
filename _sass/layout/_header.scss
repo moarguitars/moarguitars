@@ -44,7 +44,7 @@
 		letter-spacing: _font(letter-spacing-alt);
 		line-height: 3.25em;
 		margin: 0;
-		padding:1em;
+		padding:1em 1em 1em 6em;
 		position: fixed;
 		text-transform: uppercase;
 		top: 0;
@@ -214,7 +214,9 @@
 				
 			}
 
-
+			#header {
+			padding:1em;
+			}
 
 			#header-logo-container {
 			width:60%;
