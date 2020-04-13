@@ -5,7 +5,7 @@ nav-menu: false
 show_tile: false
 date: 2020-03-08 19:45:00
 
-model: Solid T
+model: Wayfair
 price: 2500usd / 17300dkk
 model2:
 price2: 
