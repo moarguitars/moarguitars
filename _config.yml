@@ -1,7 +1,7 @@
 # site settings
 title: Moar Guitars 
 subtitle: Hand-made in Copenhagen
-email: mail@moarguitars.com
+email: mail@johnhayn.es
 description:  
 baseurl: "/moarguitars/" # the subpath of your site, e.g. /blog
 url: https://moarguitars.github.io # the base hostname & protocol for your site
