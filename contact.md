@@ -34,12 +34,12 @@ nav-menu: false
 					<h3 style="margin-bottom: 0">Guitar</h3>
 					<label for="guitarmodel">Model</label>
 					<select name="guitarmodel" id="guitarmodel" required>
-						<option value="checkout/solid-t">Solid T (500USD Deposit)</option>
-						<option value="checkout/hollow-t">Hollow T (600USD Deposit)</option>
-						<option value="checkout/offset">Moar Offset (700USD Deposit)</option>
-						<option value="checkout/solid-bass">Solid Bass (700USD Deposit)</option>
-						<option value="checkout/hollow-bass">Hollow Bass (800USD Deposit)</option>
-						<option value="checkout/wayfair">Wayfair (1000USD Deposit)</option>
+						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid T (500USD Deposit)</option>
+						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow T (600USD Deposit)</option>
+						<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (700USD Deposit)</option>
+						<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass (700USD Deposit)</option>
+						<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass (800USD Deposit)</option>
+						<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair (1000USD Deposit)</option>
 					</select>
 				</div>
 				<ul class="actions">
