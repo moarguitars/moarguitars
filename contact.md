@@ -16,8 +16,8 @@ nav-menu: false
 <section>
 	<div class="inner">
 		<section style="margin-top: 6em">
-			<h2>Place Order</h2>
-			<p>So you’ve gone through my site and have come to the excellent decision that you want to order a guitar. First off thanks! That’s brilliant news, welcome to the family! To commit you and I to the build, and to get onto my waiting list, simply pay a deposit here via paypal. Waiting list is currently about 4 months from me receiving the deposit to you receiving your guitar.</p> 
+			<h2>Place Order Request</h2>
+			<p>So you’ve gone through my site and have come to the excellent decision that you want to order a guitar. First off thanks! That’s brilliant news, welcome to the family! To commit you and I to the build, and to get onto my waiting list - once you place this request, you will be asked to pay for your deposit via PayPal. The waiting list is currently about 4 months from me receiving the deposit to you receiving your guitar.</p> 
 			<script type="text/javascript">window.onload = function(){location.href=document.getElementById("selectbox").value;}
 			</script>
 			<form action="../mail_handler.php" method="post">
@@ -34,12 +34,12 @@ nav-menu: false
 					<h3 style="margin-bottom: 0">Guitar</h3>
 					<label for="guitarmodel">Model</label>
 					<select name="guitarmodel" id="guitarmodel" required>
-						<option value="/checkout/solid-t">Solid T (500USD Deposit)</option>
-						<option value="/checkout/hollow-t">Hollow T (600USD Deposit)</option>
-						<option value="/checkout/offset">Moar Offset (700USD Deposit)</option>
-						<option value="/checkout/solid-bass">Solid Bass (700USD Deposit)</option>
-						<option value="/checkout/hollow-bass">Hollow Bass (800USD Deposit)</option>
-						<option value="/checkout/wayfair">Wayfair (1000USD Deposit)</option>
+						<option value="checkout/solid-t">Solid T (500USD Deposit)</option>
+						<option value="checkout/hollow-t">Hollow T (600USD Deposit)</option>
+						<option value="checkout/offset">Moar Offset (700USD Deposit)</option>
+						<option value="checkout/solid-bass">Solid Bass (700USD Deposit)</option>
+						<option value="checkout/hollow-bass">Hollow Bass (800USD Deposit)</option>
+						<option value="checkout/wayfair">Wayfair (1000USD Deposit)</option>
 					</select>
 				</div>
 				<ul class="actions">
