@@ -31,7 +31,6 @@ nav-menu: false
 				</div>
 				<p style="font-size:0.6em">We capture your name and email at this point in case we need to contact you directly about your order. You will not be signed up to any mailing lists.</p>
 				<div class="field">
-					<h3 style="margin-bottom: 0">Guitar</h3>
 					<label for="guitarmodel">Model</label>
 					<select name="guitarmodel" id="guitarmodel" required>
 						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid T (500USD Deposit)</option>
