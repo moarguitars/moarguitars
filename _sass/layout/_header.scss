@@ -12,7 +12,7 @@
 	justify-content: flex-start;
 	width:30%;
 	height:inherit;
-	max-width:30%;
+	max-width: calc(30% - 2em);
 	max-height:120px;
 	border:0;
 }
@@ -46,9 +46,7 @@
 		position: fixed;
 		text-transform: uppercase;
 		top: 0;
-		max-width: _size(inner);
-		width: calc(100% - 6em);
-		margin: 0 auto;
+		width: 100%;
 		z-index: _misc(z-index-base);
 
 		.logo {
