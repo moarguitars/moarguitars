@@ -43,12 +43,12 @@
 		left: 0;
 		letter-spacing: _font(letter-spacing-alt);
 		line-height: 3.25em;
-		margin: 0;
-		padding:1em auto;
 		position: fixed;
 		text-transform: uppercase;
 		top: 0;
+		max-width: _size(inner);
 		width: calc(100% - 6em);
+		margin: 0 auto;
 		z-index: _misc(z-index-base);
 
 		.logo {
