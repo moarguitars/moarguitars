@@ -21,7 +21,6 @@ tiles-count: 5
 # social settings
 facebook_url: https://www.facebook.com/moarguitars/ 
 instagram_url: https://www.instagram.com/moarguitars/
-linkedin_url: 
 
 # build settings
 markdown: kramdown
