@@ -36,7 +36,7 @@ plugins:
 
 airtable:
   enable_sync: true
-  base_uid: 'tbltq9nde54ZUCutl'
+  base_uid: 'appQjVXW2zEsNMZdB'
   tables:
     - name: 'Waitlist' 
       long_text_columns:

@@ -1,1 +1,1 @@
-Sitemap: http://localhost:4000/moarguitars/sitemap.xml
+Sitemap: https://moarguitars.github.io/moarguitars/sitemap.xml
