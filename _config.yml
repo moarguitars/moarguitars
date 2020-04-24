@@ -38,20 +38,18 @@ airtable:
   enable_sync: true
   base_uid: 'appQjVXW2zEsNMZdB'
   tables:
-    - name: 'Waitlist' 
+    - name: 'waitlist' 
       long_text_columns:
         - 'Notes'
 
 
 collections_dir: collections
 collections:
-  use_cases:
-    output: true
-  whitepapers:
+  waitlist:
     output: true
 
 defaults:
   - scope:
-      type: "whitepapers"
+      type: "waitlist"
     values:
-      layout: "page" 
+      layout: "waitlist" 
