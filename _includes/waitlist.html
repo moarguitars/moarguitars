@@ -1,17 +1,17 @@
 <table class="alt fit">
 	<tbody>
 		<tr>
-			<td width="40%">Name</td>
+			<td width="20%">Name</td>
 			<td width="20%">Guitar</td>
-			<td width="20%">Notes</td>
+			<td width="40%">Notes</td>
 			<td width="20%">Build Stage</td>
 		</tr>
 		{% for customer in site.waitlist %}
 		<tr>
-			<td>{{ waitlist.name }}</td>
-			<td>{{ waitlist.notes }}</td>
-			<td>{{ waitlist.notes }}</td>
-			<td>{{ waitlist.build-stage }}</td>
+			<td>{{ customer.name }}</td>
+			<td>{{ customer.notes }}</td>
+			<td>{{ customer.notes }}</td>
+			<td>{{ customer.build-stage }}</td>
 		</tr>
 		{% endfor %}
 	</tbody>

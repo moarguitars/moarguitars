@@ -32,13 +32,12 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-airtable
-  - environment_variables_generator
 
 airtable:
   enable_sync: true
   base_uid: 'appQjVXW2zEsNMZdB'
   tables:
-    - name: 'waitlist' 
+    - name: 'Waitlist' 
       long_text_columns:
         - 'Notes'
 
@@ -52,4 +51,4 @@ defaults:
   - scope:
       type: "customer"
     values:
-      layout: "waitlist" 
+      layout: "page" 
