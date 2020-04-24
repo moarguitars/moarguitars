@@ -32,6 +32,8 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-airtable
+  - airtable 
+  - environment_variables_generator
 
 airtable:
   enable_sync: true
