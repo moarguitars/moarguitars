@@ -25,30 +25,7 @@
 					<h3>{{ page.description }}</h3>
 				</header>
 		      	<div class="table-wrapper fit">
-					<table class="alt fit">
-						<!-- <thead>
-							<tr>
-								<th width="70%">Model</th>
-								<th width="30%"></th>
-							</tr>
-						</thead> -->
-						<tbody>
-							<tr>
-								<td width="40%">Name</td>
-								<td width="20%">Guitar</td>
-								<td width="20%">Notes</td>
-								<td width="20%">Build Stage</td>
-							</tr>
-							{% for customer in site.waitlist %}
-							<tr>
-								<td>{{ waitlist.name }}</td>
-								<td>{{ waitlist.notes }}</td>
-								<td>{{ waitlist.notes }}</td>
-								<td>{{ waitlist.build-stage }}</td>
-							</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+					{% include waitlist.html %}
 				</div>
 		    </div>
 	  	</div>
