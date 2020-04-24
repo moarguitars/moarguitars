@@ -50,6 +50,6 @@ collections:
 
 defaults:
   - scope:
-      type: "waitlist"
+      type: "customer"
     values:
       layout: "waitlist" 
