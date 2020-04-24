@@ -9,6 +9,7 @@ GEM
       zeitwerk (~> 2.2)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bigdecimal (2.0.0)
     coffee-script (2.4.1)
       coffee-script-source
       execjs
@@ -200,6 +201,7 @@ GEM
       gemoji (~> 3.0)
       html-pipeline (~> 2.2)
       jekyll (>= 3.0, < 5.0)
+    json (2.3.0)
     kramdown (1.17.0)
     liquid (4.0.3)
     listen (3.2.1)
@@ -251,10 +253,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activesupport
+  bigdecimal
   dotenv
   github-pages
   jekyll-airtable
   jekyll-sitemap
+  json
 
 BUNDLED WITH
    2.1.4

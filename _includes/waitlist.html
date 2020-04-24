@@ -6,13 +6,17 @@
 			<td width="40%">Notes</td>
 			<td width="20%">Build Stage</td>
 		</tr>
-		{% for customer in site.waitlist %}
+		{% for item in site.data.airtable %}
 		<tr>
-			<td>{{ customer.name }}</td>
-			<td>{{ customer.notes }}</td>
-			<td>{{ customer.notes }}</td>
-			<td>{{ customer.build-stage }}</td>
+			<td>{{ item.name }}</td>
+			<td>{{ item.notes }}</td>
+			<td>{{ item.notes }}</td>
+			<td>{{ item.build-stage }}</td>
 		</tr>
 		{% endfor %}
+		<!-- {% if  item.attachment %}
+		<img src="{{item.attachment[0].url}}" alt={{item.title}} />
+		{% endif %} -->
+		
 	</tbody>
 </table>
