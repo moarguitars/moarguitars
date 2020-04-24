@@ -19,13 +19,13 @@
 <section id="two" style="border:0;">
 	<div class="inner">
 		<div class="row 100% uniform">
-		    <div class="8u 12u$(medium)">
+		    <div class="12u 12u$(medium)">
 		      	<header class="major">
 					<h1>{{ page.title }}</h1>
 					<h3>{{ page.description }}</h3>
 				</header>
-		      	<div class="table-wrapper">
-					<table class="alt">
+		      	<div class="table-wrapper fit">
+					<table class="alt fit">
 						<!-- <thead>
 							<tr>
 								<th width="70%">Model</th>
@@ -39,14 +39,14 @@
 								<td width="20%">Notes</td>
 								<td width="20%">Build Stage</td>
 							</tr>
-							{% if page.model2 %}
+							{% for waitlist in site.waitlist %}
 							<tr>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
-								<td>-</td>
+								<td>{{ waitlist.name }}</td>
+								<td>{{ waitlist.notes }}</td>
+								<td>{{ waitlist.notes }}</td>
+								<td>{{ waitlist.build-stage }}</td>
 							</tr>
-							{% endif %}
+							{% endfor %}
 						</tbody>
 					</table>
 				</div>
