@@ -11,8 +11,18 @@
 			<td>{{ item.name }}</td>
 			<td>{{ item.notes }}</td>
 			<td>{{ item.notes }}</td>
-			<td>{{ item.build-stage }}</td>
+			<td>{{ item.name }}</td>
 		</tr>
+		{% endfor %}
+
+		{% for item in site.data.airtable %}
+
+		<p>{{item.name}}</p>
+		<p>{{item.description}}</p>
+		{% if  item.attachment %}
+		<img src="{{item.attachment[0].url}}" alt={{item.title}} />
+		{% endif %}
+
 		{% endfor %}
 		<!-- {% if  item.attachment %}
 		<img src="{{item.attachment[0].url}}" alt={{item.title}} />

@@ -8,7 +8,7 @@ require 'active_support/all'
 
 # Pass in the app key and table name
 
-@table = @client.table("appQjVXW2zEsNMZdB", "Waitlist")
+@table = @client.table("appQjVXW2zEsNMZdB", "customers")
 @records = @table.records(:filterByFormula => "published", :sort => ["date", :desc], :limit => 100)
 
 # Change the filename here below but make sure it's in the _data folder.
