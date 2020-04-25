@@ -79,13 +79,13 @@ request: !ruby/object:HTTParty::Request
       content-type:
       - application/json; charset=utf-8
       date:
-      - Sat, 25 Apr 2020 11:19:32 GMT
+      - Sat, 25 Apr 2020 11:34:02 GMT
       etag:
-      - W/"254-EpiAeZ1Lf/TZyuzPCxXhYGj38Es"
+      - W/"f9-pjlkIg4QO0aomLGEW7XoZ0skGMs"
       server:
       - Tengine
       set-cookie:
-      - brw=brwpFrGDQk5ybTVcH; path=/; expires=Sun, 25 Apr 2021 11:19:32 GMT; domain=.airtable.com;
+      - brw=brwrnCBcZCwC5uwRI; path=/; expires=Sun, 25 Apr 2021 11:34:02 GMT; domain=.airtable.com;
         secure; httponly
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
@@ -98,25 +98,21 @@ request: !ruby/object:HTTParty::Request
       x-frame-options:
       - DENY
       content-length:
-      - '596'
+      - '249'
       connection:
       - Close
-    body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Name":"Moses ","Notes":"Notes
-      test\n"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recDlK72RrNsxfHMr","fields":{"Name":"John
-      AGAIN","Notes":"WAYFAIR "},"createdTime":"2020-04-25T11:17:34.000Z"},{"id":"recSCUQgCRJRMRdYN","fields":{"Notes":"Did
-      it work?\n","Name":"John again"},"createdTime":"2020-04-24T15:18:33.000Z"},{"id":"reckbX2aZEZ9BFFZg","fields":{"Notes":"Another
-      test","Name":"Dan"},"createdTime":"2020-04-24T15:18:33.000Z"},{"id":"recpBwM1u1fD5U7oL","fields":{"Notes":"Test","Name":"John"},"createdTime":"2020-04-24T15:18:33.000Z"}]}'
+    body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Notes test\n","Name":"Moses
+      "},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recDlK72RrNsxfHMr","fields":{"Notes":"WAYFAIR
+      ","Name":"John AGAIN"},"createdTime":"2020-04-25T11:17:34.000Z"}]}'
     read: true
     uri: 
     decode_content: true
     socket: 
     body_exist: true
 response: *2
-body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Name":"Moses ","Notes":"Notes
-  test\n"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recDlK72RrNsxfHMr","fields":{"Name":"John
-  AGAIN","Notes":"WAYFAIR "},"createdTime":"2020-04-25T11:17:34.000Z"},{"id":"recSCUQgCRJRMRdYN","fields":{"Notes":"Did
-  it work?\n","Name":"John again"},"createdTime":"2020-04-24T15:18:33.000Z"},{"id":"reckbX2aZEZ9BFFZg","fields":{"Notes":"Another
-  test","Name":"Dan"},"createdTime":"2020-04-24T15:18:33.000Z"},{"id":"recpBwM1u1fD5U7oL","fields":{"Notes":"Test","Name":"John"},"createdTime":"2020-04-24T15:18:33.000Z"}]}'
+body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Notes test\n","Name":"Moses
+  "},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recDlK72RrNsxfHMr","fields":{"Notes":"WAYFAIR
+  ","Name":"John AGAIN"},"createdTime":"2020-04-25T11:17:34.000Z"}]}'
 parsed_block: !ruby/object:Proc {}
 headers: !ruby/object:HTTParty::Response::Headers
   header: &3
@@ -129,13 +125,13 @@ headers: !ruby/object:HTTParty::Response::Headers
     content-type:
     - application/json; charset=utf-8
     date:
-    - Sat, 25 Apr 2020 11:19:32 GMT
+    - Sat, 25 Apr 2020 11:34:02 GMT
     etag:
-    - W/"254-EpiAeZ1Lf/TZyuzPCxXhYGj38Es"
+    - W/"f9-pjlkIg4QO0aomLGEW7XoZ0skGMs"
     server:
     - Tengine
     set-cookie:
-    - brw=brwpFrGDQk5ybTVcH; path=/; expires=Sun, 25 Apr 2021 11:19:32 GMT; domain=.airtable.com;
+    - brw=brwrnCBcZCwC5uwRI; path=/; expires=Sun, 25 Apr 2021 11:34:02 GMT; domain=.airtable.com;
       secure; httponly
     strict-transport-security:
     - max-age=31536000; includeSubDomains; preload
@@ -148,7 +144,7 @@ headers: !ruby/object:HTTParty::Response::Headers
     x-frame-options:
     - DENY
     content-length:
-    - '596'
+    - '249'
     connection:
     - Close
   delegate_sd_obj: *3
@@ -156,30 +152,13 @@ parsed_response:
   records:
   - id: rec2aid4Ezawpv8wQ
     fields:
-      Name: 'Moses '
       Notes: 'Notes test
 
         '
+      Name: 'Moses '
     createdTime: '2020-04-25T10:53:25.000Z'
   - id: recDlK72RrNsxfHMr
     fields:
-      Name: John AGAIN
       Notes: 'WAYFAIR '
+      Name: John AGAIN
     createdTime: '2020-04-25T11:17:34.000Z'
-  - id: recSCUQgCRJRMRdYN
-    fields:
-      Notes: 'Did it work?
-
-        '
-      Name: John again
-    createdTime: '2020-04-24T15:18:33.000Z'
-  - id: reckbX2aZEZ9BFFZg
-    fields:
-      Notes: Another test
-      Name: Dan
-    createdTime: '2020-04-24T15:18:33.000Z'
-  - id: recpBwM1u1fD5U7oL
-    fields:
-      Notes: Test
-      Name: John
-    createdTime: '2020-04-24T15:18:33.000Z'
