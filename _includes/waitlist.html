@@ -1,4 +1,9 @@
-<table class="alt fit">
+<ul class="alt">
+	{% for record in site.data.customers.parsed_response.records %}
+	<li><h3>{{ record.fields.Name }}: {{ record.fields.Notes }}</h3></li>
+	{% endfor %}
+</ul>
+<!-- <table class="fit">
 	<tbody>
 		<tr>
 			<td width="20%">Name</td>
@@ -12,4 +17,6 @@
 		{% endfor %}
 		
 	</tbody>
-</table>
+</table> -->
+
+

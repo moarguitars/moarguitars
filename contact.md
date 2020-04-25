@@ -33,8 +33,8 @@ nav-menu: false
 				<div class="field">
 					<label for="guitarmodel">Model</label>
 					<select name="guitarmodel" id="guitarmodel">
-						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid T (500USD Deposit)</option>
-						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow T (600USD Deposit)</option>
+						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty (500USD Deposit)</option>
+						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty (600USD Deposit)</option>
 						<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (700USD Deposit)</option>
 						<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass (700USD Deposit)</option>
 						<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass (800USD Deposit)</option>

@@ -4,9 +4,6 @@
 <loc>http://localhost:4000/404/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/a-order/</loc>
-</url>
-<url>
 <loc>http://localhost:4000/about/</loc>
 </url>
 <url>
@@ -34,10 +31,16 @@
 <loc>http://localhost:4000/merch/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/guitars/morty/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/checkout/offset/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/guitars/offset/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/order-process/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/pickups/</loc>
@@ -47,9 +50,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/checkout/solid-t/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/guitars/t-type/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/video-gallery/</loc>
