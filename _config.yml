@@ -4,7 +4,7 @@ subtitle: Hand-made in Copenhagen
 email: mail@johnhayn.es
 description:  
 baseurl: "/" # the subpath of your site, e.g. /blog
-url: https://moarguitars.com # the base hostname & protocol for your site
+url: https://www.moarguitars.com # the base hostname & protocol for your site
 author:
 street_address: 
 city: Copenhagen S
