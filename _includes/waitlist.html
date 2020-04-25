@@ -1,6 +1,6 @@
 <ul class="alt">
 	{% for record in site.data.customers.parsed_response.records %}
-	<li><h4>{{ record.fields.Name }}: {{ record.fields.Notes }}</h4></li>
+	<li><h4 style="margin-bottom:0;">{{ record.fields.Name }}: {{ record.fields.Notes }}</h4></li>
 	{% endfor %}
 </ul>
 <!-- <table class="fit">
