@@ -32,3 +32,4 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-airtable
+  - waitlist
