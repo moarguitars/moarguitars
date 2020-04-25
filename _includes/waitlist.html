@@ -5,13 +5,11 @@
 <table class="alt fit">
 	<tbody>
 		<tr>
-			<td width="20%">Updated</td>
-			<td width="30%">Name</td>
-			<td width="50%">Notes</td>
+			<td width="20%">Name</td>
+			<td width="80%">Notes</td>
 		</tr>
 		{% for record in site.data.customers.parsed_response.records %}
 		<tr>
-			<td>{{ record.createdTime | date: "%b %d %Y" }}</td>
 			<td>{{ record.fields.Name }}</td>
 			<td>{{ record.fields.Notes }}</td>
 		</tr>
