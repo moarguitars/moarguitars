@@ -1,28 +1,18 @@
 <table class="alt fit">
 	<tbody>
 		<tr>
-			<td width="20%">Name</td>
-			<td width="20%">Guitar</td>
-			<td width="40%">Notes</td>
+			<td width="20%">Updated</td>
 			<td width="20%">Build Stage</td>
+			<td width="30%">Name</td>
+			<td width="30%">Notes</td>
 		</tr>
-		{% for item in site.data.airtable %}
+		{% for record in site.data.customers.parsed_response.records %}
 		<tr>
-			<td>{{ item.name }}</td>
-			<td>{{ item.notes }}</td>
-			<td>{{ item.notes }}</td>
-			<td>{{ item.name }}</td>
+			<td>{{ record.createdTime | date: "%b %d %Y" }}</td>
+			<td>{{ record.fields.Build }}</td>
+			<td>{{ record.fields.Name }}</td>
+			<td>{{ record.fields.Notes }}</td>
 		</tr>
-		{% endfor %}
-
-		{% for item in site.data.airtable %}
-
-		<p>{{item.name}}</p>
-		<p>{{item.description}}</p>
-		{% if  item.attachment %}
-		<img src="{{item.attachment[0].url}}" alt={{item.title}} />
-		{% endif %}
-
 		{% endfor %}
 		<!-- {% if  item.attachment %}
 		<img src="{{item.attachment[0].url}}" alt={{item.title}} />
