@@ -22,8 +22,8 @@ nav-menu: false
 			</script>
 			<form action="https://liveformhq.com/form/0a425dcc-82fa-4f2d-b1aa-7495349eedbc" method="post">
 				<div class="field half first" style="margin-bottom: 0.4em">
-					<label for="name" required>Name</label>
-					<input type="text" name="name" id="name" required />
+					<label for="name">Name</label>
+					<input type="text" name="name" id="name" />
 				</div>
 				<div class="field half" style="margin-bottom: 0.4em">
 					<label for="email">Email</label>
@@ -32,7 +32,7 @@ nav-menu: false
 				<p style="font-size:0.6em">We capture your name and email at this point in case we need to contact you directly about your order. You will not be signed up to any mailing lists.</p>
 				<div class="field">
 					<label for="guitarmodel">Model</label>
-					<select name="guitarmodel" id="guitarmodel" required>
+					<select name="guitarmodel" id="guitarmodel">
 						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid T (500USD Deposit)</option>
 						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow T (600USD Deposit)</option>
 						<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (700USD Deposit)</option>
