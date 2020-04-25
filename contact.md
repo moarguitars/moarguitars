@@ -41,25 +41,12 @@ nav-menu: false
 						<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair (1000USD Deposit)</option>
 					</select>
 				</div>
-				<input type="hidden" value="https://liveformhq.com/thank_you" name="_redirect" />
+				<input type="hidden" value="{{ '' | relative_url}}" name="_redirect" />
 				<ul class="actions">
 					<li><input type="submit" value="Continue to Pay" class="special" onClick="window.open(guitarmodel.value,'newtab')"/></li>
 					<li><input type="reset" value="Clear" /></li>
 				</ul>
 			</form>	
-			<form action="https://liveformhq.com/form/0a425dcc-82fa-4f2d-b1aa-7495349eedbc" method="POST" accept-charset="utf-8">
-			  <input type="hidden" name="_utf8" value="✓">
-			  <!--
-			    NOTE: This is an optional field, if your form has a field named '_redirect',
-			    The user will be redirected to this page after the submission is saved
-			  -->
-			  			  <label for="name">Name</label>
-			  <input type="text" id="name" name="name"> <br />
-			  <label for="email">Email</label>
-			  <input type="text" id="email" name="email"> <br />
-			  <button type="submit">Submit</button>
-			</form>
-
 		</section>
 	</div>
 </section>
