@@ -5,6 +5,7 @@ description: 'View our collection of unique, hand-made instruments'
 seo_description:
 show_tile: true
 nav-menu: true
+order: 1
 image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 ---
 

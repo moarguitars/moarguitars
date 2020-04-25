@@ -4,6 +4,7 @@ title: Videos & Photos
 description: 'Watch videos and view photos'
 seo_description:
 nav-menu: true
+order: 3
 image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 ---
 

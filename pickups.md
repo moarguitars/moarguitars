@@ -5,6 +5,7 @@ description: 'Hand-wound, bespoke pickups'
 seo_description:
 show_tile: true
 nav-menu: true
+order: 2
 image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 ---
 

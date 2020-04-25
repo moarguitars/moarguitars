@@ -5,6 +5,7 @@ description: 'Step by step guide from the first message to receiving your guitar
 seo_description:
 show_tile: true
 nav-menu: true
+order: 3
 image: 'assets/images/workshop/workshop-guitar-neck.jpg'
 ---
 
