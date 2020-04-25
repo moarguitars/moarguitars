@@ -13,7 +13,7 @@ end
 waitlist = WaitList.new
 
 # Change the filename here below but make sure it's in the _data folder.
-File.open("_data/customers.yaml", "w") do |f|
+File.open("../_data/customers.yaml", "w") do |f|
     data = waitlist.customers
     f.write(data.to_yaml)
 end
