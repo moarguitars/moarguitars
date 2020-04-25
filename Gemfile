@@ -5,3 +5,4 @@ gem 'airtable'
 gem 'bigdecimal'
 gem 'activesupport'
 gem "json"
+gem 'jekyll-watch'
