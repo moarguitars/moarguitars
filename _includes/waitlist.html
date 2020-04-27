@@ -1,8 +1,8 @@
-<ul class="alt">
-	{% for record in site.data.customers.parsed_response.records %}
+<ol class="alt">
+	{% for record in site.data.customers.parsed_response.records where 'Remove From Waitlist' == 'false' | sort: 'createdTime' %}
 	<li><h4 style="margin-bottom:0;">{{ record.fields.Name }}: {{ record.fields.Notes }}</h4></li>
 	{% endfor %}
-</ul>
+</ol>
 <!-- <table class="fit">
 	<tbody>
 		<tr>
@@ -20,3 +20,6 @@
 </table> -->
 
 
+
+
+00 13 * * * /usr/local/opt/ruby/bin/ruby /documents/Github/moarguitars/_scripts/waitlist.rb
