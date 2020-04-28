@@ -3,8 +3,8 @@ layout: page
 title: Meet the builder
 description: 'More information about pricing and shipping'
 seo_description:
-show_tile: true
-nav-menu: true
+show_tile: false
+nav-menu: false
 order: 3
 image: 'assets/images/misc/guitar-carve.jpg'
 ---
