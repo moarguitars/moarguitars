@@ -79,13 +79,13 @@ request: !ruby/object:HTTParty::Request
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 27 Apr 2020 19:48:16 GMT
+      - Tue, 28 Apr 2020 17:06:40 GMT
       etag:
       - W/"d36-L72Z61n4W8ZL27VtQTGFsJhtX+k"
       server:
       - Tengine
       set-cookie:
-      - brw=brwyKHdgt970YoLLm; path=/; expires=Tue, 27 Apr 2021 19:48:16 GMT; domain=.airtable.com;
+      - brw=brwDsoKKFQOnVdKNA; path=/; expires=Wed, 28 Apr 2021 17:06:39 GMT; domain=.airtable.com;
         secure; httponly
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
@@ -181,13 +181,13 @@ headers: !ruby/object:HTTParty::Response::Headers
     content-type:
     - application/json; charset=utf-8
     date:
-    - Mon, 27 Apr 2020 19:48:16 GMT
+    - Tue, 28 Apr 2020 17:06:40 GMT
     etag:
     - W/"d36-L72Z61n4W8ZL27VtQTGFsJhtX+k"
     server:
     - Tengine
     set-cookie:
-    - brw=brwyKHdgt970YoLLm; path=/; expires=Tue, 27 Apr 2021 19:48:16 GMT; domain=.airtable.com;
+    - brw=brwDsoKKFQOnVdKNA; path=/; expires=Wed, 28 Apr 2021 17:06:39 GMT; domain=.airtable.com;
       secure; httponly
     strict-transport-security:
     - max-age=31536000; includeSubDomains; preload

@@ -266,9 +266,13 @@
 				
 
 
-				<div class="table-wrapper">
-					<h4>Binding</h4>
-					<table class="alt">
+				<!-- Extras -->
+				<h2>Extras</h2>
+
+				<!-- Binding -->
+				<button id="defaultOpen" class="accordion">Binding</button>
+				<div class="panel">
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Top binding</td>
@@ -289,9 +293,11 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Hardware</h4>
-					<table class="alt">
+
+				<!-- Hardware -->
+				<button class="accordion">Hardware</button>
+				<div class="panel">
+				  <table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Gold hardware and frets</td>
@@ -308,10 +314,12 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Pickups</h4>
+
+				<!-- Pickups -->
+				<button class="accordion">Pickups</button>
+				<div class="panel">
 					<p>Find out more about <a href="">our hand-wound pick-ups</a>.
-					<table class="alt">
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Extra humbucker</td>
@@ -348,9 +356,12 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Electronic Upgrades</h4>
-					<table class="alt">
+
+				<!-- Electronics -->
+				<button class="accordion">Electronic Upgrades</button>
+				<div class="panel">
+					<p>Find out more about <a href="">our hand-wound pick-ups</a>.
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">3-way P-UP selector switch</td>
@@ -379,9 +390,11 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Inlays</h4>
-					<table class="alt">
+
+				<!-- Inlays -->
+				<button class="accordion">Inlays</button>
+				<div class="panel">
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Custom Inlays</td>
@@ -394,9 +407,11 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Tremolo Systems</h4>
-					<table class="alt">
+
+				<!-- Trems -->
+				<button class="accordion">Tremolo Systems</button>
+				<div class="panel">
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Bigsby</td>
@@ -417,24 +432,11 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="table-wrapper">
-					<h4>Neck Extras</h4>
-					<table class="alt">
-						<tbody>
-							<tr>
-								<td width="70%">Carbon Rods</td>
-								<td width="30%">800 DKK</td>
-							</tr>
-							<tr>
-								<td>24 Frets</td>
-								<td>300 DKK</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="table-wrapper">
-					<h4>Fun Stuff</h4>
-					<table class="alt">
+
+				<!-- Fun Stuff -->
+				<button class="accordion">Fun Stuff</button>
+				<div class="panel">
+				  	<table class="alt">
 						<tbody>
 							<tr>
 								<td width="70%">Extra string</td>
@@ -455,6 +457,8 @@
 						</tbody>
 					</table>
 				</div>
+
+
 				<ul class="actions">
 					<li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 				</ul>
@@ -547,6 +551,25 @@
 </body>
 <!-- Scripts -->
 <script>
+	var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
 	function openCity(evt, cityName) {
   // Declare all variables
   var i, tabcontent, tablinks;
