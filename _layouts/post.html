@@ -77,9 +77,6 @@
 				</div>
 				{% else %}
 				<p>{{ page.modeldesc | markdownify }}</p>
-				<ul class="actions">
-					<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
-				</ul>
 				<div class="table-wrapper">
 		      		<h4>Base Price</h4>
 					<table class="alt">
@@ -96,6 +93,9 @@
 						</tfoot>
 					</table>
 				</div>
+				<ul class="actions">
+					<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+				</ul>
 				{% endif %}
 
 
