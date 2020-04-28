@@ -1,7 +1,7 @@
 ---
 layout: waitlist
 title: Waitlist
-description: 'Current outstanding orders'
+description: 
 seo_description:
 show_tile: false
 nav-menu: true

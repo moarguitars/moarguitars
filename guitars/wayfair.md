@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: guitar
 title: Wayfair
 nav-menu: false
 show_tile: false

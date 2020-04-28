@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %} 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
+
+<section id="two" style="border:0;">
+	<div class="inner">
+		<div class="row 100% uniform">
+		    <div class="8u 12u$(medium)">
+		      	<header class="major">
+					<h1>Build your own {{ page.title }}</h1>
+					<h3>{{ page.description }}</h3>
+				</header>
+				{% if page.model2 %}
+				<!-- Tab links -->
+				<div class="tab">
+				  <button id="defaultOpen" class="tablinks" onclick="openCity(event, '{{-page.model-}}')">{{ page.model }}</button>
+				  <button class="tablinks" onclick="openCity(event, '{{-page.model2-}}')">{{ page.model2 }}</button>
+				</div>
+				<!-- Tab content -->
+				<div id="{{-page.model-}}" class="tabcontent">
+					<p>{{ page.modeldesc | markdownify }}</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">{{ page.model }}</td>
+									<td width="30%">{{ page.price }}</td>
+								</tr>
+							</tbody>
+						</table>
+						<p style="font-size: 0.8em">All prices listed on the site are excluding sales tax, but if you’re outside the EU you won't be charged it ( you may be charge import duties though)</p>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				<div id="{{-page.model2-}}" class="tabcontent">
+					<p>{{ page.modeldesc2 | markdownify }}</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">{{ page.model2 }}</td>
+									<td width="30%">{{ page.price2 }}</td>
+								</tr>
+							</tbody>
+						</table>
+						<p style="font-size: 0.8em">All prices listed on the site are excluding sales tax, but if you’re outside the EU you won't be charged it ( you may be charge import duties though)</p>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				{% else %}
+				<p>{{ page.modeldesc | markdownify }}</p>
+				<div class="table-wrapper">
+		      		<h4>Base Price</h4>
+					<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">{{ page.model }}</td>
+								<td width="30%">{{ page.price }}</td>
+							</tr>
+						</tbody>
+					</table>
+					<p style="font-size: 0.8em">All prices listed on the site are excluding sales tax, but if you’re outside the EU you won't be charged it ( you may be charge import duties though)</p>
+				</div>
+				<ul class="actions">
+					<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+				</ul>
+				{% endif %}
+
+
+				<!-- Extras -->
+				<h2>Extras</h2>
+
+				<!-- Binding -->
+				<button id="defaultOpen" class="accordion">Binding</button>
+				<div class="panel">
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Top binding</td>
+								<td width="30%">1100 DKK</td>
+							</tr>
+							<tr>
+								<td>Bottom binding</td>
+								<td>1100 DKK</td>
+							</tr>
+							<tr>
+								<td>F-hole binding</td>
+								<td>1100 DKK</td>
+							</tr>
+							<tr>
+								<td>Neck binding</td>
+								<td>1500 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Hardware -->
+				<button class="accordion">Hardware</button>
+				<div class="panel">
+				  <table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Gold hardware and frets</td>
+								<td width="30%">300 DKK</td>
+							</tr>
+							<tr>
+								<td>Locking tuners over standard</td>
+								<td>150 DKK</td>
+							</tr>
+							<tr>
+								<td>Locking strap pins</td>
+								<td>200 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Pickups -->
+				<button class="accordion">Pickups</button>
+				<div class="panel">
+					<p>Find out more about <a href="">our hand-wound pick-ups</a>.
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Extra humbucker</td>
+								<td width="30%">1050 DKK</td>
+							</tr>
+							<tr>
+								<td>Swap for humbucker</td>
+								<td>500 DKK</td>
+							</tr>
+							<tr>
+								<td>Extra P90</td>
+								<td>600 DKK</td>
+							</tr>
+							<tr>
+								<td>Extra Single Coil</td>
+								<td>600 DKK</td>
+							</tr>
+							<tr>
+								<td>Swap for Single Coil</td>
+								<td>0 DKK</td>
+							</tr>
+							<tr>
+								<td>Extra Filtertron or other mini HB</td>
+								<td>1100 DKK</td>
+							</tr>
+							<tr>
+								<td>Swap for Filtertron or other mini HB</td>
+								<td>500 DKK</td>
+							</tr>
+							<tr>
+								<td>Inbuilt passive Piezo circuit and pick-up</td>
+								<td>900 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Electronics -->
+				<button class="accordion">Electronic Upgrades</button>
+				<div class="panel">
+					<p>Find out more about <a href="">our hand-wound pick-ups</a>.
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">3-way P-UP selector switch</td>
+								<td width="30%">100 DKK</td>
+							</tr>
+							<tr>
+								<td>Tone knob</td>
+								<td>120 DKK</td>
+							</tr>
+							<tr>
+								<td>Extra volume</td>
+								<td>100 DKK</td>
+							</tr>
+							<tr>
+								<td>6-way switch</td>
+								<td>420 DKK</td>
+							</tr>
+							<tr>
+								<td>Push pull knob</td>
+								<td>200 DKK</td>
+							</tr>
+							<tr>
+								<td>Inbuilt Moar hand-wired Overdrive effect</td>
+								<td>2000 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Inlays -->
+				<button class="accordion">Inlays</button>
+				<div class="panel">
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Custom Inlays</td>
+								<td width="30%">From 2500 DKK</td>
+							</tr>
+							<tr>
+								<td>Inlay dots</td>
+								<td>500 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Trems -->
+				<button class="accordion">Tremolo Systems</button>
+				<div class="panel">
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Bigsby</td>
+								<td width="30%">1400 DKK</td>
+							</tr>
+							<tr>
+								<td>Jazzmaster-style Tremolo</td>
+								<td>900 DKK</td>
+							</tr>
+							<tr>
+								<td>Strat-style Tremolo</td>
+								<td>1100 DKK</td>
+							</tr>
+							<tr>
+								<td>Duesenberg-style Tremolo</td>
+								<td>800 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Neck and Fretboard -->
+				<button class="accordion">Neck and Fretboard Extras</button>
+				<div class="panel">
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Carbon rods in neck</td>
+								<td width="30%">800 DKK</td>
+							</tr>
+							<tr>
+								<td>23rd and 24th fret</td>
+								<td>300 DKK</td>
+							</tr>
+							<tr>
+								<td>Compound Radius Fretboard</td>
+								<td>400 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Fun Stuff -->
+				<button class="accordion">Fun Stuff</button>
+				<div class="panel">
+				  	<table class="alt">
+						<tbody>
+							<tr>
+								<td width="70%">Extra string</td>
+								<td width="30%">2600 DKK</td>
+							</tr>
+							<tr>
+								<td>Baritone scale length</td>
+								<td>200 DKK</td>
+							</tr>
+							<tr>
+								<td>Nitro paint </td>
+								<td>5000 DKK</td>
+							</tr>
+							<tr>
+								<td>Exotic woods (wenge, bubinga, walnut)</td>
+								<td>From 1000 DKK</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<ul class="actions">
+					<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+				</ul>
+		    </div>
+		    <div class="4u 12u$(medium)">
+		     	<span class="image fit"><img src="{{ page.image-1 | relative_url }}" alt="{{ page.image-1-alt }}"></span>
+		    </div>
+		    <div class="4u 12u$(medium)">
+		     	<span class="image fit"><img src="{{ page.image-2 | relative_url }}" alt="{{ page.image-2-alt }}"></span>
+		    </div>
+		    <div class="4u 12u$(medium)">
+		     	<span class="image fit"><img src="{{ page.image-3 | relative_url }}" alt="{{ page.image-3-alt }}"></span>
+		    </div>
+	  	</div>
+	</div>
+</section>
+
+</div>
+
+    {% include footer.html %}
+
+</body>
+<!-- Scripts -->
+<script>
+	var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+	function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+
+</html>

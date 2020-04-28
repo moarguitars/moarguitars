@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: guitar
 title: Moar Offset
 nav-menu: false
 show_tile: false

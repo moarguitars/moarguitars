@@ -1,14 +1,14 @@
 ---
-layout: post
+layout: bass
 title: Bass
 nav-menu: false
 show_tile: false
 date: 2020-02-11 19:45:00
 
 model: Bass
-price: 2500usd / 17300dkk
+price: 2000usd / 17300dkk
 modeldesc: Description
-model2: Hollow bass
+model2: Hollow Bass
 price2: 2500usd / 17300dkk
 modeldesc2: Description
 
