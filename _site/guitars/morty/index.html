@@ -93,10 +93,10 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/">Home</a></li>
-	    	
 		
 		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
 		
 		    
 		
@@ -165,23 +165,23 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
-		    
-		
-		    
 		        <li><a href="http://localhost:4000/merch/">Merch</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/video-gallery/">Videos & Photos</a></li>
+		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
+		        <li><a href="http://localhost:4000/gallery/">Gallery</a></li>
 		    
 		
 		    
 		        <li><a href="http://localhost:4000/workshop/">Meet the builder</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
 		    
 		
 		    
@@ -195,6 +195,7 @@
 		<!-- <li><a href="#" class="button fit">Log In</a></li> -->
 	</ul>
 </nav>
+
  
     
     
@@ -209,43 +210,62 @@
 					<h1>Build your own Morty</h1>
 					<h3>A semi-hollow or solid T-type</h3>
 				</header>
-		      	<p><h3 id="solid-morty">Solid Morty</h3>
-<p>My most stripped back guitar is the Solid-Morty. You still get stainless steel frets, the same hardware as you get on my Wayfairs, a modern all access set neck joint, handwound pickups made to your specs, but everything unnecessary is removed. It is a distilled, pure and simple instrument.</p>
-
-<h3 id="hollow-morty">Hollow Morty</h3>
-<p>My Hollow Morty’s are made to be comfortable, resonant, inspiring to play acoustically and versatile. They are totally hollow, with no centre block, to maximise resonance and keep the weight down.  But I vary the thickness of the top, back and sides to add strength and support where needed, whilst removing all unnecessary material. This gives me a lot of extra control on my builds. For example if the customer knows they will be playing on very loud stages I can add a little extra thickness to the top to help control feedback, or if you want to feel vibrations against your chest when you play I can make the back a little thinner on the belly cut.</p>
-</p>
-		      	<ul class="actions">
-					<li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
-				</ul>
-		      	<div class="table-wrapper">
-		      		<h4>Base Price</h4>
-					<table class="alt">
-						<!-- <thead>
-							<tr>
-								<th width="70%">Model</th>
-								<th width="30%"></th>
-							</tr>
-						</thead> -->
-						<tbody>
-							<tr>
-								<td width="70%">Solid Morty</td>
-								<td width="30%">1500usd / 10,000dkk</td>
-							</tr>
-							
-							<tr>
-								<td>Hollow Morty</td>
-								<td>1800usd / 12,000dkk</td>
-							</tr>
-							
-						</tbody>
-						<tfoot>
-							<tr>
-								<td></td>
-								<td>Retail plus MOMS (tax)</td>
-						</tfoot>
-					</table>
+				
+				<!-- Tab links -->
+				<div class="tab">
+				  <button id="defaultOpen" class="tablinks" onclick="openCity(event, 'Solid Morty')">Solid Morty</button>
+				  <button class="tablinks" onclick="openCity(event, 'Hollow Morty')">Hollow Morty</button>
 				</div>
+				<!-- Tab content -->
+				<div id="Solid Morty" class="tabcontent">
+					<p><p>My most stripped back guitar is the Solid-Morty. You still get stainless steel frets, the same hardware as you get on my Wayfairs, a modern all access set neck joint, handwound pickups made to your specs, but everything unnecessary is removed. It is a distilled, pure and simple instrument.</p>
+</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">Solid Morty</td>
+									<td width="30%">1500usd / 10,000dkk</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td>Retail plus MOMS (tax)</td>
+							</tfoot>
+						</table>
+					</div>
+					<ul class="actions">
+						<li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				<div id="Hollow Morty" class="tabcontent">
+					<p><p>My Hollow Morty’s are made to be comfortable, resonant, inspiring to play acoustically and versatile. They are totally hollow, with no centre block, to maximise resonance and keep the weight down.  But I vary the thickness of the top, back and sides to add strength and support where needed, whilst removing all unnecessary material. This gives me a lot of extra control on my builds. For example if the customer knows they will be playing on very loud stages I can add a little extra thickness to the top to help control feedback, or if you want to feel vibrations against your chest when you play I can make the back a little thinner on the belly cut.</p>
+</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">Hollow Morty</td>
+									<td width="30%">1800usd / 12,000dkk</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td>Retail plus MOMS (tax)</td>
+							</tfoot>
+						</table>
+					</div>
+					<ul class="actions">
+						<li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				
+
+
 				<div class="table-wrapper">
 					<h4>Binding</h4>
 					<table class="alt">
@@ -525,5 +545,29 @@
 
 
 </body>
+<!-- Scripts -->
+<script>
+	function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
 
 </html>

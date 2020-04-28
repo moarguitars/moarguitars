@@ -1,25 +1,24 @@
 <ol class="alt">
-	{% for record in site.data.customers.parsed_response.records where 'Remove From Waitlist' == 'false' | sort: 'createdTime' %}
-	<li><h4 style="margin-bottom:0;">{{ record.fields.Name }}: {{ record.fields.Notes }}</h4></li>
+	{% for record in site.data.customers.parsed_response.records %}
+	{% if record.fields.remove != true %}
+	<li><p style="margin-bottom:0;"><strong>{{ record.fields.Name }} ({{ record.fields.Location }}):</strong> {{ record.fields.Notes }}</p></li>
+	{% endif %}
 	{% endfor %}
 </ol>
-<!-- <table class="fit">
-	<tbody>
-		<tr>
-			<td width="20%">Name</td>
-			<td width="80%">Notes</td>
-		</tr>
-		{% for record in site.data.customers.parsed_response.records %}
-		<tr>
-			<td>{{ record.fields.Name }}</td>
-			<td>{{ record.fields.Notes }}</td>
-		</tr>
-		{% endfor %}
-		
-	</tbody>
-</table> -->
 
 
 
 
-00 13 * * * /usr/local/opt/ruby/bin/ruby /documents/Github/moarguitars/_scripts/waitlist.rb
+
+
+
+
+
+
+
+
+
+
+
+
+

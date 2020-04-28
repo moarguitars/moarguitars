@@ -32,11 +32,11 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 			<div class="content">
 				<div class="inner">
 					<header class="major">
-						<h2>T-Type</h2>
+						<h2>Morty</h2>
 						<h4>A distilled, pure and simple instrument</h4>
 					</header>
 					<ul class="actions">
-	                    <li><a href="{{ "/guitars/t-type"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
+	                    <li><a href="{{ "/guitars/morty"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
 	                </ul>
 				</div>
 			</div>

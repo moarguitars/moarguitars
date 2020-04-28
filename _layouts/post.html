@@ -24,30 +24,70 @@
 					<h1>Build your own {{ page.title }}</h1>
 					<h3>{{ page.description }}</h3>
 				</header>
-		      	<p>{{ page.content | markdownify }}</p>
-		      	<ul class="actions">
+				{% if page.model2 %}
+				<!-- Tab links -->
+				<div class="tab">
+				  <button id="defaultOpen" class="tablinks" onclick="openCity(event, '{{-page.model-}}')">{{ page.model }}</button>
+				  <button class="tablinks" onclick="openCity(event, '{{-page.model2-}}')">{{ page.model2 }}</button>
+				</div>
+				<!-- Tab content -->
+				<div id="{{-page.model-}}" class="tabcontent">
+					<p>{{ page.modeldesc | markdownify }}</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">{{ page.model }}</td>
+									<td width="30%">{{ page.price }}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td>Retail plus MOMS (tax)</td>
+							</tfoot>
+						</table>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				<div id="{{-page.model2-}}" class="tabcontent">
+					<p>{{ page.modeldesc2 | markdownify }}</p>
+					<div class="table-wrapper">
+			      		<h4>Base Price</h4>
+						<table class="alt">
+							<tbody>
+								<tr>
+									<td width="70%">{{ page.model2 }}</td>
+									<td width="30%">{{ page.price2 }}</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td></td>
+									<td>Retail plus MOMS (tax)</td>
+							</tfoot>
+						</table>
+					</div>
+					<ul class="actions">
+						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
+					</ul>
+				</div>
+				{% else %}
+				<p>{{ page.modeldesc | markdownify }}</p>
+				<ul class="actions">
 					<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 				</ul>
-		      	<div class="table-wrapper">
+				<div class="table-wrapper">
 		      		<h4>Base Price</h4>
 					<table class="alt">
-						<!-- <thead>
-							<tr>
-								<th width="70%">Model</th>
-								<th width="30%"></th>
-							</tr>
-						</thead> -->
 						<tbody>
 							<tr>
 								<td width="70%">{{ page.model }}</td>
 								<td width="30%">{{ page.price }}</td>
 							</tr>
-							{% if page.model2 %}
-							<tr>
-								<td>{{ page.model2 }}</td>
-								<td>{{ page.price2 }}</td>
-							</tr>
-							{% endif %}
 						</tbody>
 						<tfoot>
 							<tr>
@@ -56,6 +96,9 @@
 						</tfoot>
 					</table>
 				</div>
+				{% endif %}
+
+
 				<div class="table-wrapper">
 					<h4>Binding</h4>
 					<table class="alt">
@@ -267,5 +310,29 @@
     {% include footer.html %}
 
 </body>
+<!-- Scripts -->
+<script>
+	function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
 
 </html>

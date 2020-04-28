@@ -93,10 +93,10 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/">Home</a></li>
-	    	
 		
 		    
+		        <li><a href="http://localhost:4000/">Home</a></li>
+	    	
 		
 		    
 		
@@ -165,23 +165,23 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
-		    
-		
-		    
 		        <li><a href="http://localhost:4000/merch/">Merch</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/video-gallery/">Videos & Photos</a></li>
+		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
+		        <li><a href="http://localhost:4000/gallery/">Gallery</a></li>
 		    
 		
 		    
 		        <li><a href="http://localhost:4000/workshop/">Meet the builder</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
 		    
 		
 		    
@@ -195,6 +195,7 @@
 		<!-- <li><a href="#" class="button fit">Log In</a></li> -->
 	</ul>
 </nav>
+
  
     
     
@@ -209,28 +210,20 @@
 					<h1>Build your own Moar Offset</h1>
 					<h3>A wafer thin semi-hollow</h3>
 				</header>
-		      	<p><p>My most recent addition to the Moar model catalogue is the as of yet un-named Moar Offset (Have a good idea for a name? <a href="">Submit it here</a>!)</p>
-
-<p>They share a lot of characteristics with the Hollow t’s, with an all access set neck joint, totally hollow body with no centre block, big belly and arm cuts. But with a body design that wants to be looked at. The F hole is oversized, the weight is low, it has corners in unusual places. See more about them here.</p>
+				
+				<p><p>My most recent addition to the Moar model catalogue is the as of yet un-named Moar Offset (Have a good idea for a name? <a href="">Submit it here</a>!) They share a lot of characteristics with the Hollow Mortys, with an all access set neck joint, totally hollow body with no centre block, big belly and arm cuts. But with a body design that wants to be looked at. The F hole is oversized, the weight is low, it has corners in unusual places. See more about them here.</p>
 </p>
-		      	<ul class="actions">
+				<ul class="actions">
 					<li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 				</ul>
-		      	<div class="table-wrapper">
+				<div class="table-wrapper">
 		      		<h4>Base Price</h4>
 					<table class="alt">
-						<!-- <thead>
-							<tr>
-								<th width="70%">Model</th>
-								<th width="30%"></th>
-							</tr>
-						</thead> -->
 						<tbody>
 							<tr>
 								<td width="70%">Moar Offset</td>
 								<td width="30%">2500usd / 17300dkk</td>
 							</tr>
-							
 						</tbody>
 						<tfoot>
 							<tr>
@@ -239,6 +232,9 @@
 						</tfoot>
 					</table>
 				</div>
+				
+
+
 				<div class="table-wrapper">
 					<h4>Binding</h4>
 					<table class="alt">
@@ -518,5 +514,29 @@
 
 
 </body>
+<!-- Scripts -->
+<script>
+	function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
 
 </html>

@@ -19,7 +19,7 @@ request: !ruby/object:HTTParty::Request
     host: 
     port: 
     path: "/customers"
-    query: api_key=keykx6o2ysAy0m8xs
+    query: view=Grid%20view&api_key=keykx6o2ysAy0m8xs
     opaque: 
     fragment: 
     parser: &1 !ruby/object:URI::RFC3986_Parser
@@ -40,7 +40,7 @@ request: !ruby/object:HTTParty::Request
     host: api.airtable.com
     port: 443
     path: "/v0/appQjVXW2zEsNMZdB/customers"
-    query: api_key=keykx6o2ysAy0m8xs
+    query: view=Grid%20view&api_key=keykx6o2ysAy0m8xs
     opaque: 
     fragment: 
     parser: *1
@@ -49,7 +49,7 @@ request: !ruby/object:HTTParty::Request
     request_has_body: false
     response_has_body: true
     uri: 
-    path: "/v0/appQjVXW2zEsNMZdB/customers?api_key=keykx6o2ysAy0m8xs"
+    path: "/v0/appQjVXW2zEsNMZdB/customers?view=Grid%20view&api_key=keykx6o2ysAy0m8xs"
     decode_content: true
     header:
       accept-encoding:
@@ -79,13 +79,13 @@ request: !ruby/object:HTTParty::Request
       content-type:
       - application/json; charset=utf-8
       date:
-      - Mon, 27 Apr 2020 16:06:19 GMT
+      - Mon, 27 Apr 2020 19:48:16 GMT
       etag:
-      - W/"159-pM1vw5RTFhICsQ8dgixXe2l4eIk"
+      - W/"d36-L72Z61n4W8ZL27VtQTGFsJhtX+k"
       server:
       - Tengine
       set-cookie:
-      - brw=brwH50Nsn5N4Z4fH7; path=/; expires=Tue, 27 Apr 2021 16:06:19 GMT; domain=.airtable.com;
+      - brw=brwyKHdgt970YoLLm; path=/; expires=Tue, 27 Apr 2021 19:48:16 GMT; domain=.airtable.com;
         secure; httponly
       strict-transport-security:
       - max-age=31536000; includeSubDomains; preload
@@ -98,21 +98,77 @@ request: !ruby/object:HTTParty::Request
       x-frame-options:
       - DENY
       content-length:
-      - '345'
+      - '1191'
       connection:
       - Close
-    body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Notes test\n","Name":"Moses
-      ","Created Time":"2020-04-25T10:53:25.000Z"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recAqSspV4FD0xePB","fields":{"Notes":"Cup
-      of tea please ","Name":"Apprentices ","Created Time":"2020-04-25T19:10:10.000Z"},"createdTime":"2020-04-25T19:10:10.000Z"}]}'
+    body: '{"records":[{"id":"recTeEouzQY5wsrUR","fields":{"Notes":"Mahogany S type
+      with bubinga neck and wenge fretboard. 2 firebird mini humbuckers. ","Name":"Will","Location":"Raleigh,
+      United States"},"createdTime":"2020-04-27T17:37:44.000Z"},{"id":"recj3gNCNkTaMWfTk","fields":{"Notes":"Wenge
+      Wayfair bass. 2x2 headstock, passive piezo and 2 humbuckers","Name":"Nuno","Location":"Airdrie,
+      Scotland"},"createdTime":"2020-04-27T17:41:03.000Z"},{"id":"recSvFRoaIC3v4BSf","fields":{"Notes":"Morty,
+      ash body, maple neck and rosewood fretboard. classic pickups ","Name":"Johan","Location":"Jakarta,
+      Indonesia"},"createdTime":"2020-04-27T17:44:09.000Z"},{"id":"recEQ5PeGY3Py6ckQ","fields":{"Notes":"Hollow
+      P bass, Ash body, maple neck and bubinga fretboard","Name":"Welly","Location":"Raleigh,
+      United States"},"createdTime":"2020-04-27T17:46:27.000Z"},{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Wenge
+      Wayfair bass. 3 mini rail humbuckers, 6 way switch, gold hardware, reverse headstock","Name":"Philippe","Location":"New
+      York, United States"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"rec7CZ9IWaVZduTaG","fields":{"Notes":"Wenge
+      Wayfair, overwound humbuckers, gold hardware, bigsby, cream binding, 6 way switch,
+      custom inlay, reverse headstock","Name":"Sof","Location":"Cheltenham, Australia"},"createdTime":"2020-04-27T17:51:13.000Z"},{"id":"recAI6WFN0YZNIZBq","fields":{"Notes":"Wenge
+      Offset Wayfair, custom \"F\" holem p90 neck, humbucker bridge, reverse headstock","Name":"Arne","Location":"Odense,
+      Denmark"},"createdTime":"2020-04-27T17:52:37.000Z"},{"id":"reciKqcRT1nMr6CnI","fields":{"Notes":"Epi(c)
+      rebuild. hollow body, bubinga back, Duesenberg trem, p90 neck, humbucker bridge.","Name":"Julian","Location":"Sarasota,
+      Florida"},"createdTime":"2020-04-27T17:54:55.000Z"},{"id":"rec6X0JHJvLHHjKTR","fields":{"Notes":"Wenge
+      hollow offset, wenge neck, maple fretboard, 3 p90s, floating ebony bridge","Name":"Josh","Location":"Rohnert
+      Park, United States"},"createdTime":"2020-04-27T17:56:32.000Z"},{"id":"reczkdzELEzoEJCW8","fields":{"Notes":"Single
+      cut walnut Wayfair. Mahogany neck, ebony fretboard. Jazzmaster trem, Jaguar
+      single coils. F hole binding","Name":"Christian ","Location":"Erie, United States"},"createdTime":"2020-04-27T17:59:19.000Z"},{"id":"recwNVntpXC1l5vEq","fields":{"Notes":"Solid
+      Morty, walnut body, bubinga neck and fretboard. p90 neck, firebird bridge","Name":"Aaron","Location":"Nashville,
+      United States"},"createdTime":"2020-04-27T18:06:41.000Z"},{"id":"rec8lJ6ID3qMSk2So","fields":{"Notes":"Mahogany
+      Wayfair, maple neck and ebony fretboard. P90 neck, firebird bridge. ","Name":"Elijah","Location":"Franklinville,
+      United States"},"createdTime":"2020-04-27T18:09:14.000Z"},{"id":"reczCP7c8KWm5iW2M","fields":{"Notes":"Wenge
+      wayfair, 2 single coils & p90 bridge, cream binding, ebony floating bridge,
+      left handed, 24 frets","Name":"Genchi","Location":"Sazuka, Japan"},"createdTime":"2020-04-27T18:16:31.000Z"},{"id":"recqvwarvnXFFgz3u","fields":{"Notes":"Mahogany
+      Wayfair, mahogany neck, wenge fretboard. 2 p90s. Jazzmaster trem","Name":"John","Location":"Sussex,
+      England"},"createdTime":"2020-04-27T18:18:13.000Z"},{"id":"rec4QISR9Rt1MKeoc","fields":{"Notes":"Walnut
+      Wayfair, Rosewood neck, ebony board.  2 mini humbuckers and passive piezo circuit,
+      cream binding","Name":"Paul","Location":"Copenhagen, Denmark"},"createdTime":"2020-04-27T18:20:54.000Z"}]}'
     read: true
     uri: 
     decode_content: true
     socket: 
     body_exist: true
 response: *2
-body: '{"records":[{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Notes test\n","Name":"Moses
-  ","Created Time":"2020-04-25T10:53:25.000Z"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"recAqSspV4FD0xePB","fields":{"Notes":"Cup
-  of tea please ","Name":"Apprentices ","Created Time":"2020-04-25T19:10:10.000Z"},"createdTime":"2020-04-25T19:10:10.000Z"}]}'
+body: '{"records":[{"id":"recTeEouzQY5wsrUR","fields":{"Notes":"Mahogany S type with
+  bubinga neck and wenge fretboard. 2 firebird mini humbuckers. ","Name":"Will","Location":"Raleigh,
+  United States"},"createdTime":"2020-04-27T17:37:44.000Z"},{"id":"recj3gNCNkTaMWfTk","fields":{"Notes":"Wenge
+  Wayfair bass. 2x2 headstock, passive piezo and 2 humbuckers","Name":"Nuno","Location":"Airdrie,
+  Scotland"},"createdTime":"2020-04-27T17:41:03.000Z"},{"id":"recSvFRoaIC3v4BSf","fields":{"Notes":"Morty,
+  ash body, maple neck and rosewood fretboard. classic pickups ","Name":"Johan","Location":"Jakarta,
+  Indonesia"},"createdTime":"2020-04-27T17:44:09.000Z"},{"id":"recEQ5PeGY3Py6ckQ","fields":{"Notes":"Hollow
+  P bass, Ash body, maple neck and bubinga fretboard","Name":"Welly","Location":"Raleigh,
+  United States"},"createdTime":"2020-04-27T17:46:27.000Z"},{"id":"rec2aid4Ezawpv8wQ","fields":{"Notes":"Wenge
+  Wayfair bass. 3 mini rail humbuckers, 6 way switch, gold hardware, reverse headstock","Name":"Philippe","Location":"New
+  York, United States"},"createdTime":"2020-04-25T10:53:25.000Z"},{"id":"rec7CZ9IWaVZduTaG","fields":{"Notes":"Wenge
+  Wayfair, overwound humbuckers, gold hardware, bigsby, cream binding, 6 way switch,
+  custom inlay, reverse headstock","Name":"Sof","Location":"Cheltenham, Australia"},"createdTime":"2020-04-27T17:51:13.000Z"},{"id":"recAI6WFN0YZNIZBq","fields":{"Notes":"Wenge
+  Offset Wayfair, custom \"F\" holem p90 neck, humbucker bridge, reverse headstock","Name":"Arne","Location":"Odense,
+  Denmark"},"createdTime":"2020-04-27T17:52:37.000Z"},{"id":"reciKqcRT1nMr6CnI","fields":{"Notes":"Epi(c)
+  rebuild. hollow body, bubinga back, Duesenberg trem, p90 neck, humbucker bridge.","Name":"Julian","Location":"Sarasota,
+  Florida"},"createdTime":"2020-04-27T17:54:55.000Z"},{"id":"rec6X0JHJvLHHjKTR","fields":{"Notes":"Wenge
+  hollow offset, wenge neck, maple fretboard, 3 p90s, floating ebony bridge","Name":"Josh","Location":"Rohnert
+  Park, United States"},"createdTime":"2020-04-27T17:56:32.000Z"},{"id":"reczkdzELEzoEJCW8","fields":{"Notes":"Single
+  cut walnut Wayfair. Mahogany neck, ebony fretboard. Jazzmaster trem, Jaguar single
+  coils. F hole binding","Name":"Christian ","Location":"Erie, United States"},"createdTime":"2020-04-27T17:59:19.000Z"},{"id":"recwNVntpXC1l5vEq","fields":{"Notes":"Solid
+  Morty, walnut body, bubinga neck and fretboard. p90 neck, firebird bridge","Name":"Aaron","Location":"Nashville,
+  United States"},"createdTime":"2020-04-27T18:06:41.000Z"},{"id":"rec8lJ6ID3qMSk2So","fields":{"Notes":"Mahogany
+  Wayfair, maple neck and ebony fretboard. P90 neck, firebird bridge. ","Name":"Elijah","Location":"Franklinville,
+  United States"},"createdTime":"2020-04-27T18:09:14.000Z"},{"id":"reczCP7c8KWm5iW2M","fields":{"Notes":"Wenge
+  wayfair, 2 single coils & p90 bridge, cream binding, ebony floating bridge, left
+  handed, 24 frets","Name":"Genchi","Location":"Sazuka, Japan"},"createdTime":"2020-04-27T18:16:31.000Z"},{"id":"recqvwarvnXFFgz3u","fields":{"Notes":"Mahogany
+  Wayfair, mahogany neck, wenge fretboard. 2 p90s. Jazzmaster trem","Name":"John","Location":"Sussex,
+  England"},"createdTime":"2020-04-27T18:18:13.000Z"},{"id":"rec4QISR9Rt1MKeoc","fields":{"Notes":"Walnut
+  Wayfair, Rosewood neck, ebony board.  2 mini humbuckers and passive piezo circuit,
+  cream binding","Name":"Paul","Location":"Copenhagen, Denmark"},"createdTime":"2020-04-27T18:20:54.000Z"}]}'
 parsed_block: !ruby/object:Proc {}
 headers: !ruby/object:HTTParty::Response::Headers
   header: &3
@@ -125,13 +181,13 @@ headers: !ruby/object:HTTParty::Response::Headers
     content-type:
     - application/json; charset=utf-8
     date:
-    - Mon, 27 Apr 2020 16:06:19 GMT
+    - Mon, 27 Apr 2020 19:48:16 GMT
     etag:
-    - W/"159-pM1vw5RTFhICsQ8dgixXe2l4eIk"
+    - W/"d36-L72Z61n4W8ZL27VtQTGFsJhtX+k"
     server:
     - Tengine
     set-cookie:
-    - brw=brwH50Nsn5N4Z4fH7; path=/; expires=Tue, 27 Apr 2021 16:06:19 GMT; domain=.airtable.com;
+    - brw=brwyKHdgt970YoLLm; path=/; expires=Tue, 27 Apr 2021 19:48:16 GMT; domain=.airtable.com;
       secure; httponly
     strict-transport-security:
     - max-age=31536000; includeSubDomains; preload
@@ -144,23 +200,111 @@ headers: !ruby/object:HTTParty::Response::Headers
     x-frame-options:
     - DENY
     content-length:
-    - '345'
+    - '1191'
     connection:
     - Close
   delegate_sd_obj: *3
 parsed_response:
   records:
+  - id: recTeEouzQY5wsrUR
+    fields:
+      Notes: 'Mahogany S type with bubinga neck and wenge fretboard. 2 firebird mini
+        humbuckers. '
+      Name: Will
+      Location: Raleigh, United States
+    createdTime: '2020-04-27T17:37:44.000Z'
+  - id: recj3gNCNkTaMWfTk
+    fields:
+      Notes: Wenge Wayfair bass. 2x2 headstock, passive piezo and 2 humbuckers
+      Name: Nuno
+      Location: Airdrie, Scotland
+    createdTime: '2020-04-27T17:41:03.000Z'
+  - id: recSvFRoaIC3v4BSf
+    fields:
+      Notes: 'Morty, ash body, maple neck and rosewood fretboard. classic pickups '
+      Name: Johan
+      Location: Jakarta, Indonesia
+    createdTime: '2020-04-27T17:44:09.000Z'
+  - id: recEQ5PeGY3Py6ckQ
+    fields:
+      Notes: Hollow P bass, Ash body, maple neck and bubinga fretboard
+      Name: Welly
+      Location: Raleigh, United States
+    createdTime: '2020-04-27T17:46:27.000Z'
   - id: rec2aid4Ezawpv8wQ
     fields:
-      Notes: 'Notes test
-
-        '
-      Name: 'Moses '
-      Created Time: '2020-04-25T10:53:25.000Z'
+      Notes: Wenge Wayfair bass. 3 mini rail humbuckers, 6 way switch, gold hardware,
+        reverse headstock
+      Name: Philippe
+      Location: New York, United States
     createdTime: '2020-04-25T10:53:25.000Z'
-  - id: recAqSspV4FD0xePB
+  - id: rec7CZ9IWaVZduTaG
     fields:
-      Notes: 'Cup of tea please '
-      Name: 'Apprentices '
-      Created Time: '2020-04-25T19:10:10.000Z'
-    createdTime: '2020-04-25T19:10:10.000Z'
+      Notes: Wenge Wayfair, overwound humbuckers, gold hardware, bigsby, cream binding,
+        6 way switch, custom inlay, reverse headstock
+      Name: Sof
+      Location: Cheltenham, Australia
+    createdTime: '2020-04-27T17:51:13.000Z'
+  - id: recAI6WFN0YZNIZBq
+    fields:
+      Notes: Wenge Offset Wayfair, custom "F" holem p90 neck, humbucker bridge, reverse
+        headstock
+      Name: Arne
+      Location: Odense, Denmark
+    createdTime: '2020-04-27T17:52:37.000Z'
+  - id: reciKqcRT1nMr6CnI
+    fields:
+      Notes: Epi(c) rebuild. hollow body, bubinga back, Duesenberg trem, p90 neck,
+        humbucker bridge.
+      Name: Julian
+      Location: Sarasota, Florida
+    createdTime: '2020-04-27T17:54:55.000Z'
+  - id: rec6X0JHJvLHHjKTR
+    fields:
+      Notes: Wenge hollow offset, wenge neck, maple fretboard, 3 p90s, floating ebony
+        bridge
+      Name: Josh
+      Location: Rohnert Park, United States
+    createdTime: '2020-04-27T17:56:32.000Z'
+  - id: reczkdzELEzoEJCW8
+    fields:
+      Notes: Single cut walnut Wayfair. Mahogany neck, ebony fretboard. Jazzmaster
+        trem, Jaguar single coils. F hole binding
+      Name: 'Christian '
+      Location: Erie, United States
+    createdTime: '2020-04-27T17:59:19.000Z'
+  - id: recwNVntpXC1l5vEq
+    fields:
+      Notes: Solid Morty, walnut body, bubinga neck and fretboard. p90 neck, firebird
+        bridge
+      Name: Aaron
+      Location: Nashville, United States
+    createdTime: '2020-04-27T18:06:41.000Z'
+  - id: rec8lJ6ID3qMSk2So
+    fields:
+      Notes: 'Mahogany Wayfair, maple neck and ebony fretboard. P90 neck, firebird
+        bridge. '
+      Name: Elijah
+      Location: Franklinville, United States
+    createdTime: '2020-04-27T18:09:14.000Z'
+  - id: reczCP7c8KWm5iW2M
+    fields:
+      Notes: Wenge wayfair, 2 single coils & p90 bridge, cream binding, ebony floating
+        bridge, left handed, 24 frets
+      Name: Genchi
+      Location: Sazuka, Japan
+    createdTime: '2020-04-27T18:16:31.000Z'
+  - id: recqvwarvnXFFgz3u
+    fields:
+      Notes: Mahogany Wayfair, mahogany neck, wenge fretboard. 2 p90s. Jazzmaster
+        trem
+      Name: John
+      Location: Sussex, England
+    createdTime: '2020-04-27T18:18:13.000Z'
+  - id: rec4QISR9Rt1MKeoc
+    fields:
+      Notes: Walnut Wayfair, Rosewood neck, ebony board.  2 mini humbuckers and passive
+        piezo circuit, cream binding
+      Name: Paul
+      Location: Copenhagen, Denmark
+    createdTime: '2020-04-27T18:20:54.000Z'
