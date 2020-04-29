@@ -15,7 +15,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 <section style="margin-top: 6em">
 	<div class="inner">
 		<div class="row 100% uniform" style="margin-bottom: 2em">
-			{% for record in site.data.instagram.records %}
+			{% for record in site.data.instagram.records reversed %}
 			<div class="4u 12u$(medium)">
 				<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
 				<p>{{ record.fields.caption }}</p>
