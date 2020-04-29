@@ -14,7 +14,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 <!-- Gallery -->
 <section style="margin-top: 6em">
 	<div class="inner">
-		<h2>{{ page.title }}</h2>
+		<h3>{{ page.title }}</h3>
 		<div class="row 100% uniform" style="margin-bottom: 2em">
 			{% for record in site.data.instagram.records reversed %}
 			{% if record.fields.type == 'IMAGE' %}
