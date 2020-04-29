@@ -1,5 +1,5 @@
 ---
-layout: guitar2
+layout: guitar
 title: Morty
 nav-menu: false
 show_tile: false
