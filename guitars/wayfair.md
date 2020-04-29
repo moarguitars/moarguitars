@@ -5,7 +5,7 @@ nav-menu: false
 show_tile: false
 date: 2020-03-08 19:45:00
 
-description: A wafer thin semi-hollow 
+description: An evolved jazz box designed to fit all the players needs, creatively, ergonomically and visually. 
 image: 'assets/images/wayfair/wayfair-light-outside.jpg'
 image-alt: 
 image-hero: 'assets/images/wayfair/wayfair-light-outside.jpg'

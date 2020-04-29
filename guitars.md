@@ -33,7 +33,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Morty</h2>
-						<h4>A distilled, pure and simple instrument</h4>
+						<h4>All you need in a guitar and nothing else. Built on a perfect foundation, simplicity can be more of an inspiration than a limitation.</h4>
 					</header>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/morty"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
@@ -48,7 +48,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Wayfair</h2>
-						<h4>The natural evolution of the traditional jazz box</h4>
+						<h4>An evolved jazz box designed to fit all the players needs, creatively, ergonomically and visually.</h4>
 					</header>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
@@ -56,29 +56,13 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				</div>
 			</div>
 		</section>
-		<!-- Wayfair -->
-		<section>
-			<div style="background:url('../assets/images/bass/bass-held-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
-			<div class="content">
-				<div class="inner">
-					<header class="major">
-						<h2>Bass</h2>
-						<h4>All models are also available as basses</h4>
-					</header>
-					<ul class="actions">
-	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
-	                </ul>
-				</div>
-			</div>
-		</section>
-		<!-- Moar Offset -->
 		<section>
 			<div style="background:url('../assets/images/offset/offset-dark-workshop.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
 			<div class="content">
 				<div class="inner">
 					<header class="major">
 						<h2>Moar Offset</h2>
-						<h4>The most recent addition to the Moar line-up</h4>
+						<h4>A modern, light and versatile guitar designed around an all access neck joint to give it it’s unique shape.</h4>
 					</header>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/offset" | relative_url }}" class="button scrolly special">View Guitar</a></li>
@@ -86,6 +70,23 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				</div>
 			</div>
 		</section>
+		<!-- Bass -->
+		<section>
+			<div style="background:url('../assets/images/bass/bass-held-outside.jpg'); background-size:cover; width:100%; min-height: 400px;"></div>
+			<div class="content">
+				<div class="inner">
+					<header class="major">
+						<h2>Bass</h2>
+						<h4>I’m not going to patronise you with a snappy headline, I love making basses, I would love to make you one. Check them out.</h4>
+					</header>
+					<ul class="actions">
+	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Basses</a></li>
+	                </ul>
+				</div>
+			</div>
+		</section>
+		<!-- Moar Offset -->
+		
 	</section>
 </section>
 </div>
