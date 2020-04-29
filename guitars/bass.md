@@ -12,25 +12,13 @@ image-alt:
 image-hero:
 image-hero-alt:
 
-model: Bass
+model: 'Bass'
+img-tag: bass
 price: 2000usd / 17300dkk
 modeldesc: Description
 
-model-image-1: 
-model-image-1-alt:
-model-image-2: 
-model-image-2-alt:
-model-image-3: 
-model-image-3-alt:
-
-model2: Hollow Bass
+model2: 'Hollow Bass'
+img-tag2: bass-hollow
 price2: 2500usd / 17300dkk
 modeldesc2: Description
-
-model2-image-1: 
-model2-image-1-alt:
-model2-image-2: 
-model2-image-2-alt:
-model2-image-3: 
-model2-image-3-alt:
 ---
