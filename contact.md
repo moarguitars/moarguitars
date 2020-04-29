@@ -41,7 +41,7 @@ nav-menu: false
 						<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair (1000USD Deposit)</option>
 					</select>
 				</div>
-				<input type="hidden" value="{{ '/' | relative_url}}" name="_redirect" />
+				<!-- <input type="hidden" name="_nodirect" /> -->
 				<ul class="actions">
 					<li><input type="submit" value="Continue to Pay" class="special" onClick="window.open(guitarmodel.value,'newtab')"/></li>
 					<li><input type="reset" value="Clear" /></li>

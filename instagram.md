@@ -1,0 +1,26 @@
+---
+layout: page
+title: Gallery
+description: 'Watch videos and view photos'
+seo_description:
+nav-menu: false
+order: 3
+image: 'assets/images/t-type/t-type-hollow-dark.jpg'
+---
+
+<!-- Main -->
+<div id="main" class="alt">
+
+<!-- Gallery -->
+<section style="margin-top: 6em">
+	<div class="inner">
+		<div class="row 100% uniform" style="margin-bottom: 2em">
+			{% for record in site.data.instagram.records %}
+			<div class="4u 12u$(medium)">
+				<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+				<p>{{ record.fields.caption }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
