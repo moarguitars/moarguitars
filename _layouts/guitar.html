@@ -80,14 +80,14 @@
 			<div class="row 100%">
 				{% for record in site.data.testimonials.records reversed %}
 				{% if record.fields.guitar == page.img-tag %}
-				<div class="4u 12u$(medium)">
+				<div class="6u 12u$(medium)">
 					<p>{{ record.fields.testimonial }}</p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 				</div>
 				{% endif %}
 				{% if record.fields.guitar == page.img-tag2 %}
-				<div class="4u 12u$(medium)">
+				<div class="6u 12u$(medium)">
 					<p>{{ record.fields.testimonial }}</p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
