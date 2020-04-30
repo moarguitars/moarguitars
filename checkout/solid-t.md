@@ -1,6 +1,6 @@
 ---
 layout: order-placed
-guitar: Wayfair
+guitar: Morty
 deposit-amount: 500
 show_tile: false
 nav-menu: false

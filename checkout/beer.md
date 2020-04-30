@@ -1,7 +1,7 @@
 ---
 layout: order-placed
-guitar: Offset
-deposit-amount: 700
+guitar: Beer
+deposit-amount: 2
 show_tile: false
 nav-menu: false
 image: 'assets/images/offset/offset-dark-workshop.jpg'

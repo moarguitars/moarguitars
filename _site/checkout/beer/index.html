@@ -19,9 +19,9 @@
 	<!-- Open Graph -->
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Home">
-	<meta property="og:url" content="http://localhost:4000/">
-	<meta property="og:image" content="" />
+	<meta property="og:title" content="Moar Guitars">
+	<meta property="og:url" content="http://localhost:4000/checkout/beer/">
+	<meta property="og:image" content="assets/images/offset/offset-dark-workshop.jpg" />
 	<meta property="og:site_name" content="Moar Guitars">
 	<meta property="article:publisher" content="http://localhost:4000" />
 	<meta property="article:author" content="http://localhost:4000" />
@@ -64,7 +64,7 @@
     src="https://www.paypal.com/sdk/js?client-id=AfPXI6xS8kZLXEBXVNF8VdA6t_6g5ZUaLjnut-H7bnKYT9sdWZ_cr98VI32hpi5CC2AXMntBPovJsLUo"></script>
 
 <!-- Header -->
-<header id="header" class="alt">
+<header id="header">
 	<!-- <a href="http://localhost:4000//" class="logo"><strong>Moar Guitars</strong> <span>Hand-made in Copenhagen</span></a> -->
 	<a href="http://localhost:4000/" id="header-logo-container">
 		<img id="header-logo" src="/assets/images/logo.svg">
@@ -208,153 +208,55 @@
 	</ul>
 </nav>
 
+ 
+    
+    
+<!-- Main -->
+<div id="main" class="alt">
 
-
-    <!-- Banner -->
-    <section id="banner" class="major">
-        <div class="inner">
-            <div class="content">
-                <h2>The world's local guitar builder.</h2>
-            </div>
-            <div class="content">
-                <p>My unique and carefully hand-crafted guitars are played on stages all around the world, but each one starts its journey from my workshop in Copenhagen, Denmark.</p>
-            </div>
-            <div class="content">
-                <p>Over the best part of the last decade my business has grown rapidly, but my core approach, ethos and passion has remained. Moar Guitars is a bold, independent small business; the person answering your emails is the same that’s winding your pickups. I work on a one-on-one basis to meticulously craft every aspect of the build, tailored exactly to your specifications.</p>
-            </div>
-            <ul class="actions">
-                <li><a href="/contact" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
-                <li><a href="/guitars" class="button">View Guitars</a></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Main Menu -->
-    <!-- <div id="main">
-        <section id="one" class="tiles">
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="assets/images/t-type/t-type-hollow-dark.jpg" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/gallery/" class="link">Gallery</a></h3>
-    </header>
-    <p>Watch videos and view photos</p>
-  </article>
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="assets/images/wayfair/wayfair-bigsby-held.jpg" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/guitars/" class="link">Guitars</a></h3>
-    </header>
-    <p>View our collection of unique, hand-made instruments</p>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="assets/images/t-type/t-type-hollow-dark.jpg" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/instagram/" class="link">Gallery</a></h3>
-    </header>
-    <p>Watch videos and view photos</p>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="assets/images/workshop/workshop-guitar-neck.jpg" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/order-process/" class="link">The Order Process</a></h3>
-    </header>
-    <p>Step by step guide from the first message to receiving your guitar</p>
-  </article>
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="assets/images/pickups/pickups-wayfair-dark.jpg" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/pickups/" class="link">Pickups</a></h3>
-    </header>
-    <p>Hand-wound, bespoke pickups</p>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/videos/" class="link">Videos</a></h3>
-    </header>
-    <p></p>
-  </article>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  <article>
-    <span class="image">
-      <img src="" alt="" />
-    </span>
-    <header class="major">
-      <h3><a href="/place-order/" class="link"></a></h3>
-    </header>
-    <p></p>
-  </article>
-  
-  
+<section id="two" style="border:0;">
+	<div class="inner">
+		<div class="row 100% uniform">
+		    <div class="8u 12u$(medium)">
+		      	<header class="major">
+					<h1>Order Request Placed</h1>
+					<h3>Deposit Required</h3>
+				</header>
+				<p>We'll be in touch very soon about your Beer, to go over and confirm the build details, and to start up the dialogue about your commission.</p>
+				<p>Please note that the deposit prices are taken from base price models, so if you are ordering a guitar with optional extras, the final price may be higher.</p>
+				<h4>Pay Deposit Now</h4>
+				<p>Total Amount $2 USD</p>
+		      	<div id="paypal-button-container"></div>
+				<script>
+					paypal.Buttons({
+					    createOrder: function(data, actions) {
+					      // This function sets up the details of the transaction, including the amount and line item details.
+					      return actions.order.create({
+					        purchase_units: [{
+					          amount: {
+					            value: '2'
+					          }
+					        }]
+					      });
+					    },
+					    onApprove: function(data, actions) {
+					      // This function captures the funds from the transaction.
+					      return actions.order.capture().then(function(details) {
+					        // This function shows a transaction success message to your buyer.
+					        alert('Transaction completed by ' + details.payer.name.given_name);
+					      });
+					    }
+					  }).render('#paypal-button-container');
+	  			</script>
+		    </div>
+		    <div class="4u 12u$(medium)">
+		     	<span class="image fit"><img src="/assets/images/offset/offset-dark-workshop.jpg" alt=""></span>
+		    </div>
+	  	</div>
+	</div>
 </section>
 
-    </div> -->
+</div>
 
     <!-- Footer -->
 	<footer id="footer">

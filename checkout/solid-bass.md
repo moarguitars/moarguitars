@@ -1,6 +1,6 @@
 ---
 layout: order-placed
-guitar: Wayfair
+guitar: Solid Bass
 deposit-amount: 700
 show_tile: false
 nav-menu: false

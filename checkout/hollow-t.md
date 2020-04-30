@@ -1,6 +1,6 @@
 ---
 layout: order-placed
-guitar: Wayfair
+guitar: Hollow Morty
 deposit-amount: 600
 show_tile: false
 nav-menu: false
