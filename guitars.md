@@ -77,7 +77,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 				<div class="inner">
 					<header class="major">
 						<h2>Bass</h2>
-						<h4>I’m not going to patronise you with a snappy headline, I love making basses, I would love to make you one. Check them out.</h4>
+						<h4>I love making basses, I would love to make you one. Check them out here.</h4>
 					</header>
 					<ul class="actions">
 	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Basses</a></li>
