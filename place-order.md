@@ -16,6 +16,7 @@ nav-menu: false
 		<section style="margin-top: 6em">
 			<h2>Place Order Request</h2>
 			<p>So you’ve gone through my site and have come to the excellent decision that you want to order a guitar. First off thanks! That’s brilliant news, welcome to the family! To commit you and I to the build, and to get onto my waiting list - once you place this request, you will be asked to pay for your deposit via PayPal. The waiting list is currently about 4 months from me receiving the deposit to you receiving your guitar.</p> 
+			<p>I am also still very much a custom shop, and love taking on one of a kind, custom orders. Want a hollow flying V, a fretless baritone RD, a headless, midi connected bass, I am fresh! Just <a href="{{ 'contact' | relative_url }}">send me a mail</a> and we can chat.</p>
 			<!-- <script type="text/javascript">window.onload = function(){location.href=document.getElementById("selectbox").value;}
 			</script> -->
 			<form action="https://liveformhq.com/form/0a425dcc-82fa-4f2d-b1aa-7495349eedbc" method="post">
