@@ -114,10 +114,12 @@
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
 					{% if record.fields.guitar == page.img-tag2 %}
+					{% if record.fields.placement == 'feautre' %}
 					<div class="4u 12u$(medium)">
 						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
 						<p>{{ record.fields.caption }}</p>
 					</div>
+					{% endif %}
 					{% endif %}
 				{% endfor %}
 			</div>
