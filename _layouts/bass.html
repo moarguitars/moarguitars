@@ -27,15 +27,19 @@
 					<h1>Build your own {{ page.title }}</h1>
 					<h3>{{ page.description }}</h3>
 				 </header>
-				 {% if page.model2 %}
+		
+		{% if page.model2 %}
 				<!-- Tab links -->
 				<ul class="actions tab">
 	                <li><button id="defaultOpen" class="tablinks" onclick="openCity(event, '{{-page.model-}}')">{{ page.model }}</button></li>
 	                <li><button class="tablinks" onclick="openCity(event, '{{-page.model2-}}')">{{ page.model2 }}</button></li>
 	            </ul>
 			</div>
-			<!-- Model 1 -->
-			<div id="{{-page.model-}}" class="tabcontent row 100%">
+		</div>
+
+		<!-- Model 1 -->
+		<div id="{{-page.model-}}" class="tabcontent row 100% uniform">
+			<div class=" row 100%">
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc | markdownify }}</p>
 					<div class="table-wrapper">
@@ -54,21 +58,65 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras-bass.html %} 	
+					{% include extras.html %} 	
 				</div>
 				<!-- Images -->
-				<div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-1 | relative_url }}" alt="{{ page.model-image-1-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-2 | relative_url }}" alt="{{ page.model-image-2-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-3 | relative_url }}" alt="{{ page.model-image-3-alt }}"></span>
-			    </div>
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'feature' %}
+					<div class="4u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<p>{{ record.fields.caption }}</p>
+					</div>
+					{% endif %}
+				{% endfor %}
 			</div>
-			<!-- Model 2 -->
-			<div id="{{-page.model2-}}" class="tabcontent row 100%">
+	
+			<!-- Testimonails -->
+			<div class="row 100%">
+				<div class="12u 12u$(medium)">
+					<h2>Testimonials</h2>
+				</div>
+			</div>
+			<div class="row 100%">
+				{% for record in site.data.testimonials.records reversed %}
+				{% if record.fields.guitar == page.img-tag %}
+				<div class="6u 12u$(medium)">
+					<p><em>{{ record.fields.testimonial }}</em></p>
+					{% if record.fields.name %}
+					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+				</div>
+				{% endif %}
+				{% if record.fields.guitar == page.img-tag2 %}
+				<div class="6u 12u$(medium)">
+					<p><em>{{ record.fields.testimonial }}</em></p>
+					{% if record.fields.name %}
+					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+
+			<!-- Gallery -->
+			<div class="row 100%">
+				<div class="12u 12u$(medium)">
+					<h2>Gallery</h2>
+				</div>
+			</div>
+			<div class="row 100% uniform">
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
+					<div class="12u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<p>{{ record.fields.caption }}</p>
+					</div>
+					{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+
+		<!-- Model 2 -->
+		<div id="{{-page.model2-}}" class="tabcontent row 100% uniform">
+			<div class=" row 100%">
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc2 | markdownify }}</p>
 					<div class="table-wrapper">
@@ -90,19 +138,64 @@
 					{% include extras.html %} 	
 				</div>
 				<!-- Images -->
-				<div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model2-image-1 | relative_url }}" alt="{{ page.model2-image-1-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model2-image-2 | relative_url }}" alt="{{ page.model2-image-2-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model2-image-3 | relative_url }}" alt="{{ page.model2-image-3-alt }}"></span>
-			    </div>
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag2 and record.fields.placement == 'feature' %}
+					<div class="4u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<p>{{ record.fields.caption }}</p>
+					</div>
+					{% endif %}
+				{% endfor %}
 			</div>
-			{% else %}
-			<!-- Model 1 -->
+
+			<!-- Testimonails -->
 			<div class="row 100%">
+				<div class="12u 12u$(medium)">
+					<h2>Testimonials</h2>
+				</div>
+			</div>
+			<div class="row 100%">
+				{% for record in site.data.testimonials.records reversed %}
+				{% if record.fields.guitar == page.img-tag %}
+				<div class="6u 12u$(medium)">
+					<p><em>{{ record.fields.testimonial }}</em></p>
+					{% if record.fields.name %}
+					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+				</div>
+				{% endif %}
+				{% if record.fields.guitar == page.img-tag2 %}
+				<div class="6u 12u$(medium)">
+					<p><em>{{ record.fields.testimonial }}</em></p>
+					{% if record.fields.name %}
+					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+				</div>
+				{% endif %}
+				{% endfor %}
+			</div>
+		
+			<!-- Gallery -->
+			<div class="row 100%">
+				<div class="12u 12u$(medium)">
+					<h2>Gallery</h2>
+				</div>
+			</div>
+			<div class="row 100% uniform">
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag2 and record.fields.placement == 'gallery' %}
+					<div class="12u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<p>{{ record.fields.caption }}</p>
+					</div>
+					{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+
+		{% else %}
+		</div>
+		<!-- Model 1 -->
+		<div class="row 100% uniform">
+			<div id="{{-page.model-}}" class="row 100%">
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc | markdownify }}</p>
 					<div class="table-wrapper">
@@ -124,18 +217,52 @@
 					{% include extras.html %} 	
 				</div>
 				<!-- Images -->
-				<div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-1 | relative_url }}" alt="{{ page.model-image-1-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-2 | relative_url }}" alt="{{ page.model-image-2-alt }}"></span>
-			    </div>
-			    <div class="4u 12u$(medium)">
-			     	<span class="image fit"><img src="{{ page.model-image-3 | relative_url }}" alt="{{ page.model-image-3-alt }}"></span>
-			    </div>
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'feature' %}
+					<div class="4u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<p>{{ record.fields.caption }}</p>
+					</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+
+		<!-- Testimonails -->
+		<div class="row 100%">
+			<div class="12u 12u$(medium)">
+				<h2>Testimonials</h2>
+			</div>
+		</div>
+		<div class="row 100%">
+			{% for record in site.data.testimonials.records reversed %}
+			{% if record.fields.guitar == page.img-tag %}
+			<div class="6u 12u$(medium)">
+				<p><em>{{ record.fields.testimonial }}</em></p>
+				{% if record.fields.name %}
+				<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 			</div>
 			{% endif %}
+			{% endfor %}
 		</div>
+
+		<!-- Gallery -->
+		<div class="row 100%">
+			<div class="12u 12u$(medium)">
+				<h2>Gallery</h2>
+			</div>
+		</div>
+		<div class="row 100% uniform">
+			<div class="12u 12u$(medium)">
+			{% for record in site.data.gallery.records reversed %}
+			{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
+				<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+				<p>{{ record.fields.caption }}</p>
+			{% endif %}
+			{% endfor %}
+			</div>
+		</div>
+		{% endif %}
 	</div>
 </section>
 {% include footer.html %}
