@@ -19,9 +19,9 @@
 	<!-- Open Graph -->
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Moar Guitars">
-	<meta property="og:url" content="http://localhost:4000/checkout/hollow-bass/">
-	<meta property="og:image" content="assets/images/wayfair/wayfair-light-outside.jpg" />
+	<meta property="og:title" content="Place Order Request">
+	<meta property="og:url" content="http://localhost:4000/deposit-paid/">
+	<meta property="og:image" content="" />
 	<meta property="og:site_name" content="Moar Guitars">
 	<meta property="article:publisher" content="http://localhost:4000" />
 	<meta property="article:author" content="http://localhost:4000" />
@@ -210,59 +210,23 @@
 	</ul>
 </nav>
 
- 
-    <script
-    src="https://www.paypal.com/sdk/js?client-id=AfPXI6xS8kZLXEBXVNF8VdA6t_6g5ZUaLjnut-H7bnKYT9sdWZ_cr98VI32hpi5CC2AXMntBPovJsLUo"></script>
-    
-    
-<!-- Main -->
+ <!-- Main -->
 <div id="main" class="alt">
 
-<section id="two" style="border:0;">
+
+
+<!-- Intro -->
+<section>
 	<div class="inner">
-		<div class="row 100% uniform">
-		    <div class="8u 12u$(medium)">
-		      	<header class="major">
-					<h1>Order Request Placed</h1>
-					<h3>Deposit Required</h3>
-				</header>
-				<p>We'll be in touch very soon about your Hollow Bass, to go over and confirm the build details, and to start up the dialogue about your commission.</p>
-				<p>Please note that the deposit prices are taken from base price models, so if you are ordering a guitar with optional extras, the final price may be higher.</p>
-				<h4>Pay Deposit Now</h4>
-				<p>Total Amount $800 USD</p>
-		      	<div id="paypal-button-container"></div>
-				<script>
-					paypal.Buttons({
-					    createOrder: function(data, actions) {
-					      // This function sets up the details of the transaction, including the amount and line item details.
-					      return actions.order.create({
-					        purchase_units: [{
-					          amount: {
-					            value: '800'
-					          }
-					        }]
-					      });
-					    },
-					    onApprove: function(data, actions) {
-					      // This function captures the funds from the transaction.
-					      return actions.order.capture().then(function(details) {
-					        // This function shows a transaction success message to your buyer.
-					        alert('Transaction completed by ' + details.payer.name.given_name);
-					      });
-					    }
-					  }).render('#paypal-button-container');
-	  			</script>
-		    </div>
-		    <div class="4u 12u$(medium)">
-		     	<span class="image fit"><img src="/assets/images/wayfair/wayfair-light-outside.jpg" alt=""></span>
-		    </div>
-	  	</div>
+		<section style="margin-top: 6em">
+			<h2>You've paid your depost'</h2>
+			<p>Thank you very much, I'll be in touch very soon to iron out the details of your build.</p> 
+		</section>
 	</div>
 </section>
 
 </div>
-
-    <!-- Footer -->
+ <!-- Footer -->
 	<footer id="footer">
 		<div class="inner">
 			<div class="row 100% uniform">
