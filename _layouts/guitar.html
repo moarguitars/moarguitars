@@ -81,14 +81,14 @@
 				{% for record in site.data.testimonials.records reversed %}
 				{% if record.fields.guitar == page.img-tag %}
 				<div class="6u 12u$(medium)">
-					<p>{{ record.fields.testimonial }}</p>
+					<p><em>{{ record.fields.testimonial }}</em></p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 				</div>
 				{% endif %}
 				{% if record.fields.guitar == page.img-tag2 %}
 				<div class="6u 12u$(medium)">
-					<p>{{ record.fields.testimonial }}</p>
+					<p><em>{{ record.fields.testimonial }}</em></p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 				</div>
@@ -158,14 +158,13 @@
 				{% for record in site.data.testimonials.records reversed %}
 				{% if record.fields.guitar == page.img-tag %}
 				<div class="6u 12u$(medium)">
-					<p>{{ record.fields.testimonial }}</p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 				</div>
 				{% endif %}
 				{% if record.fields.guitar == page.img-tag2 %}
 				<div class="6u 12u$(medium)">
-					<p>{{ record.fields.testimonial }}</p>
+					<p><em>{{ record.fields.testimonial }}</em></p>
 					{% if record.fields.name %}
 					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 				</div>
@@ -238,7 +237,7 @@
 			{% for record in site.data.testimonials.records reversed %}
 			{% if record.fields.guitar == page.img-tag %}
 			<div class="6u 12u$(medium)">
-				<p>{{ record.fields.testimonial }}</p>
+				<p><em>{{ record.fields.testimonial }}</em></p>
 				{% if record.fields.name %}
 				<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
 			</div>
