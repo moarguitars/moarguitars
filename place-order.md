@@ -1,8 +1,6 @@
 ---
 layout: page
 title: Place Order Request
-description: 'Place order'
-seo_description:
 show_tile: false
 nav-menu: false
 ---
