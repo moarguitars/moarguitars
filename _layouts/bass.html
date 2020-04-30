@@ -47,8 +47,8 @@
 						<table class="alt">
 							<tbody>
 								<tr>
-									<td width="70%">{{ page.model }}</td>
-									<td width="30%">{{ page.price }}</td>
+									<td width="60%">{{ page.model }}</td>
+									<td width="40%">{{ page.price-dkk }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -58,7 +58,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras.html %} 	
+					{% include extras-bass.html %} 	
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
@@ -135,7 +135,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras.html %} 	
+					{% include extras-bass.html %} 	
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
@@ -214,7 +214,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras.html %} 	
+					{% include extras-bass.html %} 	
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}

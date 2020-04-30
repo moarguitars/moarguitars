@@ -47,8 +47,18 @@
 						<table class="alt">
 							<tbody>
 								<tr>
-									<td width="70%">{{ page.model }}</td>
-									<td width="30%">{{ page.price }}</td>
+									<th width="60%"> </th>
+					    			<th width="10%">USD</th>
+					    			<th width="10%">EUR</th>
+					    			<th width="10%">GBP</th>
+					    			<th width="10%">DKK</th>
+					    		</tr>
+								<tr>
+									<td width="60%">{{ page.model }}</td>
+									<td width="10%">{{ page.price-usd }}</td>
+									<td width="10%">{{ page.price-eur }}</td>
+									<td width="10%">{{ page.price-gbp }}</td>
+									<td width="10%">{{ page.price-dkk }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -58,7 +68,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras-bass.html %} 	
+					{% include extras.html %} 	
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
@@ -124,8 +134,18 @@
 						<table class="alt">
 							<tbody>
 								<tr>
-									<td width="70%">{{ page.model2 }}</td>
-									<td width="30%">{{ page.price2 }}</td>
+									<th width="60%"> </th>
+					    			<th width="10%">USD</th>
+					    			<th width="10%">EUR</th>
+					    			<th width="10%">GBP</th>
+					    			<th width="10%">DKK</th>
+					    		</tr>
+								<tr>
+									<td width="60%">{{ page.model2 }}</td>
+									<td width="10%">{{ page.price-usd2 }}</td>
+									<td width="10%">{{ page.price-eur2 }}</td>
+									<td width="10%">{{ page.price-gbp2 }}</td>
+									<td width="10%">{{ page.price-dkk2 }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -135,7 +155,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras-bass.html %} 		
+					{% include extras.html %} 		
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
@@ -203,8 +223,18 @@
 						<table class="alt">
 							<tbody>
 								<tr>
-									<td width="70%">{{ page.model }}</td>
-									<td width="30%">{{ page.price }}</td>
+									<th width="60%"> </th>
+					    			<th width="10%">USD</th>
+					    			<th width="10%">EUR</th>
+					    			<th width="10%">GBP</th>
+					    			<th width="10%">DKK</th>
+					    		</tr>
+								<tr>
+									<td width="60%">{{ page.model }}</td>
+									<td width="10%">{{ page.price-usd }}</td>
+									<td width="10%">{{ page.price-eur }}</td>
+									<td width="10%">{{ page.price-gbp }}</td>
+									<td width="10%">{{ page.price-dkk }}</td>
 								</tr>
 							</tbody>
 						</table>
@@ -214,7 +244,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras-bass.html %} 		
+					{% include extras.html %} 		
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}

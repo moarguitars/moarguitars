@@ -14,12 +14,10 @@ image-hero-alt:
 
 model: 'Moar Offset'
 img-tag: offset
-price: 2500usd / 17300dkk
-modeldesc: My most recent addition to the Moar model catalogue is the as of yet un-named Moar Offset (Have a good idea for a name? [Submit it here]()!) They share a lot of characteristics with the Hollow Mortys, with an all access set neck joint, totally hollow body with no centre block, big belly and arm cuts. But with a body design that wants to be looked at. The F hole is oversized, the weight is low, it has corners in unusual places. See more about them here.
-
-model2:
-img-tag2: 
-price2: 
-modeldesc2: 
+price-usd: 2,000
+price-eur: 1,825
+price-gbp: 1,590
+price-dkk: 13,700
+modeldesc: My most recent addition to the Moar model catalogue is the as of yet un-named Moar Offset (Have a good idea for a name? [Submit it here]()!) They share a lot of characteristics with the Hollow Mortys, with an all access set neck joint, totally hollow body with no centre block, big belly and arm cuts. But with a body design that wants to be looked at. The F hole is oversized, the weight is low, it has corners in unusual places. See more about them here. 
 ---
 
