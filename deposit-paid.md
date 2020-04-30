@@ -14,7 +14,7 @@ nav-menu: false
 <section>
 	<div class="inner">
 		<section style="margin-top: 6em">
-			<h2>You've paid your depost'</h2>
+			<h2>You've paid your deposit</h2>
 			<p>Thank you very much, I'll be in touch very soon to iron out the details of your build.</p> 
 		</section>
 	</div>
