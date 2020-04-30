@@ -18,6 +18,7 @@ price: 2500usd / 17300dkk
 modeldesc: My Wayfairs are the natural evolution of the traditional jazz box. When I was prototyping the first I started with a solid block of wood for the body based on the traditional size, and simply carved away material until I had a body shape that was comfortable. I would hold the body against my own, checking for any sharp edges, or corners pressing into my belly, arm and leg and ended up with my iconic shape. The deep belly and arm cuts, and thin upper side of the guitar is a bi-product of comfort.  
 
 model2:
+img-tag2: 
 price2: 
 modeldesc2: 
 ---
