@@ -32,7 +32,6 @@ nav-menu: false
 				<div class="field">
 					<label for="guitarmodel">Model</label>
 					<select name="guitarmodel" id="guitarmodel">
-						<option value="{{ 'checkout/beer' | relative_url}}">Beer (2USD Deposit)</option>
 						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty (500USD Deposit)</option>
 						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty (600USD Deposit)</option>
 						<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (700USD Deposit)</option>
