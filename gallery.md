@@ -14,12 +14,15 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 <!-- Gallery -->
 <section style="margin-top: 6em">
 	<div class="inner">
-		<h3>{{ page.title }}</h3>
-		<div class="row 100% uniform" style="margin-bottom: 2em">
+		<div class="row 100% insta-gallery">
 			{% for record in site.data.instagram.records reversed %}
 			{% if record.fields.type == 'IMAGE' %}
 			<div class="4u 12u$(medium)">
+				{% if record.fields.image %}
 				<img class="image fit" src="{{ record.fields.image }}" alt="">
+				{% else %}
+				<img class="image fit" src="{{ record.fields.upload[0].url }}" alt="">
+				{% endif %}
 				<p>{{ record.fields.caption }}</p>
 			</div>
 			{% endif %}

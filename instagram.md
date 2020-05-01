@@ -21,7 +21,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 				{% if record.fields.image %}
 				<img class="image fit" src="{{ record.fields.image }}" alt="">
 				{% else %}
-				<img class="image fit" src="{{ record.fields.thumbnails[0].large[0].url }}" alt="">
+				<img class="image fit" src="{{ record.fields.upload[0].url }}" alt="">
 				{% endif %}
 				<p>{{ record.fields.caption }}</p>
 			</div>
