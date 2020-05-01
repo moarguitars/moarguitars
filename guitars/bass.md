@@ -22,9 +22,9 @@ modeldesc: Let’s be honest. Basses are cooler than guitars. I can write this h
 
 model2: 'Hollow Bass'
 img-tag2: bass-hollow
-price-usd: 2,500
-price-eur: 2,280
-price-gbp: 1,990
-price-dkk: 17,000
+price-usd2: 2,500
+price-eur2: 2,280
+price-gbp2: 1,990
+price-dkk2: 17,000
 modeldesc2: Description
 ---

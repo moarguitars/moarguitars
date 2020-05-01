@@ -33,14 +33,15 @@ nav-menu: false
 					<label for="guitarmodel">Choose Guitar Model</label>
 					<div class="select-wrapper">
 						<select name="guitarmodel" id="guitarmodel">
-							<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty</option>
-							<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty</option>
-							<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset</option>
-							<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass</option>
-							<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass</option>
-							<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair</option>
+							<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty (350USD)</option>
+							<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty (420USD)</option>
+							<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (500USD)</option>
+							<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass (500USD)</option>
+							<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass (450USD)</option>
+							<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair (750USD)</option>
 						</select>
 					</div>
+					<p style="font-size:0.6em">Prices listed are the total deposit required to process your order - after submitting this form you will be redirected to a page where you can make a payment.</p>
 				</div>
 				<!-- <input type="hidden" name="_nodirect" /> -->
 				<ul class="actions">
