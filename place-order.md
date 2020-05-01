@@ -30,15 +30,17 @@ nav-menu: false
 				</div>
 				<p style="font-size:0.6em">We capture your name and email at this point in case we need to contact you directly about your order. You will not be signed up to any mailing lists.</p>
 				<div class="field">
-					<label for="guitarmodel">Model</label>
-					<select name="guitarmodel" id="guitarmodel">
-						<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty (500USD Deposit)</option>
-						<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty (600USD Deposit)</option>
-						<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset (700USD Deposit)</option>
-						<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass (700USD Deposit)</option>
-						<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass (800USD Deposit)</option>
-						<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair (1000USD Deposit)</option>
-					</select>
+					<label for="guitarmodel">Choose Guitar Model</label>
+					<div class="select-wrapper">
+						<select name="guitarmodel" id="guitarmodel">
+							<option value="{{ 'checkout/solid-t' | relative_url}}">Solid Morty</option>
+							<option value="{{ 'checkout/hollow-t' | relative_url}}">Hollow Morty</option>
+							<option value="{{ 'checkout/offset' | relative_url}}">Moar Offset</option>
+							<option value="{{ 'checkout/solid-bass' | relative_url}}">Solid Bass</option>
+							<option value="{{ 'checkout/hollow-bass' | relative_url}}">Hollow Bass</option>
+							<option value="{{ 'checkout/wayfair' | relative_url}}">Wayfair</option>
+						</select>
+					</div>
 				</div>
 				<!-- <input type="hidden" name="_nodirect" /> -->
 				<ul class="actions">

@@ -87,6 +87,7 @@
 		text-decoration: none;
 		width: 100%;
 
+
 		&:invalid {
 			box-shadow: none;
 		}
@@ -102,7 +103,7 @@
 		display: block;
 		position: relative;
 
-		&:before {
+		&:after {
 			color: _palette(border);
 			content: '\f078';
 			display: block;
