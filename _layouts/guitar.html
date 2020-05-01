@@ -112,10 +112,10 @@
 					<h2>Gallery</h2>
 				</div>
 			</div>
-			<div class="row 100% uniform">
+			<div class="row 100% insta-gallery">
 				{% for record in site.data.gallery.records reversed %}
 					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
-					<div class="12u 12u$(medium)">
+					<div class="4u 12u$(medium)">
 						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
 						<p>{{ record.fields.caption }}</p>
 					</div>
@@ -199,10 +199,10 @@
 					<h2>Gallery</h2>
 				</div>
 			</div>
-			<div class="row 100% uniform">
+			<div class="row 100% insta-gallery">
 				{% for record in site.data.gallery.records reversed %}
 					{% if record.fields.guitar == page.img-tag2 and record.fields.placement == 'gallery' %}
-					<div class="12u 12u$(medium)">
+					<div class="4u 12u$(medium)">
 						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
 						<p>{{ record.fields.caption }}</p>
 					</div>
@@ -282,15 +282,15 @@
 				<h2>Gallery</h2>
 			</div>
 		</div>
-		<div class="row 100% uniform">
-			<div class="12u 12u$(medium)">
+		<div class="row 100% insta-gallery">
 			{% for record in site.data.gallery.records reversed %}
-			{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
-				<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
-				<p>{{ record.fields.caption }}</p>
-			{% endif %}
-			{% endfor %}
-			</div>
+				{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
+				<div class="4u 12u$(medium)">
+					<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+					<p>{{ record.fields.caption }}</p>
+				</div>
+				{% endif %}
+		{% endfor %}
 		</div>
 		{% endif %}
 	</div>
