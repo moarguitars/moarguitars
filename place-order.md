@@ -43,8 +43,8 @@ nav-menu: false
 				<p style="font-size:0.6em">Prices listed are the total deposit required to process your order - after submitting this form you will be redirected to a page where you can make a payment.</p>
 				<!-- <input type="hidden" name="_nodirect" /> -->
 				<ul class="actions">
-					<li><input type="submit" value="Continue to Pay" class="special" onClick="document.getElementById('guitarmodel').href;"/></li>
-					<!-- <li><input type="submit" value="Continue to Pay" class="special" onClick="window.open(guitarmodel.value,'newtab')"/></li> -->
+					<!-- <li><input type="submit" value="Continue to Pay" class="special" onClick="document.getElementById('guitarmodel').href;"/></li> -->
+					<li><input type="submit" value="Continue to Pay" class="special" onClick="window.open(guitarmodel.value,'newtab')"/></li>
 					<li><input type="reset" value="Clear" /></li>
 				</ul>
 			</form>	
