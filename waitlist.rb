@@ -6,7 +6,7 @@ class WaitList
 	base_uri "https://api.airtable.com/v0/appQjVXW2zEsNMZdB"
 
 	def customers
-		self.class.get('/customers?view=Grid%20view&api_key=keykx6o2ysAy0m8xs')
+		self.class.get('/waitlist?view=Grid%20view&api_key=keykx6o2ysAy0m8xs')
 	end
 end
 
