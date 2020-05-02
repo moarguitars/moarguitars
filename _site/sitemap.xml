@@ -55,6 +55,9 @@
 <loc>http://localhost:4000/pickups/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/place-order-2/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/place-order/</loc>
 </url>
 <url>
