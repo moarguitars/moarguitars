@@ -14,7 +14,7 @@ order: 4
 <section style="margin-top: 6em">
 	<div class="inner">
 	  <h3>Latest Videos</h3>
-	  <div class="row 100% uniform" style="margin-bottom: 2em">
+	  <div class="row 100% insta-gallery" style="margin-bottom: 2em">
 		{% for record in site.data.youtube.records reversed %}
 		<div class="6u 12u$(medium)">
 			<a style="text-decoration:none;" href="{{ record.fields.video }}" target="_blank">
