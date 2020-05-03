@@ -25,6 +25,7 @@ nav-menu: false
 	  document.getElementById("loader").style.display = "none";
 	  document.getElementById("order-success-message").style.display = "block";
 	};
+
 </script>
 
 
@@ -35,7 +36,7 @@ nav-menu: false
 			<h2>Place Order</h2>
 			<!-- Success! -->
 			<div id="showme" style="display:none;" class="box order-success">
-				<div style="margin: 0 auto;" class="loader" id="loader"></div>
+				<div class="loader" id="loader"></div>
 				<div id="order-success-message" class="order-success-message">
 					<h3>Order Placed - Deposit Required</h3>
 					<p>Your order request has been placed and I will be in touch soon about the details of your build.</p>
@@ -105,7 +106,7 @@ nav-menu: false
 					</div>
 				</div>
 				<ul class="actions">
-					<li><input type="submit" value="Continue to Pay" class="special" onclick="showme();"/></li>
+					<li><input type="submit" value="Continue to Pay" class="special" onclick="showme();this.disabled = true;"/></li>
 					<li><input type="reset" value="Clear" /></li>
 				</ul>
 			</form>	
