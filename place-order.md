@@ -25,6 +25,7 @@ nav-menu: false
 	  document.getElementById("loader").style.display = "none";
 	  document.getElementById("order-success-message").style.display = "block";
 	  document.getElementById("submit").disabled = true;
+	  document.getElementById("reset").disabled = true;
 	};
 </script>
 
@@ -107,7 +108,7 @@ nav-menu: false
 				</div>
 				<ul class="actions">
 					<li><input id="submit" type="submit" value="Continue to Pay" class="special" onclick="showme();"/></li>
-					<li><input type="reset" value="Clear" /></li>
+					<li><input id="reset" type="reset" value="Clear" /></li>
 				</ul>
 			</form>	
 			<!-- Scripts -->
