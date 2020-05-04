@@ -35,3 +35,4 @@ sass:
 plugins:
   - jekyll-sitemap
   - jekyll-airtable
+  - environment_variables_generator

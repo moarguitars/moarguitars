@@ -1,7 +1,6 @@
 ---
 layout: order-placed
 guitar: Morty
-deposit-amount: 350
 price: 500
 show_tile: false
 nav-menu: false
