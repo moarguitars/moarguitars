@@ -1,5 +1,6 @@
 require 'json'
 require 'httparty'
+require 'dotenv'
 
 class Gallery
 	include HTTParty
