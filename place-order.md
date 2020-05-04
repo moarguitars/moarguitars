@@ -63,7 +63,7 @@ nav-menu: false
 					<label for="guitarmodel">Choose Guitar Model</label>
 					<div class="select-wrapper">
 						<select name="guitarmodel" id="guitarmodel">
-							<option value="solid-t">Solid Morty (50USD)</option>
+							<option value="solid-t">Solid Morty (500USD)</option>
 							<option value="hollow-t">Hollow Morty (600USD)</option>
 							<option value="offset">Moar Offset (7000USD)</option>
 							<option value="solid-bass">Solid Bass (700USD)</option>
