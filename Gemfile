@@ -8,3 +8,5 @@ gem "json"
 gem 'jekyll-watch'
 gem 'jekyll'
 gem 'html-proofer'
+gem 'commonmarker'
+gem 'dotenv'
