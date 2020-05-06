@@ -35,7 +35,7 @@ nav-menu: false
 	<div class="inner">
 		<section style="margin-top: 6em" >
 			<h2>Place Order</h2>
-			<h4>{{ site.config.AIRTABLE_API_KEY}}</h4>
+			<h4>{{ site.env.AIRTABLE_API_KEY}}</h4>
 			<!-- Success! -->
 			<div id="showme" style="display:none;" class="box order-success">
 				<div class="loader" id="loader"></div>
