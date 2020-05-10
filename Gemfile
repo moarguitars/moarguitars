@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.6.6'
+ruby '2.7.1'
 
+gem 'rails'
 gem 'jekyll'
 gem 'github-pages', group: :jekyll_plugins
 gem 'jekyll-sitemap'
