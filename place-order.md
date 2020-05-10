@@ -66,7 +66,7 @@ nav-menu: false
 						<select name="guitarmodel" id="guitarmodel">
 							<option value="solid-t">Solid Morty (500USD)</option>
 							<option value="hollow-t">Hollow Morty (600USD)</option>
-							<option value="offset">Moar Offset (7000USD)</option>
+							<option value="offset">Moar Offset (700USD)</option>
 							<option value="solid-bass">Solid Bass (700USD)</option>
 							<option value="hollow-bass">Hollow Bass (800USD)</option>
 							<option value="wayfair">Wayfair (1000USD)</option>
