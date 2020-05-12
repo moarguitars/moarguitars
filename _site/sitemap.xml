@@ -55,10 +55,10 @@
 <loc>http://localhost:4000/pickups/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/place-order-2/</loc>
+<loc>http://localhost:4000/place-order/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/place-order/</loc>
+<loc>http://localhost:4000/quote-builder/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/checkout/solid-bass/</loc>

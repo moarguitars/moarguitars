@@ -63,11 +63,11 @@
 	label {
 		color: _palette(fg-bold);
 		display: block;
-		font-size: 0.8em;
+		font-size: 1em;
 		font-weight: _font(weight-bold);
-		letter-spacing: _font(letter-spacing-alt);
+		letter-spacing: _font(letter-spacing);
 		margin: 0 0 (_size(element-margin) * 0.5) 0;
-		text-transform: uppercase;
+		/*text-transform: uppercase;*/
 	}
 
 	input[type="text"],
@@ -154,7 +154,8 @@
 			position: relative;
 
 			&:before {
-				background: _palette(border-bg);
+				background: _palette(bg-alt);
+				border: 1px solid _palette(border);
 				content: '';
 				display: inline-block;
 				height: (_size(element-height) * 0.6);
@@ -170,7 +171,7 @@
 
 		&:checked + label {
 			&:before {
-				background: _palette(fg-bold);
+				background: _palette(accent2);
 				border-color: _palette(highlight);
 				content: '\f00c';
 				color: _palette(bg);

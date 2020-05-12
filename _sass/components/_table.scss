@@ -28,7 +28,16 @@
 		}
 
 		td {
-			padding: 0.75em 0.75em;
+			padding: 0.75em;
+			box-sizing: border-box;
+
+			label {
+				margin: 0;
+			}
+
+			p {
+				margin: 0;
+			}
 		}
 
 		th {
