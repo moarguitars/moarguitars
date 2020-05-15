@@ -19,7 +19,7 @@
 	<!-- Open Graph -->
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Place Order Request">
+	<meta property="og:title" content="Moar Guitars">
 	<meta property="og:url" content="http://localhost:4000/quote-builder/">
 	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
 	<meta property="og:site_name" content="Moar Guitars">
@@ -229,17 +229,32 @@
 			<h3>Guitar Info</h3>
 			<p>Guitar information</p>
 		</div>
-		<div class="6u 12u(small)">
-			<h3>Extras</h3>
+		<div class="6u 12u(small) box">
+			<h3>Your Guitar</h3>
+			<div>
+				<table>
+					<tbody>
+						<tr>
+							<td width="80%">
+								<p>Total</p>
+							</td>
+							<td width="20%">
+								$<span id="payment-total">1500</span>
+							</td>
+						</tr>
+			        </tbody>
+			    </table>
+			</div>
+			<h4>Hardware Spec</h4>
 			<!-- Binding -->
-			<button class="accordion">Binding</button>
+			<button class="accordion" id="btn-binding">Binding</button>
 			<div class="panel" id="binding">
 				<div class="100% row">
 				  	<table class="alt">
 						<tbody>
 							<tr> 
 								<th width="70%">Item</th>
-				    			<th width="30%">Price (USD)</th>
+				    			<th width="30%">$USD</th>
 				    		</tr>
 				    		<tr>
 				    			<td>
@@ -288,7 +303,7 @@
 					<tbody>
 						<tr> 
 							<th width="70%">Item</th>
-			    			<th width="30%">Price (USD)</th>
+			    			<th width="30%">$USD</th>
 			    		</tr>
 						<tr>
 							<td>
@@ -308,32 +323,6 @@
 				</table>
 			</div>
 		</div>
-		<div class="12u 12u(small)">
-			<!-- Totals -->
-			<h3>Your Guitar</h3>
-			<div>
-				<table>
-					<tbody>
-						<tr>
-							<td width="80%">
-								<p>Total</p>
-							</td>
-							<td width="20%">
-								$<span id="payment-total">0</span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span id="quoteList">You've not selected anything yet</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-			        </tbody>
-			    </table>
-			</div>
-		</div>
 
 
 		<!-- Form Script -->
@@ -341,7 +330,7 @@
 		function updateTotals() {
 		    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 		        
-		    var sum = 0;
+		    var sum = 1500;
 		    for (var i = 0, num = inputs.length; i < num; i++) {
 		        if (inputs[i].checked) {
 		            sum += parseInt(inputs[i].getAttribute('value'));
@@ -356,54 +345,6 @@
 		for (var i = 0, num = inputs.length; i < num; i++) {
 		    inputs[i].addEventListener('change', updateTotals);
 		}
-		</script>
-
-		<!-- Count the things -->
-		<script>
-			// we want to define a objec that "stores" the state of our checkbox items
-			const checkedItems = {};
-
-
-			function returnCheckboxName(item) {  
-			  return item.name;
-			}
-
-			function removeNotCheckedItems(item) {  
-			  return !!item.isChecked;
-			}
-
-			// updates the DOM item "checked-items"
-			function updateCheckedItemsList() {
-				const checkedItemListEl = document.getElementById('quoteList');
-			    
-			  // Object.values converts an object's values into an array 
-			  // we filter through this array removing any instance where isChecked is false
-			  // then map through the array to only return the checkbox name
-			  checkedItemListEl.innerHTML = Object.values(checkedItems)
-			      .filter(removeNotCheckedItems).map(returnCheckboxName);
-			}
-
-			function onClickCheckbox(e) {
-			  const checkboxName = e.target.name;
-				const status = e.target.checked;
-
-			  checkedItems[checkboxName] = {
-			  		isChecked: !!status,
-			      name: checkboxName
-			  };
-			  
-			  updateCheckedItemsList();
-			}
-
-
-			window.onload = function(){
-				const allCheckboxes = document.getElementsByClassName('binding');
-			  
-			  
-			  for (let checkbox of allCheckboxes) {
-			    checkbox.addEventListener('click', onClickCheckbox)
-			  }
-			}
 		</script>
 
 		<!-- Accordian Script -->
