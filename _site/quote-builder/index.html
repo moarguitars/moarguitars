@@ -221,7 +221,7 @@
  <!-- Main -->
 <div id="main" class="alt">
 <section>
-	<div class="inner row" id="extra-features">
+	<form class="inner row" id="extra-features">
 		<div class="12u 12u(small)">
 			<h1>Guitar Builder</h1>
 		</div>
@@ -342,11 +342,16 @@
 						</tfoot>
 			        </tbody>
 			    </table>
+			    <ul class="actions" style="">
+					<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Submit Quote" class="button special fit" onclick="showme();" /></li>
+					<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Clear Customisations" class="button small fit" onclick="setTimeout(updateTotals,20);" /></li>
+				</ul>
 			</div>
 		</div>
+	</form>
+</section>
 
-
-		<!-- Form Script -->
+<!-- Form Script -->
 		<script>
 		function updateTotals() {
 		    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
@@ -370,60 +375,6 @@
 		    inputs[i].addEventListener('change', updateTotals);
 		}
 		</script>
-
-
-		<!-- Quote List Script -->
-
-		<script>
-			// we want to define a objec that "stores" the state of our checkbox items
-			const checkedItems = {};
-
-
-			function returnCheckboxName(item) {  
-			  return item.name;
-			}
-
-			function removeNotCheckedItems(item) {  
-			  return !!item.isChecked;
-			}
-
-			// updates the DOM item "checked-items"
-			function updateCheckedItemsList() {
-				const checkedItemListEl = document.getElementById('checked-items');
-			    
-			  // Object.values converts an object's values into an array 
-			  // we filter through this array removing any instance where isChecked is false
-			  // then map through the array to only return the checkbox name
-			  checkedItemListEl.innerHTML = Object.values(checkedItems)
-			      .filter(removeNotCheckedItems).map(returnCheckboxName);
-			}
-
-			function onClickCheckbox(e) {
-			  const checkboxName = e.target.name;
-				const status = e.target.checked;
-
-			  checkedItems[checkboxName] = {
-			  		isChecked: !!status,
-			      name: checkboxName
-			  };
-			  
-			  updateCheckedItemsList();
-			}
-
-
-			window.onload = function(){
-				const allCheckbox = document.getElementsByClassName('binding');
-			  
-			  
-			  for (let checkbox of allCheckbox) {
-			    checkbox.addEventListener('click', onClickCheckbox)
-			  }
-			}
-		</script>
-
-
-	</div>
-</section>
 </div>
  <!-- Footer -->
 	<footer id="footer">
