@@ -1,6 +1,14 @@
 ---
 title: Wayfair
 price: 2500
+
+model:
+  	- modeltitle: Solid Morty 
+  	slug-value: solid-t
+	modelprice: 1500
+	- modeltitle: Hollow Morty
+	slug-value: hollow-t
+	modelprice: 1500
 ---
 
 <!-- Main -->
@@ -19,6 +27,17 @@ price: 2500
 			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 				<h3>Binding</h3>
 				<p>Guitar information</p>
+				<div class="field half">
+					<label for="guitarmodel">Choose Guitar Model</label>
+					<div class="select-wrapper">
+						<select name="guitarmodel" id="guitarmodel">
+							{% for item in page.model %}
+							<option value="{{ item.slug-value }}">{{ item.modeltitle }} {{ item.modelprice }}</option>
+							{% endfor %}
+						</select>
+					</div>
+				</div>
+
 			  	<table class="alt">
 					<tbody>
 						<tr> 

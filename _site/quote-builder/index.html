@@ -19,7 +19,7 @@
 	<!-- Open Graph -->
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Wayfair">
+	<meta property="og:title" content="Moar Guitars">
 	<meta property="og:url" content="http://localhost:4000/quote-builder/">
 	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
 	<meta property="og:site_name" content="Moar Guitars">
@@ -234,6 +234,15 @@
 			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 				<h3>Binding</h3>
 				<p>Guitar information</p>
+				<div class="field half">
+					<label for="guitarmodel">Choose Guitar Model</label>
+					<div class="select-wrapper">
+						<select name="guitarmodel" id="guitarmodel">
+							
+						</select>
+					</div>
+				</div>
+
 			  	<table class="alt">
 					<tbody>
 						<tr> 
@@ -309,7 +318,7 @@
 		</div>
 		<div class="box 4u 12u(small) sticky-quote">
 			<div class="">
-				<h3>Your Wayfair</h3>
+				<h3>Your </h3>
 				<table>
 					<tbody>
 						<tr> 
@@ -321,7 +330,7 @@
 								<p>Base Model</p>
 							</td>
 							<td width="20%">
-								$<span>2500</span>
+								$<span></span>
 							</td>
 						</tr>
 						<tr>
@@ -337,7 +346,7 @@
 								<p>Total</p>
 							</td>
 							<td width="20%">
-								$<span id="payment-total">2500</span>
+								$<span id="payment-total"></span>
 							</td>
 						</tfoot>
 			        </tbody>
@@ -356,14 +365,14 @@
 		function updateTotals() {
 		    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-		    var sum = 2500;
+		    var sum = ;
 		    for (var i = 0, num = inputs.length; i < num; i++) {
 		        if (inputs[i].checked) {
 		            sum += parseInt(inputs[i].getAttribute('value'));
 		        }
 		    }
 
-		    var customisations = sum - 2500;
+		    var customisations = sum - ;
 
 		    document.getElementById('payment-custom').innerHTML = customisations;
 		    document.getElementById('payment-total').innerHTML = sum;
