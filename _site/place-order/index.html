@@ -323,25 +323,25 @@
 			<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 			<script type="text/javascript">
 				var form = document.querySelector("#order-request");
-				var email = document.querySelector("#email");
+				// var email = document.querySelector("#email");
 				var guitar = document.querySelector("#guitarmodel");
-				var wood = document.querySelector("#wood");
-				var neck = document.querySelector("#neck");
-				var scale = document.querySelector("#scale");
+				// var wood = document.querySelector("#wood");
+				// var neck = document.querySelector("#neck");
+				// var scale = document.querySelector("#scale");
 
 				// When the form is submitted...
 				form.addEventListener("submit", function(event) {
 				  event.preventDefault();
 
 					// POST the data
-					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key=keykx6o2ysAy0m8xs', {
+					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key=' + $, {
 					   	"fields": {
 					    	"name": document.getElementById("yourname").value,
-					    	"email": email.value,
+					    	// "email": email.value,
 					      	"guitar": guitar.options[guitar.selectedIndex].value,
-					      	"wood": document.getElementById("wood").value,
-					      	"neck": document.getElementById("neck").value,
-					      	"scale": document.getElementById("scale").value
+					      	// "wood": document.getElementById("wood").value,
+					      	// "neck": document.getElementById("neck").value,
+					      	// "scale": document.getElementById("scale").value
 					    }
 				  	});
 				});
