@@ -40,6 +40,7 @@ plugins:
 airtable:
   enable_sync: true
   base_uid: 'appp7C1MblPCnMePn'
+  airtable_api_key: ${{ secrets.GH_PAGES_TOKEN }}
   tables:
     - name: 'Use Cases' 
     - name: 'Whitepapers'    
