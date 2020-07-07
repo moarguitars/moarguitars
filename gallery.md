@@ -16,7 +16,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 	<div class="inner">
 		<div class="row 100% insta-gallery">
 			{% for record in site.data.instagram.records reversed %}
-			{% if record.fields.type != 'VIDEO' %}
+			{% if record.fields.type == 'IMAGE' and 'CAROUSEL_ALBUM' %}
 			<div class="4u 12u$(medium)">
 				{% if record.fields.image %}
 				<img class="image fit" src="{{ record.fields.image }}" alt="">
