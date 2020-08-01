@@ -14,17 +14,17 @@ image-hero-alt:
 
 model: 'Bass'
 img-tag: bass
-price-usd: 2,000
-price-eur: 1,825
-price-gbp: 1,600
-price-dkk: 13,600
+price-usd: 2,240
+price-eur: 2,025
+price-gbp: 1,780
+price-dkk: 15,100
 modeldesc: Let’s be honest. Basses are cooler than guitars. I can write this here, publically for all to see, as all guitarists are too busy searching my site for the various colour options of binding to match the LEDs of their spaceship pedal boards, to come onto the bass section of my page.
 
 model2: 'Hollow Bass'
 img-tag2: bass-hollow
-price-usd2: 2,500
-price-eur2: 2,280
-price-gbp2: 1,990
-price-dkk2: 17,000
+price-usd2: 2,740
+price-eur2: 2,480
+price-gbp2: 2,170
+price-dkk2: 18,500
 modeldesc2: Description
 ---
