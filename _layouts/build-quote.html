@@ -1,16 +1,21 @@
----
-title: Wayfair
-price: 2500
+<!DOCTYPE html>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 
-model:
-  	- modeltitle: Solid Morty 
-  	slug-value: solid-t
-	modelprice: 1500
-	- modeltitle: Hollow Morty
-	slug-value: hollow-t
-	modelprice: 1500
----
+{% include head.html %}
 
+<body>
+
+    {% include header.html %} 
+    <script
+    src="https://www.paypal.com/sdk/js?client-id=AfPXI6xS8kZLXEBXVNF8VdA6t_6g5ZUaLjnut-H7bnKYT9sdWZ_cr98VI32hpi5CC2AXMntBPovJsLUo"></script>
+    
+    
+<!-- Main -->
 <!-- Main -->
 <div id="main" class="alt">
 <section>
@@ -19,25 +24,15 @@ model:
 			<h1>Guitar Builder</h1>
 		</div>
 		<div class="8u 12u(small)">
-			<h3>Model Info</h3>
-			<p>Guitar information</p>
+			<h3>Build Your {{ page.title }}</h3>
+			<p>Base price ${{ page.price-usd }}</p>
 			<p>What base model includes</p>
+
 			<!-- Other Stuff -->
 			<!-- Binding -->
 			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 				<h3>Binding</h3>
-				<p>Guitar information</p>
-				<div class="field half">
-					<label for="guitarmodel">Choose Guitar Model</label>
-					<div class="select-wrapper">
-						<select name="guitarmodel" id="guitarmodel">
-							{% for item in page.model %}
-							<option value="{{ item.slug-value }}">{{ item.modeltitle }} {{ item.modelprice }}</option>
-							{% endfor %}
-						</select>
-					</div>
-				</div>
-
+				<p>Information about binding</p>				
 			  	<table class="alt">
 					<tbody>
 						<tr> 
@@ -86,7 +81,7 @@ model:
 			<!-- Hardware -->
 			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 				<h3>Hardware</h3>
-				<p>Guitar information</p>
+				<p>Information about the hardware options</p>
 				<table class="alt">
 					<tbody>
 						<tr> 
@@ -122,10 +117,10 @@ model:
 			    		</tr>
 			    		<tr>
 							<td width="80%">
-								<p>Base Model</p>
+								<p>Base Price</p>
 							</td>
 							<td width="20%">
-								$<span>{{page.price}}</span>
+								$<span>{{page.price-usd}}</span>
 							</td>
 						</tr>
 						<tr>
@@ -141,7 +136,7 @@ model:
 								<p>Total</p>
 							</td>
 							<td width="20%">
-								$<span id="payment-total">{{page.price}}</span>
+								$<span id="payment-total">{{page.price-usd}}</span>
 							</td>
 						</tfoot>
 			        </tbody>
@@ -160,14 +155,14 @@ model:
 		function updateTotals() {
 		    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-		    var sum = {{ page.price }};
+		    var sum = {{ page.price-usd }};
 		    for (var i = 0, num = inputs.length; i < num; i++) {
 		        if (inputs[i].checked) {
 		            sum += parseInt(inputs[i].getAttribute('value'));
 		        }
 		    }
 
-		    var customisations = sum - {{ page.price }};
+		    var customisations = sum - {{ page.price-usd }};
 
 		    document.getElementById('payment-custom').innerHTML = customisations;
 		    document.getElementById('payment-total').innerHTML = sum;
@@ -180,3 +175,9 @@ model:
 		}
 		</script>
 </div>
+
+    {% include footer.html %}
+
+</body>
+
+</html>

@@ -104,7 +104,7 @@ nav-menu: false
 					<li><input id="submit" type="submit" value="Continue to Pay" class="special" onclick="showme();"/></li>
 					<li><input id="reset" type="reset" value="Clear" /></li>
 				</ul>
-				<p style="font-size:0.6em">Prices listed are the total deposit required to process your order - after submitting this form you will be redirected to a page where you can make a payment.</p>	
+				<p style="font-size:0.6em">Prices listed are the total deposit required to process your order - after submitting this form you will be redirected to a page where you can make a payment. :)</p>	
 			</form>	
 			<!-- Scripts -->
 			<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -121,7 +121,7 @@ nav-menu: false
 				  event.preventDefault();
 
 					// POST the data
-					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key=keykx6o2ysAy0m8xs', {
+					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key=${{ secrets.AIRTABLE_API_KEY }}', {
 					   	"fields": {
 					    	"name": document.getElementById("yourname").value,
 					    	// "email": email.value,
