@@ -121,7 +121,7 @@ nav-menu: false
 				  event.preventDefault();
 
 					// POST the data
-					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key=${{ secrets.AIRTABLE_API_KEY }}', {
+					axios.post('https://api.airtable.com/v0/appQjVXW2zEsNMZdB/Orders?api_key={{ secrets.AIRTABLE_API_KEY }}', {
 					   	"fields": {
 					    	"name": document.getElementById("yourname").value,
 					    	// "email": email.value,
