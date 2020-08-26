@@ -1,3 +1,5 @@
+// This was added to handle live currency conversion on the site.
+
 /*!
  * money.js / fx() v0.2
  * Copyright 2014 Open Exchange Rates

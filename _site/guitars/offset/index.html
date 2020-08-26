@@ -937,15 +937,28 @@ var price_usd = roundTo(fx.convert(18200, {from: "DKK", to: "USD"}),0);
 document.getElementById('priceeur').innerHTML = price_eur;
 document.getElementById('pricegbp').innerHTML = price_gbp;
 document.getElementById('priceusd').innerHTML = price_usd;
+</script>
 
-
-
-
-
-
-
-
-
+<!-- Live Currencies -->
+<script type="text/javascript">
+    // Load exchange rates data via AJAX:
+    $.getJSON(
+    	// NB: using Open Exchange Rates here, but you can use any source!
+        'https://openexchangerates.org/api/latest.json?app_id=[YOUR APP ID]',
+        function(data) {
+            // Check money.js has finished loading:
+            if ( typeof fx !== "undefined" && fx.rates ) {
+                fx.rates = data.rates;
+                fx.base = data.base;
+            } else {
+                // If not, apply to fxSetup global:
+                var fxSetup = {
+                    rates : data.rates,
+                    base : data.base
+                }
+            }
+        }
+    );
 </script>
 
 </html>
