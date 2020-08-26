@@ -26,5 +26,5 @@ price-usd2: 3,500
 price-eur2: 2,930
 price-gbp2: 2,640
 price-dkk2: 21,800
-modeldesc2: Description
+modeldesc2: Let’s be honest. Basses are cooler than guitars. I can write this here, publically for all to see, as all guitarists are too busy searching my site for the various colour options of binding to match the LEDs of their spaceship pedal boards, to come onto the bass section of my page.
 ---

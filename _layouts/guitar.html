@@ -8,7 +8,7 @@
 
 {% include head.html %}
 
-<body>
+<body onload="updatePrices()">
 
     {% include header.html %} 
     
@@ -55,9 +55,9 @@
 					    		</tr>
 								<tr>
 									<td width="60%">{{ page.model }}</td>
-									<td width="10%">{{ page.price-usd }}</td>
-									<td width="10%">{{ page.price-eur }}</td>
-									<td width="10%">{{ page.price-gbp }}</td>
+									<td width="10%" ><span id="priceusd">price loading</span></td>
+									<td width="10%" ><span id="priceeur">price loading</span></td>
+									<td width="10%" ><span id="pricegbp">price loading</span></td>
 									<td width="10%">{{ page.price-dkk }}</td>
 								</tr>
 							</tbody>
@@ -141,10 +141,10 @@
 					    			<th width="10%">DKK</th>
 					    		</tr>
 								<tr>
-									<td width="60%">{{ page.model2 }}</td>
-									<td width="10%">{{ page.price-usd2 }}</td>
-									<td width="10%">{{ page.price-eur2 }}</td>
-									<td width="10%">{{ page.price-gbp2 }}</td>
+									<td width="60%" onload="updatePrices2()">{{ page.model2 }}</td>
+									<td width="10%" ><span id="priceusd2">price loading</span></td>
+									<td width="10%" ><span id="priceeur2">price loading</span></td>
+									<td width="10%" ><span id="pricegbp2">price loading</span></td>
 									<td width="10%">{{ page.price-dkk2 }}</td>
 								</tr>
 							</tbody>
@@ -231,9 +231,9 @@
 					    		</tr>
 								<tr>
 									<td width="60%">{{ page.model }}</td>
-									<td width="10%">{{ page.price-usd }}</td>
-									<td width="10%">{{ page.price-eur }}</td>
-									<td width="10%">{{ page.price-gbp }}</td>
+									<td width="10%" ><span id="priceusd">price loading</span></td>
+									<td width="10%" ><span id="priceeur">price loading</span></td>
+									<td width="10%" ><span id="pricegbp">price loading</span></td>
 									<td width="10%">{{ page.price-dkk }}</td>
 								</tr>
 							</tbody>
@@ -299,6 +299,7 @@
 </div>
 </body>
 <!-- Scripts -->
+<!-- Table tabs -->
 <script>
 	var acc = document.getElementsByClassName("accordion");
 var i;
@@ -340,6 +341,50 @@ for (i = 0; i < acc.length; i++) {
   evt.currentTarget.className += " active";
 }
 document.getElementById("defaultOpen").click();
+</script>
+<!-- Money -->
+<script src="{{ 'money.js' | absolute_url}}"></script>
+<script>
+function roundTo(n, digits) {
+        if (digits === undefined) {
+            digits = 0;
+        }
+
+        var multiplicator = Math.pow(10, digits);
+        n = parseFloat((n * multiplicator).toFixed(11));
+        return Math.round(Math.round(n) / multiplicator / 50) * 50;
+    }
+
+function updatePrices() {
+if ({{ page.price-dkk2 | plus: 0 }} > 0) {
+            var price_eur2 = roundTo(fx.convert({{ page.price-dkk2 | plus: 0 }}, {from: "DKK", to: "EUR"}),0);
+			var price_gbp2 = roundTo(fx.convert({{ page.price-dkk2 | plus: 0 }}, {from: "DKK", to: "GBP"}),0);
+			var price_usd2 = roundTo(fx.convert({{ page.price-dkk2 | plus: 0 }}, {from: "DKK", to: "USD"}),0);
+
+			document.getElementById('priceeur2').innerHTML = price_eur2;
+			document.getElementById('pricegbp2').innerHTML = price_gbp2;
+			document.getElementById('priceusd2').innerHTML = price_usd2;
+        }
+}
+
+var price_eur = roundTo(fx.convert({{ page.price-dkk }}, {from: "DKK", to: "EUR"}),0);
+var price_gbp = roundTo(fx.convert({{ page.price-dkk }}, {from: "DKK", to: "GBP"}),0);
+var price_usd = roundTo(fx.convert({{ page.price-dkk }}, {from: "DKK", to: "USD"}),0);
+
+
+
+document.getElementById('priceeur').innerHTML = price_eur;
+document.getElementById('pricegbp').innerHTML = price_gbp;
+document.getElementById('priceusd').innerHTML = price_usd;
+
+
+
+
+
+
+
+
+
 </script>
 
 </html>

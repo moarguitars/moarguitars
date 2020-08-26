@@ -56,7 +56,7 @@
 </head>
 
 
-<body>
+<body onload="updatePrices()">
 
     <!-- Wrapper -->
 <div id="wrapper">
@@ -269,10 +269,10 @@
 					    		</tr>
 								<tr>
 									<td width="60%">Moar Offset</td>
-									<td width="10%">2240</td>
-									<td width="10%">2025</td>
-									<td width="10%">1770</td>
-									<td width="10%">15200</td>
+									<td width="10%" ><span id="priceusd">price loading</span></td>
+									<td width="10%" ><span id="priceeur">price loading</span></td>
+									<td width="10%" ><span id="pricegbp">price loading</span></td>
+									<td width="10%">18200</td>
 								</tr>
 							</tbody>
 						</table>
@@ -425,8 +425,8 @@
 				<td>Extra Filtertron or other mini HB</td>
 				<td>160</td>
 				<td>150</td>
-				<td>60</td>
-				<td>500</td>
+				<td>120</td>
+				<td>1000</td>
 			</tr>
 			<tr>
 				<td>Swap for Filtertron or other mini HB</td>
@@ -860,6 +860,7 @@
 </div>
 </body>
 <!-- Scripts -->
+<!-- Table tabs -->
 <script>
 	var acc = document.getElementsByClassName("accordion");
 var i;
@@ -901,6 +902,50 @@ for (i = 0; i < acc.length; i++) {
   evt.currentTarget.className += " active";
 }
 document.getElementById("defaultOpen").click();
+</script>
+<!-- Money -->
+<script src="http://localhost:4000/money.js"></script>
+<script>
+function roundTo(n, digits) {
+        if (digits === undefined) {
+            digits = 0;
+        }
+
+        var multiplicator = Math.pow(10, digits);
+        n = parseFloat((n * multiplicator).toFixed(11));
+        return Math.round(Math.round(n) / multiplicator / 50) * 50;
+    }
+
+function updatePrices() {
+if (0 > 0) {
+            var price_eur2 = roundTo(fx.convert(0, {from: "DKK", to: "EUR"}),0);
+			var price_gbp2 = roundTo(fx.convert(0, {from: "DKK", to: "GBP"}),0);
+			var price_usd2 = roundTo(fx.convert(0, {from: "DKK", to: "USD"}),0);
+
+			document.getElementById('priceeur2').innerHTML = price_eur2;
+			document.getElementById('pricegbp2').innerHTML = price_gbp2;
+			document.getElementById('priceusd2').innerHTML = price_usd2;
+        }
+}
+
+var price_eur = roundTo(fx.convert(18200, {from: "DKK", to: "EUR"}),0);
+var price_gbp = roundTo(fx.convert(18200, {from: "DKK", to: "GBP"}),0);
+var price_usd = roundTo(fx.convert(18200, {from: "DKK", to: "USD"}),0);
+
+
+
+document.getElementById('priceeur').innerHTML = price_eur;
+document.getElementById('pricegbp').innerHTML = price_gbp;
+document.getElementById('priceusd').innerHTML = price_usd;
+
+
+
+
+
+
+
+
+
 </script>
 
 </html>

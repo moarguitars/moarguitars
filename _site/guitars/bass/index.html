@@ -276,10 +276,10 @@
 					    		</tr>
 								<tr>
 									<td width="60%">Bass</td>
-									<td width="10%">2240</td>
-									<td width="10%">2025</td>
-									<td width="10%">1780</td>
-									<td width="10%">15100</td>
+									<td width="10%" ><span id="priceusd">price loading</span></td>
+									<td width="10%" ><span id="priceeur">price loading</span></td>
+									<td width="10%" ><span id="pricegbp">price loading</span></td>
+									<td width="10%">18100</td>
 								</tr>
 							</tbody>
 						</table>
@@ -801,7 +801,7 @@
 		<div id="Hollow Bass" class="tabcontent row 100% uniform">
 			<div class=" row 100%">
 				<div class="8u 12u$(medium)">
-					<p><p>Description</p>
+					<p><p>Let’s be honest. Basses are cooler than guitars. I can write this here, publically for all to see, as all guitarists are too busy searching my site for the various colour options of binding to match the LEDs of their spaceship pedal boards, to come onto the bass section of my page.</p>
 </p>
 					<div class="table-wrapper">
 			      		<h4>Base Price</h4>
@@ -816,10 +816,10 @@
 					    		</tr>
 								<tr>
 									<td width="60%">Hollow Bass</td>
-									<td width="10%">2740</td>
-									<td width="10%">2480</td>
-									<td width="10%">2170</td>
-									<td width="10%">18500</td>
+									<td width="10%" ><span id="priceusd2">price loading</span></td>
+									<td width="10%" ><span id="priceeur2">price loading</span></td>
+									<td width="10%" ><span id="pricegbp2">price loading</span></td>
+									<td width="10%">21800</td>
 								</tr>
 							</tbody>
 						</table>
@@ -1421,6 +1421,42 @@ for (i = 0; i < acc.length; i++) {
   evt.currentTarget.className += " active";
 }
 document.getElementById("defaultOpen").click();
+</script>
+
+<!-- Money -->
+<script src="http://localhost:4000/money.js"></script>
+<script>
+function roundTo(n, digits) {
+        if (digits === undefined) {
+            digits = 0;
+        }
+
+        var multiplicator = Math.pow(10, digits);
+        n = parseFloat((n * multiplicator).toFixed(11));
+        return Math.round(Math.round(n) / multiplicator / 50) * 50;
+    }
+
+function updatePrices() {
+if (21800 > 0) {
+            var price_eur2 = roundTo(fx.convert(21800, {from: "DKK", to: "EUR"}),0);
+			var price_gbp2 = roundTo(fx.convert(21800, {from: "DKK", to: "GBP"}),0);
+			var price_usd2 = roundTo(fx.convert(21800, {from: "DKK", to: "USD"}),0);
+
+			document.getElementById('priceeur2').innerHTML = price_eur2;
+			document.getElementById('pricegbp2').innerHTML = price_gbp2;
+			document.getElementById('priceusd2').innerHTML = price_usd2;
+        }
+}
+
+var price_eur = roundTo(fx.convert(18100, {from: "DKK", to: "EUR"}),0);
+var price_gbp = roundTo(fx.convert(18100, {from: "DKK", to: "GBP"}),0);
+var price_usd = roundTo(fx.convert(18100, {from: "DKK", to: "USD"}),0);
+
+
+
+document.getElementById('priceeur').innerHTML = price_eur;
+document.getElementById('pricegbp').innerHTML = price_gbp;
+document.getElementById('priceusd').innerHTML = price_usd;
 </script>
 
 </html>
