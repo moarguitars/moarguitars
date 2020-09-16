@@ -67,6 +67,9 @@
 <loc>http://localhost:4000/place-order/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/guitars/serial-generator/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/checkout/solid-bass/</loc>
 </url>
 <url>

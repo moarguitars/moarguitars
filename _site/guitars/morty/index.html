@@ -146,7 +146,11 @@
 		
 		    
 		
+		    
 		
+		
+		
+		    
 		
 		    
 		
@@ -199,11 +203,11 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
+		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/order-process/">The Order Process</a></li>
+		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
 		    
 		
 		    
@@ -259,8 +263,8 @@
 
 		<!-- Model 1 -->
 		<div id="Solid Morty" class="tabcontent row 100% uniform">
-			<div class=" row 100%">
-				<div class="8u 12u$(medium)">
+			<div class="row 100%">
+				<div class="8u 12u$(medium)" style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 					<p><p>My most stripped back guitar is the Solid-Morty. You still get stainless steel frets, the same hardware as you get on my Wayfairs, a modern all access set neck joint, handwound pickups made to your specs, but everything unnecessary is removed. It is a distilled, pure and simple instrument.</p>
 </p>
 					<div class="table-wrapper">
@@ -288,6 +292,7 @@
 					<ul class="actions">
 						<li><a href="/place-order" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
+
 					<!-- Extras -->
 					<!-- Extras -->
 <h2>Extras</h2>
@@ -665,10 +670,119 @@
 			</tr>
 		</tbody>
 	</table>
-</div> 	
+</div> 
+
+					<!-- Testimonials -->
+					<h2>Testimonials</h2>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="3u 12u$(medium)">
+						<p><em>My Moar Morty is my favourite guitar, it works on genres from clean jazz to heavy rock perfectly! Tonally versatile and plays fantastic.</em></p>
+						
+						<p><strong>Ross, London</strong></p>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="3u 12u$(medium)">
+						<p><em>I was lucky enough whilst visiting Dan at his workshop to collect a guitar I had ordered, and also to be able to sneak out with one of his earliest builds, a super slim tele style guitar. It was so sweet to play I couldn't leave without it.</em></p>
+						
+						<p><strong>Alan, London</strong></p>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
+
 				<!-- Images -->
-				
+				<div class="box 4u 12u(small) sticky-quote">
+					<div class="">
+						<h3>Your Guitar</h3>
+						<div class="field">
+							<!-- <label for="customer">Serial Code</label> -->
+							<input type="text" id="serial" placeholder="Something might have gone wrong" name="serial" disabled required/>
+							<p>This code is unique to your guitar</p>
+						</div>
+						<table class="alt">
+							<tbody>
+								<tr> 
+									<th width="70%">Item</th>
+					    			<th width="30%">$USD</th>
+					    		</tr>
+					    		<tr>
+									<td width="80%">
+										<p>Base Price</p>
+									</td>
+									<td width="20%">
+										$<span>2325</span>
+									</td>
+								</tr>
+								<tr>
+									<td width="80%">
+										Customisations
+									</td>
+									<td width="20%">
+										$<span id="payment-custom">0</span>
+									</td>
+								</tr>
+								<tfoot style="font-weight: 600;">
+									<td width="80%">
+										<p>Total</p>
+									</td>
+									<td width="20%">
+										$<span id="payment-total">2325</span>
+									</td>
+								</tfoot>
+					        </tbody>
+					    </table>
+					    <ul class="actions" style="">
+							<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Submit Quote" class="button special fit" onclick="showme();"/></li>
+							<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Clear Customisations" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- 
 					
 				
 					
@@ -724,73 +838,11 @@
 					
 				
 					
-				
+				 -->
 			</div>
 	
 			<!-- Testimonails -->
 			<div class="row 100%">
-				<div class="12u 12u$(medium)">
-					<h2>Testimonials</h2>
-				</div>
-			</div>
-			<div class="row 100%">
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<div class="6u 12u$(medium)">
-					<p><em>My Moar Morty is my favourite guitar, it works on genres from clean jazz to heavy rock perfectly! Tonally versatile and plays fantastic.</em></p>
-					
-					<p><strong>Ross, London</strong></p>
-				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<div class="6u 12u$(medium)">
-					<p><em>I was lucky enough whilst visiting Dan at his workshop to collect a guitar I had ordered, and also to be able to sneak out with one of his earliest builds, a super slim tele style guitar. It was so sweet to play I couldn't leave without it.</em></p>
-					
-					<p><strong>Alan, London</strong></p>
-				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				
 			</div>
 
