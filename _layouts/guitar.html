@@ -39,8 +39,8 @@
 
 		<!-- Model 1 -->
 		<div id="{{-page.model-}}" class="tabcontent row 100% uniform">
-			<div class=" row 100%">
-				<div class="8u 12u$(medium)">
+			<div class="row 100%">
+				<div class="8u 12u$(medium)" style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
 					<p>{{ page.modeldesc | markdownify }}</p>
 					<div class="table-wrapper">
 			      		<h4>Base Price</h4>
@@ -67,43 +67,91 @@
 					<ul class="actions">
 						<li><a href="{{ "/place-order"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
+
 					<!-- Extras -->
-					{% include extras.html %} 	
+					{% include extras.html %} 
+
+					<!-- Testimonials -->
+					<h2>Testimonials</h2>
+					{% for record in site.data.testimonials.records reversed %}
+					{% if record.fields.guitar == page.img-tag %}
+					<div class="3u 12u$(medium)">
+						<p><em>{{ record.fields.testimonial }}</em></p>
+						{% if record.fields.name %}
+						<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+					</div>
+					{% endif %}
+					{% if record.fields.guitar == page.img-tag2 %}
+					<div class="3u 12u$(medium)">
+						<p><em>{{ record.fields.testimonial }}</em></p>
+						{% if record.fields.name %}
+						<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
+					</div>
+					{% endif %}
+					{% endfor %}
 				</div>
+
 				<!-- Images -->
-				{% for record in site.data.gallery.records reversed %}
+				<div class="box 4u 12u(small) sticky-quote">
+					<div class="">
+						<h3>Your Guitar</h3>
+						<div class="field">
+							<!-- <label for="customer">Serial Code</label> -->
+							<input type="text" id="serial" placeholder="Something might have gone wrong" name="serial" disabled required/>
+							<p>This code is unique to your guitar</p>
+						</div>
+						<table class="alt">
+							<tbody>
+								<tr> 
+									<th width="70%">Item</th>
+					    			<th width="30%">$USD</th>
+					    		</tr>
+					    		<tr>
+									<td width="80%">
+										<p>Base Price</p>
+									</td>
+									<td width="20%">
+										$<span>{{page.price-usd}}</span>
+									</td>
+								</tr>
+								<tr>
+									<td width="80%">
+										Customisations
+									</td>
+									<td width="20%">
+										$<span id="payment-custom">0</span>
+									</td>
+								</tr>
+								<tfoot style="font-weight: 600;">
+									<td width="80%">
+										<p>Total</p>
+									</td>
+									<td width="20%">
+										$<span id="payment-total">{{page.price-usd}}</span>
+									</td>
+								</tfoot>
+					        </tbody>
+					    </table>
+					    <ul class="actions" style="">
+							<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Submit Quote" class="button special fit" onclick="showme();"/></li>
+							<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Clear Customisations" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li>
+						</ul>
+					</div>
+				</div>
+
+				<!-- {% for record in site.data.gallery.records reversed %}
 					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'feature' %}
 					<div class="4u 12u$(medium)">
 						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
 						<p>{{ record.fields.caption }}</p>
 					</div>
 					{% endif %}
-				{% endfor %}
+				{% endfor %} -->
 			</div>
 	
 			<!-- Testimonails -->
 			<div class="row 100%">
-				<div class="12u 12u$(medium)">
-					<h2>Testimonials</h2>
-				</div>
-			</div>
-			<div class="row 100%">
-				{% for record in site.data.testimonials.records reversed %}
-				{% if record.fields.guitar == page.img-tag %}
-				<div class="6u 12u$(medium)">
-					<p><em>{{ record.fields.testimonial }}</em></p>
-					{% if record.fields.name %}
-					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
-				</div>
-				{% endif %}
-				{% if record.fields.guitar == page.img-tag2 %}
-				<div class="6u 12u$(medium)">
-					<p><em>{{ record.fields.testimonial }}</em></p>
-					{% if record.fields.name %}
-					<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
-				</div>
-				{% endif %}
-				{% endfor %}
+				
 			</div>
 
 			<!-- Gallery -->
@@ -298,6 +346,9 @@
 {% include footer.html %}
 </div>
 </body>
+</html>
+
+
 <!-- Scripts -->
 <!-- Table tabs -->
 <script>
@@ -400,4 +451,33 @@ document.getElementById('priceusd').innerHTML = price_usd;
     );
 </script>
 
-</html>
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Form Script -->
+<script>
+function updateTotals() {
+    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
+
+    var sum = {{ page.price-usd }};
+    for (var i = 0, num = inputs.length; i < num; i++) {
+        if (inputs[i].checked) {
+            sum += parseInt(inputs[i].getAttribute('value'));
+        }
+    }
+
+    var customisations = sum - {{ page.price-usd }};
+
+    document.getElementById('payment-custom').innerHTML = '$' + customisations;
+    document.getElementById('payment-total').value = '$' + sum;
+    document.getElementById('next').value = '/order-placed?deposit=' + (sum*0.25);
+    
+}
+var section = document.getElementById('extra-features');
+var inputs = section.getElementsByTagName('input');
+for (var i = 0, num = inputs.length; i < num; i++) {
+    inputs[i].addEventListener('change', updateTotals);
+}
+</script>

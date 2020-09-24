@@ -1,9 +1,4 @@
 <!DOCTYPE html>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 
 {% include head.html %}
@@ -11,207 +6,90 @@
 <body>
 
     {% include header.html %} 
-    <script
-    src="https://www.paypal.com/sdk/js?client-id=AfPXI6xS8kZLXEBXVNF8VdA6t_6g5ZUaLjnut-H7bnKYT9sdWZ_cr98VI32hpi5CC2AXMntBPovJsLUo"></script>
     
-    
-<!-- Main -->
 <!-- Main -->
 <div id="main" class="alt">
-<section>
-	<form class="inner row" id="extra-features">
-		<div class="12u 12u(small)">
-			<h1>Guitar Builder</h1>
-		</div>
-		<div class="8u 12u(small)">
-			<h3>Build Your {{ page.title }}</h3>
-			<p>Base price ${{ page.price-usd }}</p>
-			<p>What base model includes</p>
-
-			<!-- Other Stuff -->
-			<!-- Binding -->
-			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
-				<h3>Binding</h3>
-				<p>Information about binding</p>				
-			  	<table class="alt">
-					<tbody>
-						<tr> 
-							<th width="70%">Item</th>
-			    			<th width="30%">$USD</th>
-			    		</tr>
-			    		<tr>
-			    			<td>
-			    				<input class="binding" value="160" type="checkbox" id="Checkbox1" data-toggle="checkbox"> 
-			    				<label class="checkbox" for="Checkbox1">Top binding</label>
-			    			</td>
-			    			<td>
-			    				<p>$160</p>
-			    			</td>
-			    		</tr>
-			    		<tr>
-			    			<td>
-			    				<input class="binding" value="160"  type="checkbox" id="Checkbox2" data-toggle="checkbox"> 
-								<label class="checkbox" for="Checkbox2">Bottom binding</label>
-							</td>
-							<td>
-								<p>$160</p>
-							</td>
-						</tr>
-						<tr>
-			    			<td>
-			    				<input class="binding" value="160"  type="checkbox" id="Checkbox3" data-toggle="checkbox"> 
-								<label class="checkbox" for="Checkbox3">F-hole binding</label>
-							</td>
-							<td>
-								<p>$160</p>
-							</td>
-						</tr>
-						<tr>
-			    			<td>
-			    				<input class="binding" value="220"  type="checkbox" id="Checkbox4" data-toggle="checkbox"> 
-								<label class="checkbox" for="Checkbox4">Neck binding</label>
-							</td>
-							<td>
-								<p>$220</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
-			<!-- Hardware -->
-			<section style="box-sizing: border-box; padding-right: 2em; margin-bottom: 2em;">
-				<h3>Hardware</h3>
-				<p>Information about the hardware options</p>
-				<table class="alt">
-					<tbody>
-						<tr> 
-							<th width="70%">Item</th>
-			    			<th width="30%">$USD</th>
-			    		</tr>
-						<tr>
-							<td>
-								<input class="quoteItem" value="45" type="checkbox" id="hardware1" data-toggle="checkbox" name="Gold Hardware and frets"> 
-			    				<label class="checkbox" for="hardware1">Gold Hardware and frets</label>
-							</td>
-							<td>$45</td>
-						</tr>
-						<tr>
-							<td>
-								<input class="quoteItem" value="20" type="checkbox" id="hardware2" data-toggle="checkbox" name="Locking tuners over standard"> 
-			    				<label class="checkbox" for="hardware2">Locking tuners over standard</label>
-							</td>
-							<td>$20</td>
-						</tr>
-					</tbody>
-				</table>
-			</section>
-		</div>
-		<div class="box 4u 12u(small) sticky-quote">
-			<div class="">
-				<h3>Your {{ page.title }}</h3>
-				<table>
-					<tbody>
-						<tr> 
-							<th width="70%">Item</th>
-			    			<th width="30%">$USD</th>
-			    		</tr>
-			    		<tr>
-							<td width="80%">
-								<p>Base Price</p>
-							</td>
-							<td width="20%">
-								$<span>{{page.price-usd}}</span>
-							</td>
-						</tr>
-						<tr>
-							<td width="80%">
-								Customisations
-							</td>
-							<td width="20%">
-								$<span id="payment-custom">0</span>
-							</td>
-						</tr>
-						<tfoot style="font-weight: 600;">
-							<td width="80%">
-								<p>Total</p>
-							</td>
-							<td width="20%">
-								$<span id="payment-total">{{page.price-usd}}</span>
-							</td>
-						</tfoot>
-			        </tbody>
-			    </table>
-			    <ul class="actions" style="">
-					<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Submit Quote" class="button special fit" onclick="showme();"/></li>
-					<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Clear Customisations" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li>
-				</ul>
+	<section>
+			<div class="inner row uniform">
+				<div class="12u 12u(small)" style="margin-bottom: 2em;">
+					<div class="100%">
+						<a href="{{ '/guitars' | relative_url }}">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;{{ page.title }}</p>
+					</div>
+					<h1>The {{ page.title }}</h1>
+					<hr/>
+					<h3>{{ page.description }}</h3>
+					<p>{{ page.modeldesc }}</p>
+				</div>
+				<!-- Gallery -->
+				{% for record in site.data.gallery.records reversed %}
+					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
+					<div class="4u 12u$(medium)">
+						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+					</div>
+					{% endif %}
+				{% endfor %}
 			</div>
-		</div>
-	</form>
-</section>
-
-<!-- Form Script -->
-		<script>
-		function updateTotals() {
-		    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
-
-		    var sum = {{ page.price-usd }};
-		    for (var i = 0, num = inputs.length; i < num; i++) {
-		        if (inputs[i].checked) {
-		            sum += parseInt(inputs[i].getAttribute('value'));
-		        }
-		    }
-
-		    var customisations = sum - {{ page.price-usd }};
-
-		    document.getElementById('payment-custom').innerHTML = customisations;
-		    document.getElementById('payment-total').innerHTML = sum;
-		    
-		}
-		var section = document.getElementById('extra-features');
-		var inputs = section.getElementsByTagName('input');
-		for (var i = 0, num = inputs.length; i < num; i++) {
-		    inputs[i].addEventListener('change', updateTotals);
-		}
-		</script>
-
-		<!-- Form contents to cookie -->
-		<script>
-
-        var today = new Date();
-        var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
-
-        function setCookie(name, id) {
-            var element = document.getElementById(id);
-            var elementValue = escape(element.value);
-
-            document.cookie = name + "=" + elementValue + "; path=/; expires=" + expiry.toGMTString();
-            console.log(document.cookie);
-        }
-
-        function storeValues(form) {
-            setCookie("email", form.email - field.value);
-            return true;
-        }
-
-        function displayCookieValue(name) {
-            var value = getCookie(name);
-            var element = document.getElementById("value");
-            element.innerHTML = "Cookie name: "+ name + ", value " + value;
-
-        }
-
-        function getCookie(name) {
-            var re = new RegExp(name + "=([^;]+)");
-            var value = re.exec(document.cookie);
-            return (value != null) ? unescape(value[1]) : null;
-        }
-</script>
-
+			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xnqoqbjw" method="POST">
+				<div class="8u 12u(small)" style="padding-right: 2em;">
+					<!-- Extras -->
+					{% include extras-form.html %}
+				</div>
+				<div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
+					<!-- Quote Box -->
+					{% include stickyquote.html %}
+				</div>
+			</form>
+	</section>
 </div>
 
     {% include footer.html %}
 
 </body>
-
 </html>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Form Script -->
+<script>
+function updateTotals() {
+    // Checkboxes
+    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
+
+    // Selected Options
+    var body = document.getElementById("wood-body");
+	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value'));
+	var neck = document.getElementById("wood-neck");
+	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value'));	
+	var fret = document.getElementById("wood-fret");
+	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value'));
+	var radius = document.getElementById("neck-radius");
+	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value'));
+	var result = bodycost + neckcost + fretcost + radiuscost;
+
+    // Total Price
+    var sum = {{ page.price-usd }} + result;
+    for (var i = 0, num = inputs.length; i < num; i++) {
+        if (inputs[i].checked) {
+            sum += parseInt(inputs[i].getAttribute('value'));
+        }
+    }
+
+    // Customisation Total
+    var customisations = sum - {{ page.price-usd }};
+
+	// Totals for text
+    document.getElementById('payment-custom').innerHTML = '$' + customisations;
+    document.getElementById('payment-total').value = '$' + sum;
+    document.getElementById('next').value = '{{ site.baseurl }}/order-placed?deposit=' + (sum*0.25);
+    
+}
+
+var section = document.getElementById('extra-features');
+var inputs = section.getElementsByTagName('input');
+for (var i = 0, num = inputs.length; i < num; i++) {
+    inputs[i].addEventListener('change', updateTotals);
+}
+
+
+</script>

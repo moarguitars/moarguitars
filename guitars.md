@@ -36,7 +36,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 						<h4>All you need in a guitar and nothing else. Built on a perfect foundation, simplicity can be more of an inspiration than a limitation.</h4>
 					</header>
 					<ul class="actions">
-	                    <li><a href="{{ "/guitars/morty"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
+	                    <li><a href="{{ "/guitars/morty"  | relative_url }}" class="button scrolly">View Morty</a></li>
+	                    <li><a href="{{ "/guitars/morty-hollow"  | relative_url }}" class="button scrolly">View Hollow Morty</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -51,7 +52,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 						<h4>An evolved jazz box designed to fit all the players needs, creatively, ergonomically and visually.</h4>
 					</header>
 					<ul class="actions">
-	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly special">View Guitar</a></li>
+	                    <li><a href="{{ "/guitars/wayfair"  | relative_url }}" class="button scrolly">View Wayfair</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -65,7 +66,7 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 						<h4>A modern, light and versatile guitar designed around an all access neck joint to give it it’s unique shape.</h4>
 					</header>
 					<ul class="actions">
-	                    <li><a href="{{ "/guitars/offset" | relative_url }}" class="button scrolly special">View Guitar</a></li>
+	                    <li><a href="{{ "/guitars/offset" | relative_url }}" class="button scrolly">View Offset</a></li>
 	                </ul>
 				</div>
 			</div>
@@ -80,7 +81,8 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 						<h4>I love making basses, I would love to make you one. Check them out here.</h4>
 					</header>
 					<ul class="actions">
-	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly special">View Basses</a></li>
+	                    <li><a href="{{ "/guitars/bass"  | relative_url }}" class="button scrolly">View Bass</a></li>
+	                    <li><a href="{{ "/guitars/bass-hollow"  | relative_url }}" class="button scrolly">View Hollow Bass</a></li>
 	                </ul>
 				</div>
 			</div>

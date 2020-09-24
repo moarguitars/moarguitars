@@ -1,7 +1,7 @@
 ---
 layout: order-placed
-guitar: Hollow Bass
-price: 800
+guitar: Order Placed
+price: 1000
 show_tile: false
 nav-menu: false
 image: 'assets/images/wayfair/wayfair-light-outside.jpg'

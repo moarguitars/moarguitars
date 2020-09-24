@@ -103,8 +103,8 @@
 		display: block;
 		position: relative;
 
-		&:after {
-			color: _palette(border);
+		&:before {
+			color: #222;
 			content: '\f078';
 			display: block;
 			height: _size(element-height);

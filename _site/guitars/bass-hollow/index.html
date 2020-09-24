@@ -14,8 +14,8 @@
 	<!-- Open Graph -->
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
-	<meta property="og:title" content="Bass">
-	<meta property="og:url" content="http://localhost:4000/guitars/bass/">
+	<meta property="og:title" content="Hollow Bass">
+	<meta property="og:url" content="http://localhost:4000/guitars/bass-hollow/">
 	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
 	<meta property="og:site_name" content="Moar Guitars">
 	<meta property="article:publisher" content="http://localhost:4000" />
@@ -189,9 +189,9 @@
 			<div class="inner row uniform">
 				<div class="12u 12u(small)" style="margin-bottom: 2em;">
 					<div class="100%">
-						<a href="/guitars">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;Bass</p>
+						<a href="/guitars">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;Hollow Bass</p>
 					</div>
-					<h1>The Bass</h1>
+					<h1>The Hollow Bass</h1>
 					<hr/>
 					<h3>I’m not going to patronise you with a snappy headline, I love making basses, I would love to make you one. Check them out. If you can’t see what you would like then get in touch. I can probably make what you want.</h3>
 					<p>Let’s be honest. Basses are cooler than guitars. I can write this here, publically for all to see, as all guitarists are too busy searching my site for the various colour options of binding to match the LEDs of their spaceship pedal boards, to come onto the bass section of my page.</p>
@@ -248,7 +248,7 @@
 			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xnqoqbjw" method="POST">
 				<div class="8u 12u(small)" style="padding-right: 2em;">
 					<!-- Extras -->
-					<h2 style="margin-bottom: 0.5em">Design your own Bass</h2>
+					<h2 style="margin-bottom: 0.5em">Design your own Hollow Bass</h2>
 <p>Build your dream guitar then add your email to save and guarantee the quoted price.</p>
 <p>Base price comes with Nickel hardware, 1 handwound p90 made to your tastes, an intonated cut off T style bridge, stainless steel frets and a single volume control.</p>
 
@@ -883,7 +883,7 @@
 				<p>Base Price</p>
 			</td>
 			<td>
-				<span value="$2900" id="base-price">$2900</span>
+				<span value="$3500" id="base-price">$3500</span>
 			</td>
 		</tr>
 		<tr>
@@ -899,7 +899,7 @@
 				<p style="font-weight: 700;">Total (USD)</p>
 			</td>
 			<td>
-				<input style="font-weight: 700;" type="text" value="$2900" id="payment-total" name="total-price" disabled></input>
+				<input style="font-weight: 700;" type="text" value="$3500" id="payment-total" name="total-price" disabled></input>
 			</td>
 		</tfoot>
 	</tbody>
@@ -986,7 +986,7 @@ function updateTotals() {
 	var result = bodycost + neckcost + fretcost + radiuscost;
 
     // Total Price
-    var sum = 2900 + result;
+    var sum = 3500 + result;
     for (var i = 0, num = inputs.length; i < num; i++) {
         if (inputs[i].checked) {
             sum += parseInt(inputs[i].getAttribute('value'));
@@ -994,7 +994,7 @@ function updateTotals() {
     }
 
     // Customisation Total
-    var customisations = sum - 2900;
+    var customisations = sum - 3500;
 
 	// Totals for text
     document.getElementById('payment-custom').innerHTML = '$' + customisations;

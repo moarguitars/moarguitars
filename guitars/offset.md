@@ -1,6 +1,7 @@
 ---
-layout: guitar
+layout: build-quote
 title: Moar Offset
+type: guitar
 nav-menu: false
 show_tile: false
 date: 2020-02-10 19:45:00
@@ -8,9 +9,6 @@ date: 2020-02-10 19:45:00
 description: A modern, light and versatile guitar designed around an all access neck joint to give it it’s unique shape. 
 
 image: 'assets/images/offset/offset-dark-workshop.jpg'
-image-alt: 
-image-hero: 'assets/images/offset/offset-dark-workshop.jpg'
-image-hero-alt:
 
 model: 'Moar Offset'
 img-tag: offset
