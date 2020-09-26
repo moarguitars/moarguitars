@@ -75,8 +75,6 @@
 		    
 		
 		    
-		
-		    
 		        <li><a href="http://localhost:4000/">Home</a></li>
 	    	
 		
@@ -115,8 +113,6 @@
 		    
 		
 		
-		
-		    
 		
 		    
 		
@@ -200,19 +196,22 @@
 				
 					
 					<div class="4u 12u$(medium)">
-						<img class="image fit" src="https://dl.airtable.com/.attachments/57d7bda92b29efdb9ae53a28d1631e5d/6bda1511/t-type-hollow-light-held.jpg" alt="">
+						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/57d7bda92b29efdb9ae53a28d1631e5d/6bda1511/t-type-hollow-light-held.jpg)">
+						</div>
 					</div>
 					
 				
 					
 					<div class="4u 12u$(medium)">
-						<img class="image fit" src="https://dl.airtable.com/.attachments/2b5f6af1f5701aac17f89ff4c475b6f3/42203c77/t-type-hollow-outside.jpg" alt="">
+						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/2b5f6af1f5701aac17f89ff4c475b6f3/42203c77/t-type-hollow-outside.jpg)">
+						</div>
 					</div>
 					
 				
 					
 					<div class="4u 12u$(medium)">
-						<img class="image fit" src="https://dl.airtable.com/.attachments/1764a15e9ff8da3708399c074acce418/efa2d6b4/t-type-hollow-door.jpg" alt="">
+						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/1764a15e9ff8da3708399c074acce418/efa2d6b4/t-type-hollow-door.jpg)">
+						</div>
 					</div>
 					
 				
@@ -269,71 +268,74 @@
 	<h3 style="margin-bottom: 0.5em">Choose the woods</h3>
 	<p>Not sure which woods to pick? Find out more and see pictures in our guide to wood.</p>
 	
+    <!-- Guitar -->
+    <input class="binding" value="200" type="hidden" name="Hollow Morty" > 
+
 	<!-- Body -->
-	<div class="select-wrapper" style="margin-top: 1em;">		
+    <h5>Body Wood</h5>
+	<div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">		
         <select name="wood-body" id="wood-body" onchange="updateTotals()" required>
-            <option value="0" disabled selected>Body Wood</option>
-			<option name="ash" value="0">Ash - $0</option>
-			<option name="cedar" value="0">Cedar - $0</option>
-			<option name="pine" value="0">Pine - $0</option>
-			<option name="alder" value="0">Alder - $0</option>
-			<option name="mahogany" value="0">Mahogany - $0</option>
-			<option name="wenge" value="160">Wenge - $160</option>
-			<option name="walnut" value="130">Walnut - $130</option>
-			<option name="bubinga" value="220">Bubinga - $220</option>
-			<option name="maple" value="160">Maple - $160</option>
-			<option name="swamp-ash" value="130">Swamp Ash - $130</option>
+			<option name="ash" value="Ash:0">Ash - $0</option>
+			<option name="cedar" value="Cedar:0">Cedar - $0</option>
+			<option name="pine" value="Pine:0">Pine - $0</option>
+			<option name="alder" value="Alder:0">Alder - $0</option>
+			<option name="mahogany" value="Mahogany:0">Mahogany - $0</option>
+			<option name="wenge" value="Wenge:160">Wenge - $160</option>
+			<option name="walnut" value="Walnut:130">Walnut - $130</option>
+			<option name="bubinga" value="Bubinga:220">Bubinga - $220</option>
+			<option name="maple" value="Maple:160">Maple - $160</option>
+			<option name="swamp-ash" value="Swamp Ash:130">Swamp Ash - $130</option>
 		</select>
 	</div>
 
 	<!-- Neck --> 
-	<div class="select-wrapper" style="margin-top: 1em;">
+    <h4 style="margin-top: 2em;">Neck and Fretboard</h4>
+    <h5>Neck Wood</h5>
+	<div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">      
 		<select name="wood-neck" id="wood-neck" onchange="updateTotals()" required>
-            <option value="0" disabled selected>Neck Wood</option>
-			<option name="maple" value="0">Maple - $0</option>
-			<option name="mahogany" value="0">Mahogany - $0</option>
-			<option name="cedar" value="0">Cedar - $0</option>
-			<option name="ash" value="0">Ash - $0</option>
-			<option name="rosewood-african" value="45">Rosewood (African) - $45</option>
-			<option name="bubinga" value="45">Bubinga - $45</option>
-			<option name="walnut" value="45">Walnut - $45</option>
-			<option name="wenge" value="45">Wenge - $45</option>
+			<option name="maple" value="Maple:0">Maple - $0</option>
+			<option name="mahogany" value="Mahogany:0">Mahogany - $0</option>
+			<option name="cedar" value="Cedar:0">Cedar - $0</option>
+			<option name="ash" value="Ash:0">Ash - $0</option>
+			<option name="rosewood-african" value="African Rosewood:45">Rosewood (African) - $45</option>
+			<option name="bubinga" value="Bubinga:45">Bubinga - $45</option>
+			<option name="walnut" value="Walnut:45">Walnut - $45</option>
+			<option name="wenge" value="Wenge:45">Wenge - $45</option>
 		</select>
 	</div>
 
 	<!-- Fretboard -->
-	<h4 style="margin-top: 2em;">Fretboard</h4>
-	<div class="select-wrapper" style="margin-top: 1em;">
+    <h5>Fretboard Wood</h5>
+	<div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">      
         <select name="wood-fret" id="wood-fret" onchange="updateTotals()" required>
-            <option value="0" disabled selected>Fretboard Wood</option>
-			<option name="ebony" value="0">Ebony - $0</option>
-			<option name="rosewood-indian" value="0">Rosewood (Indian) - $0</option>
-			<option name="rosewood-african" value="0">Rosewood (African) - $0</option>
-			<option name="wenge" value="0">Wenge - $0</option>
-			<option name="maple" value="0">Maple - $0</option>
-			<option name="oak" value="0">Oak - $0</option>
-			<option name="bubinga" value="0">Bubinga - $0</option>
-			<option name="cocobolo" value="0">Cocobolo - $0</option>
-			<option name="rosewood-madagascan" value="30">Rosewood (Madagascan) - $30</option>
-			<option name="malaysian-blackwood" value="30">Malaysian Blackwood - $30</option>
-			<option name="ovangkol" value="30">Ovangkol - $30</option>
-			<option name="padouk" value="30">Padouk - $30</option>
-			<option name="walnut" value="30">Walnut - $30</option>
-			<option name="zebrano" value="30">Zebrano - $30</option>
+			<option name="ebony" value="Ebony:0">Ebony - $0</option>
+			<option name="rosewood-indian" value="Rosewood (Indian):0">Rosewood (Indian) - $0</option>
+			<option name="rosewood-african" value="Rosewood (African):0">Rosewood (African) - $0</option>
+			<option name="wenge" value="Wenge:0">Wenge - $0</option>
+			<option name="maple" value="Maple:0">Maple - $0</option>
+			<option name="oak" value="Oak:0">Oak - $0</option>
+			<option name="bubinga" value="Bubinga:0">Bubinga - $0</option>
+			<option name="cocobolo" value="Cocbolo:0">Cocobolo - $0</option>
+			<option name="rosewood-madagascan" value="Rosewood (Madagascan):30">Rosewood (Madagascan) - $30</option>
+			<option name="malaysian-blackwood" value="Malaysian Blackwood:30">Malaysian Blackwood - $30</option>
+			<option name="ovangkol" value="Ovangkol:30">Ovangkol - $30</option>
+			<option name="padouk" value="Padouk:30">Padouk - $30</option>
+			<option name="walnut" value="Walnut:30">Walnut - $30</option>
+			<option name="zebrano" value="Zebrano:30">Zebrano - $30</option>
 		</select>
 	</div>       
        
+    <h5>Neck Radius</h5>
     <div class="select-wrapper" style="margin-top: 1em; ">
         <select name="neck-radius" id="neck-radius" onchange="updateTotals()" required>>
-            <option value="0" disabled selected>Radius</option>
-			<option name="7.25" value="0">7.25” - $0</option>
-			<option name="9.5" value="0">9.5” - $0</option>
-			<option name="10" value="0">10” - $0</option>
-			<option name="12" value="0">12” - $0</option>
-			<option name="14" value="0">14” - $0</option>
-			<option name="16" value="0">16” - $0</option>
-			<option name="20" value="0">20” - $0</option>
-			<option name="compound" value="60">Compound - $60</option>
+			<option name="7.25" value="7.25:0">7.25” - $0</option>
+			<option name="9.5" value="9.5:0">9.5” - $0</option>
+			<option name="10" value="10:0">10” - $0</option>
+			<option name="12" value="12:0">12” - $0</option>
+			<option name="14" value="14:0">14” - $0</option>
+			<option name="16" value="16:0">16” - $0</option>
+			<option name="20" value="20:0">20” - $0</option>
+			<option name="compound" value="Compound:60">Compound - $60</option>
 		</select>
 	</div>
     
@@ -459,11 +461,9 @@
 <section style="box-sizing: border-box; margin-bottom: 1em;">
 	<h3 style="margin-bottom: 0.5em">Pickups</h3>
     <p>Each guitar comes with one Moar P90 as standard.</p>
-  	<table class="alt" style="margin-bottom: 1em">
+    <h5>Humbuckers</h5>
+  	<table class="alt" style="margin-top:1em; margin-bottom: 1em">
 		<tbody>
-			<tr>
-                <th colspan="2">Humbuckers</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="155" type="checkbox" id="Checkbox12" name="extra-humbucker" data-toggle="checkbox"> 
@@ -484,11 +484,9 @@
     		</tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>P90s</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
         <tbody>
-            <tr>
-                <th colspan="2">P90s</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="90" type="checkbox" id="Checkbox14" name="extra-p90" data-toggle="checkbox"> 
@@ -500,11 +498,9 @@
             </tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>Single Coils</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
         <tbody>
-            <tr>
-                <th colspan="2">Single Coils</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="90" type="checkbox" id="Checkbox15" name="extra-singlecoil" data-toggle="checkbox"> 
@@ -525,11 +521,9 @@
     		</tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>Firbirds</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
         <tbody>
-            <tr>
-                <th colspan="2">Firebirds</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="160" type="checkbox" id="Checkbox17" name="extra-firebird" data-toggle="checkbox"> 
@@ -550,11 +544,9 @@
     		</tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>Mini Humbuckers</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
         <tbody>
-            <tr>
-                <th colspan="2">Mini Humbuckers</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="160" type="checkbox" id="Checkbox19" name="extra-minihumbucker" data-toggle="checkbox"> 
@@ -575,11 +567,9 @@
     		</tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>Filtertrons</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
         <tbody>
-            <tr>
-                <th colspan="2">Filtertrons</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="200" type="checkbox" id="Checkbox21" name="extra-filtertron" data-toggle="checkbox"> 
@@ -600,11 +590,9 @@
     		</tr>
         </tbody>
     </table>
-    <table class="alt" style="margin-bottom: 1em">
+    <h5>Piezo</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 2em">
         <tbody>
-            <tr>
-                <th colspan="2">Piezo</th>
-            </tr>
     		<tr>
     			<td class="description">
     				<input class="binding" value="130" type="checkbox" id="Checkbox23" name="piezo" data-toggle="checkbox"> 
@@ -697,7 +685,7 @@
             </tr>
             <tr>
                 <td class="description">
-                    <input class="binding" value="75" type="radio" id="Checkbox31" name="inlay" data-toggle="checkbox"> 
+                    <input class="binding" value="Dots:75" type="radio" id="Checkbox31" name="inlay" data-toggle="checkbox"> 
                     <label class="radio" for="Checkbox31">Dots</label>
                 </td>
                 <td class="price">
@@ -706,7 +694,7 @@
             </tr>
             <tr>
                 <td class="description">
-                    <input class="binding" value="350" type="radio" id="Checkbox32" name="inlay" data-toggle="checkbox"> 
+                    <input class="binding" value="Custom:350" type="radio" id="Checkbox32" name="inlay" data-toggle="checkbox"> 
                     <label class="radio" for="Checkbox32">Custom</label>
                 </td>
                 <td class="price">
@@ -805,14 +793,12 @@
             </tr>
         </tbody>
     </table>
-    <table class="alt">
-        <tbody  style="=margin-bottom: 1em">
-            <tr>
-                <th colspan="2">Fretboard</th>
-            </tr>
+    <h5>Fretboard</h5>
+    <table class="alt" style="margin-top:1em; margin-bottom: 1em">
+        <tbody>
             <tr>
                 <td class="description">
-                    <input class="binding" value="0" type="radio" id="Checkbox41" name="frets" data-toggle="checkbox" checked> 
+                    <input class="binding" value="22 frets:0" type="radio" id="Checkbox41" name="frets" data-toggle="checkbox" checked> 
                     <label class="radio" for="Checkbox41">22 frets</label>
                 </td>
                 <td class="price">
@@ -821,7 +807,7 @@
             </tr>
             <tr>
                 <td class="description">
-                    <input class="binding" value="45" type="radio" id="Checkbox42" name="frets" data-toggle="checkbox"> 
+                    <input class="binding" value="23 frets:45" type="radio" id="Checkbox42" name="frets" data-toggle="checkbox"> 
                     <label class="radio" for="Checkbox42">23 frets</label>
                 </td>
                 <td class="price">
@@ -830,7 +816,7 @@
             </tr>
             <tr>
                 <td class="description">
-                    <input class="binding" value="90" type="radio" id="Checkbox43" name="frets" data-toggle="checkbox"> 
+                    <input class="binding" value="24 frets:90" type="radio" id="Checkbox43" name="frets" data-toggle="checkbox"> 
                     <label class="radio" for="Checkbox43">24 frets</label>
                 </td>
                 <td class="price">
@@ -881,7 +867,7 @@
 				<div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
 					<!-- Quote Box -->
 					
-<h3 style="margin-bottom: 0.5em;">Your Morty</h3>	
+<h3 style="margin-bottom: 0.5em;">Your Hollow Morty</h3>	
 
 <!-- Maths -->	
 <table class="alt">
@@ -988,20 +974,20 @@ function updateTotals() {
 
     // Selected Options
     var body = document.getElementById("wood-body");
-	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value'));
+	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
 	var neck = document.getElementById("wood-neck");
-	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value'));	
+	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
 	var fret = document.getElementById("wood-fret");
-	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value'));
+	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
 	var radius = document.getElementById("neck-radius");
-	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value'));
+	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
 	var result = bodycost + neckcost + fretcost + radiuscost;
 
     // Total Price
     var sum = 2645 + result;
     for (var i = 0, num = inputs.length; i < num; i++) {
         if (inputs[i].checked) {
-            sum += parseInt(inputs[i].getAttribute('value'));
+            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
         }
     }
 
@@ -1012,6 +998,7 @@ function updateTotals() {
     document.getElementById('payment-custom').innerHTML = '$' + customisations;
     document.getElementById('payment-total').value = '$' + sum;
     document.getElementById('next').value = '//order-placed?deposit=' + (sum*0.25);
+
     
 }
 
