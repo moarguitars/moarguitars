@@ -58,20 +58,20 @@ function updateTotals() {
 
     // Selected Options
     var body = document.getElementById("wood-body");
-	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value'));
+	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
 	var neck = document.getElementById("wood-neck");
-	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value'));	
+	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
 	var fret = document.getElementById("wood-fret");
-	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value'));
+	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
 	var radius = document.getElementById("neck-radius");
-	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value'));
+	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
 	var result = bodycost + neckcost + fretcost + radiuscost;
 
     // Total Price
     var sum = {{ page.price-usd }} + result;
     for (var i = 0, num = inputs.length; i < num; i++) {
         if (inputs[i].checked) {
-            sum += parseInt(inputs[i].getAttribute('value'));
+            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
         }
     }
 
@@ -82,6 +82,7 @@ function updateTotals() {
     document.getElementById('payment-custom').innerHTML = '$' + customisations;
     document.getElementById('payment-total').value = '$' + sum;
     document.getElementById('next').value = '{{ site.baseurl }}/order-placed?deposit=' + (sum*0.25);
+
     
 }
 
