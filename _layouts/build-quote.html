@@ -22,9 +22,10 @@
 				</div>
 				<!-- Gallery -->
 				{% for record in site.data.gallery.records reversed %}
-					{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
+					{% if record.fields.guitar == page.img-tag and record.fields.placement == "gallery" %}
 					<div class="4u 12u$(medium)">
-						<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
+						<div class="gallery" style="background-image:url({{ record.fields.image[0].url }})">
+						</div>
 					</div>
 					{% endif %}
 				{% endfor %}
