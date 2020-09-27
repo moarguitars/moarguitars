@@ -52,6 +52,9 @@
 <loc>http://localhost:4000/place-order/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/podcasts/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/videos/</loc>
 </url>
 <url>
