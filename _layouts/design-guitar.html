@@ -1696,6 +1696,8 @@
 </body>
 </html>
 
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
 <!-- Update Guitar -->
 <script>
   function updateGuitar() {
@@ -2332,7 +2334,7 @@
     var form = document.getElementById('guitar-design-form');
     for ( var i = 0; i < form.elements.length; i++ ) {
        var e = form.elements[i];
-       kvpairs.push(encodeURIComponent(e.name) + "=" + encodeURIComponent(e.value)) + ",";
+       kvpairs.push(encodeURIComponent(e.id) + "=" + encodeURIComponent(e.value)) + ",";
     }
     var queryString = kvpairs.join("&");
     document.getElementById('guitar-design').value = queryString;
