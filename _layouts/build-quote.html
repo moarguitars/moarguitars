@@ -19,6 +19,12 @@
 					<hr/>
 					<h3>{{ page.description }}</h3>
 					<p>{{ page.modeldesc }}</p>
+					{% if page.title == "Wayfair" %}
+					<div class="box">
+						<h4>Design your dream Wayfair</h4>
+						<p>Try out different woods, hardware and pick-ups using our <a href="../design-wayfair">visual Wayfair designer</a></p>
+					</div>
+					{% endif %}
 				</div>
 				<!-- Gallery -->
 				{% for record in site.data.gallery.records reversed %}
