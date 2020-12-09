@@ -23,6 +23,19 @@
 	<meta property="article:published_time" content="" />
 	<meta property="og:description" content="The world's local guitar builder. My unique and carefully hand-crafted guitars are played on stages all around the world, but each one starts its journey from my workshop in Copenhagen, Denmark.">
 
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156990567-3"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-156990567-3');
+	</script> -->
+
+	<!-- Axios -->
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700,900&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
@@ -60,6 +73,10 @@
 <nav id="menu">
 	<ul class="links">
         
+		    
+		
+		    
+		
 		    
 		
 		    
@@ -114,6 +131,8 @@
 		
 		    
 		
+		    
+		
 		
 		
 		    
@@ -122,6 +141,14 @@
 		
 		    
 		
+		    
+		
+		    
+		
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/design-wayfair/">Wayfair Designer (NEW)</a></li>
 		    
 		
 		    
@@ -149,10 +176,6 @@
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
-		    
-		
-		    
 		        <li><a href="http://localhost:4000/merch/">Merch</a></li>
 		    
 		
@@ -161,15 +184,19 @@
 		    
 		
 		    
-		
+		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
 		    
 		
 		    
-		        <li><a href="http://localhost:4000/gallery/">Gallery</a></li>
+		
 		    
 		
 		    
 		        <li><a href="http://localhost:4000/videos/">Videos</a></li>
+		    
+		
+		    
+		        <li><a href="http://localhost:4000/gallery/">Gallery</a></li>
 		    
 		
 		    
@@ -179,7 +206,6 @@
 	</ul>
 	<ul class="actions vertical">
 		<li><a href="/place-order" class="button special fit">Order Now</a></li>
-		<li><a href="https://reverb.com/dk/shop/moar-guitars" class="button special fit">Reverb Store ↗</a></li>
 	</ul>
 </nav>
 
@@ -202,8 +228,6 @@
 					<ol class="alt">
 	
 	
-	<li><p style="margin-bottom:0;"><strong>Will (Raleigh, United States):</strong> Mahogany S type with bubinga neck and wenge fretboard. 2 firebird mini humbuckers. </p></li>
-	
 	
 	
 	<li><p style="margin-bottom:0;"><strong>Nuno (Airdrie, Scotland):</strong> Wenge Wayfair bass. 2x2 headstock, passive piezo and 2 humbuckers</p></li>
@@ -224,8 +248,6 @@
 	
 	
 	
-	<li><p style="margin-bottom:0;"><strong>Arne (Odense, Denmark):</strong> Wenge Offset Wayfair, custom "F" hole, p90 neck, humbucker bridge, reverse headstock</p></li>
-	
 	
 	
 	<li><p style="margin-bottom:0;"><strong>Julian (Sarasota, Florida):</strong> Epi(c) rebuild. hollow body, bubinga back, Duesenberg trem, p90 neck, humbucker bridge.</p></li>
@@ -242,17 +264,15 @@
 	
 	
 	
+	<li><p style="margin-bottom:0;"><strong>Elijah (Franklinville, United States):</strong> Mahogany Wayfair, maple neck and ebony fretboard. P90 neck, filtertron bridge, reverse headstock. </p></li>
+	
 	
 	
 	<li><p style="margin-bottom:0;"><strong>Genchi (Sazuka, Japan):</strong> Wenge Wayfair, 2 single coils & p90 bridge, cream binding, ebony floating bridge, left handed, 24 frets</p></li>
 	
 	
 	
-	<li><p style="margin-bottom:0;"><strong>John (Sussex, England):</strong> Mahogany Wayfair, mahogany neck, wenge fretboard. 2 p90s. Jazzmaster trem</p></li>
 	
-	
-	
-	<li><p style="margin-bottom:0;"><strong>Paul (Copenhagen, Denmark):</strong> Walnut Wayfair, Rosewood neck, ebony board.  2 mini humbuckers and passive piezo circuit, cream binding</p></li>
 	
 	
 	
@@ -305,6 +325,30 @@
 	
 	
 	<li><p style="margin-bottom:0;"><strong>Will (London, England ):</strong> All wenge hollow morty with black binding. 8 string baritone. P90 neck, firebird bridge. </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Stephen  (Portsmouth, UK):</strong> Walnut Morty with bubinga neck. Classic t-style pickups. </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Geir (Fredriksrad, Norway ):</strong> Wenge Wayfair, 2 single coils and a p90 in the bridge. Nice. </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Jordan (Long Island, New York, USA):</strong> Wenge Wayfair with a bubinga fretboard. Piezo, p90 and 2 single coils. Bound top, compound radius fretboard, 24 frets. </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Arturo  (Peurto Rico):</strong> All mahogany Morty. Single p90. </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Niel  (California ):</strong> Walnut Wayfair with a bound body, cedar neck and ebony fretboard. 2 p90s </p></li>
+	
+	
+	
+	<li><p style="margin-bottom:0;"><strong>Joel (Fishers, USA):</strong> 2 p90 Morty, roasted mahogany body, wenge neck, wraparound bridge. </p></li>
 	
 	
 </ol>

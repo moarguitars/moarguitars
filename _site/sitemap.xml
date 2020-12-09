@@ -13,7 +13,13 @@
 <loc>http://localhost:4000/contact/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/decode/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/deposit-paid/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/design-wayfair/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/gallery/</loc>
@@ -35,6 +41,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/guitars/morty/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/naked-morty/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/guitars/offset/</loc>
