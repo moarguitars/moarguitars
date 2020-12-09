@@ -25,7 +25,7 @@ nav-menu: false
 					</ul>
 				</div>
 			</div>
-			<p>All slots for 2021 are fully booked - orders placed now will begin in earnest in 2022.</p>
+			<p>All slots for 2021 are fully booked - orders placed now will begin in earnest in 2022. </p>
 			<p>So you’ve gone through my site and have come to the excellent decision that you want to order a guitar. First off thanks! That’s brilliant news, welcome to the family! To commit you and I to the build, and to get onto my waiting list - <strong>once you place this request, you will be asked to pay for your deposit via PayPal</strong>.</p> 
 			<p>I am also still very much a custom shop, and love taking on one of a kind, custom orders. Want a hollow flying V, a fretless baritone RD, a headless, midi connected bass, I am fresh! Just <a href="{{ 'contact' | relative_url }}">send me a mail</a> and we can chat.</p>
 			<!-- Form -->
