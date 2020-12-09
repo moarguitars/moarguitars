@@ -12,7 +12,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 
 model: Morty
 img-tag: morty
-price-usd: 2,325
+price-usd: 2,725
 price-eur: 1,950
 price-gbp: 1,755
 price-dkk: 14,500

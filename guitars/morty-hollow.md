@@ -12,7 +12,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 
 
 img-tag: morty-hollow
-price-usd: 2,645
+price-usd: 3,145
 price-eur: 2,215
 price-gbp: 2,000
 price-dkk: 16,500

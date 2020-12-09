@@ -12,7 +12,7 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 
 model: 'Hollow Bass'
 img-tag: bass-hollow
-price-usd: 3,500
+price-usd: 3,800
 price-eur: 2,930
 price-gbp: 2,640
 price-dkk: 21,800

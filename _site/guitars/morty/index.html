@@ -959,7 +959,7 @@
 				<p>Base Price</p>
 			</td>
 			<td>
-				<span value="$2325" id="base-price">$2325</span>
+				<span value="$2725" id="base-price">$2725</span>
 			</td>
 		</tr>
 		<tr>
@@ -975,7 +975,7 @@
 				<p style="font-weight: 700;">Total (USD)</p>
 			</td>
 			<td>
-				<input style="font-weight: 700;" type="text" value="$2325" id="payment-total" name="total-price" disabled></input>
+				<input style="font-weight: 700;" type="text" value="$2725" id="payment-total" name="total-price" disabled></input>
 			</td>
 		</tfoot>
 	</tbody>
@@ -1062,7 +1062,7 @@ function updateTotals() {
 	var result = bodycost + neckcost + fretcost + radiuscost;
 
     // Total Price
-    var sum = 2325 + result;
+    var sum = 2725 + result;
     for (var i = 0, num = inputs.length; i < num; i++) {
         if (inputs[i].checked) {
             sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
@@ -1070,7 +1070,7 @@ function updateTotals() {
     }
 
     // Customisation Total
-    var customisations = sum - 2325;
+    var customisations = sum - 2725;
 
 	// Totals for text
     document.getElementById('payment-custom').innerHTML = '$' + customisations;
