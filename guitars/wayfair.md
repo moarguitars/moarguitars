@@ -12,7 +12,7 @@ image: 'assets/images/wayfair/wayfair-light-outside.jpg'
 
 model: 'Wayfair'
 img-tag: wayfair
-price-usd: 5,175
+price-usd: 4,875
 price-eur: 2,930
 price-gbp: 2,640
 price-dkk: 21,800
