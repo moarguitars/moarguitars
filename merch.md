@@ -4,7 +4,7 @@ title: Merch
 description: 'Support Moar and buy a t-shirt'
 seo_description:
 show_tile: false
-nav-menu: true
+nav-menu: false
 order: 2
 image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 ---
