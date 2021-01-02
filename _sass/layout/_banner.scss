@@ -11,18 +11,18 @@
 		
 		@include vendor('display', 'flex');
 		@include padding(4em, 0, (2em, 0, 0, 0));
-		/*@include vendor('background-image', 'url("../images/default--wayfair.png")');*/
+		@include vendor('background-image', 'url("../images/default--wayfair.png")');
 		background-attachment: fixed;
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
 		border-bottom: 0 !important;
 		cursor: default;
-		height: 50vh;
+		height: 75vh;
 		padding-top: 4em;
 		margin-top:6em;
 		margin-bottom: -3.25em;
-		max-height: 32em;
+		max-height: 40em;
 		min-height: 22em;
 		position: relative;
 		top: -3.25em;
