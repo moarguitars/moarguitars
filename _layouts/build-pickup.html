@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+{% include head.html %}
+
+<body>
+
+    {% include header.html %} 
+    <script
+    src="https://www.paypal.com/sdk/js?client-id=AfPXI6xS8kZLXEBXVNF8VdA6t_6g5ZUaLjnut-H7bnKYT9sdWZ_cr98VI32hpi5CC2AXMntBPovJsLUo"></script>
+    
+<!-- Main -->
+<div id="main" class="alt">
+	<section>
+			<div class="inner row uniform">
+				<div class="12u 12u(small)" style="margin-bottom: 2em;">
+					<h1>{{ page.title }}</h1>
+					<hr/>
+					<h3>{{ page.description }}</h3>
+					<p>{{ page.modeldesc }}</p>
+				</div>
+				<div class="4u 12u$(medium)">
+					<img class="image fit" src="{{ '/assets/images/pickups/moar-pickups-2.jpg'  | relative_url }}" alt="">
+				</div>
+				<div class="4u 12u$(medium)">
+					<img class="image fit" src="{{ '/assets/images/pickups/moar-pickups-3.jpg'  | relative_url }}" alt="">
+				</div>
+				<div class="4u 12u$(medium)">
+					<img class="image fit" src="{{ '/assets/images/pickups/moar-pickups-4.jpg'  | relative_url }}" alt="">
+				</div>
+			</div>
+			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xdoppvkv" method="POST" style="margin-top: 2em">
+				<div class="8u 12u(small)" style="padding-right: 2em;">
+					<!-- Extras -->
+					{% include pickup-form.html %}
+				</div>
+				<div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
+					<!-- Quote Box -->
+					
+					<h3 style="margin-bottom: 0.5em;">Place Order</h3>	
+					<div style="margin-bottom: 2em;">
+						<label>Total (USD)</label>
+						<input style="font-weight: 700;" type="text" value="$0" id="payment-total" name="total-price" disabled></input>
+					</div>
+			      	<div id="paypal-button-container"></div>
+				</div>
+			</form>
+	</section>
+</div>
+
+    {% include footer.html %}
+
+</body>
+</html>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+
+<!-- Form Script -->
+	<script>
+	function updateTotals() {
+	    // Checkboxes
+	    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
+
+	    // Pickup Type
+	    var pickupSelection = document.getElementById("pickup-type");
+	    var PickupType = pickupSelection.options[pickupSelection.selectedIndex].value;
+	    console.log(PickupType);
+
+	    // S type
+	    if (PickupType === 'single-coil-s:0') {
+	    	document.getElementById('s-type-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('s-type-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio1').checked=false;
+	    	document.getElementById('Radio2').checked=false;
+	    }
+
+	    // T type
+	    if (PickupType === 'single-coil-t:0') {
+	    	document.getElementById('t-type-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('t-type-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio3').checked=false;
+	    	document.getElementById('Radio4').checked=false;
+	    }
+
+	    if (document.getElementById("Radio4").checked) {
+	    	document.getElementById('ttype-individual').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('ttype-individual').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio5').checked=false;
+	    	document.getElementById('Radio6').checked=false;
+	    }
+
+	    // Jazzmaster
+	    if (PickupType === 'jazzmaster:0') {
+	    	document.getElementById('jazzmaster-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('jazzmaster-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio7').checked=false;
+	    	document.getElementById('Radio8').checked=false;
+	    }
+
+	    // Jaguar
+	    if (PickupType === 'jaguar:0') {
+	    	document.getElementById('jaguar-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('jaguar-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio9').checked=false;
+	    	document.getElementById('Radio10').checked=false;
+	    }
+
+	    // P90 Dogear
+	    if (PickupType === 'p90-dogear:0') {
+	    	document.getElementById('p90-dogear-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('p90-dogear-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio11').checked=false;
+	    	document.getElementById('Radio12').checked=false;
+	    }
+
+	    // P90 Soapbar
+	    if (PickupType === 'p90-soapbar:0') {
+	    	document.getElementById('p90-soapbar-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('p90-soapbar-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio13').checked=false;
+	    	document.getElementById('Radio14').checked=false;
+	    }
+
+	    // Humbucker
+	    if (PickupType === 'humbucker:0') {
+	    	document.getElementById('humbucker-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('humbucker-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio15').checked=false;
+	    	document.getElementById('Radio16').checked=false;
+	    }
+
+	    // Humbucker Rail
+	    if (PickupType === 'rail-humbucker:0') {
+	    	document.getElementById('rail-humbucker-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('rail-humbucker-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio17').checked=false;
+	    	document.getElementById('Radio18').checked=false;
+	    }
+
+	    // Humbucker Mini
+	    if (PickupType === 'mini-humbucker:0') {
+	    	document.getElementById('mini-humbucker-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('mini-humbucker-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio19').checked=false;
+	    	document.getElementById('Radio20').checked=false;
+	    }
+
+	    // Humbucker Firebird
+	    if (PickupType === 'humbucker-firebird:0') {
+	    	document.getElementById('firebird-humbucker-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('firebird-humbucker-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio21').checked=false;
+	    	document.getElementById('Radio22').checked=false;
+	    }
+
+	    // Humbucker Filtertron
+	    if (PickupType === 'humbucker-filtertron:0') {
+	    	document.getElementById('filtertron-humbucker-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('filtertron-humbucker-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio23').checked=false;
+	    	document.getElementById('Radio24').checked=false;
+	    }
+
+	    // P Bass
+	    if (PickupType === 'p-bass:0') {
+	    	document.getElementById('p-bass-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('p-bass-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio25').checked=false;
+	    	// document.getElementById('Radio26').checked=false;
+	    }
+
+	    // Jazz Bass
+	    if (PickupType === 'jazz-bass:0') {
+	    	document.getElementById('jazz-bass-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('jazz-bass-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio27').checked=false;
+	    	document.getElementById('Radio28').checked=false;
+	    }
+
+	    // Bass Rail Humbucker
+	    if (PickupType === 'bass-rail:0') {
+	    	document.getElementById('bass-rail-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('bass-rail-options').setAttribute("style", "display:none;");
+	    	document.getElementById('Radio29').checked=false;
+	    	document.getElementById('Radio30').checked=false;
+	    }
+
+	    // Bass Single Coil
+	    if (PickupType === 'bass-single-coil:0') {
+	    	document.getElementById('bass-single-coil-options').setAttribute("style", "display:block;");
+	    }
+	    else {
+	    	document.getElementById('bass-single-coil-options').setAttribute("style", "display:none;");
+	    	// document.getElementById('Radio31').checked=false;
+	    	document.getElementById('Radio32').checked=false;
+	    }
+
+
+	    // Selected Options
+	    var pickups = document.getElementById("pickup-type");
+		var pickupcost = parseInt(pickups.options[pickups.selectedIndex].getAttribute('value').split(":").pop());
+		var result = pickupcost;
+
+	    // Total Price
+	    var sum = {{ page.price-usd }} + result;
+	    for (var i = 0, num = inputs.length; i < num; i++) {
+	        if (inputs[i].checked) {
+	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
+	        }
+	    }
+
+	    // Customisation Total
+	    var customisations = sum - {{ page.price-usd }};
+
+		// Totals for text
+	    // document.getElementById('payment-custom').innerHTML = '$' + customisations;
+	    document.getElementById('payment-total').value = '$' + sum;	 
+	    var ordertotal = sum;   
+	    // document.getElementById('next').value = '{{ site.url }}/{{ site.baseurl }}/order-placed?deposit=' + (sum*0.25);
+
+	    
+	}
+
+	var section = document.getElementById('extra-features');
+	var inputs = section.getElementsByTagName('input');
+	for (var i = 0, num = inputs.length; i < num; i++) {
+	    inputs[i].addEventListener('change', updateTotals);
+	}
+
+
+	</script>
+
+	<!-- Paypal -->
+	<script>
+		paypal.Buttons({
+		    createOrder: function(data, actions) {
+		   	var ordertotal = document.getElementById('payment-total').value.replace('$','');
+		      // This function sets up the details of the transaction, including the amount and line item details.
+		      return actions.order.create({
+		        purchase_units: [{"amount":{"currency_code":"USD","value":ordertotal}}]
+		      });
+		    },
+		    onApprove: function(data, actions) {
+		      // This function captures the funds from the transaction.
+		      return actions.order.capture().then(function(details) {
+		        // This function shows a transaction success message to your buyer.
+		        alert('Transaction completed by ' + details.payer.name.given_name);
+		      });
+		    }
+		  }).render('#paypal-button-container');
+		</script>
+
+
+
