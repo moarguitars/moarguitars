@@ -3,7 +3,7 @@ layout: page
 title: Gallery
 description: 'Watch videos and view photos'
 seo_description:
-nav-menu: true
+nav-menu: false
 order: 4
 image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 ---
