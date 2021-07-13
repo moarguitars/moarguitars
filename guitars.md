@@ -88,7 +88,5 @@ image: 'assets/images/wayfair/wayfair-bigsby-held.jpg'
 			</div>
 		</section>
 		<!-- Moar Offset -->
-		
-	</section>
 </section>
 </div>
