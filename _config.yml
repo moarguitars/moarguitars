@@ -6,10 +6,10 @@ description:  The world's local guitar builder. My unique and carefully hand-cra
 baseurl: "/" # the subpath of your site, e.g. /blog
 url: https://www.moarguitars.com # the base hostname & protocol for your site
 author:
-street_address: 
-city: Copenhagen S
+street_address: Mønvej 105,
+city: Præstø,
 state: 
-zip_code: 
+zip_code: 4720,
 country: Denmark
 phone: (0045) 5387 2888
 permalink: /:title/
