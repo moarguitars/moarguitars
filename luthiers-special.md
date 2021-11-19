@@ -7,7 +7,7 @@ seo_description:
 show_tile: true
 nav-menu: true
 order: 2
-image: '/assets/images/luthiers-special/luthiers-special-being-built.jpg'
+image: '../assets/images/wayfair/wayfair-good-lighting.png'
 ---
 
 <!-- Main -->
