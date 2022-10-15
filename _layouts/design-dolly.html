@@ -1,239 +1,295 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<title>Moar Guitars</title>
-	<meta name="description" content=""/>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<!-- [if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif] -->
-	<link rel="stylesheet" href="/assets/css/main.css" />
-	<!-- [if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]
-	[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif] -->
-	
-	<!-- Open Graph -->
-	<meta property="og:locale" content="en_GB">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="Decode Guitar">
-	<meta property="og:url" content="http://localhost:4000/decode/">
-	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
-	<meta property="og:site_name" content="Moar Guitars">
-	<meta property="article:publisher" content="http://localhost:4000" />
-	<meta property="article:author" content="http://localhost:4000" />
-	<meta property="article:published_time" content="" />
-	<meta property="og:description" content="The world's local guitar builder. My unique and carefully hand-crafted guitars are played on stages all around the world, but each one starts its journey from my workshop in Copenhagen, Denmark.">
-
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156990567-3"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'UA-156990567-3');
-	</script>
-
-	<!-- Axios -->
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700,900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-
-	<!-- Favicon -->
-	<link type="image/x-icon" sizes="180x180" href="/assets/images/favicon/moar-180.ico">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-48.png" sizes="48x48">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-16.png" sizes="16x16">
-
-
-	<!-- Ensures optimal rendering on mobile devices. -->
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-
-</head>
-
+{% include head.html %}
 
 <body>
-    <!-- Wrapper -->
-<div id="wrapper">
+<div style="display: none; width: 100vw; height: 100vh; top:0; left:0; position: sticky; z-index: 999999; background: #fff; padding: 2em;" class="inner" id="myDIV">
+  <div style="display: flex; justify-content: flex-start; align-items: flex-start; flex-flow: column nowrap; box-sizing: border-box;">
+    <img id="guitarpreview" src="" style="width: 1000px; max-width: 100%;">
+    <h2 id="axename" style="margin-bottom: 0.8em;">Your Guitar</h2>
+    <p style="margin-bottom: 0.4em;">Designed by <span id="axecreator">anonymous</span></p>
+    <p style="margin-bottom: 0.4em;">Tap and hold to save the image, or right click to download.</p>
+    <p>Don't forget to tag @moarguitars in your post, so that we can reshare your story</p>
+    <ul class="actions" style="margin-bottom: 0; ">
+      <li style="width:100%; padding:0;"><input id="back" type="button" value="< Go Back" onclick="toggle()" class="button fit"/></li>
+    </ul>
+  </div>
+</div>
 
-<!-- Header -->
-<header id="header">
-	<!-- <a href="http://localhost:4000//" class="logo"><strong>Moar Guitars</strong> <span>Hand-made in Copenhagen</span></a> -->
-	<a href="http://localhost:4000/" id="header-logo-container">
-		<img id="header-logo" src="/assets/images/logo.svg">
-	</a>
-	<nav>
-		<a href="#menu">Menu</a>
-	</nav>
-</header>
 
-<!-- Menu -->
-<nav id="menu">
-	<ul class="links">
-        
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/">Home</a></li>
-	    	
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/guitars/">Guitars</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/luthiers-special/">Luthier's Special</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/videos/">Videos</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/waitlist/">Waitlist</a></li>
-		    
-		
-		<li><a href="https://www.instagram.com/moarguitars/">Instagram</a></li>
-	</ul>
-	<ul class="actions vertical">
-		<li><a href="/place-order" class="button special fit">Place Order</a></li>
-        <li><a href="/place-order" class="button fit">Shop Pickups</a></li>
-	</ul>
-</nav>
-
- 
+    {% include header.html %} 
     
 <!-- Main -->
 <div id="main" class="alt">
 
-    <!-- Guitar Decoder -->
+    <!-- Save Image Modal -->
+    <!-- <div class="inner row uniform" style="display:inline; position: absolute; width:100vw; height: 100vh; left: 0; top: 0; box-sizing: border-box; padding: 2em; margin: 0; background: rgba(248,248,255,0.9); z-index: 999999;">
+        <div class="12u 12u(small)">
+            <h2>Save your guitar</h2>
+            <h4>Save this image to share to your Instagram stories - we'll re-share your designs</h4>
+        </div>
+        <div class="12u 12u(small)" style="width: inherit; height: inherit;"> 
+            <canvas style="width: 100%; display: block;" id="canvas"></canvas>
+        </div>
+    </div> -->
+
+    <!-- Guitar Builder -->
   <section>
       <div class="inner row uniform" style="margin-bottom: 4em; box-sizing: border-box;">
         <!-- Header -->
         <div class="12u 12u(small)" style="margin-bottom: 2em; box-sizing: border-box;">
-          <h1>Decode Guitar</h1>
-          <p><strong>Drop the `guitar-design` code from airtable in the field below and it will update the design of the guitar so you can give them an instagram shoutout.</strong></p>
-
-          <!-- Submission Form -->
-          <label class="select" for="decoder" style="margin-top: 1em;">Guitar Design</label>
-          <input placeholder="feed me..." type="text" id="decoder" name="decoder" >
-          <ul class="actions" style="margin-top: 1em; ">
-            <li><input id="back" type="button" value="Decode" onclick="decoder()" class="button special"/></li>
-            <!-- <li><input id="clear" type="button" value="Clear Form" onclick="resetme()" class="button"/></li> -->
-          </ul>
+          <h1>Design your own Dolly</h1>
+          <p>Choose from over 10,000 thousand combinations of electronics and trim.</p>
+          <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'tab-woods')" id="defaultOpen">Woods</button>
+            <button class="tablinks" onclick="openTab(event, 'tab-hardware')">Hardware</button>
+            <button class="tablinks" onclick="openTab(event, 'tab-finish')">Trim</button>
+            <button class="tablinks" onclick="openTab(event, 'tab-binding')">Binding</button>
+            <button class="tablinks" onclick="openTab(event, 'tab-pickups')">Pickups</button>
+            <button class="tablinks" onclick="openTab(event, 'tab-controls')">Controls</button>
+          </div>
         </div> 
-
+        <!-- Options -->
+        <form id="guitar-design-form" onchange="updateGuitar(), getForm()" style="width: 100%">
+          <div class="12u 12u(small)" >
+            <div id="tab-woods" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)" style="padding-top:0;">
+                <label class="select" for="guitar-colour">Body Wood</label>
+                <div class="select-wrapper">
+                  <select name="body-wood" id="guitar-colour"required>
+                      <option name="alder" value="#D9B894">Alder</option>
+                      <option name="ash" value="#D7B186">Ash</option>
+                      <option name="bubinga" value="#834429">Bubinga</option>
+                      <option name="cedar" value="#C99A6F">Cedar</option>
+                      <option name="pine" value="#E4B372">Pine</option>
+                      <option name="mahogany" value="#E3A976">Mahogany</option>
+                      <option name="maple" value="#F1D9BA" selected="selected">Maple</option>
+                      <option name="swamp-ash" value="#D8A66B">Swamp Ash</option>
+                      <option name="walnut" value="#73543E" >Walnut</option>
+                      <option name="wenge" value="#463123">Wenge</option>
+                  </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)" style="padding-top:0;">
+                <label class="select" for="headstock-colour">Neck</label>
+                <div class="select-wrapper">
+                  <select name="neck-wood" id="headstock-colour" required>
+                      <option name="african-rosewood" value="#895641">African Rosewood</option>
+                      <option name="ash" value="#D7B186">Ash</option>
+                      <option name="bubinga" value="#834429">Bubinga</option>
+                      <option name="cedar" value="#C99A6F">Cedar</option>
+                      <option name="mahogany" value="#E3A976">Mahogany</option>
+                      <option name="maple" value="#F1D9BA" selected="selected">Maple</option>
+                      <option name="walnut" value="#73543E">Walnut</option>
+                      <option name="wenge" value="#463123">Wenge</option>
+                  </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)" style="padding-top:0;">
+                <label class="select" for="fretboard-colour">Fretboard</label>
+                <div class="select-wrapper">
+                  <select name="fretboard-wood" id="fretboard-colour" required>
+                      <option name="african-rosewood" value="#895641">African Rosewood</option>
+                      <option name="bubinga" value="#834429">Bubinga</option>
+                      <option name="cocobolo" value="#A65232">Cocobolo</option>
+                      <option name="ebony" value="#323031" selected="selected">Ebony</option>
+                      <option name="indian-rosewood" value="#4F3C31">Indian Rosewood</option>
+                      <option name="maple" value="#F1D9BA">Maple</option>
+                      <option name="madagascan-rosewood" value="#B45021">Madagascan Rosewood</option>
+                      <option name="malaysian-blackwood" value="#707070">Malaysian Blackwood</option>
+                      <option name="oak" value="#CEA87C">Oak</option>
+                      <option name="ovankol" value="#AB8C69">Ovangkol</option>
+                      <option name="padouk" value="#C95519">Padouk</option>
+                      <option name="walnut" value="#73543E">Walnut</option>
+                      <option name="wenge" value="#463123">Wenge</option>
+                      <option name="zebrano" value="#A57C64">Zebrano</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="tab-hardware" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)">
+                <!-- Trem -->
+                <label class="select" for="trem-type">Tremolo</label>
+                <div class="select-wrapper">
+                  <select name="trem" id="trem-type" required>
+                      <option name="t-type" value="hardtail">Hardtail (Saddled)</option>
+                      <option name="hardtail" value="abr" selected="selected">Hardtail</option>
+                      <option name="tailpiece" value="tailpiece" >Tailpiece</option>
+                      <option name="jazzmaster" value="jazzmaster">Jazzmaster</option>
+                      <option name="bigsby" value="bigsby">Bigsby</option>
+                  </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <!-- Bridge -->
+                <label class="select" for="bridge-type">Bridge</label>
+                <div class="select-wrapper">
+                  <select name="bridge" id="bridge-type" required> 
+                      <option name="t-type" value="telecaster">Cut-off T-style Bridge</option>
+                      <option name="tunomatic" value="roller" selected="selected">Tunomatic</option>
+                  </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <!-- Hardware Colour -->
+                <label class="select" for="hardware-colour">Hardware Colour</label>
+                <div class="select-wrapper">
+                  <select name="hardward-colour" id="hardware-colour" required> 
+                      <option value="silver" selected="selected" >Silver</option>
+                      <option value="gold" >Gold</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div id="tab-finish" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)">
+                <!-- F Holes -->
+                <div > 
+                  <h4>Top F-Hole</h4>
+                  <input name="fhole-top" class="binding" type="checkbox" id="check-fhole-top" data-toggle="checkbox" checked> 
+                  <label class="checkbox" for="check-fhole-top">Top F-Hole</label>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <div style=""> 
+                  <h4>Bottom F-Hole</h4>
+                  <input name="fhole-bottom" class="binding" type="checkbox" id="check-fhole-bottom" data-toggle="checkbox" checked> 
+                  <label class="checkbox" for="check-fhole-bottom">Bottom F-Hole</label>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <!-- Inlays -->
+                <h4>Inlays</h4>
+                <div> 
+                  <input name="inlays" class="binding" type="checkbox" id="check-inlays" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-inlays">Dot Inlays</label>
+                </div>
+              </div>
+            </div>
+            <div id="tab-binding" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)">
+                <!-- Binding -->
+                <h4>Binding Colour</h4>
+                <!-- Binding Colour -->
+                <div class="select-wrapper">
+                    <select name="binding-colour" id="binding-colour" required> 
+                        <option name="black" value="909090">Black</option>
+                        <option name="white" value="ffffff" selected="selected">White</option>
+                    </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <h4>Body Binding</h4>
+                <div style="margin-top: 1em"> 
+                  <input name="bind-body" class="binding" value="" type="checkbox" id="check-binding-body" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-binding-body">Bind Body</label>
+                </div>
+                <div style="margin-top: 1em"> 
+                  <input name="bind-fhole" class="binding" value="" type="checkbox" id="check-binding-fhole" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-binding-fhole">Bind F-Hole(s)</label>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <h4>Neck Binding</h4>
+                <div style="margin-top: 1em"> 
+                  <input name="bind-neck" class="binding" value="" type="checkbox" id="check-binding-neck" data-toggle="checkbox"checked> 
+                  <label class="checkbox" for="check-binding-neck">Bind Neck</label>
+                </div>
+                <div style="margin-top: 1em"> 
+                  <input name="bind-headstock" class="binding" value="" type="checkbox" id="check-binding-head" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-binding-head">Bind Headstock</label>
+                </div>
+              </div>
+            </div>
+            <div id="tab-pickups" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)">
+                <!-- Bridge -->
+                <h4>Bridge Pickup</h4>
+                <div> 
+                  <input name="bridge-pickup" class="binding" type="checkbox" id="check-bridge-pup" data-toggle="checkbox" checked> 
+                  <label class="checkbox" for="check-bridge-pup">Bridge Pickup</label>
+                </div>
+                <div id="selectpup-bridge" class="select-wrapper">
+                  <select name="bridge-pickup-type" id="bridge-pickup-type" required> 
+                    <option name="p90" value="p90" selected="selected">P90</option>
+                    <option name="humbucker" value="humbucker">Humbucker</option>
+                    <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
+                    <option name="firebird" value="firebird">Firebird</option>
+                    <option name="single-coil" value="single-coil">Single Coil</option>
+                  </select>
+                  <label class="select" for="pickup1" style="margin-top: 1em;">Bridge Pickup Position</label>
+                  <input name="bridge-pickup-position" id="pickup1" type="range" min="2" max="65" value="10" >
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <!-- Middle -->
+                <h4>Middle Pickup</h4>
+                <div> 
+                  <input name="middle-pickup" class="binding" type="checkbox" id="check-middle-pup" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-middle-pup">Middle Pickup</label>
+                </div>
+                <div id="selectpup-middle" class="select-wrapper">
+                  <select name="middle-pickup-type" id="middle-pickup-type" required> 
+                    <option name="p90" value="p90" >P90</option>
+                    <option name="humbucker" value="humbucker">Humbucker</option>
+                    <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
+                    <option name="firebird" value="firebird">Firebird</option>
+                    <option name="single-coil" value="single-coil" selected="selected">Single Coil</option>
+                  </select>
+                  <label class="select" for="pickup3" style="margin-top: 1em;">Middle Pickup Position</label>
+                  <input name="middle-pickup-position" id="pickup3" type="range" min="-120" max="-50" value="-102">
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <!-- Neck -->
+                <h4>Neck Pickup</h4>
+                <div>
+                  <input name="neck-pickup" class="binding" type="checkbox" id="check-neck-pup" data-toggle="checkbox"> 
+                  <label class="checkbox" for="check-neck-pup">Neck Pickup</label>
+                  <div id="selectpup-neck" class="select-wrapper">
+                    <select name="neck-pickup-type" id="neck-pickup-type" onchange="updateGuitar()" required> 
+                      <option name="p90" value="p90">P90</option>
+                      <option name="humbucker" value="humbucker">Humbucker</option>
+                      <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
+                      <option name="firebird" value="firebird">Firebird</option>
+                      <option name="single-coil" value="single-coil" selected="selected">Single Coil</option>
+                    </select>
+                    <label class="select" for="pickup2" style="margin-top: 1em;">Neck Pickup Position</label>
+                    <input name="neck-pickup-position" id="pickup2" type="range" min="-75" max="-2" value="-10">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="tab-controls" class="tabcontent row uniform" style="width: 100%">
+              <div class="4u 12u(small)">
+                <label name="pickup-switch" class="checkbox" for="check-selector">Pickup Switch</label>
+                <div class="select-wrapper">
+                      <select name="guitar-colour" id="check-selector" required> 
+                        <option name="none" value="none">No Switch</option>
+                        <option name="neck" value="pos1">Neck</option>
+                        <option name="bridge" value="pos2" selected="selected">Bridge</option>
+                      </select>
+                </div>
+              </div>
+              <div class="4u 12u(small)">
+                <h4>Volume & Tone</h4>
+                <div>
+                  <input name="knob-1" class="binding" type="checkbox" id="volume1" data-toggle="checkbox" checked> 
+                  <label class="checkbox" for="volume1">Knob 1</label>
+                </div>
+                <div>
+                  <input name="knob-2" class="binding" type="checkbox" id="volume2" data-toggle="checkbox" checked> 
+                  <label class="checkbox" for="volume2">Knob 2</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
         <!-- Guitar -->
         <div class="12u 12u(small)" style="margin-top: 2em">
+          <!-- SVG -->
           <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0 0 1950 800">
             <defs>
               <clipPath id="clip-path">
@@ -1607,343 +1663,37 @@
               </g>
             </g>
           </svg>
+          <!-- Canvas -->
           <canvas style="width: 100%; display: none;" id="canvas"></canvas>
         </div> 
 
-        <!-- Options -->
-        <form id="guitar-design-form" onchange="updateGuitar()" style="width: 100%;">
-          <div class="12u 12u(small)" >
-            <h2 style="padding: 0; margin-top: 2em;">What they chose...</h2>
-            <h3 style="margin-top: 2em;">Woods</h3>
-            <div id="tab-woods" class="row uniform" style="width: 100%">
-              <div class="4u 12u(small)" style="padding-top:0;">
-                <label class="select" for="guitar-colour">Body Wood</label>
-                <div class="select-wrapper">
-                  <select name="body-wood" id="guitar-colour">
-                      <option name="alder" value="#D9B894">Alder</option>
-                      <option name="ash" value="#D7B186">Ash</option>
-                      <option name="bubinga" value="#834429">Bubinga</option>
-                      <option name="cedar" value="#C99A6F">Cedar</option>
-                      <option name="pine" value="#E4B372">Pine</option>
-                      <option name="mahogany" value="#E3A976">Mahogany</option>
-                      <option name="maple" value="#F1D9BA" selected="selected">Maple</option>
-                      <option name="swamp-ash" value="#D8A66B">Swamp Ash</option>
-                      <option name="walnut" value="#73543E" >Walnut</option>
-                      <option name="wenge" value="#463123">Wenge</option>
-                  </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)" style="padding-top:0;">
-                <label class="select" for="headstock-colour">Neck</label>
-                <div class="select-wrapper">
-                  <select name="neck-wood" id="headstock-colour" required>
-                      <option name="african-rosewood" value="#895641">African Rosewood</option>
-                      <option name="ash" value="#D7B186">Ash</option>
-                      <option name="bubinga" value="#834429">Bubinga</option>
-                      <option name="cedar" value="#C99A6F">Cedar</option>
-                      <option name="mahogany" value="#E3A976">Mahogany</option>
-                      <option name="maple" value="#F1D9BA" selected="selected">Maple</option>
-                      <option name="walnut" value="#73543E">Walnut</option>
-                      <option name="wenge" value="#463123">Wenge</option>
-                  </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)" style="padding-top:0;">
-                <label class="select" for="fretboard-colour">Fretboard</label>
-                <div class="select-wrapper">
-                  <select name="fretboard-wood" id="fretboard-colour" required>
-                      <option name="african-rosewood" value="#895641">African Rosewood</option>
-                      <option name="bubinga" value="#834429">Bubinga</option>
-                      <option name="cocobolo" value="#A65232">Cocobolo</option>
-                      <option name="ebony" value="#323031" selected="selected">Ebony</option>
-                      <option name="indian-rosewood" value="#4F3C31">Indian Rosewood</option>
-                      <option name="maple" value="#F1D9BA">Maple</option>
-                      <option name="madagascan-rosewood" value="#B45021">Madagascan Rosewood</option>
-                      <option name="malaysian-blackwood" value="#707070">Malaysian Blackwood</option>
-                      <option name="oak" value="#CEA87C">Oak</option>
-                      <option name="ovankol" value="#AB8C69">Ovangkol</option>
-                      <option name="padouk" value="#C95519">Padouk</option>
-                      <option name="walnut" value="#73543E">Walnut</option>
-                      <option name="wenge" value="#463123">Wenge</option>
-                      <option name="zebrano" value="#A57C64">Zebrano</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <h3 style="margin-top: 2em;">Hardware</h3>
-            <div id="tab-hardware" class=" row uniform" style="width: 100%">
-              <div class="4u 12u(small)">
-                <!-- Trem -->
-                <label class="select" for="trem-type">Tremolo</label>
-                <div class="select-wrapper">
-                  <select name="trem" id="trem-type" required>
-                      <option name="t-type" value="hardtail">Hardtail (Saddled)</option>
-                      <option name="hardtail" value="abr" selected="selected">Hardtail</option>
-                      <option name="tailpiece" value="tailpiece" >Tailpiece</option>
-                      <option name="jazzmaster" value="jazzmaster">Jazzmaster</option>
-                      <option name="bigsby" value="bigsby">Bigsby</option>
-                  </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <!-- Bridge -->
-                <label class="select" for="bridge-type">Bridge</label>
-                <div class="select-wrapper">
-                  <select name="bridge" id="bridge-type" required> 
-                      <option name="t-type" value="telecaster">Cut-off T-style Bridge</option>
-                      <option name="tunomatic" value="roller" selected="selected">Tunomatic</option>
-                  </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <!-- Hardware Colour -->
-                <label class="select" for="hardware-colour">Hardware Colour</label>
-                <div class="select-wrapper">
-                  <select name="hardward-colour" id="hardware-colour" required> 
-                      <option value="silver" selected="selected" >Silver</option>
-                      <option value="gold" >Gold</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <h3 style="margin-top: 2em;">Finish</h3>
-            <div id="tab-finish" class=" row uniform" style="width: 100%">
-              <div class="4u 12u(small)">
-                <!-- F Holes -->
-                <div > 
-                  <h4>Top F-Hole</h4>
-                  <input name="fhole-top" class="binding" type="checkbox" id="check-fhole-top" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-fhole-top">Top F-Hole</label>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <div style=""> 
-                  <h4>Bottom F-Hole</h4>
-                  <input name="fhole-bottom" class="binding" type="checkbox" id="check-fhole-bottom" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-fhole-bottom">Bottom F-Hole</label>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <!-- Inlays -->
-                <h4>Inlays</h4>
-                <div> 
-                  <input name="inlays" class="binding" type="checkbox" id="check-inlays" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-inlays">Dot Inlays</label>
-                </div>
-              </div>
-            </div>
-            <h3 style="margin-top: 2em;">Binding</h3>
-            <div id="tab-binding" class=" row uniform" style="width: 100%">
-              <div class="4u 12u(small)">
-                <!-- Binding -->
-                <h4>Binding Colour</h4>
-                <!-- Binding Colour -->
-                <div class="select-wrapper">
-                    <select name="binding-colour" id="binding-colour" required> 
-                        <option name="black" value="909090">Black</option>
-                        <option name="white" value="ffffff" selected="selected">White</option>
-                    </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <h4>Body Binding</h4>
-                <div style="margin-top: 1em"> 
-                  <input name="bind-body" class="binding" value="" type="checkbox" id="check-binding-body" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-binding-body">Bind Body</label>
-                </div>
-                <div style="margin-top: 1em"> 
-                  <input name="bind-fhole" class="binding" value="" type="checkbox" id="check-binding-fhole" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-binding-fhole">Bind F-Hole(s)</label>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <h4>Neck Binding</h4>
-                <div style="margin-top: 1em"> 
-                  <input name="bind-neck" class="binding" value="" type="checkbox" id="check-binding-neck" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-binding-neck">Bind Neck</label>
-                </div>
-                <div style="margin-top: 1em"> 
-                  <input name="bind-headstock" class="binding" value="" type="checkbox" id="check-binding-head" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-binding-head">Bind Headstock</label>
-                </div>
-              </div>
-            </div>
-            <h3 style="margin-top: 2em;">Pickups</h3>
-            <div id="tab-pickups" class=" row uniform" style="width: 100%">
-              <div class="4u 12u(small)">
-                <!-- Bridge -->
-                <h4>Bridge Pickup</h4>
-                <div> 
-                  <input name="bridge-pickup" class="binding" type="checkbox" id="check-bridge-pup" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-bridge-pup">Bridge Pickup</label>
-                </div>
-                <div id="selectpup-bridge" class="select-wrapper">
-                  <select name="bridge-pickup-type" id="bridge-pickup-type" required> 
-                    <option name="p90" value="p90" selected="selected">P90</option>
-                    <option name="humbucker" value="humbucker">Humbucker</option>
-                    <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
-                    <option name="firebird" value="firebird">Firebird</option>
-                    <option name="single-coil" value="single-coil">Single Coil</option>
-                  </select>
-                  <label class="select" for="pickup1" style="margin-top: 1em;">Bridge Pickup Position</label>
-                  <input name="bridge-pickup-position" id="pickup1" type="range" min="2" max="65" value="10" >
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <!-- Middle -->
-                <h4>Middle Pickup</h4>
-                <div> 
-                  <input name="middle-pickup" class="binding" type="checkbox" id="check-middle-pup" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-middle-pup">Middle Pickup</label>
-                </div>
-                <div id="selectpup-middle" class="select-wrapper">
-                  <select name="middle-pickup-type" id="middle-pickup-type" required> 
-                    <option name="p90" value="p90" >P90</option>
-                    <option name="humbucker" value="humbucker">Humbucker</option>
-                    <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
-                    <option name="firebird" value="firebird">Firebird</option>
-                    <option name="single-coil" value="single-coil" selected="selected">Single Coil</option>
-                  </select>
-                  <label class="select" for="pickup3" style="margin-top: 1em;">Middle Pickup Position</label>
-                  <input name="middle-pickup-position" id="pickup3" type="range" min="-120" max="-50" value="-102">
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <!-- Neck -->
-                <h4>Neck Pickup</h4>
-                <div>
-                  <input name="neck-pickup" class="binding" type="checkbox" id="check-neck-pup" data-toggle="checkbox"> 
-                  <label class="checkbox" for="check-neck-pup">Neck Pickup</label>
-                  <div id="selectpup-neck" class="select-wrapper">
-                    <select name="neck-pickup-type" id="neck-pickup-type" onchange="updateGuitar()" required> 
-                      <option name="p90" value="p90">P90</option>
-                      <option name="humbucker" value="humbucker">Humbucker</option>
-                      <option name="mini-humbucker" value="minihumbucker">Mini Humbucker</option>
-                      <option name="firebird" value="firebird">Firebird</option>
-                      <option name="single-coil" value="single-coil" selected="selected">Single Coil</option>
-                    </select>
-                    <label class="select" for="pickup2" style="margin-top: 1em;">Neck Pickup Position</label>
-                    <input name="neck-pickup-position" id="pickup2" type="range" min="-75" max="-2" value="-10">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <h3 style="margin-top: 2em;">Electronics</h3>
-            <div id="tab-controls" class=" row uniform" style="width: 100%">
-              <div class="4u 12u(small)">
-                <label name="pickup-switch" class="checkbox" for="check-selector">Pickup Switch</label>
-                <div class="select-wrapper">
-                      <select name="guitar-colour" id="check-selector" required> 
-                        <option name="none" value="none">No Switch</option>
-                        <option name="neck" value="pos1">Neck</option>
-                        <option name="bridge" value="pos2" selected="selected">Bridge</option>
-                      </select>
-                </div>
-              </div>
-              <div class="4u 12u(small)">
-                <h4>Volume & Tone</h4>
-                <div>
-                  <input name="knob-1" class="binding" type="checkbox" id="volume1" data-toggle="checkbox"> 
-                  <label class="checkbox" for="volume1">Knob 1</label>
-                </div>
-                <div>
-                  <input name="knob-2" class="binding" type="checkbox" id="volume2" data-toggle="checkbox"> 
-                  <label class="checkbox" for="volume2">Knob 2</label>
-                </div>
-              </div>
-            </div>
+        <!-- Submission Form -->
+        <div class="12u 12u(small)" style="margin-top: 2em; box-sizing: border-box;">
+          <div class="box">
+            <!-- Submit to Airtable -->
+            <form id="" name="fields" onchange="updateDesign(), getForm()">              
+              <input placeholder="Guitar design" type="hidden" id="guitar-design" name="guitar-design" disabled>
+              <label class="select" for="guitar-name" style="margin-top: 1em;">Guitar Name</label>
+              <input placeholder="Name your Wayfair design" type="text" id="guitar-name" name="guitar-name">
+              <label class="select" for="creator-instagram" style="margin-top: 1em;">Your Instagram</label>
+              <input placeholder="@moarguitars" type="text" id="creator-instagram" name="creator-instagram">
+              <ul class="actions" style="margin-bottom: 0;">
+                <li style="width:100%; padding:0;"><input id="preview-design" type="button" value="Generate Preview" onclick="updateDesign(),toggle()" class="special button fit"/></li>
+                <li style="width:100%; padding:0; display: none;"><input id="save-design" type="button" value="Submit to Moar" class="button fit"/></li>
+              </ul>
+            </form>
           </div>
-        </form>
-
+        </div> 
       </div>
   </section>
 </div>
 
-    <!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<div class="row 100% uniform">
-				<div class="12u 12u$(medium) links">
-					<div class="footerbox">
-						<p style="margin-bottom: 0">&copy; Moar Guitars 2022&nbsp;&nbsp;|&nbsp;&nbsp;Hand-made in Copenhagen&nbsp;&nbsp;|&nbsp;&nbsp;Website by <a href="https://johnhayn.es" target="_blank">John Haynes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/merch">Moar Merch</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/contact">Contact Moar</a></p>
-					</div>
-					<div class="footerbox">
-						<ul class="icons">
-							
-							<li><a href="https://www.facebook.com/moarguitars/" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
-							
-							
-							
-							<li><a href="https://www.instagram.com/moarguitars/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-							
-							
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	</footer>
-
-</div>
-
-<!-- Scripts -->
-	<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
-	<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
-	<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
-	<script src="http://localhost:4000/assets/js/skel.min.js"></script>
-	<script src="http://localhost:4000/assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="http://localhost:4000/assets/js/main.js"></script>
-
+    {% include footer.html %}
 
 </body>
 </html>
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
-<!-- Guitar Decoder -->
-<script type="text/javascript">
-  //   function decoder() {
-  //   var design = document.getElementById('decoder').value.replace(/%23/gi, '#');
-  //   var hashParams = design.split('&'); // substr(1) to remove the `#`
-  //   console.log(hashParams);
-  //   for(var i = 0; i < hashParams.length; i++){
-  //       var p = hashParams[i].split('=');
-  //       console.log(p);
-  //       document.getElementById(p[0]).value = decodeURIComponent(p[1]);;
-  //   }
-  // };
-
-    function resetme() {
-      window.open(document.URL,'_self');
-    }
-
-    function decoder() {
-    var design = document.getElementById('decoder').value.replace(/%23/gi, '#');
-    var hashParams = design.split('&'); // substr(1) to remove the `#`
-    hashParams.forEach(decodeThem);
-
-    function decodeThem (item, index){
-        var index = item.indexOf('=');
-        var name = item.substr(0, index);
-        var value = item.substr(index + 1);
-        if (value === "") {
-          console.log("oh well");
-        }
-        else if (value === "on") {
-          document.getElementById(name).checked = true;
-          updateGuitar();
-        }
-        else {
-          console.log(name, value);
-          document.getElementById(name).value = decodeURIComponent(value);
-          updateGuitar();
-        }
-    }
-  };
-    
-</script>
 
 <!-- Update Guitar -->
 <script>
@@ -2295,6 +2045,31 @@
 
     // Pickups
 
+      // show/hide bridge pup
+      if (document.getElementById('check-bridge-pup').checked) {
+        document.getElementById('pickup-bridge').setAttribute("style", "display:block;");
+        document.getElementById('selectpup-bridge').setAttribute("style", "display:block;");
+      } else {
+        document.getElementById('pickup-bridge').setAttribute("style", "display:none;");
+        document.getElementById('selectpup-bridge').setAttribute("style", "display:none;");
+      }
+      // show/hide middle pup
+      if (document.getElementById('check-middle-pup').checked) {
+        document.getElementById('pickup-middle').setAttribute("style", "display:block;");
+        document.getElementById('selectpup-middle').setAttribute("style", "display:block;");
+      } else {
+        document.getElementById('pickup-middle').setAttribute("style", "display:none;");
+        document.getElementById('selectpup-middle').setAttribute("style", "display:none;");
+      }
+      // show/hide neck pup
+      if (document.getElementById('check-neck-pup').checked) {
+        document.getElementById('pickup-neck').setAttribute("style", "display:block;");
+        document.getElementById('selectpup-neck').setAttribute("style", "display:block;");
+      } else {
+        document.getElementById('pickup-neck').setAttribute("style", "display:none;");
+        document.getElementById('selectpup-neck').setAttribute("style", "display:none;");
+      }
+
       // Bridge Pickup
       var bridgepickup = document.getElementById("bridge-pickup-type");
       var bridgePickupType = bridgepickup.options[bridgepickup.selectedIndex].value;
@@ -2470,7 +2245,28 @@
   window.onload = updateGuitar;
 </script>
 
-<script type="text/javascript">
+<!-- Tabs -->
+<script>
+  function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+
+  }
+
+  document.getElementById("defaultOpen").click();
+</script>
+
+<!-- Save to PNG -->
+<script>
     var btn = document.getElementById('preview-design');
     var svg = document.querySelector('svg');
     var canvas = document.querySelector('canvas');
@@ -2524,6 +2320,73 @@
 
       img.src = url;
 
-      }; 
+    };
 
+    console.clear();
+    var btn = document.getElementById('preview-design');
+    
+    // Get Guitar
+    function getForm() {
+    var kvpairs = [];
+    var form = document.getElementById('guitar-design-form');
+    for ( var i = 0; i < form.elements.length; i++ ) {
+       var e = form.elements[i];
+       kvpairs.push(encodeURIComponent(e.id) + "=" + encodeURIComponent(e.value)) + ",";
+    }
+    var queryString = kvpairs.join("&");
+    document.getElementById('guitar-design').value = queryString;
+    };
+   
+    // Send to Airtable
+    btn.addEventListener('click', function () {
+      var name = document.getElementById('guitar-name').value;
+      var insta = document.getElementById('creator-instagram').value;
+      var design = document.getElementById('guitar-design').value;
+      var data = {
+              "records": [
+                {
+                  "fields": {
+                    "guitar-design": design, 
+                    "guitar-name": name,
+                    "creator-instagram": insta
+                  }
+                }
+              ]
+            };
+
+        let axiosConfig = {
+          headers: {
+              'Authorization': 'Bearer keykx6o2ysAy0m8xs',
+              'Content-Type': 'application/json'
+          }
+        };
+      axios.post('https://api.airtable.com/v0/appZwoSS7LA9GWVKP/submitted-guitars', data, axiosConfig)
+          .then(function (response) {
+            // handle success
+            console.log(response);
+          })
+          .catch(function (error) {
+            // handle error
+            console.log(error);
+          })
+          .finally(function () {
+            // always executed
+          });
+    });
+
+    // Modal
+      function toggle() {
+        var x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+
+        } else {
+          x.style.display = "none";
+        }
+      }
+</script>
+
+<!-- Get guitars -->
+<script type="text/javascript">
+  
 </script>
