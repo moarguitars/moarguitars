@@ -12,9 +12,9 @@ image: 'assets/images/t-type/t-type-hollow-dark.jpg'
 
 model: 'Hollow Bass'
 img-tag: bass-hollow
-price-usd: 4,875
-price-eur: 2,930
+price-usd: 4300
+<!-- price-eur: 2,930
 price-gbp: 2,640
-price-dkk: 21,800
+price-dkk: 21,800 -->
 modeldesc: Let’s be honest. Basses are cooler than guitars. I can write this here, publically for all to see, as all guitarists are too busy searching my site for the various colour options of binding to match the LEDs of their spaceship pedal boards, to come onto the bass section of my page.
 ---
