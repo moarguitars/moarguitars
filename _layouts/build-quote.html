@@ -39,7 +39,11 @@
 			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xnqoqbjw" method="POST">
 				<div class="8u 12u(small)" style="padding-right: 2em;">
 					<!-- Extras -->
+					{% if page.title == "Dolly" %}
+					{% include dolly-form.html %}
+					{% else %}
 					{% include extras-form.html %}
+					{% endif %}
 				</div>
 				<div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
 					<!-- Quote Box -->
@@ -58,46 +62,159 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <!-- Form Script -->
-<script>
-function updateTotals() {
-    // Checkboxes
-    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
+{% if page.title == "Dolly" %}
+	<script>
+	// Utility function to handle NaN
+	function parseCost(value) {
+	  const parsedValue = parseInt(value);
+	  return isNaN(parsedValue) ? 0 : parsedValue;
+	}
 
-    // Selected Options
-    var body = document.getElementById("wood-body");
-	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
-	var neck = document.getElementById("wood-neck");
-	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
-	var fret = document.getElementById("wood-fret");
-	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
-	var radius = document.getElementById("neck-radius");
-	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
-	var result = bodycost + neckcost + fretcost + radiuscost;
+	function updateTotals() {
+	    // Checkboxes
+	    const inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-    // Total Price
-    var sum = {{ page.price-usd }} + result;
-    for (var i = 0, num = inputs.length; i < num; i++) {
-        if (inputs[i].checked) {
-            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
-        }
-    }
+	    // Selected Options
+	    const pickup1 = document.getElementById("pickup1");
+		const pickup1cost = parseInt(pickup1.options[pickup1.selectedIndex].getAttribute('value').split(":").pop());
+		const pickup1choice = pickup1.options[pickup1.selectedIndex].getAttribute('name');
 
-    // Customisation Total
-    var customisations = sum - {{ page.price-usd }};
+		const pickup2 = document.getElementById("pickup2");
+		const pickup2cost = parseInt(pickup2.options[pickup2.selectedIndex].getAttribute('value').split(":").pop());
+		const pickup2choice = pickup2.options[pickup2.selectedIndex].getAttribute('name');
 
-	// Totals for text
-    document.getElementById('payment-custom').innerHTML = '$' + customisations;
-    document.getElementById('payment-total').value = '$' + sum;
-    document.getElementById('next').value = '{{ site.baseurl }}/order-placed?deposit=' + (sum*0.25);
+		const pickup3 = document.getElementById("pickup3");
+		const pickup3cost = parseInt(pickup3.options[pickup3.selectedIndex].getAttribute('value').split(":").pop());
+		const pickup3choice = pickup3.options[pickup3.selectedIndex].getAttribute('name');
 
-    
-}
+		// New lines for electronics, orientation, and strings
+		const electronics = document.getElementById("electronics");
+		const electronicsCost = parseCost(electronics.options[electronics.selectedIndex].getAttribute('value').split(":").pop());
+		const electronicsChoice = electronics.options[electronics.selectedIndex].getAttribute('name');
 
-var section = document.getElementById('extra-features');
-var inputs = section.getElementsByTagName('input');
-for (var i = 0, num = inputs.length; i < num; i++) {
-    inputs[i].addEventListener('change', updateTotals);
-}
+		const orientation = document.getElementById("orientation");
+		const orientationCost = parseCost(orientation.options[orientation.selectedIndex].getAttribute('value').split(":").pop());
+		const orientationChoice = orientation.options[orientation.selectedIndex].getAttribute('name');
 
+		const strings = document.getElementById("strings");
+		const stringsCost = parseCost(strings.options[strings.selectedIndex].getAttribute('value').split(":").pop());
+		const stringsChoice = strings.options[strings.selectedIndex].getAttribute('name');
 
+		const gigbag = document.getElementById("gigbag");
+		const gigbagCost = parseCost(gigbag.options[gigbag.selectedIndex].getAttribute('value').split(":").pop());
+		const gigbagChoice = gigbag.options[gigbag.selectedIndex].getAttribute('name');
+
+		// Shipping
+		const shipping = document.getElementById("shipping");
+		const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
+		const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
+
+		// Results
+		// var result = pickup1cost + pickup2cost + pickup3cost;
+		var result = pickup1cost + pickup2cost + pickup3cost + electronicsCost + orientationCost + stringsCost + gigbagCost;
+
+		 // Total Price
+	    var sum = ({{ page.price-usd }} + result);
+	    for (var i = 0, num = inputs.length; i < num; i++) {
+	        if (inputs[i].checked) {
+	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
+	        }
+	    }
+
+		// VAT block
+		const vatblock = document.getElementById('vat-display');
+
+		document.getElementById('vat-display').style.display = "";
+		
+		if (shippingchoice != 'EUandUK') {
+		  vatblock.style.display = "none";
+		  var vattotal = 0;
+		} else {
+		  vatblock.style.display = "";
+		  var vattotal = (sum + shippingcost) * 0.25;
+		}
+		document.getElementById('vat-total').innerHTML = '$' + vattotal;
+
+	    // Totals for text
+		if (sum < 1900) {
+		  document.getElementById('final-total').innerHTML = '$' + 1900;
+		  document.getElementById('price-total').innerHTML = '$' + (1900 + shippingcost + vattotal);
+		} else {
+		  document.getElementById('final-total').innerHTML = '$' + sum;
+		  document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal);
+		}
+
+		// Shipping
+		document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
+
+		// Logs
+		console.log('sum' + (sum + shippingcost));
+		console.log('payment' + sum);
+		console.log('shipping' + shippingcost);
+		console.log(shippingchoice);
+		
+
+		var queryParams = "?type=guitar&deposit=" + '{{ page.title }}';
+	    queryParams += "&pickup1=" + pickup1.options[pickup1.selectedIndex].getAttribute('name');
+	    queryParams += "&pickup2=" + pickup2.options[pickup2.selectedIndex].getAttribute('name');
+	    queryParams += "&pickup3=" + pickup3.options[pickup3.selectedIndex].getAttribute('name');
+	    queryParams += "&electronics=" + electronics.options[electronics.selectedIndex].getAttribute('name');
+	    queryParams += "&orientation=" + orientation.options[orientation.selectedIndex].getAttribute('name');
+	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
+	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 
+	    document.getElementById('next').value = '{{ site.baseurl }}/order-placed' + queryParams;
+		console.log(queryParams)   
+
+	    
+	}
+
+	var section = document.getElementById('extra-features');
+	var inputs = section.getElementsByTagName('input');
+	for (var i = 0, num = inputs.length; i < num; i++) {
+	    inputs[i].addEventListener('change', updateTotals);
+	}
 </script>
+{% else %}
+	<script>
+	function updateTotals() {
+	    // Checkboxes
+	    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
+
+	    // Selected Options
+	    var body = document.getElementById("wood-body");
+		var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
+		var neck = document.getElementById("wood-neck");
+		var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
+		var fret = document.getElementById("wood-fret");
+		var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
+		var radius = document.getElementById("neck-radius");
+		var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
+		var result = bodycost + neckcost + fretcost + radiuscost;
+
+	    // Total Price
+	    var sum = {{ page.price-usd }} + result;
+	    for (var i = 0, num = inputs.length; i < num; i++) {
+	        if (inputs[i].checked) {
+	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
+	        }
+	    }
+
+	    // Customisation Total
+	    var customisations = sum - {{ page.price-usd }};
+
+		// Totals for text
+	    document.getElementById('payment-custom').innerHTML = '$' + customisations;
+	    document.getElementById('payment-total').value = '$' + sum;
+		document.getElementById('next').value = '{{ site.baseurl }}/order-placed?type=guitar&deposit=' + (sum*0.25);
+	    
+	    
+	}
+
+	var section = document.getElementById('extra-features');
+	var inputs = section.getElementsByTagName('input');
+	for (var i = 0, num = inputs.length; i < num; i++) {
+	    inputs[i].addEventListener('change', updateTotals);
+	}
+	</script>
+{% endif %}
+

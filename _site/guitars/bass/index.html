@@ -94,6 +94,10 @@
 		    
 		
 		    
+		
+		    
+		
+		    
 		        <li><a href="http://localhost:4000/">Home</a></li>
 	    	
 		
@@ -174,13 +178,17 @@
 		    
 		
 		    
+		
+		    
+		
+		    
 		        <li><a href="http://localhost:4000/guitars/">Guitars</a></li>
 		    
 		
 		    
-		
-		    
 		        <li><a href="http://localhost:4000/luthiers-special/">Luthier's Special</a></li>
+		    
+		
 		    
 		
 		    
@@ -249,7 +257,7 @@
 				
 					
 					<div class="4u 12u$(medium)">
-						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/dc26fda8b3da4e4e745d84a122045a07/4ac031fa/Image24September20200846pm.jpg)">
+						<div class="gallery" style="background-image:url(https://v5.airtableusercontent.com/v1/15/15/1679745600000/OYpTcq2nSqWU7ehBVObgww/GqMpBwKQZVUU7TK4_up170CayIpNkkcIBFoXaLe55psTjLsOf2gqIBS0ruEwqLIlEoUq8Jx-Ah1Iw1SdZHqjWdRj2rFgq2hPiVnW7Wns1_2xsCjRvx06gvcfUl4iMfZr/P557XyMIWRkGk5nmQEJcBNpumEfJXEtfQTj07KO-t_E)">
 						</div>
 					</div>
 					
@@ -308,14 +316,14 @@
 				
 					
 					<div class="4u 12u$(medium)">
-						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/8b7b95d3749134b6978a4798314374d1/ab78fe60/bass-held-outside.jpg)">
+						<div class="gallery" style="background-image:url(https://v5.airtableusercontent.com/v1/15/15/1679745600000/gA-pu_RWDeYn7zNK0RhXSA/1dhVCwp2odMUcccQroYTSl4hrJhpZEA9hYRneqUSpZwa28U91ttOh1zwU1kRky0aSCI0E64dlJ4ib7W0Qm3MT9DiYkJ0ezHy8ZCvXfKFojo/wjaCqFldsq0Op1PjxoZp2v3Qq3szyFiwd3FlzevcB_4)">
 						</div>
 					</div>
 					
 				
 					
 					<div class="4u 12u$(medium)">
-						<div class="gallery" style="background-image:url(https://dl.airtable.com/.attachments/418e3dc4199e3edcb15c67af9379b9b2/85e3d458/bass-angled.jpg)">
+						<div class="gallery" style="background-image:url(https://v5.airtableusercontent.com/v1/15/15/1679745600000/FwM6D4FmewWxDsbq4ZF7Ng/RrWqBuIx3sgZiKyYeOE3U401-TrADLeX_vG8szl0da3LhjXTR0CjjyR1PMBPU6qjhOjmtIk9QpzrPW8LbLHmqKe2Sa-7KYVlpqI-C_5k_xo/sYK74JKiurCpyj77RCt7TfcN3C0F4CIsR1hRgfH0pZ0)">
 						</div>
 					</div>
 					
@@ -324,9 +332,18 @@
 			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xnqoqbjw" method="POST">
 				<div class="8u 12u(small)" style="padding-right: 2em;">
 					<!-- Extras -->
+					
 					<h2 style="margin-bottom: 0.5em">Design your own Bass</h2>
 <p>Build your dream guitar then add your email to save and guarantee the quoted price.</p>
-<p>Base price comes with Nickel hardware, 1 handwound p90 made to your tastes, an intonated cut off T style bridge, stainless steel frets and a single volume control.</p>
+<h3>Base price includes:</h3>
+<ul>
+    <li>Nickel hardware</li>
+    <li>One handwound P90 made to your tastes</li>
+    <li>A Moar Drillium bridge</li>
+    <li>Stainless steel frets</li>
+    <li>Wooden fretboard binding</li>
+    <li>Single volume control</li>
+</ul>
 
 
 <section style="box-sizing: border-box; margin-bottom: 2em;">
@@ -443,6 +460,7 @@
 <!-- Binding -->
 <section style="box-sizing: border-box; margin-bottom: 1em;">
 	<h3 style="margin-bottom: 0.5em">Binding</h3>
+    <p>The base price includes neck binding by default.</p>
   	<table class="alt">
 		<tbody>
     		<tr>
@@ -465,11 +483,11 @@
 			</tr>
 			<tr>
     			<td class="description">
-    				<input class="binding" value="220"  type="checkbox" id="Checkbox7" name="binding-neck" data-toggle="checkbox"> 
-					<label class="checkbox" for="Checkbox7">Neck binding</label>
+    				<input class="binding" value="220"  type="checkbox" id="Checkbox7" name="binding-neck" data-toggle="checkbox" checked disabled>  
+					<label class="checkbox" for="Checkbox7">Fretboard binding</label>
 				</td>
 				<td class="price">
-					<p>$220</p>
+					<p>$0</p>
 				</td>
 			</tr>
 		</tbody>
@@ -759,11 +777,29 @@
             </tr>
             <tr>
                 <td class="description">
-                    <input class="binding" value="Custom:350" type="radio" id="Checkbox32" name="inlay" data-toggle="checkbox"> 
+                    <input class="binding" value="Custom:800" type="radio" id="Checkbox32" name="inlay" data-toggle="checkbox"> 
                     <label class="radio" for="Checkbox32">Custom</label>
                 </td>
                 <td class="price">
-                    <p>$350</p>
+                    <p>$800</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- Flight case -->
+<section style="box-sizing: border-box; margin-bottom: 1em;">
+    <h3 style="margin-bottom: 0.5em">Custom flight case</h3>
+    <table class="alt">
+        <tbody>
+            <tr>
+                <td class="description">
+                    <input class="binding" value="Custom:800" type="radio" id="Checkbox32a" name="flightcase" data-toggle="checkbox"> 
+                    <label class="radio" for="Checkbox32a">Custom flight case</label>
+                </td>
+                <td class="price">
+                    <p>$800</p>
                 </td>
             </tr>
         </tbody>
@@ -928,13 +964,15 @@
     </table>
 </section>
 
+					
 				</div>
 				<div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
 					<!-- Quote Box -->
 					
-<h3 style="margin-bottom: 0.5em;">Your Bass</h3>	
+<h3 style="margin-bottom: 0.5em;">Your order</h3>	
 
 <!-- Maths -->	
+
 <table class="alt">
 	<tbody>
 		<tr> 
@@ -946,7 +984,7 @@
 				<p>Base Price</p>
 			</td>
 			<td>
-				<span value="$3800" id="base-price">$3800</span>
+				<span value="$4000" id="base-price">$4000</span>
 			</td>
 		</tr>
 		<tr>
@@ -959,29 +997,36 @@
 		</tr>
 		<tfoot>
 			<td>
-				<p style="font-weight: 700;">Total (USD)</p>
+				<p style="font-weight: 700;">Total</p>
 			</td>
 			<td>
-				<input style="font-weight: 700;" type="text" value="$3800" id="payment-total" name="total-price" disabled></input>
+				<input style="font-weight: 700;" type="text" value="$4000" id="payment-total" name="total-price" disabled></input>
+				<p style="margin-bottom: 2em; font-size: 0.6em">all prices are in USD.</p>
 			</td>
 		</tfoot>
 	</tbody>
 </table>
 
+
+
 <!-- Email -->
-<h4 style="margin-bottom: 0.5em;">Submit your quote</h4>
+<h4 style="margin-bottom: 0.5em;">Your details</h4>
 <div style="margin-bottom: 0.5em">
 	<input placeholder="email@moarguitars.com" type="email" id="email" name="email" required>
 </div>
-<p style="margin-bottom: 2em; font-size: 0.6em">Enter your email to save a copy of this quote and share it with the Moar Guitars team.</p>
+<p style="margin-bottom: 2em; font-size: 0.6em">Enter an email so that we can share the details of your order with you and the Moar Guitars team.</p>
 
 <!-- Submit -->
 <ul class="actions" style="margin-bottom: 0;">
+	
 	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Save and Send Quote" class="button special fit"/></li>
+	
 <!-- 			<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Start again" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li> -->
 	<input type="hidden" name="_next" id="next" value="//order-placed" />
 </ul>
 </p>
+
+
 				</div>
 			</form>
 	</section>
@@ -1032,46 +1077,47 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <!-- Form Script -->
-<script>
-function updateTotals() {
-    // Checkboxes
-    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-    // Selected Options
-    var body = document.getElementById("wood-body");
-	var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
-	var neck = document.getElementById("wood-neck");
-	var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
-	var fret = document.getElementById("wood-fret");
-	var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
-	var radius = document.getElementById("neck-radius");
-	var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
-	var result = bodycost + neckcost + fretcost + radiuscost;
+	<script>
+	function updateTotals() {
+	    // Checkboxes
+	    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-    // Total Price
-    var sum = 3800 + result;
-    for (var i = 0, num = inputs.length; i < num; i++) {
-        if (inputs[i].checked) {
-            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
-        }
-    }
+	    // Selected Options
+	    var body = document.getElementById("wood-body");
+		var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
+		var neck = document.getElementById("wood-neck");
+		var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
+		var fret = document.getElementById("wood-fret");
+		var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
+		var radius = document.getElementById("neck-radius");
+		var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
+		var result = bodycost + neckcost + fretcost + radiuscost;
 
-    // Customisation Total
-    var customisations = sum - 3800;
+	    // Total Price
+	    var sum = 4000 + result;
+	    for (var i = 0, num = inputs.length; i < num; i++) {
+	        if (inputs[i].checked) {
+	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
+	        }
+	    }
 
-	// Totals for text
-    document.getElementById('payment-custom').innerHTML = '$' + customisations;
-    document.getElementById('payment-total').value = '$' + sum;
-    document.getElementById('next').value = '//order-placed?deposit=' + (sum*0.25);
+	    // Customisation Total
+	    var customisations = sum - 4000;
 
-    
-}
+		// Totals for text
+	    document.getElementById('payment-custom').innerHTML = '$' + customisations;
+	    document.getElementById('payment-total').value = '$' + sum;
+		document.getElementById('next').value = '//order-placed?type=guitar&deposit=' + (sum*0.25);
+	    
+	    
+	}
 
-var section = document.getElementById('extra-features');
-var inputs = section.getElementsByTagName('input');
-for (var i = 0, num = inputs.length; i < num; i++) {
-    inputs[i].addEventListener('change', updateTotals);
-}
+	var section = document.getElementById('extra-features');
+	var inputs = section.getElementsByTagName('input');
+	for (var i = 0, num = inputs.length; i < num; i++) {
+	    inputs[i].addEventListener('change', updateTotals);
+	}
+	</script>
 
 
-</script>

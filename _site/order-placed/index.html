@@ -99,6 +99,10 @@
 		    
 		
 		    
+		
+		    
+		
+		    
 		        <li><a href="http://localhost:4000/">Home</a></li>
 	    	
 		
@@ -179,13 +183,17 @@
 		    
 		
 		    
+		
+		    
+		
+		    
 		        <li><a href="http://localhost:4000/guitars/">Guitars</a></li>
 		    
 		
 		    
-		
-		    
 		        <li><a href="http://localhost:4000/luthiers-special/">Luthier's Special</a></li>
+		    
+		
 		    
 		
 		    
@@ -229,11 +237,11 @@
 		<div class="row 100% uniform">
 			<div class="12u 12u$(medium)" style="padding-right: 1em;">
 		      	<header class="major">
-					<h1>We've received your quote</h1>
+					<h1>We've received your order details</h1>
 				</header>
 			</div>
 		    <div class="8u 12u$(medium)" style="padding-right: 2em;">
-				<p>We've received your quote and we'll be in touch very soon to discuss the details. The quoted prices are locked in and guaranteed for 30 days after the quote is generated.</p>
+				<p>We've received the details of your order and we'll be in touch very soon to discuss the details. The quoted prices are locked in and guaranteed for 30 days after the quote is generated.</p>
 				<p>If you're ready to go ahead, please continue to pay the deposit via the paypal link on this page.</p>
 				<p>If you have any questions, please <a href="/contact">get in touch with us</a>.</p>
 		    </div>
@@ -243,6 +251,7 @@
 					<div style="margin-bottom: 2em;">
 						<label>Total Deposit (USD)</label>
 						<input style="font-weight: 700;" type="text" value="$" id="deposit-price" name="total-price" disabled></input>
+						<input style="font-weight: 700; display: none;" type="text" value="$" id="guitar-type" name="type" disabled></input>
 					</div>
 			      	<div id="paypal-button-container"></div>
 					<script>

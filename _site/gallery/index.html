@@ -1,222 +1,34 @@
 <!DOCTYPE html>
-<!--
-	Forty by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-	<title>Moar Guitars</title>
-	<meta name="description" content=""/>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<!-- [if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif] -->
-	<link rel="stylesheet" href="/assets/css/main.css" />
-	<!-- [if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]
-	[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif] -->
-	
-	<!-- Open Graph -->
-	<meta property="og:locale" content="en_GB">
-	<meta property="og:type" content="article">
-	<meta property="og:title" content="Gallery">
-	<meta property="og:url" content="http://localhost:4000/gallery/">
-	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
-	<meta property="og:site_name" content="Moar Guitars">
-	<meta property="article:publisher" content="http://localhost:4000" />
-	<meta property="article:author" content="http://localhost:4000" />
-	<meta property="article:published_time" content="" />
-	<meta property="og:description" content="Watch videos and view photos">
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Gallery | Moar Guitars</title>
+<meta name="generator" content="Jekyll v3.8.5" />
+<meta property="og:title" content="Gallery" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Watch videos and view photos" />
+<meta property="og:description" content="Watch videos and view photos" />
+<link rel="canonical" href="http://localhost:4000/gallery/" />
+<meta property="og:url" content="http://localhost:4000/gallery/" />
+<meta property="og:site_name" content="Moar Guitars" />
+<meta property="og:image" content="http://localhost:4000/assets/images/t-type/t-type-hollow-dark.jpg" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/gallery/","image":"http://localhost:4000/assets/images/t-type/t-type-hollow-dark.jpg","headline":"Gallery","description":"Watch videos and view photos","@type":"WebPage","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-156990567-3"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <link rel="stylesheet" href="/assets/css/style.css?v=35acbb9a74c4ba4b12c98f450367ca68f635bc19">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="http://localhost:4000/">Moar Guitars</a></h1>
+      
 
-	  gtag('config', 'UA-156990567-3');
-	</script>
-
-	<!-- Axios -->
-	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:400,500,700,900&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Rubik+Mono+One&display=swap" rel="stylesheet">
-
-	<!-- Favicon -->
-	<link type="image/x-icon" sizes="180x180" href="/assets/images/favicon/moar-180.ico">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-48.png" sizes="48x48">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-32.png" sizes="32x32">
-	<link rel="icon" type="image/png" href="/assets/images/favicon/moar-16.png" sizes="16x16">
-
-
-	<!-- Ensures optimal rendering on mobile devices. -->
-  	<meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
-
-</head>
-
-
-<body>
-
-    <!-- Wrapper -->
-<div id="wrapper">
-
-<!-- Header -->
-<header id="header">
-	<!-- <a href="http://localhost:4000//" class="logo"><strong>Moar Guitars</strong> <span>Hand-made in Copenhagen</span></a> -->
-	<a href="http://localhost:4000/" id="header-logo-container">
-		<img id="header-logo" src="/assets/images/logo.svg">
-	</a>
-	<nav>
-		<a href="#menu">Menu</a>
-	</nav>
-</header>
-
-<!-- Menu -->
-<nav id="menu">
-	<ul class="links">
-        
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/">Home</a></li>
-	    	
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/guitars/">Guitars</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/luthiers-special/">Luthier's Special</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/pickups/">Pickups</a></li>
-		    
-		
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/videos/">Videos</a></li>
-		    
-		
-		    
-		
-		    
-		        <li><a href="http://localhost:4000/waitlist/">Waitlist</a></li>
-		    
-		
-		<li><a href="https://www.instagram.com/moarguitars/">Instagram</a></li>
-	</ul>
-	<ul class="actions vertical">
-		<li><a href="/place-order" class="button special fit">Place Order</a></li>
-        <li><a href="/place-order" class="button fit">Shop Pickups</a></li>
-	</ul>
-</nav>
-
- <!-- Main -->
+      <!-- Main -->
 <div id="main" class="alt">
 
 <!-- Gallery -->
@@ -647,7 +459,7 @@ I just need to get a black trem tip and its all together.</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/d94fdbfbcca9d2076503c8c6530b8013/8c098350/Screenshot2020-05-02at07.50.31.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/icSPzfohC34XvHn9Py6dWA/qWjL8MIl-aHBuEQpS0PI22u7KclEU0m0xG-Wm-XwTbq-oaPzzoUyYo6kC8EUuaN39imloar7C0D1dhCYQ6QQcIhreLyzPc1avqFB2YhH0CKBO-Z_r82AV8EPLBa3scWC/d-WjyBxUAdRRKqUsuWn1wABJlRQAyTjbhNzCVapj7bA" alt="" />
 				
 				<p>Want me to make you something like this?
 
@@ -663,7 +475,7 @@ Check it out! Link in bio
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/efa54cb8e5fa8f1b7b9f4118d5741156/96ff9576/Screenshot2020-05-02at07.49.13.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/cfWUN45n7Nsvgs-CHvyvAA/DM6J7t5E0AhasfN9HVU-VvjGlkR0MyTxvnXJwpiVk9QM_YI71f7rfTClZVKkHIYl_5jkZ_S0K47L-JbyZ0oBjYvGN8fkBNeMtW94OoHTVAX3UNVXqW7xuyU4Iq9TaHb8/7MvGL3vwiOvWmURlMnry9NUQ-AW4hKgWTTEyv_0hfw0" alt="" />
 				
 				<p>This is going to be quite a nice build.
 
@@ -676,7 +488,7 @@ Gonna rip.</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/0dced21350bbebebad99252dd15939a6/63d39fe0/Screenshot2020-05-02at07.48.02.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/OHEykzB9nWEG4Pkz8RCEWw/6V59FKKYbDOYddthuYpiZ1ENC0e5LaKVapRwXgkTpUQDONLM5W_iRSti7NUo4sQxwjrvaZrdwhDI17b-6AADhnWoLwJWhT6-Ccr8bTMfpF8qdUdCV775HtsU3bP2ADUg/CjMxUS5if0zg_8CyQfWXBY_NPsPBK1ao9DATAXqdA-8" alt="" />
 				
 				<p>Did you know that all my guitars and basses come with stainless steel frets as standard, included in the base price?
 It's a great feeling to know that every instrument leaving my workshop will always have perfect frets, even after years worth of hard playing!</p>
@@ -752,7 +564,7 @@ I also played this guitar for a little while.</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/fcdc7796c89dfbccb894e0c5d886eda2/372c9d3e/Screenshot2020-05-01at07.46.11.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/94TU70LvGNaDzY0FV1jJsQ/l_zh7JTRz1_mLWvImrhn0UuV_p02JtpsyFmfBAt_tPOpyQ2w_Uke9YV0noG8UqKu2iTRibHEYCla5_RUDgk05Veb6XuNnJWZVbz7OoYNjVkBu2UqyQNZoTwJuA9zUwU2/8dF5SxnT8LO7r0uCNyQ-rLKAdTK0EUDvuN3Ey5nGUn4" alt="" />
 				
 				<p>First Wayfair bass is starting to look quite serious!
 
@@ -763,7 +575,7 @@ I also played this guitar for a little while.</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/e46ab2638f250a5655b8726ad5e3593a/f423bc71/Screenshot2020-05-01at07.45.37.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/HC9sCruxelCjTk9ufcOsQg/iPXhm23Nm7DQzXkx39o5RtbA7ZJgxYHFA30gQ5-kqsChjfkwLYjf4eiriGDWGTESUvsVqFqPyrSz-GVA9jhE_XVfCPEPZYU06Ha_smY_a9fOzOb_I23c3LoA9fd7XhAm/3hfzEYF7_I7V4Pb9yIFHCJbkI12l1MTWpcDNh3hZbvU" alt="" />
 				
 				<p>Oh go on then. ❤️ #moarguitars
 
@@ -774,7 +586,7 @@ p.s. I'm taking extra luthier points for matching the cavity cover to the bubing
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/d05ad7490ebd4a9547ef747f39815ae8/2c8afeb4/Screenshot2020-05-01at07.45.02.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/0ECMU_VSGZhrjE2ihBcaOQ/K4U68KgyO0fYrQgKrR9Jxrpi85It1ZL1Rs-zYhslEKib1Zv-JdOxIQPXV1uVvESmxWVszCpnLRzepA8W0hxWSQPfcidy_LJ1S9agUUsscVRt5p_OYByqoExQedo8kreP/BfQBIjhlsoFbprH-XW3N3gO8SlZdcryLnMBeI5MYmJ4" alt="" />
 				
 				<p> My hands hate it, my tools hate it, my nose hates it, but I love it, and you all seem to as well!</p>
 			</div>
@@ -783,7 +595,7 @@ p.s. I'm taking extra luthier points for matching the cavity cover to the bubing
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/2fcb6bebcf3ae1a1fea719f1b8f29f7f/4c452349/Screenshot2020-05-01at07.44.25.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/glrxzmhzyMWHXrhYa6t1lw/vg2_TqEY8adJC64fKzi4tKVDFQhY3IZs5AYbWIO4ydB_yEx8V_9eJUXYW4GQB6_xBp4_zsywZWwcK28lkkdX83QVIwgJNE9MkWItN5CJWbUGS3drpfSAGIO4MBcOZu_N/9klJhXm7kgg_LTGK1Y5uyk6g8d1cEQr4uI8O1NO4qfw" alt="" />
 				
 				<p>#teletuesday kinda.
 
@@ -795,7 +607,7 @@ This is a great example of one of my base price builds, get in touch if you're i
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/4b2e47bb0ec3d485fa96c6c7328cfa49/af442586/Screenshot2020-05-01at07.43.48.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/bJdL9X3EKlSu5aQcXbAQTw/4A68D8gN4_QUWdNEBEfDk6En5XsMhtn5b2__uD6L56KH6IsjsgnP_vf83K0oyXxD1FU6RAOtNudWUQVWPidZJ_YF6-5C5kVsNCh4B6QkcZD_bqshihJ8VLrYmv21ph2X/Y5PXOXiiWNNqAyw1ALQv1SiMl3vYv6AfoOKpqnwWn04" alt="" />
 				
 				<p>This hollow #pbass I'm currently working on needs me to hold onto it to stop it from floating away.
 
@@ -806,7 +618,7 @@ This is a great example of one of my base price builds, get in touch if you're i
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/cb8412c3e1c0b78c0f29eaa93736b222/703206ea/Screenshot2020-05-01at07.43.14.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/pWY448H4uY7hwKW1vKkidQ/FLA5qu_1BmtOaHCUtr7kwXUdZFIsOs3l2Cblj6-m2evNt0tjPfOLZobL77MKQwJuPO9rzsrK6AQotNfZhLjFGSio94cN2B7e-xqscYx_H33-SVFtcPzSKL91YnKqv57P/ZIdb3zYT09EvyZp-ofJYqq_sVjwWUic8CJG_CARCc0o" alt="" />
 				
 				<p>OK so who wants one of these?
 
@@ -817,7 +629,7 @@ This is a great example of one of my base price builds, get in touch if you're i
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/5bb50ddcb5862626c59aee129b9e7eb8/0097b37b/Screenshot2020-05-01at07.42.40.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/agg5E5Nxp54ZLvNhNLf01w/wSEn2IwxdXkzSZakuUh9O-4NTjcWsV9Yi7HZ7YQbMbxt5ZGKYdPA0QLHg8RnbqdMfopo6yI47-_lyeXoHoumCB_lgLEho2Y_RnGCRM-NSzWOuZuKbp8LkkquUkCA2oRO/6VzwlKIvDGkvk1z5Hq0-R8HmwFR3g8brmwCVRJ6sRMg" alt="" />
 				
 				<p>I realised that lately I've been posting quite finished looking guitars, and less about the process. To be honest it's a bit scary, and makes me feel a bit vulnerable, showing what happens behind the scenes of a workshop. There's always mistakes, stuff to sand out, problems to solve, and mess. Lots of mess.
 So I thought I should face my fears by showing one of these mistakes (or rather "design through process" ) on this hollow P bass I'm currently working on.
@@ -831,7 +643,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/3f44c345ff3792eb6b73a960ddbdb4ee/b79d9d4c/Screenshot2020-05-01at07.42.07.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/tcdBtLmWTgRgf_wt7qpA6A/TwhobqiuXlKkG-ywA2uKNatsfiFM5XzeK6ehOivuIg0xpX2Ee6e_reNpw3AhmCgQ2dQMM2Ek1wIHM5xsm69rc3GyKgElz4g9JyXYhrLk-clJg27JsStSwepGosP-g88w/beSqe3NnZ4juKycFWFgeeOlLu4ItCJ_kR-OFsvkLPlU" alt="" />
 				
 				<p>I haven't been able to ship this guitar since completeting it a month or so ago, as its owner has been traveling, and then this corona thing happened (shipping is back to normal now though!) So rather then just let the guitar collect dust I've been adding layers oil most days, to pull abit more out of the grain, and frankly I think it's starting to look rediculous.</p>
 			</div>
@@ -840,7 +652,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/bcc123a0458d553d8c40892fe1fb627f/8021c61b/Screenshot2020-05-01at07.41.17.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/USIwIzcDRV-U5TyAAfyZig/9DtZUBNiV2ewe3BTUbwlfPyjW-PZC15biYO9kWKuyLJ5YoQDmHtqV1iCDrV2l1hae6epnU3bzbyM4gkwjYRbqAPIF54KbBqaE3ZdPxCCQmXtzOnkZcCSU1qL7brHIBSX/h2VmFKTslpwZgsSVGCYsmjOwjNEweGdpmA6IAOioqu8" alt="" />
 				
 				<p>Video of this guy in action in my bio. The unique combination of P90 and passive piezo sounds absolutely incredible, check it out for yourself!</p>
 			</div>
@@ -849,7 +661,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/241f2fc0eee7ec11a16779e29c5407ed/a43e98df/Screenshot2020-05-01at07.39.45.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/UrK0KWEhACVVR_FKCfts8w/KveX1wLBvlOeUPFeTCR5Rd70nQhBsXc0VQuW0nlgPp_AxQHZcD9E9eTrNYIXvpjiXqeCrJOpchIuBuQ9IbtdlhyN9YngGsnsZNtByk472hPjCuRfvMWECaFkxGzJCrRy/E0VHdRm6uePBkk-8QiC2F8NHlgrNw9TQ8a57ZqQ0AKo" alt="" />
 				
 				<p>Making a bone nut.
 
@@ -860,7 +672,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/6e0baff8dde27121883d0abfb4a84314/6a93ffd2/Screenshot2020-05-01at07.39.06.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/BamTbfdZdoZofapnrzsb5w/yOIuTB1F4vWfOYBYzHWmSO0x0EUTPn-wCevMbFKRI5IiI4OjgS9lTwfAVcd2ixDiQ7TR3paS-TudPST0KaTR0mFFD9jZeC1EF2NEm1vR6PS70HfgSSSVdTQyOHfFJ85u/U4I9ILole2Tkb4gYn3sIR26R2RjL5E6HVlCqymX6Otw" alt="" />
 				
 				<p>I'm not quite at the final level of finish on this, hence the smudges and small lines on the body left over from earlier oil layers that I'll buff out before the final layer. But this guitar is looking so good. I think this might be one of my best oil finishes yet.
 
@@ -872,7 +684,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/bd404f6d7b84326fdd77f4c61b4e4bd9/b045e6d3/Screenshot2020-05-01at07.38.20.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/pj4oXMvMIHy4gAZ0J2ZXGA/2HNdpASoWlflgWOgTyHPeBMwBfTmZ9SVU8n-wTzCtjHJd8oomeDqZeN46A-9i-fSTlDiB0wBlIWtHnYEwCoCvMhpoTY5eyTaarL7oqwCeIqFWoH22vqVQ8US9x-hB4zG/H9SLPJHSVI5EYfZWrXvL1KjUhxNfngqnrAIIUCrTOiQ" alt="" />
 				
 				<p>I'm a big fan of walnut these days. Very excited to have a few commissions with it coming in the following months. It's a lovely wood.</p>
 			</div>
@@ -881,7 +693,7 @@ So one of my apprentices spent today carving a piece of bubinga (to match the fr
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/d6a97b32113256940935d68cce2bd0db/e680844c/Screenshot2020-05-01at07.37.46.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/CQ7WNSrN0iLOjPHLwJWzwg/OfSEiXG3WH2HYpeAK5nFkw1S-rA-5CGXr2BLQSfr_TPM0bDW0_oF843G-8_jx10B2IS9yXwPnTAi7UvX7iZvPI_Tm6YCgVhjnXxsOT2_7t4rk352aUhxqBR398UBef8S/25ZUs_Nzp9deWFWJYiVrrJ5LD1I5-EwZjRXyFBlxpNE" alt="" />
 				
 				<p>To quote the person in my workshop today, listening to me test playing this; "wow man, that's EXACTLY what a guitar should sound like"
 
@@ -895,7 +707,7 @@ Sometimes you're limitations are what make you fantastic ❤️
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/34021b3be3d504c6f4e7d47a5fa037a5/bcbaf590/Screenshot2020-05-01at07.37.12.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/asGMUmOwyJAEyp6nlE5btw/iFx5t1r8bmW3TopiWG4hb5ZY1X_V-DT_0WnlBKzjrU1XT6UfHotWLArUx2KUKsg9IJp-nzDaNoGf_oLR_YM0t5onKlhsMPtnvYphcmxUcS0CRR7TTJq_RUHJ8-0mRO3n/ptIX9FjvZJZbxngEPKV0jr4RpfSZTWj2P9LdniH_h90" alt="" />
 				
 				<p>I know I posted this same guitar yesterday, but my god this thing plays well, so I decided it deserved a second day in the limelight.
 
@@ -908,7 +720,7 @@ I don't often get time (or maybe I don't often give myself time) to pause and en
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/2a0c7c57de4b03593902af714cf6a825/dc35917a/Screenshot2020-05-01at07.36.12.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/psBj1jtQYqMA_Rz2CXzcNA/11CvmTAoT17PdR_p-eLFv6I_ix6hoRlSSiX4ZbwHKP2-hx3d61hyJIIADBT7hl4D6pwItLpnUU6L5CVMA1r_ofsvbv-pzRSo-Mdn5nZgKZJPgw91uswoHIHFhucYdCLw/HbPVX6en9XORH8fYO9TtDmojtZJ1dntRFKfsMxlLCnc" alt="" />
 				
 				<p>First photo of a new commission I was working on today. You can still see the chainsaw marks from carving the top.
 Any guesses as to what it might be?
@@ -921,7 +733,7 @@ Any guesses as to what it might be?
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/940be67f703c7b0eff65356a29b1a504/1429b059/Screenshot2020-05-01at07.35.15.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/nZ0Yr4uCks46sRfAwlWxqQ/gcIwi5rpFoW1JDzr9ZFjXzBn3FEFAOTDihLDpj0Qrf8fKcpSc5hm9MDPmhBL5MZ0LA6JIpto86ltProllGPl_fsWoOIuYIHH6VdxPXPPnhfPFcN1KCm3jSW57-T0D7Ex/H2viOAzvrB2Dh6q02kxhtNLGMVESwNIb3EYaRlpQYxU" alt="" />
 				
 				<p>This guitar is in need of a loving home, make me an offer via the reverb link in bio if you're interested! I've helped to smooth the process by dropping a little off the price 😉
 
@@ -935,7 +747,7 @@ All specs are in the reverb ad 👍
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/5c66eb509171a42f4d26bb2962cbb8ff/833bafad/Screenshot2020-05-01at07.33.50.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/wkfBKhXGW17HCn6foOOT7A/xX2LbnJs8phX8FY2pZQgn4ZuDyYWVVq97H89RgAoKn__6pCERt9PTzLnpthtVinO160S09bhaQ6BqYLn-6vlupt1zbUlAVCZhwTD_QEFq7tU9yCDgYhF0LKQLcFvUswr/O1lym-FIsWFGpXI0j-E5aoUR68p64gnbq6LMz9waJuY" alt="" />
 				
 				<p>I'm going to start a weekly workshop diary over on YouTube to show you guys some stuff from behind the scenes, and to document what goes on, and just have a bit of a chat... With myself.
 Extremely high budget stuff.
@@ -947,7 +759,7 @@ Link in bio if you're interested!</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/ae89d7f13022e2294a4429418c6067a8/d52a8224/Screenshot2020-05-01at07.32.53.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/k9T4dPKPZvtChkza5Ys1VQ/vbGKhs9EzzUc87HYwQw4VQdpN6c_Ma6N6K9tMYgBlLO9HQIMa-zOJ9jX50B4mixVH9kvVutcjFGmimhAWHqyPKCNFQ94Tt1stg1YlQE0rtRg2T1iE_XSQ9i2z2BvcJIO/KpEPdG1h9D5nBWUFhIC6yE7R33G_qC0DSUYSW2n2BWk" alt="" />
 				
 				<p>I've gotten quite a few orders for walnut guitars over the past few weeks, and I think this guitar is the culprit! It's a really really cool wood.
 
@@ -958,7 +770,7 @@ Dense, light and hard with beautiful grain and colour (that's what she said...) 
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/8e662f617977e5e3330fb9d83386efda/025e992b/Screenshot2020-05-01at07.31.40.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/CJHzRy7vkBh80w3bCvvSeA/MooQnSk8jrBAHlx2jyKWrLV5vALpDqNiAsjlPGz7XhbPDfKgWF_ThM_LIRtMeBxUCaQNk89zvTVmfMwcTGKtg4jK1oeDYcqzG9koc4YA7C9MLtI8PsQmq916FW0C1pBJ/Vqkc-FZkpayx6RPdJA4jOsrhAEkq-nWCThSp2acacQs" alt="" />
 				
 				<p>A couple of Wayfair foetuses caught in the wild.
 
@@ -970,7 +782,7 @@ Lots and lots and lots and lots and lots of sanding, carving and refining left t
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/2d8bc87426d37d8f280c369ef2b214e3/03d4e507/Screenshot2020-05-01at07.00.02.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/FYKA_jZ-ERmDxEiglQ_vgw/-GJXjethCnsTQt0CxrLbFI1g9b1GkAUF3_3DFMEYlyozI6r4xoayn9d7GfJ9QxWS21C_-0hJ3Po4xsioKp13fydBnuxX6AC_t7kUZRzKuzLywHksMkHT7m27qECLSF-u/ArVcls2dm3pEGP8xbZxFS4OjOorylsNSFaF0dUayeQ4" alt="" />
 				
 				<p>Did you guys know that I wind all my own pickups? This gives me the flexibility to do more or less anything for each individual order, and each pickup is wound specifically for each customer (I don't have a massive stash of P90s) I wind each one with a specific player, guitar and tone in mind
 
@@ -983,7 +795,7 @@ They also sound really really good.
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/6b54804f62e8de8092b3e449ec11a3a0/800d01df/Screenshot2020-05-01at06.59.29.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/aaUUN2GCZPHLB7yKTF7KmQ/4DR5GysuSUIZdgwQwGLEheaMtAZ_TqqYWxKQxBxNAXEDDJNircXjOLvDpyJjqfADNlE2iQQrdLFBBB5qnwh1xjsREreyIMmpLaZh6Z_YhzGpU0CY8IkIE8GG4O9Lrq24/hG-51Qu4e-DIqjRUSkVgfJ4rIvahYOghRhnoZXfxZKk" alt="" />
 				
 				<p>Right then guys! I think I've made enough of these, and they are different enough from the original, to warrant their own name, like my Wayfair, I need a name for my hollow or solid T's.
 
@@ -996,7 +808,7 @@ Got any ideas? .
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/51981368615d3ba4d8502eebc4c77ca4/1869675d/Screenshot2020-05-01at06.58.55.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/PwAlp7QOiTgK3qqFgACWFw/T-_LrL3Hm8Rgmgz3AYuELsp3sD8kOAIdl9vfm481-EP8x9Sfju3pe-KbXuYqAtHkA5SMonqQ2D37C-wQunhiXZyzynqjp3G4t51W1l5BArYkLe2BfZDVp6ogossf2vky/taZppB_zlVXUBLCaBiObXgmyAMXkFfFAdOFITI-48T8" alt="" />
 				
 				<p>Family portrait ❤️ #luthiery
 #moarguitars</p>
@@ -1006,7 +818,7 @@ Got any ideas? .
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/2118753768469ebed3ccd50a43b2cacb/0a3ed78f/Screenshot2020-05-01at06.58.18.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/YrMw8peIo10t2tfDPNB0oQ/Bo3NhF976MLBYKIlLQPyVjau0x-o_59NH9BZwzWzInEqhlJHP5LULOhKJwoX6OAES9RllCGZLF123BI3uNbJl-4HdGsVEDxMojxl83kXJdOVpuMYnPBJsR_1vwH9Kavi/DjXbzpTJ90FrYAft8UNzas_XqwxoXTzi4SqyyDPIoVU" alt="" />
 				
 				<p>This one's going to Indonesia tomorrow to its owner, and the man that conceived the build, @limasenar
 
@@ -1017,7 +829,7 @@ Thanks for trusting me with the commission man ❤️ #moarguitarsforever</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/9dab2eb1a149d09d422fb8f0eb4de488/bfbc89ac/Screenshot2020-05-01at06.56.50.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/D6Az2hJGj9ixVVKZIPwZTw/fefH_uXjNm3_YzE0fk1gsIsJF09jw-bqFplTyQIivRcZs7KdKhzCMIqK5LIBMIbXzSJ5XDIeu8h3C27prJ3uvs6Bma0jnMFBU5fISjnFsbUj4igM6elEsRu_Rqg5HCF1/ALWgLGc9BEti54taHzaJ2dxKpCHJyE19oBnDfb9KrF0" alt="" />
 				
 				<p>This week's workshop diary is up on YouTube! Click the link in my bio, or swipe up on my story to see what I've been up to this week.</p>
 			</div>
@@ -1026,7 +838,7 @@ Thanks for trusting me with the commission man ❤️ #moarguitarsforever</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/bb7ba1fdbc5275d8b3213957de52e3a0/88df87c8/Screenshot2020-05-01at06.56.08.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/55Ut2Bv-4VtSzpZWbwutJQ/DXqEzh1YeTXhK_yBJsFXktbVIcLib3WlAZwGzlNUxVrHVLqXCx-Ii9V-XBrsylGRBcSYIhPay9rjY7EQKeDHzpRj-sMT5lWvB0v8dgB-qX4EZkTHmLxFRO9GryA-qG57/Hfq2C8UPf4EcXryROWwzHMxcHFoAWz2oaK2cUawky0c" alt="" />
 				
 				<p>I know I'm maybe a little biased but I really love this guitar. Modern playability with a natural feel, and a resonant, vibrant and warm sound that works with what you give it.</p>
 			</div>
@@ -1035,7 +847,7 @@ Thanks for trusting me with the commission man ❤️ #moarguitarsforever</p>
 			
 			<div class="4u 12u$(medium)">
 				
-				<img class="image fit" src="https://dl.airtable.com/.attachments/88fa6bc8a40e450cc48722abe0957b44/a3c95f49/Screenshot2020-05-01at06.55.00.png" alt="" />
+				<img class="image fit" src="https://v5.airtableusercontent.com/v1/15/15/1679745600000/wPUk09fGZD27tRgD84VSXg/96m1QcClT8FiZb4pesubm-NjXDaAfzluZ6CyXWz74glTGdjQlQC4qRRZhE03yuyUQCB4TvgzmSBz61XjTn1IIrrfzQA9nWXYniLrhbCEqKhJJiIjSKyAIxnk4HEibmTu/WCPNh5MAiFbxfHReZzgrFXQcoqu7zn6QdUn-fr-veg0" alt="" />
 				
 				<p>Left or right and why?
 
@@ -1050,44 +862,12 @@ It's amazing how different these two guitars are actually, when coming from such
 </section>
 
 </div>
- <!-- Footer -->
-	<footer id="footer">
-		<div class="inner">
-			<div class="row 100% uniform">
-				<div class="12u 12u$(medium) links">
-					<div class="footerbox">
-						<p style="margin-bottom: 0">&copy; Moar Guitars 2022&nbsp;&nbsp;|&nbsp;&nbsp;Hand-made in Copenhagen&nbsp;&nbsp;|&nbsp;&nbsp;Website by <a href="https://johnhayn.es" target="_blank">John Haynes</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/merch">Moar Merch</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="/contact">Contact Moar</a></p>
-					</div>
-					<div class="footerbox">
-						<ul class="icons">
-							
-							<li><a href="https://www.facebook.com/moarguitars/" class="icon alt fa-facebook" target="_blank"><span class="label">Facebook</span></a></li>
-							
-							
-							
-							<li><a href="https://www.instagram.com/moarguitars/" class="icon alt fa-instagram" target="_blank"><span class="label">Instagram</span></a></li>
-							
-							
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-	</footer>
-
-</div>
-
-<!-- Scripts -->
-	<script src="http://localhost:4000/assets/js/jquery.min.js"></script>
-	<script src="http://localhost:4000/assets/js/jquery.scrolly.min.js"></script>
-	<script src="http://localhost:4000/assets/js/jquery.scrollex.min.js"></script>
-	<script src="http://localhost:4000/assets/js/skel.min.js"></script>
-	<script src="http://localhost:4000/assets/js/util.js"></script>
-	<!--[if lte IE 8]><script src="http://localhost:4000/assets/js/ie/respond.min.js"></script><![endif]-->
-	<script src="http://localhost:4000/assets/js/main.js"></script>
 
 
-</body>
-
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    
+  </body>
 </html>
