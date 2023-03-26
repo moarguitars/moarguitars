@@ -639,27 +639,35 @@
 	        }
 	    }
 
-		// VAT block
-		const vatblock = document.getElementById('vat-display');
-
-		document.getElementById('vat-display').style.display = "";
-		
-		if (shippingchoice != 'EUandUK') {
-		  vatblock.style.display = "none";
-		  var vattotal = 0;
-		} else {
-		  vatblock.style.display = "";
-		  var vattotal = (sum + shippingcost) * 0.25;
-		}
-		document.getElementById('vat-total').innerHTML = '$' + vattotal;
-
 	    // Totals for text
 		if (sum < 1900) {
-		  document.getElementById('final-total').innerHTML = '$' + 1900;
-		  document.getElementById('price-total').innerHTML = '$' + (1900 + shippingcost + vattotal);
+			// VAT block
+			const vatblock = document.getElementById('vat-display');
+			document.getElementById('vat-display').style.display = "";
+			if (shippingchoice != 'EUandUK') {
+			  vatblock.style.display = "none";
+			  var vattotal = 0;
+			} else {
+			  vatblock.style.display = "";
+			  var vattotal = (1900 + shippingcost) * 0.25;
+			}
+			document.getElementById('vat-total').innerHTML = '$' + vattotal;
+			document.getElementById('final-total').innerHTML = '$' + 1900;
+			document.getElementById('price-total').innerHTML = '$' + (1900 + shippingcost + vattotal);
 		} else {
-		  document.getElementById('final-total').innerHTML = '$' + sum;
-		  document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal);
+		  	// VAT block
+			const vatblock = document.getElementById('vat-display');
+			document.getElementById('vat-display').style.display = "";
+			if (shippingchoice != 'EUandUK') {
+			  vatblock.style.display = "none";
+			  var vattotal = 0;
+			} else {
+			  vatblock.style.display = "";
+			  var vattotal = (sum + shippingcost) * 0.25;
+			}
+			document.getElementById('vat-total').innerHTML = '$' + vattotal;
+		  	document.getElementById('final-total').innerHTML = '$' + sum;
+			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal);
 		}
 
 		// Shipping
