@@ -104,13 +104,11 @@
 <ul class="actions" style="margin-bottom: 0;">
 	{% if page.title == "Dolly" %}
 	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Proceed to checkout" class="button special fit"/></li>
-	<input type="hidden" name="_next" id="next" value="{{ site.baseurl }}/buy-now" />
 	{% else %}
 	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Save and Send Quote" class="button special fit"/></li>
-	<input type="hidden" name="_next" id="next" value="{{ site.baseurl }}/order-placed" />
 	{% endif %}
 <!-- 			<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Start again" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li> -->
-	
+	<input type="hidden" name="_next" id="next" value="" />
 </ul>
 </p>
 
