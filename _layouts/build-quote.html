@@ -180,9 +180,9 @@
 	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
 	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 
 	    var encodedQueryParams = btoa(queryParams);
-		console.log(queryParams)   
-		console.log(encodedQueryParams);
 	    document.getElementById('next').value = '{{ site.baseurl | absolute_url }}/buy-now' + encodedQueryParams;
+	    console.log(queryParams)   
+		console.log(encodedQueryParams);
 
 
 	    
