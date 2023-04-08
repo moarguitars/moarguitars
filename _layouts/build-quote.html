@@ -13,7 +13,7 @@
 			<div class="inner row uniform">
 				<div class="12u 12u(small)" style="margin-bottom: 2em;">
 					<div class="100%">
-						<a href="{{ '/guitars' | relative_url }}">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;{{ page.title }}</p>
+						<a href="{{ site.baseurl | absolute_url }}">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;{{ page.title }}</p>
 					</div>
 					<h1>The {{ page.title }}</h1>
 					<hr/>
@@ -27,16 +27,25 @@
 					{% endif %}
 				</div>
 				<!-- Gallery -->
-				{% for record in site.data.gallery.records reversed %}
-					{% if record.fields.guitar == page.img-tag and record.fields.placement == "gallery" %}
-					<div class="4u 12u$(medium)">
-						<div class="gallery" style="background-image:url({{ record.fields.image[0].url }})">
-						</div>
+				<div class="4u 12u$(medium)">
+					<div class="gallery" style="background-image:url('{{ site.baseurl }}assets/images/{{ page.title | downcase }}/1.jpg')">
 					</div>
-					{% endif %}
-				{% endfor %}
+				</div>
+				<div class="4u 12u$(medium)">
+					<div class="gallery" style="background-image:url('{{ site.baseurl }}assets/images/{{ page.title | downcase }}/2.jpg')">
+					</div>
+				</div>
+				<div class="4u 12u$(medium)">
+					<div class="gallery" style="background-image:url('{{ site.baseurl }}assets/images/{{ page.title | downcase }}/3.jpg')">
+					</div>
+				</div>
 			</div>
+			<!-- Dolly form -->
+			{% if page.title == "Dolly" %}
+			<form class="inner row uniform" id="extra-features" action="https://formspree.io/f/xgebpvey" method="POST">
+			{% else %}
 			<form class="inner row uniform" id="extra-features" action="https://formspree.io/xnqoqbjw" method="POST">
+			{% endif %}			
 				<div class="8u 12u(small)" style="padding-right: 2em;">
 					<!-- Extras -->
 					{% if page.title == "Dolly" %}
@@ -162,7 +171,7 @@
 		console.log(shippingchoice);
 		
 
-		var queryParams = "?type=guitar&deposit=" + '{{ page.title }}';
+		var queryParams = "?price=" + (sum + shippingcost + vattotal);
 	    queryParams += "&pickup1=" + pickup1.options[pickup1.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup2=" + pickup2.options[pickup2.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup3=" + pickup3.options[pickup3.selectedIndex].getAttribute('name');
@@ -170,8 +179,11 @@
 	    queryParams += "&orientation=" + orientation.options[orientation.selectedIndex].getAttribute('name');
 	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
 	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 
-	    document.getElementById('next').value = '{{ site.baseurl }}/order-placed' + queryParams;
+	    var encodedQueryParams = btoa(queryParams);
 		console.log(queryParams)   
+		console.log(encodedQueryParams);
+	    document.getElementById('next').value = '{{ site.baseurl | absolute_url }}/buy-now' + encodedQueryParams;
+
 
 	    
 	}

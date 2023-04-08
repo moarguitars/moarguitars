@@ -22,9 +22,6 @@
 <loc>http://localhost:4000/deposit-paid/</loc>
 </url>
 <url>
-<loc>http://localhost:4000/design-dolly/</loc>
-</url>
-<url>
 <loc>http://localhost:4000/design-wayfair/</loc>
 </url>
 <url>
@@ -32,9 +29,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/gallery/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/guitars/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/</loc>
@@ -68,9 +62,6 @@
 </url>
 <url>
 <loc>http://localhost:4000/pickups/</loc>
-</url>
-<url>
-<loc>http://localhost:4000/place-order/</loc>
 </url>
 <url>
 <loc>http://localhost:4000/podcasts/</loc>

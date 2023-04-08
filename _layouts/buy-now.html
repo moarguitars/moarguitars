@@ -23,17 +23,56 @@
 		<div class="row 100% uniform">
 			<div class="12u 12u$(medium)" style="padding-right: 1em;">
 		      	<header class="major">
-					<h1>Finalise purchase</h1>
+					<h1>Checkout</h1>
 				</header>
 			</div>
 		    <div class="8u 12u$(medium)" style="padding-right: 2em;">
-				<p>We've received the details of your order and we'll be in touch very soon to discuss the details. The quoted prices are locked in and guaranteed for 30 days after the quote is generated.</p>
-				<p>If you're ready to go ahead, please continue to pay the deposit via the paypal link on this page.</p>
-				<p>If you have any questions, please <a href="{{ 'contact' | relative_url }}">get in touch with us</a>.</p>
+		    	<h3>Your Dolly order</h3>
+				<div style="margin-bottom: 0.5em">
+					<table class="alt">
+						<tbody>
+							<tr>
+								<td width="50%">
+									<p>Guitar</p>
+								</td>
+								<td width="50%">
+									<span value="${{page.price-usd}}" id="final-total" name="total-price">$1900</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p>Shipping</p>
+								</td>
+								<td>
+									<span value="$100" id="shipping-total" name="shipping-price">$100</span>
+								</td>
+							</tr>
+							<tr id="vat-display">
+								<td>
+									<p>VAT</p>
+								</td>
+								<td>
+									<span value="$500" id="vat-total" name="vat-price">$500</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<p style="font-weight: 700;">Total</p>
+								</td>
+								<td>
+									<span style="font-weight: 700;" type="text" value="$2500" id="price-total" name="total-price" disabled>$2500</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 		    </div>
 		    <div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
 				<div class="">
-					<p>A deposit is required to secure your order and place your name on the waitlist. Deposits are non-refundable.</p>
+					<h3>Payment</h3>
+					<p>Pay now to complete your purchase.</p>
+<!-- 					<div id="decode">
+					</div> -->
 					<div style="margin-bottom: 2em;">
 						<label>Total Deposit (USD)</label>
 						<input style="font-weight: 700;" type="text" value="${{page.price-usd}}" id="deposit-price" name="total-price" disabled></input>
@@ -76,9 +115,28 @@
 
 <!-- URL Parameters -->
 <script type="text/javascript">
+
+window.addEventListener("DOMContentLoaded", function() {
+  const decodeDiv = document.getElementById('decode');
+  var decodedQueryParams = atob(encodedQueryParams);
+  console.log(decodedQueryParams);
+  const decodedQueryParams = new URLSearchParams(window.location.search);
+
+  const ul = document.createElement('ul');
+
+  params.forEach(function(value, key) {
+    const li = document.createElement('li');
+    const text = document.createTextNode(decodeURIComponent(value));
+    li.appendChild(text);
+    ul.appendChild(li);
+  });
+
+  decodeDiv.appendChild(ul);
+});
+
     const queryString = window.location.search;
 	const urlParams = new URLSearchParams(queryString);
-	const deposit_price = urlParams.get('deposit')
+	const deposit_price = urlParams.get('price')
 	document.getElementById('deposit-price').value = '$' + deposit_price;
 	console.log(deposit_price);
 </script>
