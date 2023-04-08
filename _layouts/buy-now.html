@@ -29,7 +29,8 @@
 		    <div class="8u 12u$(medium)" style="padding-right: 2em;">
 		    	<h3>Your Dolly order</h3>
 				<div style="margin-bottom: 0.5em">
-					<table class="alt">
+					<ul id="params-list"></ul>
+					<table class="alt" id="my-table">
 						<tbody>
 							<tr>
 								<td width="50%">
@@ -115,28 +116,55 @@
 
 <!-- URL Parameters -->
 <script type="text/javascript">
+window.addEventListener('DOMContentLoaded', function() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const encodedData = urlParams.get('data');
 
-window.addEventListener("DOMContentLoaded", function() {
-  const decodeDiv = document.getElementById('decode');
-  var decodedQueryParams = atob(encodedQueryParams);
-  console.log(decodedQueryParams);
-  const decodedQueryParams = new URLSearchParams(window.location.search);
+  // Remove the ? character from the beginning of the string
+  const decodedData = atob(encodedData);
 
-  const ul = document.createElement('ul');
+  const paramsArray = decodedData.split('&');
+  const paramsObject = {};
 
-  params.forEach(function(value, key) {
-    const li = document.createElement('li');
-    const text = document.createTextNode(decodeURIComponent(value));
-    li.appendChild(text);
-    ul.appendChild(li);
+  paramsArray.forEach(function(param, index) {
+    if (index === 0) {
+      param = param.substring(1);
+    }
+    const [key, value] = param.split('=');
+    const decodedValue = value ? decodeURIComponent(value.replace(/\+/g, '%20')) : '';
+    paramsObject[key] = decodedValue;
+    console.log(key + ': ' + decodedValue);
   });
 
-  decodeDiv.appendChild(ul);
+  const price = parseFloat(paramsObject.price || 0);
+  document.getElementById('payment-total').value = '$' + sum;
+
+  // Get the table element
+	const table = document.getElementById('my-table');
+
+	// Loop through the paramsObject
+	for (const [key, value] of Object.entries(paramsObject)) {
+	  // Create a new table row
+	  const row = document.createElement('tr');
+
+	  // Create the first cell with the key as text
+	  const cell1 = document.createElement('td');
+	  cell1.textContent = key;
+	  row.appendChild(cell1);
+
+	  // Create the second cell with the value as a span
+	  const cell2 = document.createElement('td');
+	  const span = document.createElement('span');
+	  span.textContent = value;
+	  span.setAttribute('value', value);
+	  span.setAttribute('id', `${key}-total`);
+	  span.setAttribute('name', `${key}-price`);
+	  cell2.appendChild(span);
+	  row.appendChild(cell2);
+
+	  // Append the row to the table
+	  table.appendChild(row);
+	}
 });
 
-    const queryString = window.location.search;
-	const urlParams = new URLSearchParams(queryString);
-	const deposit_price = urlParams.get('price')
-	document.getElementById('deposit-price').value = '$' + deposit_price;
-	console.log(deposit_price);
 </script>

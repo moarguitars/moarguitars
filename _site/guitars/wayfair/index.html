@@ -232,15 +232,15 @@
 				</div>
 				<!-- Gallery -->
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/1.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/wayfair/1.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/2.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/wayfair/2.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/3.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/wayfair/3.jpg')">
 					</div>
 				</div>
 			</div>
@@ -936,7 +936,6 @@
 	
 	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Save and Send Quote" class="button special fit"/></li>
 	
-<!-- 			<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Start again" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li> -->
 	<input type="hidden" name="_next" id="next" value="" />
 </ul>
 </p>
@@ -1023,7 +1022,7 @@
 		// Totals for text
 	    document.getElementById('payment-custom').innerHTML = '$' + customisations;
 	    document.getElementById('payment-total').value = '$' + sum;
-		document.getElementById('next').value = '//order-placed?type=guitar&deposit=' + (sum*0.25);
+		document.getElementById('next').value = '../order-placed?type=guitar&deposit=' + (sum*0.25);
 	    
 	    
 	}

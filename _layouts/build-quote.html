@@ -28,15 +28,15 @@
 				</div>
 				<!-- Gallery -->
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('{{ ../assets/images/{{ page.title | downcase }}/1.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/1.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('{{ ../assets/images/{{ page.title | downcase }}/2.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/2.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('{{ ../assets/images/{{ page.title | downcase }}/3.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/3.jpg')">
 					</div>
 				</div>
 			</div>
@@ -180,9 +180,10 @@
 	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
 	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 
 	    var encodedQueryParams = btoa(queryParams);
-	    document.getElementById('next').value = '{{ site.baseurl | absolute_url }}/buy-now' + encodedQueryParams;
+	    console.log(encodedQueryParams);
+	    document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
 	    console.log(queryParams)   
-		console.log(encodedQueryParams);
+		
 
 
 	    
@@ -225,7 +226,7 @@
 		// Totals for text
 	    document.getElementById('payment-custom').innerHTML = '$' + customisations;
 	    document.getElementById('payment-total').value = '$' + sum;
-		document.getElementById('next').value = '{{ site.baseurl }}/order-placed?type=guitar&deposit=' + (sum*0.25);
+		document.getElementById('next').value = '../order-placed?type=guitar&deposit=' + (sum*0.25);
 	    
 	    
 	}

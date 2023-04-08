@@ -227,15 +227,15 @@
 				</div>
 				<!-- Gallery -->
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/1.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/dolly/1.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/2.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/dolly/2.jpg')">
 					</div>
 				</div>
 				<div class="4u 12u$(medium)">
-					<div class="gallery" style="background-image:url('/3.jpg')">
+					<div class="gallery" style="background-image:url('/assets/images/dolly/3.jpg')">
 					</div>
 				</div>
 			</div>
@@ -378,7 +378,7 @@
 					<!-- Quote Box -->
 					<!-- Maths -->	
 
-<!-- <div style="margin-bottom: 1em">
+<div style="margin-bottom: 1em">
 	<h4 style="margin-bottom: 0.5em;">Ship to</h4>
 	<div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">   
 		<select name="shipping" id="shipping" onchange="updateTotals()" required>
@@ -389,7 +389,7 @@
 	        <option name="Australia" value="Australia:250">Australia</option>
 	    </select>
 	</div>
-</div> -->
+</div>
 <div style="margin-bottom: 0.5em">
 	<table class="alt">
 		<tbody>
@@ -449,7 +449,6 @@
 	
 	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Proceed to checkout" class="button special fit"/></li>
 	
-<!-- 			<li style="width:100%; padding:0;"><input id="reset" type="reset" value="Start again" class="button small fit"  onclick="setTimeout(updateTotals,20);" /></li> -->
 	<input type="hidden" name="_next" id="next" value="" />
 </ul>
 </p>
@@ -614,9 +613,10 @@
 	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
 	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 
 	    var encodedQueryParams = btoa(queryParams);
-	    document.getElementById('next').value = 'http://localhost:4000//buy-now' + encodedQueryParams;
+	    console.log(encodedQueryParams);
+	    document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
 	    console.log(queryParams)   
-		console.log(encodedQueryParams);
+		
 
 
 	    
