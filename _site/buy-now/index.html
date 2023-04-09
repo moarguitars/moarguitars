@@ -357,7 +357,7 @@ window.addEventListener('DOMContentLoaded', function() {
     if (key === 'Price') {
       const depositPrice = parseFloat(value);
       const depositPriceElement = document.getElementById('deposit-price');
-      depositPriceElement.textContent = depositPrice;
+      depositPriceElement.value = '$' + depositPrice;
       continue;
     }
 
