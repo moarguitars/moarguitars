@@ -5,7 +5,7 @@ type: guitar
 nav-menu: false
 show_tile: false
 date: 2020-03-09 19:45:00
-description: The Dolly is Moars guitar for the people.
+description: The Dolly is Moar's guitar for the people.
 image: 
 model: Dolly
 img-tag: dolly
