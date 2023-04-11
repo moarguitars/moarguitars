@@ -19,6 +19,7 @@
 					<hr/>
 					<h3>{{ page.description }}</h3>
 					<p>{{ page.modeldesc }}</p>
+					{{ content }}
 					{% if page.title == "Wayfair" %}
 					<div class="box">
 						<h4>Design your dream Wayfair</h4>
@@ -27,6 +28,7 @@
 					{% endif %}
 				</div>
 				<!-- Gallery -->
+				{% if page.image %}
 				<div class="4u 12u$(medium)">
 					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/1.jpg')">
 					</div>
@@ -39,6 +41,7 @@
 					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/3.jpg')">
 					</div>
 				</div>
+				{% endif %}
 			</div>
 			<!-- Dolly form -->
 			{% if page.title == "Dolly" %}

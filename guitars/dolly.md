@@ -5,11 +5,8 @@ type: guitar
 nav-menu: false
 show_tile: false
 date: 2020-03-09 19:45:00
-
 description: The Dolly is Moars guitar for the people.
-
-image: '/assets/images/dolly/preview.jpg'
-
+image: 
 model: Dolly
 img-tag: dolly
 price-usd: 1720
