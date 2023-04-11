@@ -9,7 +9,7 @@ description: The Dolly is Moar's guitar for the people.
 image: 
 model: Dolly
 img-tag: dolly
-price-usd: 1720
+price-usd: 1770
 modeldesc: Simple construction, light weight of 2.8kgs/6.1lbs, easy to swap necks for different scale lengths, easy to swap pickups for different sounds, totally ambidextrous, totally modular, it is a stable, versatile and inspiring workhorse of a guitar.
 ---
 
