@@ -99,54 +99,58 @@ window.addEventListener('DOMContentLoaded', function() {
 
   table.appendChild(headerRow);
 
-	// iterate over the parameters and add a row for each, except for "price"
-	for (const [key, value] of Object.entries(paramsObject)) {
-	  if (key === 'price') {
-	    const depositPrice = parseFloat(value);
-	    const depositPriceElement = document.getElementById('deposit-price');
-	    depositPriceElement.value = '$' + depositPrice;
-	    continue;
-	  }
-	  let attributeText, attribute, option;
-	  switch(key) {
-	    case 'Pickup1':
-	      attribute = 'Neck pickup';
-	      option = value; // Changed this line
-	      break;
-	    case 'Pickup2':
-	      attribute = 'Middle pickup';
-	      option = value; // Changed this line
-	      break;
-	    case 'Pickup3':
-	      attribute = 'Bridge pickup';
-	      option = value; // Changed this line
-	      break;
-	    default:
-	      attribute = key.charAt(0).toUpperCase() + key.slice(1);
-	      option = value;
-	  }
-
-	  attributeText = document.createTextNode(attribute);
-	  optionText = document.createTextNode(option);
-
-	  const row = document.createElement('tr');
-	  const attributeCell = document.createElement('td');
-	  const valueCell = document.createElement('td');
-
-	  attributeCell.appendChild(attributeText);
-	  row.appendChild(attributeCell);
-
-	  const optionCell = document.createElement('td');
-	  optionCell.appendChild(optionText);
-	  row.appendChild(optionCell);
-
-	  table.appendChild(row);
+  // iterate over the parameters and add a row for each, except for "price"
+  for (const [key, value] of Object.entries(paramsObject)) {
+    if (key === 'price') {
+      const depositPrice = parseFloat(value);
+      const depositPriceElement = document.getElementById('deposit-price');
+      depositPriceElement.value = '$' + depositPrice;
+      continue;
+    }
+    let attributeText, attribute, choice;
+    switch (key) {
+    case 'Pickup1':
+        attribute = 'Neck pickup';
+        choice = value;
+        break;
+    case 'Pickup2':
+        attribute = 'Middle pickup';
+        choice = value;
+        break;
+    case 'Pickup3':
+        attribute = 'Bridge pickup';
+        choice = value;
+        break;
+    default:
+        attribute = key.charAt(0).toUpperCase() + key.slice(1);
+        choice = value;
 	}
 
+    attributeText = document.createTextNode(attribute);
+
+    const choiceText = document.createTextNode(choice);
+
+    const row = document.createElement('tr');
+    const attributeCell = document.createElement('td');
+    const choiceCell = document.createElement('td');
+
+    attributeCell.appendChild(attributeText);
+    row.appendChild(attributeCell);
+
+    choiceCell.appendChild(choiceText);
+    row.appendChild(choiceCell);
+
+    table.appendChild(row);
+
+    console.log('Added row to table:', attribute, '-', choice);
+  }
 
   // add the table to the DOM
   document.getElementById('table-container').appendChild(table);
+
+  console.log('Finished building table');
 });
+
 </script>
 
 <script>
