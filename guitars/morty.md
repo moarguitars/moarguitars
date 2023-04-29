@@ -8,7 +8,7 @@ date: 2020-03-09 19:45:00
 
 description: Built around a perfect foundation the Morty is all you need in a guitar.
 
-image: 'assets/images/t-type/t-type-hollow-dark.jpg'
+image: 'assets/images/morty/t-type-hollow-dark.jpg'
 
 model: Morty
 img-tag: morty

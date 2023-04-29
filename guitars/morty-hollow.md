@@ -8,7 +8,7 @@ date: 2020-03-09 19:45:00
 
 description: All you need in a guitar and nothing else. Built on a perfect foundation, simplicity can be more of an inspiration than a limitation.
 
-image: 'assets/images/t-type/t-type-hollow-dark.jpg'
+image: 'assets/images/morty/t-type-hollow-dark.jpg'
 
 
 img-tag: morty-hollow

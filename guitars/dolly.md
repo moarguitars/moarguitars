@@ -6,7 +6,7 @@ nav-menu: false
 show_tile: false
 date: 2020-03-09 19:45:00
 description: The Dolly is Moar's guitar for the people.
-image: 
+image: 'assets/images/dolly/dolly.webp'
 model: Dolly
 img-tag: dolly
 price-usd: 1770

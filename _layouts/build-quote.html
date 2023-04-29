@@ -28,7 +28,9 @@
 					{% endif %}
 				</div>
 				<!-- Gallery -->
-				{% if page.image %}
+				{% if page.title == "Dolly" %}
+				<img class="12u 12u$(medium)" src="/assets/images/dolly/dolly.webp">
+				{% else %}
 				<div class="4u 12u$(medium)">
 					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/1.jpg')">
 					</div>
