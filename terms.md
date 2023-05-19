@@ -1,10 +1,10 @@
 ---
 layout: build-pickup
-title: Pickups
+title: Terms
 description: 'Hand-made, bespoke pickups'
 seo_description:
-show_tile: true
-nav-menu: true
+show_tile: false
+nav-menu: false
 order: 2
 image: 'assets/images/pickups/pickups-wayfair-dark.jpg'
 ---
