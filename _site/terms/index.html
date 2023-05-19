@@ -15,7 +15,7 @@
 	<meta property="og:locale" content="en_GB">
 	<meta property="og:type" content="article">
 	<meta property="og:title" content="Pickups">
-	<meta property="og:url" content="http://localhost:4000/pickups/">
+	<meta property="og:url" content="http://localhost:4000/terms/">
 	<meta property="og:image" content="https://moarguitars.com/assets/images/moar-guitars--og.png" />
 	<meta property="og:site_name" content="Moar Guitars">
 	<meta property="article:publisher" content="http://localhost:4000" />
@@ -227,7 +227,7 @@
 					<h1>Pickups</h1>
 					<hr/>
 					<h3>Hand-made, bespoke pickups</h3>
-					<p>It is very hard to communicate that I am able to make more or less anything you can think up, so I have started with a clear price list for most “normal” pickup types. Prices include any cover options you might like, and each pickup is wound to your taste. I do not wax pot my pickups as standard but am happy to include it in the price.</p>
+					<p></p>
 				</div>
 				<div class="4u 12u$(medium)">
 					<img class="image fit" src="/assets/images/pickups/moar-pickups-2.jpg" alt="">
@@ -810,7 +810,7 @@
 		var result = pickupcost;
 
 	    // Total Price
-	    var sum = 0 + result;
+	    var sum =  + result;
 	    for (var i = 0, num = inputs.length; i < num; i++) {
 	        if (inputs[i].checked) {
 	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
@@ -818,7 +818,7 @@
 	    }
 
 	    // Customisation Total
-	    var customisations = sum - 0;
+	    var customisations = sum - ;
 
 		// Totals for text
 	    // document.getElementById('payment-custom').innerHTML = '$' + customisations;
