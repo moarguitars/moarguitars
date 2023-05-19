@@ -1,5 +1,5 @@
 ---
-layout: build-pickup
+layout: page
 title: Terms
 description: 'Hand-made, bespoke pickups'
 seo_description:
