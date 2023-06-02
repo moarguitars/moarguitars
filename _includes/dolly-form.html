@@ -1,10 +1,21 @@
+<!-- Orientation -->
+<section style="box-sizing: border-box; margin-bottom: 2em;">
+    <h3 style="margin-bottom: 0.5em">Orientation</h3>   
+    <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
+        <select name="orientation" id="orientation" onchange="updateTotals()" required>
+            <option name="Right" value="Left:0" selected>Right-handed</option>
+            <option name="Left" value="Right:0">Left-handed</option>
+        </select>
+    </div>
+</section>
+
 <!-- Pickups -->
 <section style="box-sizing: border-box; margin-bottom: 2em;">
 	<h3 style="margin-bottom: 0.5em">Pickups</h3>    
     <strong>Neck</strong>
     <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
         <select name="pickup1" id="pickup1" onchange="updateTotals()" required>
-            <option name="none" value="none:0">None - $0</option>
+            <option name="none" value="none:0">None - Free</option>
             <option name="P90" value="P90:90" selected>P90 - $90</option>
             <option name="StratSingleCoil" value="StratSingleCoil:90">Single Coil (Strat) - $90</option>
             <option name="RailSingleCoil" value="RailSingleCoil:90">Single Coil (Rail) - $90</option>
@@ -27,7 +38,7 @@
     <strong>Middle</strong>
     <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
         <select name="pickup2" id="pickup2" onchange="updateTotals()" required>
-            <option name="none" value="none:0" selected>None - $0</option>
+            <option name="none" value="none:0" selected>None - Free</option>
             <option name="P90" value="P90:90">P90 - $90</option>
             <option name="StratSingleCoil" value="StratSingleCoil:90">Single Coil (Strat) - $90</option>
             <option name="RailSingleCoil" value="RailSingleCoil:90">Single Coil (Rail) - $90</option>
@@ -50,7 +61,7 @@
     <strong>Bridge</strong>
     <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
         <select name="pickup3" id="pickup3" onchange="updateTotals()" required>
-            <option name="none" value="none:0">None - $0</option>
+            <option name="none" value="none:0">None - Free</option>
             <option name="P90" value="P90:90" selected>P90 - $90</option>
             <option name="StratSingleCoil" value="StratSingleCoil:90">Single Coil (Strat) - $90</option>
             <option name="RailSingleCoil" value="RailSingleCoil:90">Single Coil (Rail) - $90</option>
@@ -75,32 +86,24 @@
 <!-- Electronics -->
 <section style="box-sizing: border-box; margin-bottom: 2em;">
     <h3 style="margin-bottom: 0.5em">Electronics</h3>   
-    <p>Choose from 3 wiring layouts.</p>
+    <h4>Standard electronics</h4>
     <ul>
-        <li>Volume, tone and 3-way switch (like a t-style guitar)</li>
-        <li>Volume, tone, tone and a 3-way switch (like a LP-style guitar)</li>
-        <li>Volume, tone, tone and a 5-way switch (like an s-style guitar)</li>
+        <li>Single pickup guitars Dollys come as standard with a universal volume and tone control</li>
+        <li>Dual pickup guitars Dollys come with two slider on/off switches, one for each pickup, and a universal volume and tone control.</li>
+        <li>Triple pickup loaded guitars Dollys come with three slider on/off switches, one for each pickup, and a universal volume and tone control.</li>
     </ul>
+    <h4>Custom electronics</h4>
+    <p>Custom wiring options are offered for an upcharge, if you want coil splitting, tone controls for each pickup etc, we are happy to cater your needs. Select the "custom electronics" option and write your ideas in the special requests box when you order.</p>
+</p>
     <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
         <select name="electronics" id="electronics" onchange="updateTotals()" required>
-            <option name="Layout1" value="Layout1:0" selected>Layout 1 - $0</option>
-            <option name="Layout2" value="Layout2:100">Layout 2 - $100</option>
-            <option name="Layout3" value="Layout3:150">Layout 3 - $150</option>
+            <option name="Layout1" value="Layout1:0" selected>Standard - Free</option>
+            <option name="Layout2" value="Layout2:250">Custom - $250</option>
         </select>
     </div>
 </section>
 
-<!-- Orientation -->
-<section style="box-sizing: border-box; margin-bottom: 2em;">
-    <h3 style="margin-bottom: 0.5em">Orientation</h3>   
-    <p>Select your dominant hand.</p>
-    <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
-        <select name="orientation" id="orientation" onchange="updateTotals()" required>
-            <option name="Right" value="Left:0" selected>Right-handed</option>
-            <option name="Left" value="Right:0">Left-handed</option>
-        </select>
-    </div>
-</section>
+
 
 <!-- Strings -->
 <section style="box-sizing: border-box; margin-bottom: 2em;">

@@ -2,18 +2,19 @@
 layout: build-quote
 title: Dolly
 type: guitar
-nav-menu: false
-show_tile: false
+nav-menu: true
+show_tile: true
 date: 2020-03-09 19:45:00
-description: The Dolly is Moar's guitar for the people.
-image: 'assets/images/dolly/dolly.webp'
+description: The ultimate professional workhorse
+image: 'assets/images/dolly/3.jpg'
 model: Dolly
 img-tag: dolly
 price-usd: 1770
-modeldesc: Simple construction, light weight of 2.8kgs/6.1lbs, easy to swap necks for different scale lengths, easy to swap pickups for different sounds, totally ambidextrous, totally modular, it is a stable, versatile and inspiring workhorse of a guitar.
+modeldesc: Dolly is the everyday inspiration machine you can rely on. Simple, stable, resonant, repairable, lightweight, long lasting, versatile and virtuosic and each one is built entirely around you and your sound.
 ---
 
-It is made of roasted mahogany for the body and neck and has an ebony fretboard. The frets are stainless steel, fretboard radius is 12”, nut width is 42.5, scale length is 25.5”, and the neck is a slim D profile.
+The first guitar you grab in the studio. The guitar you take on tour, the guitar you can easily modify for new sounds as you evolve, the guitar that doesn’t punish your back or your hands after a long, late night session, the guitar that doesn’t get boring playing on acoustically for a days teaching. It is perfect at what it does.
 
-Dollys can be ordered with just about any pickup combination you can dream up, with 18 possible pickup choices for the neck, middle or bridge position, and 3 different electronic control layouts, there is a total of 34,992 possible configurations. Each Dolly is put together uniquely for each client. They come as standard with a set of my P90s and a volume, tone and 3 way switch, but if you want something totally unique, we are excited to make it!
-Whilst being simple, Dollys are still made in my workshop in Denmark, they all go through my hands, with the same stringent quality control, and expert level setup and sound that my clients expect from every Moar.
+They come as standard with beautiful 2 piece roasted mahogany bodies, roasted mahogany necks, ebony fretboards, medium stainless steel frets, 42.5mm scalloped bone nuts, 12” radius’ and a slim D profile neck. Average build weight is 2.8kgs/6.1lbs.
+
+Spec yours below, I can't wait to make you your new Dolly!

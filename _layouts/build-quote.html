@@ -15,11 +15,9 @@
 					<div class="100%">
 						<a href="{{ site.baseurl | absolute_url }}">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;{{ page.title }}</p>
 					</div>
-					<h1>The {{ page.title }}</h1>
-					<hr/>
+					<h1>{{ page.title }}</h1>
 					<h3>{{ page.description }}</h3>
 					<p>{{ page.modeldesc }}</p>
-					{{ content }}
 					{% if page.title == "Wayfair" %}
 					<div class="box">
 						<h4>Design your dream Wayfair</h4>
@@ -27,10 +25,6 @@
 					</div>
 					{% endif %}
 				</div>
-				<!-- Gallery -->
-				{% if page.title == "Dolly" %}
-				<img class="12u 12u$(medium)" src="/assets/images/dolly/dolly.webp">
-				{% else %}
 				<div class="4u 12u$(medium)">
 					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/1.jpg')">
 					</div>
@@ -43,7 +37,7 @@
 					<div class="gallery" style="background-image:url('/assets/images/{{ page.title | downcase }}/3.jpg')">
 					</div>
 				</div>
-				{% endif %}
+				{{ content }}
 			</div>
 			<!-- Dolly form -->
 			{% if page.title == "Dolly" %}
@@ -136,7 +130,7 @@
 	    }
 
 	    // Totals for text
-		if (sum < 1900) {
+		if (sum < 1950) {
 			// VAT block
 			const vatblock = document.getElementById('vat-display');
 			document.getElementById('vat-display').style.display = "";
@@ -145,11 +139,11 @@
 			  var vattotal = 0;
 			} else {
 			  vatblock.style.display = "";
-			  var vattotal = (1900 + shippingcost) * 0.25;
+			  var vattotal = (1950 + shippingcost) * 0.25;
 			}
 			document.getElementById('vat-total').innerHTML = '$' + vattotal;
-			document.getElementById('final-total').innerHTML = '$' + 1900;
-			document.getElementById('price-total').innerHTML = '$' + (1900 + shippingcost + vattotal);
+			document.getElementById('final-total').innerHTML = '$' + 1950;
+			document.getElementById('price-total').innerHTML = '$' + (1950 + shippingcost + vattotal);
 		} else {
 		  	// VAT block
 			const vatblock = document.getElementById('vat-display');
