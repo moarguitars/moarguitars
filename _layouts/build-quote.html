@@ -108,6 +108,10 @@
 		const stringsCost = parseCost(strings.options[strings.selectedIndex].getAttribute('value').split(":").pop());
 		const stringsChoice = strings.options[strings.selectedIndex].getAttribute('name');
 
+		const saddle = document.getElementById("saddle");
+		const saddleCost = parseCost(strings.options[strings.selectedIndex].getAttribute('value').split(":").pop());
+		const saddleChoice = strings.options[strings.selectedIndex].getAttribute('name');
+
 		const gigbag = document.getElementById("gigbag");
 		const gigbagCost = parseCost(gigbag.options[gigbag.selectedIndex].getAttribute('value').split(":").pop());
 		const gigbagChoice = gigbag.options[gigbag.selectedIndex].getAttribute('name');
@@ -119,7 +123,7 @@
 
 		// Results
 		// var result = pickup1cost + pickup2cost + pickup3cost;
-		var result = pickup1cost + pickup2cost + pickup3cost + electronicsCost + orientationCost + stringsCost + gigbagCost;
+		var result = pickup1cost + pickup2cost + pickup3cost + electronicsCost + saddleCost + orientationCost + stringsCost + gigbagCost;
 
 		 // Total Price
 	    var sum = ({{ page.price-usd }} + result);
@@ -175,6 +179,7 @@
 	    queryParams += "&pickup2=" + pickup2.options[pickup2.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup3=" + pickup3.options[pickup3.selectedIndex].getAttribute('name');
 	    queryParams += "&electronics=" + electronics.options[electronics.selectedIndex].getAttribute('name');
+	    queryParams += "&saddle=" + saddle.options[saddle.selectedIndex].getAttribute('name');
 	    queryParams += "&orientation=" + orientation.options[orientation.selectedIndex].getAttribute('name');
 	    queryParams += "&strings=" + strings.options[strings.selectedIndex].getAttribute('name');
 	    queryParams += "&gigbag=" + gigbag.options[gigbag.selectedIndex].getAttribute('name'); 

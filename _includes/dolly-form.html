@@ -103,8 +103,6 @@
     </div>
 </section>
 
-
-
 <!-- Strings -->
 <section style="box-sizing: border-box; margin-bottom: 2em;">
     <h3 style="margin-bottom: 0.5em">Strings</h3>  
@@ -117,13 +115,27 @@
     </div> 
 </section>
 
+<!-- Strings -->
+<section style="box-sizing: border-box; margin-bottom: 2em;">
+    <h3 style="margin-bottom: 0.5em">Bridge saddles</h3>  
+    <p>I love the sound from 3 intonated brass barrel saddles and find the intonation to be totally acceptable with them, so Dollys come with them as standard. But if you want free range of intonation adjustment between strings please select the 6 saddle option.</p>
+    <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
+        <select name="saddle" id="saddle" onchange="updateTotals()" required>
+            <option name="3saddle" value="3saddle:0" selected>3 Saddles - Free</option>
+            <option name="6saddle" value="6saddle:60">6 Saddles - $60</option>
+        </select>
+    </div> 
+</section>
+
 <!-- Case -->
 <section style="box-sizing: border-box; margin-bottom: 2em;">
     <h3 style="margin-bottom: 0.5em">Case</h3>   
+    <p>Custom flight available.</p>
     <div class="select-wrapper" style="margin-top: 1em; margin-bottom: 1em;">       
         <select name="gigbag" id="gigbag" onchange="updateTotals()" required>
-            <option name="gigbag" value="gigbag:0" selected>Gig bag (included)</option>
+            <option name="gigbag" value="gigbag:0" selected>Gig bag - Free</option>
             <option name="hardcase" value="hardcase:400">Hard case - $400</option>
+            <option name="flightcase" value="flightcase:800">Custom flight case - $800</option>
         </select>
     </div>
 </section>
