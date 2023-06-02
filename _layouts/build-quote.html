@@ -109,8 +109,8 @@
 		const stringsChoice = strings.options[strings.selectedIndex].getAttribute('name');
 
 		const saddle = document.getElementById("saddle");
-		const saddleCost = parseCost(strings.options[strings.selectedIndex].getAttribute('value').split(":").pop());
-		const saddleChoice = strings.options[strings.selectedIndex].getAttribute('name');
+		const saddleCost = parseCost(saddle.options[saddle.selectedIndex].getAttribute('value').split(":").pop());
+		const saddleChoice = saddle.options[saddle.selectedIndex].getAttribute('name');
 
 		const gigbag = document.getElementById("gigbag");
 		const gigbagCost = parseCost(gigbag.options[gigbag.selectedIndex].getAttribute('value').split(":").pop());
