@@ -145,9 +145,10 @@
 			  vatblock.style.display = "";
 			  var vattotal = (1950 + shippingcost) * 0.25;
 			}
-			document.getElementById('vat-total').innerHTML = '$' + vattotal;
-			document.getElementById('final-total').innerHTML = '$' + 1950;
-			document.getElementById('price-total').innerHTML = '$' + (1950 + shippingcost + vattotal);
+			document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+			document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+			document.getElementById('deposit-total').innerHTML = '$' + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 		} else {
 		  	// VAT block
 			const vatblock = document.getElementById('vat-display');
@@ -159,9 +160,10 @@
 			  vatblock.style.display = "";
 			  var vattotal = (sum + shippingcost) * 0.25;
 			}
-			document.getElementById('vat-total').innerHTML = '$' + vattotal;
-		  	document.getElementById('final-total').innerHTML = '$' + sum;
-			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal);
+			document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+			document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+			document.getElementById('deposit-total').innerHTML = '$' + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 		}
 
 		// Shipping
@@ -174,7 +176,7 @@
 		console.log(shippingchoice);
 		
 
-		var queryParams = "?price=" + (sum + shippingcost + vattotal);
+		var queryParams = "?price=" + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 	    queryParams += "&pickup1=" + pickup1.options[pickup1.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup2=" + pickup2.options[pickup2.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup3=" + pickup3.options[pickup3.selectedIndex].getAttribute('name');

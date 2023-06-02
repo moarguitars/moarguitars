@@ -422,7 +422,7 @@
 					<p>Guitar</p>
 				</td>
 				<td width="50%">
-					<span value="$1770" id="final-total" name="total-price">$1950</span>
+					<span value="$1770" id="final-total" name="total-price">$1950.00</span>
 				</td>
 			</tr>
 			<tr>
@@ -430,7 +430,7 @@
 					<p>Shipping</p>
 				</td>
 				<td>
-					<span value="$100" id="shipping-total" name="shipping-price">$100</span>
+					<span value="$100" id="shipping-total" name="shipping-price">$100.00</span>
 				</td>
 			</tr>
 			<tr id="vat-display">
@@ -438,15 +438,24 @@
 					<p>VAT</p>
 				</td>
 				<td>
-					<span value="$500" id="vat-total" name="vat-price">$500</span>
+					<span value="$500" id="vat-total" name="vat-price">$512.50</span>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<p style="font-weight: 700;">Total</p>
+					<p>Total</p>
 				</td>
 				<td>
-					<span style="font-weight: 700;" type="text" value="$2500" id="price-total" name="total-price" disabled>$2500</span>
+					<span type="text" value="$2500" id="price-total" name="total-price" disabled>$2562.50</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<p style="font-weight: 700;">Pay today</p>
+					<p style="font-size: 0.6em; font-weight: 700;">25% up front and the rest upon completion.</p>
+				</td>
+				<td>
+					<span style="font-weight: 700;" type="text" value="$625" id="deposit-total" name="total-deposit" disabled>$640.63</span>
 				</td>
 			</tr>
 		</tbody>
@@ -456,18 +465,16 @@
 
 
 
-
 <!-- Email -->
 <h4 style="margin-bottom: 0.5em;">Your details</h4>
 <div style="margin-bottom: 0.5em">
 	<input placeholder="email@moarguitars.com" type="email" id="email" name="email" required>
 </div>
-<p style="margin-bottom: 2em; font-size: 0.6em">Enter an email so that we can share the details of your order with you and the Moar Guitars team.</p>
 
 <!-- Submit -->
 <ul class="actions" style="margin-bottom: 0;">
 	
-	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Proceed to checkout" class="button special fit"/></li>
+	<li style="width:100%; padding:0;"><input id="submit" type="submit" value="Place deposit" class="button special fit"/></li>
 	
 	<input type="hidden" name="_next" id="next" value="" />
 </ul>
@@ -599,9 +606,10 @@
 			  vatblock.style.display = "";
 			  var vattotal = (1950 + shippingcost) * 0.25;
 			}
-			document.getElementById('vat-total').innerHTML = '$' + vattotal;
-			document.getElementById('final-total').innerHTML = '$' + 1950;
-			document.getElementById('price-total').innerHTML = '$' + (1950 + shippingcost + vattotal);
+			document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+			document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+			document.getElementById('deposit-total').innerHTML = '$' + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 		} else {
 		  	// VAT block
 			const vatblock = document.getElementById('vat-display');
@@ -613,9 +621,10 @@
 			  vatblock.style.display = "";
 			  var vattotal = (sum + shippingcost) * 0.25;
 			}
-			document.getElementById('vat-total').innerHTML = '$' + vattotal;
-		  	document.getElementById('final-total').innerHTML = '$' + sum;
-			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal);
+			document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+			document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+			document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+			document.getElementById('deposit-total').innerHTML = '$' + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 		}
 
 		// Shipping
@@ -628,7 +637,7 @@
 		console.log(shippingchoice);
 		
 
-		var queryParams = "?price=" + (sum + shippingcost + vattotal);
+		var queryParams = "?price=" + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 	    queryParams += "&pickup1=" + pickup1.options[pickup1.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup2=" + pickup2.options[pickup2.selectedIndex].getAttribute('name');
 	    queryParams += "&pickup3=" + pickup3.options[pickup3.selectedIndex].getAttribute('name');

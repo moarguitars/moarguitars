@@ -21,7 +21,7 @@
         <div class="row 100% uniform">
             <div class="12u 12u$(medium)" style="padding-right: 1em;">
                 <header class="major">
-                    <h1>Checkout</h1>
+                    <h1>Review and place deposit</h1>
                 </header>
             </div>
             <div class="8u 12u$(medium)" style="padding-right: 2em;">
@@ -37,7 +37,7 @@
             </div>
             <div class="box 4u 12u(small) sticky-quote" style="padding: 2em">
                 <div class="">
-                    <h3>Payment</h3>
+                    <h3>Pay deposit</h3>
                     <p>Pay now to complete your purchase.</p>
 <!--                     <div id="decode">
                     </div> -->
@@ -104,27 +104,33 @@ window.addEventListener('DOMContentLoaded', function() {
     if (key === 'price') {
       const depositPrice = parseFloat(value);
       const depositPriceElement = document.getElementById('deposit-price');
-      depositPriceElement.value = '$' + depositPrice;
+      depositPriceElement.value = '$' + depositPrice.toFixed(2);
       continue;
     }
     let attributeText, attribute, choice;
     switch (key) {
-    case 'Pickup1':
+      case 'Pickup1':
         attribute = 'Neck pickup';
         choice = value;
         break;
-    case 'Pickup2':
+      case 'Pickup2':
         attribute = 'Middle pickup';
         choice = value;
         break;
-    case 'Pickup3':
+      case 'Pickup3':
         attribute = 'Bridge pickup';
         choice = value;
         break;
-    default:
+      default:
         attribute = key.charAt(0).toUpperCase() + key.slice(1);
         choice = value;
-	}
+    }
+
+    if (key === '3Saddle') {
+      attribute = 'Three saddle';
+    } else if (key === '6Saddle') {
+      attribute = 'Six saddle';
+    }
 
     attributeText = document.createTextNode(attribute);
 
