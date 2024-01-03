@@ -9,7 +9,7 @@ description: The ultimate professional workhorse
 image: 'assets/images/dolly/3.jpg'
 model: Dolly
 img-tag: dolly
-price-usd: 1770
+price-usd: 2770
 modeldesc: Dolly is the everyday inspiration machine you can rely on. Simple, stable, resonant, repairable, lightweight, long lasting, versatile and virtuosic and each one is built entirely around you and your sound.
 ---
 
