@@ -12,7 +12,7 @@ image: 'assets/images/bass/moar-bass-player.png'
 
 model: 'Bass'
 img-tag: bass
-price-usd: 4000
+price-usd: 5700
 <!-- price-eur: 2,930
 price-gbp: 2,640
 price-dkk: 21,800 -->
