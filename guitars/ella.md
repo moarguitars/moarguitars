@@ -18,7 +18,7 @@ modeldesc: "I set out to create the most versatile, resonant, dynamic, playable 
 ---
 
 Ella is $8500 with a custom made, matching flight case.
-To order an Ella I need a $1500 deposit to secure your spot on my waiting list. The final sum is due upon completion. I am happy to arrange payment plans, or to just invoice for the remaining $6000 upon completion. If you wish to arrange a monthly payment plan please contact me directly by email to discuss options. I am flexible! 
+To order an Ella I need a $1500 deposit to secure your spot on my waiting list. The final sum is due upon completion. I am happy to arrange payment plans, or to just invoice for the remaining $7000 upon completion. If you wish to arrange a monthly payment plan please contact me directly by email to discuss options. I am flexible! 
 
 They can be ordered with either roasted walnut for the body and neck, roasted mahogany for the body and neck or wenge for the body and neck,  with an ebony, rosewood or wenge fretboard. They will come with stainless steel frets, 24.75" scale length and 42.5mm at the nut. They come with double bound necks and fretboards. 
 
