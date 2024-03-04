@@ -108,7 +108,7 @@
 		console.log(shippingchoice);
 		
 
-		var queryParams = "?price=" + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
+		var queryParams = "?price=" + 1500;
 	    var encodedQueryParams = btoa(queryParams);
 	    console.log(encodedQueryParams);
 	    document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
