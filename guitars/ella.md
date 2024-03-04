@@ -23,5 +23,6 @@ They can be ordered with either roasted walnut for the body and neck, roasted ma
 They will come with stainless steel frets, 24.75" scale length and 42.5mm at the nut. They come with double bound necks and fretboards.
 Ella has a small body, and is a parlor size guitar.
 Sound is picked up by my custom hidden magnetic pickup mounted via the fretboard and a passive piezo both on their own hidden blend pots mounted inside the soundhole.
-### Ella is named after my daughter, who is also delicate, thoughtful, focussed, responsive, beautiful, playful, boisterous and parlor sized. 
+
+Ella is named after my daughter, who is also delicate, thoughtful, focussed, responsive, beautiful, playful, boisterous and parlor sized. 
 
