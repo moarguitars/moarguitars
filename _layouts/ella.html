@@ -26,31 +26,6 @@
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc | markdownify }}</p>
 					{{ content | markdownify }}
-<!-- 					<div class="table-wrapper">
-			      		<h4>Base Price</h4>
-						<table class="alt">
-							<tbody>
-								<tr>
-									<th width="60%"> </th>
-					    			<th width="10%">USD</th>
-					    			<th width="10%">EUR</th>
-					    			<th width="10%">GBP</th>
-					    			<th width="10%">DKK</th>
-					    		</tr>
-								<tr>
-									<td width="60%">{{ page.model }}</td>
-									<td width="10%" ><span id="priceusd">price loading</span></td>
-									<td width="10%" ><span id="priceeur">price loading</span></td>
-									<td width="10%" ><span id="pricegbp">price loading</span></td>
-									<td width="10%">{{ page.price-dkk }}</td>
-								</tr>
-							</tbody>
-						</table>
-						<p style="font-size: 0.65em">All prices listed on the site are excluding sales tax, but if you’re outside the EU you won't be charged it ( you may be charge import duties though)</p>
-					</div>
-					<ul class="actions">
-						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
-					</ul> -->
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
