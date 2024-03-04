@@ -22,16 +22,6 @@
 			<a href="{{ '/guitars' | relative_url }}">Guitars</a><p style="display: inline-block;">&nbsp;&nbsp;/&nbsp;&nbsp;{{ page.title }}</p>
 		</div>
 		<div class="row 100% uniform">
-		    <div class="8u 12u$(medium)">
-		      	<header class="major">
-					<h1>Build your own {{ page.title }}</h1>
-					<p>{{ page.description }}</p>
-					{{ content }}
-				 </header>
-			</div>
-		</div>
-		<!-- Model 1 -->
-		<div class="row 100% uniform">
 			<div id="{{-page.model-}}" class="row 100%">
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc | markdownify }}</p>
@@ -62,7 +52,7 @@
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
 					</ul>
 					<!-- Extras -->
-					{% include extras.html %} 		
+					<!-- {% include extras.html %} 		 -->
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
@@ -74,41 +64,6 @@
 					{% endif %}
 				{% endfor %}
 			</div>
-		</div>
-
-		<!-- Testimonails -->
-		<div class="row 100%">
-			<div class="12u 12u$(medium)">
-				<h2>Testimonials</h2>
-			</div>
-		</div>
-		<div class="row 100%">
-			{% for record in site.data.testimonials.records reversed %}
-			{% if record.fields.guitar == page.img-tag %}
-			<div class="6u 12u$(medium)">
-				<p><em>{{ record.fields.testimonial }}</em></p>
-				{% if record.fields.name %}
-				<p><strong>{{ record.fields.name }}{% if record.fields.location %}, {{ record.fields.location }}{% endif %}</strong></p>{% endif %}
-			</div>
-			{% endif %}
-			{% endfor %}
-		</div>
-
-		<!-- Gallery -->
-		<div class="row 100%">
-			<div class="12u 12u$(medium)">
-				<h2>Gallery</h2>
-			</div>
-		</div>
-		<div class="row 100% insta-gallery">
-			{% for record in site.data.gallery.records reversed %}
-				{% if record.fields.guitar == page.img-tag and record.fields.placement == 'gallery' %}
-				<div class="4u 12u$(medium)">
-					<img class="image fit" src="{{ record.fields.image[0].url }}" alt="">
-					<p>{{ record.fields.caption }}</p>
-				</div>
-				{% endif %}
-			{% endfor %}
 		</div>
 	</div>
 </section>
