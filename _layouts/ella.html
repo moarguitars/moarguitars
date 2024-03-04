@@ -69,6 +69,11 @@
 
 	function updateTotals() {
 
+		// Shipping
+		const shipping = document.getElementById("shipping");
+		const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
+		const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
+
 		 // Total Price
 	    var sum = ({{ page.price-usd }});
 	    for (var i = 0, num = inputs.length; i < num; i++) {
