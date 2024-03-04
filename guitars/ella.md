@@ -1,5 +1,5 @@
 ---
-layout: build-quote
+layout: ella
 title: Ella
 type: ella
 nav-menu: false
