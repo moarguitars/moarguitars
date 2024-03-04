@@ -52,38 +52,61 @@
 </body>
 </html>
 
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!-- Form Script -->
 <script>
+	// Utility function to handle NaN
+	function parseCost(value) {
+	  const parsedValue = parseInt(value);
+	  return isNaN(parsedValue) ? 0 : parsedValue;
+	}
+
 	function updateTotals() {
-	    // Checkboxes
-	    var inputs = document.getElementById('extra-features').getElementsByTagName('input');
 
-	    // Selected Options
-	    var body = document.getElementById("wood-body");
-		var bodycost = parseInt(body.options[body.selectedIndex].getAttribute('value').split(":").pop());
-		var neck = document.getElementById("wood-neck");
-		var neckcost = parseInt(neck.options[neck.selectedIndex].getAttribute('value').split(":").pop());	
-		var fret = document.getElementById("wood-fret");
-		var fretcost = parseInt(fret.options[fret.selectedIndex].getAttribute('value').split(":").pop());
-		var radius = document.getElementById("neck-radius");
-		var radiuscost = parseInt(radius.options[radius.selectedIndex].getAttribute('value').split(":").pop());
-		var result = bodycost + neckcost + fretcost + radiuscost;
-
-	    // Total Price
-	    var sum = {{ page.price-usd }} + result;
+		 // Total Price
+	    var sum = ({{ page.price-usd }});
 	    for (var i = 0, num = inputs.length; i < num; i++) {
 	        if (inputs[i].checked) {
 	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
 	        }
 	    }
 
-	    // Customisation Total
-	    var customisations = sum - {{ page.price-usd }};
+	    // Totals for text
+	  	// VAT block
+		const vatblock = document.getElementById('vat-display');
+		document.getElementById('vat-display').style.display = "";
+		if (shippingchoice != 'EUandUK') {
+		  vatblock.style.display = "none";
+		  var vattotal = 0;
+		} else {
+		  vatblock.style.display = "";
+		  var vattotal = (sum + shippingcost) * 0.25;
+		}
+		document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+		document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+		document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+		document.getElementById('deposit-total').innerHTML = '$' + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
 
-		// Totals for text
-	    document.getElementById('payment-custom').innerHTML = '$' + customisations;
-	    document.getElementById('payment-total').value = '$' + sum;
-		document.getElementById('next').value = '../order-placed?type=guitar&deposit=' + (sum*0.25);
-	    
+		// Shipping
+		document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
+
+		// Logs
+		console.log('sum' + (sum + shippingcost));
+		console.log('payment' + sum);
+		console.log('shipping' + shippingcost);
+		console.log(shippingchoice);
+		
+
+		var queryParams = "?price=" + (Math.round((sum + shippingcost + vattotal) * 0.25 * 100) / 100).toFixed(2);
+	    var encodedQueryParams = btoa(queryParams);
+	    console.log(encodedQueryParams);
+	    document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
+	    console.log(queryParams)   
+		
+
+
 	    
 	}
 
@@ -93,4 +116,3 @@
 	    inputs[i].addEventListener('change', updateTotals);
 	}
 </script>
-
