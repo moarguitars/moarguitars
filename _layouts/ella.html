@@ -25,8 +25,8 @@
 			<div id="{{-page.model-}}" class="row 100%">
 				<div class="8u 12u$(medium)">
 					<p>{{ page.modeldesc | markdownify }}</p>
-					{{content}}
-					<div class="table-wrapper">
+					{{ content | markdownify }}
+<!-- 					<div class="table-wrapper">
 			      		<h4>Base Price</h4>
 						<table class="alt">
 							<tbody>
@@ -50,9 +50,7 @@
 					</div>
 					<ul class="actions">
 						<li><a href="{{ "/contact"  | relative_url }}" class="button special"><i class="fa fa-shopping-cart" aria-hidden="true"></i>&nbsp;&nbsp;Order Now</a></li>
-					</ul>
-					<!-- Extras -->
-					<!-- {% include extras.html %} 		 -->
+					</ul> -->
 				</div>
 				<!-- Images -->
 				{% for record in site.data.gallery.records reversed %}
