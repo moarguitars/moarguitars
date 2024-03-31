@@ -70,9 +70,9 @@
 	function updateTotals() {
 
 		// Shipping
-		const shipping = document.getElementById("shipping");
-		const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
-		const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
+		// const shipping = document.getElementById("shipping");
+		// const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
+		// const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
 
 		 // Total Price
 	    var sum = ({{ page.price-usd }});
@@ -95,16 +95,17 @@
 		}
 		document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
 		document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
-		document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+		// document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+		document.getElementById('price-total').innerHTML = '$' + (sum + vattotal).toFixed(2);
 		document.getElementById('deposit-total').innerHTML = '$' + 1500;
 
 		// Shipping
-		document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
+		// document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
 
 		// Logs
 		console.log('sum' + (sum + shippingcost));
 		console.log('payment' + sum);
-		console.log('shipping' + shippingcost);
+		// console.log('shipping' + shippingcost);
 		console.log(shippingchoice);
 		
 
