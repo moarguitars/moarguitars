@@ -89,9 +89,12 @@
 		if (shippingchoice != 'EUandUK') {
 		  vatblock.style.display = "none";
 		  var vattotal = 0;
-		} else {
+		} else if (shippingchoice = 'EUandUK') {
 		  vatblock.style.display = "";
 		  var vattotal = (sum + shippingcost) * 0.25;
+		} else (shippingchoice != 'EUandUK') {
+			vatblock.style.display = "none";
+		  var vattotal = 0;
 		}
 		document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
 		document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
