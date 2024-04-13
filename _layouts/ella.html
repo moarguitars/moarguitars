@@ -86,13 +86,13 @@
 	  	// VAT block
 		const vatblock = document.getElementById('vat-display');
 		document.getElementById('vat-display').style.display = "";
-		if {
+		if (shippingchoice != 'EUandUK') {
 		  vatblock.style.display = "none";
 		  var vattotal = 0;
 		} else if (shippingchoice = 'EUandUK') {
 		  vatblock.style.display = "";
 		  var vattotal = (sum + shippingcost) * 0.25;
-		} else (shippingchoice != 'EUandUK') {
+		} else {
 			vatblock.style.display = "none";
 		  var vattotal = 0;
 		}
