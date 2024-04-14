@@ -88,10 +88,10 @@
 		document.getElementById('vat-display').style.display = "";
 		if (shippingchoice = 'EUandUK') {
 		  vatblock.style.display = "";
-		var vattotal = 1720;
+		let vattotal = 1720;
 		} else {
 			vatblock.style.display = "none";
-		  var vattotal = 0;
+		  let vattotal = 0;
 		}
 		document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
 		document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
