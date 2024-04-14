@@ -61,69 +61,66 @@
 
 <!-- Form Script -->
 <script>
-	// Utility function to handle NaN
-	function parseCost(value) {
-	  const parsedValue = parseInt(value);
-	  return isNaN(parsedValue) ? 0 : parsedValue;
-	}
+    // Utility function to handle NaN
+    function parseCost(value) {
+      const parsedValue = parseInt(value);
+      return isNaN(parsedValue) ? 0 : parsedValue;
+    }
 
-	function updateTotals() {
+    function updateTotals() {
 
-		// Shipping
-		const shipping = document.getElementById("shipping");
-		const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
-		const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
+        // Shipping
+        const shipping = document.getElementById("shipping");
+        const shippingcost = parseInt(shipping.options[shipping.selectedIndex].getAttribute('value').split(":").pop());
+        const shippingchoice = shipping.options[shipping.selectedIndex].getAttribute('name');
 
-		 // Total Price
-	    var sum = ({{ page.price-usd }});
-	    for (var i = 0, num = inputs.length; i < num; i++) {
-	        if (inputs[i].checked) {
-	            sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
-	        }
-	    }
+         // Total Price
+        var sum = {{ page.price-usd }};
+        for (var i = 0, num = inputs.length; i < num; i++) {
+            if (inputs[i].checked) {
+                sum += parseInt(inputs[i].getAttribute('value').split(":").pop());
+            }
+        }
 
-	    // Totals for text
-	  	// VAT block
-		const vatblock = document.getElementById('vat-display');
-		document.getElementById('vat-display').style.display = "";
-		if (shippingchoice = 'EUandUK') {
-		  vatblock.style.display = "";
-		let vattotal = 1720;
-		} else {
-			vatblock.style.display = "none";
-		  let vattotal = 0;
-		}
-		document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
-		document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
-		// document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
-		document.getElementById('price-total').innerHTML = '$' + (sum + vattotal).toFixed(2);
-		document.getElementById('deposit-total').innerHTML = '$' + 1500;
+        // Totals for text
+      	// VAT block
+        const vatblock = document.getElementById('vat-display');
+        document.getElementById('vat-display').style.display = "";
+        let vattotal = 0; // Define vattotal here
+        if (shippingchoice == 'EUandUK') { // Use == or === for comparison
+          vatblock.style.display = "";
+          vattotal = 1720;
+        } else {
+          vatblock.style.display = "none";
+        }
+        document.getElementById('vat-total').innerHTML = '$' + vattotal.toFixed(2);
+        document.getElementById('final-total').innerHTML = '$' + sum.toFixed(2);
+        // document.getElementById('price-total').innerHTML = '$' + (sum + shippingcost + vattotal).toFixed(2);
+        document.getElementById('price-total').innerHTML = '$' + (sum + vattotal).toFixed(2); // Now vattotal is accessible here
+        document.getElementById('deposit-total').innerHTML = '$' + 1500;
 
-		// Shipping
-		// document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
+        // Shipping
+        // document.getElementById('shipping-total').innerHTML = '$' + shippingcost;
 
-		// Logs
-		// console.log('sum' + (sum + shippingcost));
-		console.log('sum' + (sum));
-		console.log('payment' + sum);
-		// console.log('shipping' + shippingcost);
-		console.log(shippingchoice);
-		
+        // Logs
+        // console.log('sum' + (sum + shippingcost));
+        console.log('sum' + (sum));
+        console.log('payment' + sum);
+        // console.log('shipping' + shippingcost);
+        console.log(shippingchoice);
+        
 
-		var queryParams = "?price=" + 1500;
-	    var encodedQueryParams = btoa(queryParams);
-	    console.log(encodedQueryParams);
-	    document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
-	    console.log(queryParams)   
-		
+        var queryParams = "?price=" + 1500;
+        var encodedQueryParams = btoa(queryParams);
+        console.log(encodedQueryParams);
+        document.getElementById('next').value = '../buy-now?data=' + encodedQueryParams;
+        console.log(queryParams)
+        
+    }
 
-
-	    
-	}
-
-	var section = document.getElementById('extra-features');
-	var inputs = section.getElementsByTagName('input');
-	for (var i = 0, num = inputs.length; i < num; i++) {
-	    inputs[i].addEventListener('change', updateTotals);
-	}
+    var section = document.getElementById('extra-features');
+    var inputs = section.getElementsByTagName('input');
+    for (var i = 0, num = inputs.length; i < num; i++) {
+        inputs[i].addEventListener('change', updateTotals);
+    }
 </script>
