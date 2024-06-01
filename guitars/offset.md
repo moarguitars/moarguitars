@@ -12,7 +12,7 @@ image: 'assets/images/offset/offset-dark-workshop.jpg'
 
 model: 'Moar Offset'
 img-tag: offset
-price-usd: 4,125
+price-usd: 6450
 <!-- price-eur: 3,389
 price-gbp: 2,910
 price-dkk: 25,500 -->
