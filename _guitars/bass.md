@@ -4,6 +4,7 @@ order: 6
 price: ""
 price_note: All prices in USD. Shipping and local taxes are added at checkout.
 images:
+  - /assets/images/bass/1792243443329-1.jpg
   - /assets/images/bass/1.jpg
   - /assets/images/bass/2.jpg
   - /assets/images/bass/3.jpg
