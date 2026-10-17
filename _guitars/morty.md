@@ -1,7 +1,7 @@
 ---
 title: Morty
 order: 4
-price: "8000"
+price: $8000
 price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
   - /assets/images/morty/1792243299440-1.jpg
