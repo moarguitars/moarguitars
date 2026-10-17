@@ -16,7 +16,7 @@ run_worker_first = true
 GITHUB_REPO = "moarguitars/moarguitars"
 GITHUB_BRANCH = "master"
 SITE_URL = "https://moarguitars.com"
-ADMIN_URL = "https://admin.moarguitars.com"
+ADMIN_URL = "https://moar-admin.moarguitars.workers.dev"
 # Sites allowed to send enquiries to this Worker.
 SITE_ORIGINS = "https://moarguitars.com,https://www.moarguitars.com"
 # Sandbox while testing: https://api-m.sandbox.paypal.com
