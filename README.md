@@ -17,8 +17,9 @@ Run locally with `jekyll serve --livereload --config _config.yml,_config.dev.yml
 ## How visitors get in touch
 
 - **Enquire** under each guitar opens that guitar's form. The questions are edited in the admin: one default set, and any guitar can have its own. Answers go to the admin's Enquiries inbox, and atelier@ gets an email. This is the main conversion.
-- From the inbox you can **request a payment** (deposit, balance, anything): the customer gets a PayPal invoice they can pay by card or PayPal.
-- **Reach out** under the intro, plus the Email / Instagram / Facebook / WhatsApp links in the Fine Print.
+- From the inbox you can **request a payment** (deposit, balance, anything): the customer gets a Stripe invoice by email and pays on Stripe's page (card, Apple Pay, Google Pay).
+- **Reach out** under the intro opens a general contact form (the default questions); it arrives in the inbox as "General enquiry".
+- The Email / Instagram / Facebook / WhatsApp links in the Fine Print.
 
 ## Google Analytics
 
@@ -56,7 +57,7 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 | `enquiry_open` | Enquiry form opened | Serious interest |
 | `generate_lead` | Enquiry form **sent** (value = guitar price, USD), or a contact link clicked | Conversion |
 | `begin_checkout` | You requested a payment from the admin (value = amount) | Deal in progress (sent by the server) |
-| `purchase` | The PayPal invoice was paid (value = amount) | Money in (sent by the server) |
+| `purchase` | The Stripe invoice was paid (value = amount) | Money in (sent by the server) |
 
 `begin_checkout` and `purchase` are sent by the admin server and linked to the visitor who enquired, so they appear in the same funnel. They need the GA API secret (admin README, step 7) and only work for visitors who accepted analytics cookies.
 

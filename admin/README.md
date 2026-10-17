@@ -5,7 +5,7 @@ The admin at **admin.moarguitars.com** lets collaborators sign in with a usernam
 - edit the intro, guitars (text, price, photos, order) and fine print;
 - edit the **enquiry form**: a default set of questions, and optionally different questions for any guitar;
 - work through the **Enquiries inbox**: read enquiries, keep private notes, archive them;
-- **request payments**: send the customer a PayPal invoice for any amount and see when it's paid.
+- **request payments**: email the customer a Stripe invoice for any amount and see when it's paid.
 
 Content edits are commits to `moarguitars/moarguitars`, so GitHub Pages republishes the site about a minute later and every change is in the git history. Enquiries and payments are stored in a Cloudflare D1 database.
 
@@ -23,18 +23,18 @@ admin.moarguitars.com (Cloudflare Worker)
    ├─ src/auth.js        username/password (PBKDF2 hashes), signed session cookies
    ├─ src/content.js     reads/writes _data/home.yml and _guitars/*.md via GitHub
    ├─ src/enquiries.js   stores enquiries (D1), inbox, payment requests
-   ├─ src/paypal.js      PayPal invoices + webhook verification
-   └─ src/notify.js      email alerts, server-side Google Analytics events
+   ├─ src/stripe.js      Stripe invoices + webhook signature checks
+   └─ src/notify.js      email alerts (Resend), server-side Google Analytics events
             │                         │
             ▼                         ▼
-   GitHub (commits)          PayPal ── webhook ──> POST /api/paypal/webhook ──> marks "Paid"
+   GitHub (commits)          Stripe ── webhook ──> POST /api/stripe/webhook ──> marks "Paid"
 ```
 
 **How an enquiry flows through:**
 1. A visitor fills in the form under a guitar.
 2. The Worker checks the answers against that guitar's actual questions, runs a spam check (Turnstile, a hidden trap field, and a limit of 5 per hour per visitor), stores the enquiry and emails atelier@.
-3. In the inbox you click **Send PayPal invoice**. PayPal emails the customer, who can pay by card or PayPal.
-4. When it's paid, PayPal notifies the Worker. The inbox shows **Paid**, you get an email, and Google Analytics records a `purchase` against the guitar and the original visitor.
+3. In the inbox you click **Send invoice**. Stripe emails the customer, who pays on Stripe's hosted page (card, Apple Pay, Google Pay; due within 14 days).
+4. When it's paid, Stripe notifies the Worker. The inbox shows **Paid**, you get an email, and Google Analytics records a `purchase` against the guitar and the original visitor.
 
 ## Going live (one-time setup)
 
@@ -57,11 +57,25 @@ Paste the `database_id` it prints into `wrangler.toml`, then create the tables:
 npm run db:remote
 ```
 
-### 3. PayPal
-1. Sign in to [developer.paypal.com](https://developer.paypal.com) with the Moar PayPal business account. Under Apps & Credentials, switch to **Live** and create an app (e.g. "Moar admin"). Copy its Client ID and Secret.
-2. In that app, add a webhook with the URL `https://admin.moarguitars.com/api/paypal/webhook` (or the `workers.dev` address until the domain is set up). Subscribe to **Invoicing invoice paid** and **Invoicing invoice cancelled**, then copy the webhook ID.
+### 3. Stripe
+In the [Stripe dashboard](https://dashboard.stripe.com) for the Moar account:
+1. **API key:** Developers → API keys → **Create restricted key**, named "Moar admin". Set **Customers**, **Invoices** and **Invoice items** to **Write** and leave everything else at None. Copy the key (`rk_live_…`).
+2. **Webhook:** Developers → Webhooks → **Add endpoint**:
+   - URL: `https://moar-admin.moarguitars.workers.dev/api/stripe/webhook` (switch it to `admin.moarguitars.com` after step 6)
+   - Events: `invoice.paid` and `invoice.voided`
 
-To test with fake money first, do the same under **Sandbox**, and set `PAYPAL_API = "https://api-m.sandbox.paypal.com"` in `wrangler.toml`.
+   Then reveal and copy the **Signing secret** (`whsec_…`).
+3. **Optional:** under Settings → Payment methods you can turn on MobilePay, and Settings → Invoices sets the invoice branding (logo, colours, footer).
+
+To try it with fake money first, use **Test mode** keys and webhook (`rk_test_…`) and Stripe's test card `4242 4242 4242 4242`.
+
+### 3b. Resend (email alerts)
+Alerts are sent through [Resend](https://resend.com) (free for up to 3,000 emails/month). This leaves the Google Workspace mail for moarguitars.com untouched.
+1. Create a Resend account and choose Domains → **Add domain** → `moarguitars.com` (region: Ireland).
+2. Add the DNS records it shows at your DNS host (GoDaddy now, Cloudflare after step 6). They live on subdomains (`resend._domainkey`, `send`), so the existing Google `MX` records stay as they are. Then click **Verify**.
+3. API keys → **Create API key** with **Sending access** for `moarguitars.com` only. Copy it (`re_…`).
+
+Alerts go from `enquiries@moarguitars.com` to `atelier@moarguitars.com` (`NOTIFY_FROM` / `NOTIFY_TO` in `wrangler.toml`; `NOTIFY_TO` can list several addresses separated by commas). Replying to an alert replies to the customer.
 
 ### 4. Secrets
 They're stored encrypted at Cloudflare, never in the repo.
@@ -69,9 +83,9 @@ They're stored encrypted at Cloudflare, never in the repo.
 npx wrangler secret put GITHUB_TOKEN
 npm run --silent users | npx wrangler secret put USERS
 openssl rand -hex 32 | npx wrangler secret put SESSION_SECRET
-npx wrangler secret put PAYPAL_CLIENT_ID
-npx wrangler secret put PAYPAL_CLIENT_SECRET
-npx wrangler secret put PAYPAL_WEBHOOK_ID
+npx wrangler secret put STRIPE_SECRET_KEY
+npx wrangler secret put STRIPE_WEBHOOK_SECRET
+npx wrangler secret put RESEND_API_KEY
 ```
 `npm run users` asks for each person's username and password (at least 10 characters). To add, remove or reset someone, run that line again with everyone's details; it replaces the whole list.
 
@@ -81,14 +95,12 @@ npm run deploy
 ```
 It works straight away at the `*.workers.dev` address Wrangler prints. Until step 6 is done, put that address in the site's `_config.yml` (`enquiry_endpoint: "https://moar-admin.<you>.workers.dev/api/enquiries"`) and in `ADMIN_URL`.
 
-### 6. admin.moarguitars.com, email alerts and spam protection
+### 6. admin.moarguitars.com and spam protection
 These need moarguitars.com's DNS on Cloudflare (it's at GoDaddy now):
 1. In Cloudflare, choose **Add a domain** → `moarguitars.com` (Free plan). It copies the existing DNS records. Check that the GitHub Pages records are there (four `A` records for `moarguitars.com` and a `CNAME` for `www` to `moarguitars.github.io`) and set them to **DNS only** (grey cloud).
 2. At GoDaddy, change the nameservers to the two Cloudflare gives you. This is usually done within an hour, and the site keeps working throughout.
 3. Uncomment the `routes` line in `wrangler.toml`.
-4. **Email alerts:** in Cloudflare, go to Email → Email Routing, enable it and add `atelier@moarguitars.com` as a verified destination. Then uncomment the `[[send_email]]` block in `wrangler.toml`.
-
-   Note: if atelier@ mail is hosted somewhere (Google Workspace, GoDaddy email…), keep its existing `MX` records. Email Routing would replace them, so in that case skip the alerts, or use a different address you control as `NOTIFY_TO`.
+4. Make sure the Google `MX` records (mail) and the Resend records were copied across too.
 5. **Spam check:** in Cloudflare, go to Turnstile → Add widget for `moarguitars.com`. Put the site key in the site's `_config.yml` (`turnstile_site_key`) and run `npx wrangler secret put TURNSTILE_SECRET` with the secret key.
 6. Run `npm run deploy` again.
 
@@ -101,9 +113,9 @@ Payment requests then show up as `begin_checkout` events and payments as `purcha
 
 ## Working on it locally
 
-Nothing touches GitHub or PayPal locally. Fake versions of both run on your machine:
+Nothing touches GitHub, Stripe or Resend locally. Fake versions run on your machine:
 - `dev/mock-github.mjs` writes saves straight into this checkout, so `jekyll serve` shows them instantly.
-- `dev/mock-paypal.mjs` gives each invoice a pretend payment page with a **Pay** button, which sends the same webhook PayPal would.
+- `dev/mock-stripe.mjs` gives each invoice a pretend payment page with a **Pay** button, which sends a signed webhook just like Stripe's. It also prints the alert emails that Resend would send.
 
 ```bash
 # from the repo root: the site, pointed at the local admin
@@ -111,8 +123,8 @@ jekyll serve --livereload --config _config.yml,_config.dev.yml
 # in admin/: one-time local database setup, then three servers
 npm run db:local
 npm run mock-github
-npm run mock-paypal
+npm run mock-stripe
 npm run dev                # http://localhost:8787
 ```
 
-`.dev.vars` (git-ignored) holds the local secrets and a test login (username `demo`, password in the file's comment). Alert emails are printed in the `npm run dev` output instead of being sent. Note that local content saves really do change the files in your checkout.
+`.dev.vars` (git-ignored) holds the local secrets and a test login (username `demo`, password in the file's comment). Alert emails are printed in the `npm run mock-stripe` output instead of being sent. Note that local content saves really do change the files in your checkout.

@@ -1,8 +1,8 @@
-// Enquiries from the site's forms, the admin inbox, and payment requests via PayPal.
+// Enquiries from the site's forms, the admin inbox, and payment requests via Stripe invoices.
 
 import { readForm } from "./content.js";
 import { sendAlert, trackServerEvent } from "./notify.js";
-import { paypal } from "./paypal.js";
+import { stripe, verifyStripeSignature } from "./stripe.js";
 
 const CURRENCIES = ["USD", "EUR", "DKK", "GBP"];
 const MAX_PER_HOUR = 5; // enquiries per sender
@@ -86,9 +86,9 @@ export async function submitEnquiry(request, env, gh, input) {
 
   const lines = answers.map((a) => `${a.question}\n${Array.isArray(a.answer) ? a.answer.join(", ") || "-" : a.answer || "-"}`);
   await sendAlert(env, {
-    subject: `New enquiry: ${guitar.title} from ${name}`,
+    subject: slug === "general" ? `New enquiry from ${name}` : `New enquiry: ${guitar.title} from ${name}`,
     replyTo: email,
-    text: [`${name} <${email}> asked about ${guitar.title}.`, "", ...lines.flatMap((line) => [line, ""]), `Open in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`].join("\n"),
+    text: [slug === "general" ? `${name} <${email}> sent a general enquiry.` : `${name} <${email}> asked about ${guitar.title}.`, "", ...lines.flatMap((line) => [line, ""]), `Open in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`].join("\n"),
   });
 
   return { ok: true };
@@ -145,22 +145,22 @@ export async function requestPayment(env, id, input, user) {
   const amount = parseAmount(input.amount);
   if (!amount) throw badRequest("Enter an amount, e.g. 1500 or 1500.00.");
 
-  const number = `MOAR-${new Date().toISOString().slice(0, 10).replace(/-/g, "")}-${crypto.randomUUID().slice(0, 6).toUpperCase()}`;
-  const invoice = await paypal(env).sendInvoice({
-    number,
+  const paymentId = crypto.randomUUID();
+  const invoice = await stripe(env).sendInvoice({
     name: enquiry.name,
     email: enquiry.email,
     description,
     amount,
     currency,
-    note: clean(input.note, 1000),
+    note: clean(input.note, 500),
+    metadata: { enquiry_id: id, payment_id: paymentId, guitar: enquiry.guitar_name },
   });
 
   await env.DB.prepare(
     `INSERT INTO payments (id, enquiry_id, created_at, created_by, description, amount, currency, invoice_id, invoice_number, invoice_url)
      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   )
-    .bind(crypto.randomUUID(), id, new Date().toISOString(), user, description, amount, currency, invoice.id, number, invoice.url)
+    .bind(paymentId, id, new Date().toISOString(), user, description, amount, currency, invoice.id, invoice.number, invoice.url)
     .run();
   if (enquiry.status === "new") await env.DB.prepare("UPDATE enquiries SET status = 'replied' WHERE id = ?").bind(id).run();
 
@@ -178,42 +178,43 @@ export async function cancelPayment(env, paymentId) {
   const payment = await env.DB.prepare("SELECT * FROM payments WHERE id = ?").bind(paymentId).first();
   if (!payment) throw notFound();
   if (payment.status !== "sent") throw badRequest("Only unpaid requests can be cancelled.");
-  await paypal(env).cancelInvoice(payment.invoice_id);
+  await stripe(env).voidInvoice(payment.invoice_id);
   await env.DB.prepare("UPDATE payments SET status = 'cancelled' WHERE id = ?").bind(paymentId).run();
   return getEnquiry(env, payment.enquiry_id);
 }
 
-/** Ask PayPal for the latest status of an unpaid request (in case a webhook was missed). */
+/** Ask Stripe for the latest status of an unpaid request (in case a webhook was missed). */
 export async function refreshPayment(env, paymentId) {
   const payment = await env.DB.prepare("SELECT * FROM payments WHERE id = ?").bind(paymentId).first();
   if (!payment) throw notFound();
   if (payment.status === "sent") {
-    const invoice = await paypal(env).getInvoice(payment.invoice_id);
-    if (invoice.status === "PAID" || invoice.status === "MARKED_AS_PAID") await markPaid(env, payment);
-    else if (invoice.status === "CANCELLED") await env.DB.prepare("UPDATE payments SET status = 'cancelled' WHERE id = ?").bind(paymentId).run();
+    const invoice = await stripe(env).getInvoice(payment.invoice_id);
+    if (invoice.status === "paid") await markPaid(env, payment);
+    else if (invoice.status === "void") await env.DB.prepare("UPDATE payments SET status = 'cancelled' WHERE id = ?").bind(paymentId).run();
   }
   return getEnquiry(env, payment.enquiry_id);
 }
 
-/** PayPal calls this when an invoice is paid or cancelled. */
-export async function handlePaypalWebhook(request, env) {
-  const event = await request.json().catch(() => null);
-  if (!event || !(await paypal(env).verifyWebhook(request, event))) {
-    return { status: 400, body: { error: "Invalid webhook" } };
+/** Stripe calls this when an invoice is paid or voided. */
+export async function handleStripeWebhook(request, env) {
+  const raw = await request.text();
+  if (!(await verifyStripeSignature(env, request.headers.get("Stripe-Signature"), raw))) {
+    return { status: 400, body: { error: "Invalid signature" } };
   }
-  const invoiceId = event.resource?.invoice?.id || event.resource?.id;
+  const event = JSON.parse(raw);
+  const invoiceId = event.data?.object?.id;
   const payment = invoiceId && (await env.DB.prepare("SELECT * FROM payments WHERE invoice_id = ?").bind(invoiceId).first());
   if (payment) {
-    if (event.event_type === "INVOICING.INVOICE.PAID") await markPaid(env, payment);
-    if (event.event_type === "INVOICING.INVOICE.CANCELLED" && payment.status === "sent") {
+    if (event.type === "invoice.paid") await markPaid(env, payment);
+    if (event.type === "invoice.voided" && payment.status === "sent") {
       await env.DB.prepare("UPDATE payments SET status = 'cancelled' WHERE id = ?").bind(payment.id).run();
     }
   }
-  return { status: 200, body: { ok: true } };
+  return { status: 200, body: { received: true } };
 }
 
 async function markPaid(env, payment) {
-  // Only the first notification counts (PayPal may retry).
+  // Only the first notification counts (Stripe may retry).
   const { meta } = await env.DB.prepare("UPDATE payments SET status = 'paid', paid_at = ? WHERE id = ? AND status != 'paid'")
     .bind(new Date().toISOString(), payment.id)
     .run();

@@ -7,7 +7,7 @@ import { deleteGuitar, isImagePath, readContent, saveGuitar, saveHome, saveOrder
 import {
   cancelPayment,
   getEnquiry,
-  handlePaypalWebhook,
+  handleStripeWebhook,
   listEnquiries,
   refreshPayment,
   requestPayment,
@@ -26,12 +26,12 @@ export default {
       return response;
     }
 
-    // Public endpoints: the site's enquiry form and PayPal's webhook.
+    // Public endpoints: the site's enquiry form and Stripe's webhook.
     if (url.pathname === "/api/enquiries" && (request.method === "POST" || request.method === "OPTIONS")) {
       return publicEnquiry(request, env);
     }
-    if (url.pathname === "/api/paypal/webhook" && request.method === "POST") {
-      const { status, body } = await handlePaypalWebhook(request, env);
+    if (url.pathname === "/api/stripe/webhook" && request.method === "POST") {
+      const { status, body } = await handleStripeWebhook(request, env);
       return json(body, status);
     }
 
@@ -66,7 +66,7 @@ async function publicEnquiry(request, env) {
 }
 
 function errorResponse(error) {
-  // 4xx are messages for the user; 502/503 explain an outside service (GitHub, PayPal) failing.
+  // 4xx are messages for the user; 502/503 explain an outside service (GitHub, Stripe) failing.
   const expose = error.status && error.status !== 500;
   if (!expose) console.error(error);
   return json({ error: expose ? error.message : "Something went wrong. Please try again." }, expose ? error.status : 500);

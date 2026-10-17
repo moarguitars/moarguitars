@@ -192,7 +192,7 @@ function trackGuitars() {
     if (link.matches("[data-enquire]")) {
       if (link.getAttribute("aria-expanded") !== "true") return; // only count opening
       const g = guitarFor(link);
-      gtag("event", "enquiry_open", { guitar: g.item.item_name, items: [g.item] });
+      gtag("event", "enquiry_open", g ? { guitar: g.item.item_name, items: [g.item] } : { form: "contact", ...(lastGuitar && { guitar: lastGuitar.item.item_name }) });
       return;
     }
 
@@ -219,7 +219,8 @@ function trackGuitars() {
 
   document.addEventListener("moar:enquiry-sent", (event) => {
     const g = guitarFor(event.target);
-    gtag("event", "generate_lead", { ...value(g), method: "enquiry_form", guitar: g.item.item_name, items: [g.item] });
+    if (g) gtag("event", "generate_lead", { ...value(g), method: "enquiry_form", guitar: g.item.item_name, items: [g.item] });
+    else gtag("event", "generate_lead", { method: "contact_form", ...(lastGuitar && { guitar: lastGuitar.item.item_name }) });
   });
 
   // Fine print topics (toggle doesn't bubble, so listen while capturing).

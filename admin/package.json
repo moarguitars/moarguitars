@@ -7,9 +7,9 @@
     "mock-github": "node dev/mock-github.mjs ..",
     "users": "node scripts/users.mjs",
     "deploy": "wrangler deploy",
-    "mock-paypal": "node dev/mock-paypal.mjs 8789",
     "db:local": "wrangler d1 migrations apply moar-admin --local",
-    "db:remote": "wrangler d1 migrations apply moar-admin --remote"
+    "db:remote": "wrangler d1 migrations apply moar-admin --remote",
+    "mock-stripe": "node dev/mock-stripe.mjs 8789"
   },
   "dependencies": {
     "yaml": "2.8.1"

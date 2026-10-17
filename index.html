@@ -25,7 +25,10 @@
     <section class="entry intro">
       <h1 class="entry-title">{{ home.intro_title }}</h1>
       <div class="prose">{{ home.intro | markdownify }}</div>
-      <p class="reach-out"><a href="{{ home.reach_out_link }}" data-contact="{{ home.reach_out_label }}">{{ home.reach_out_label }}</a></p>
+      {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
+      <p class="reach-out"><a href="#enquire-general" aria-controls="enquire-general" aria-expanded="false" data-enquire>{{ home.reach_out_label | default: "Reach out" }}</a></p>
+      {%- include enquiry-form.html slug="general" form=home.enquiry_form %}
+      {%- endif %}
     </section>
 
     <nav class="index" aria-label="Guitars">
@@ -51,7 +54,7 @@
       </div>
       {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
       {%- assign enquiry_form = guitar.form | default: home.enquiry_form %}
-      {%- include enquiry-form.html guitar=guitar form=enquiry_form %}
+      {%- include enquiry-form.html slug=guitar.slug form=enquiry_form %}
       {%- endif %}
       {%- if guitar.images %}
       <ul class="thumbs">

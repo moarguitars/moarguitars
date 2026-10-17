@@ -4,8 +4,8 @@ intro: |-
   Handcrafted guitars built to order. Each one starts its journey on my bench in Denmark and ends up on stages all around the world.
 
   Every instrument is carved, wound and set up by hand, for one player. If you can't see what you're after, get in touch. I can probably make it.
+# Opens the general contact form (it asks the default enquiry questions).
 reach_out_label: Reach out
-reach_out_link: mailto:atelier@moarguitars.com
 
 # "Enquire" under each guitar opens this form. Name and email are always asked
 # first. A guitar can have its own form instead (set in the admin).

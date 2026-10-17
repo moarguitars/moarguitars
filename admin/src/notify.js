@@ -1,32 +1,27 @@
-// Email alerts (Cloudflare Email Routing) and server-side Google Analytics events.
-
-import { EmailMessage } from "cloudflare:email";
+// Email alerts (via Resend) and server-side Google Analytics events.
 
 /**
- * Email the workshop. Needs the NOTIFY send_email binding and NOTIFY_FROM / NOTIFY_TO vars;
- * without them (e.g. locally) the email is just logged.
+ * Email the workshop through Resend. Needs RESEND_API_KEY and NOTIFY_FROM / NOTIFY_TO;
+ * without the key (e.g. locally) the email is just logged.
  */
 export async function sendAlert(env, { subject, text, replyTo }) {
-  if (!env.NOTIFY || !env.NOTIFY_FROM || !env.NOTIFY_TO) {
+  if (!env.RESEND_API_KEY || !env.NOTIFY_FROM || !env.NOTIFY_TO) {
     console.log(`[email] ${subject}\n${text}`);
     return;
   }
-  const encode = (value) => btoa(String.fromCharCode(...new TextEncoder().encode(value)));
-  const body = encode(text).replace(/.{76}/g, "$&\r\n");
-  const headers = [
-    `From: Moar Guitars <${env.NOTIFY_FROM}>`,
-    `To: ${env.NOTIFY_TO}`,
-    replyTo && `Reply-To: ${replyTo.replace(/[\r\n<>]/g, "")}`,
-    `Subject: =?UTF-8?B?${encode(subject)}?=`,
-    `Date: ${new Date().toUTCString()}`,
-    `Message-ID: <${crypto.randomUUID()}@moarguitars.com>`,
-    "MIME-Version: 1.0",
-    "Content-Type: text/plain; charset=UTF-8",
-    "Content-Transfer-Encoding: base64",
-  ].filter(Boolean);
-  const raw = `${headers.join("\r\n")}\r\n\r\n${body}`;
   try {
-    await env.NOTIFY.send(new EmailMessage(env.NOTIFY_FROM, env.NOTIFY_TO, raw));
+    const response = await fetch(env.RESEND_API || "https://api.resend.com/emails", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({
+        from: `Moar Guitars website <${env.NOTIFY_FROM}>`,
+        to: env.NOTIFY_TO.split(",").map((address) => address.trim()),
+        subject,
+        text,
+        ...(replyTo && { reply_to: replyTo }),
+      }),
+    });
+    if (!response.ok) console.error("Email alert failed", response.status, await response.text());
   } catch (error) {
     // An alert failing must never lose the enquiry itself.
     console.error("Email alert failed", error);

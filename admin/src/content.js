@@ -44,7 +44,7 @@ export async function saveHome(gh, input, user) {
   doc.set("intro_title", required(text(home.intro_title, 60), "Intro title"));
   doc.set("intro", text(home.intro));
   doc.set("reach_out_label", text(home.reach_out_label, 60));
-  doc.set("reach_out_link", safeLink(home.reach_out_link));
+  doc.delete("reach_out_link"); // Reach out now opens the contact form
   doc.set("enquire_label", text(home.enquire_label, 60));
   doc.set("enquiry_form", normalizeForm(home.enquiry_form));
   doc.set("fine_print_title", required(text(home.fine_print_title, 60), "Fine print title"));
@@ -144,8 +144,12 @@ export function isImagePath(path) {
   return typeof path === "string" && /^\/assets\/images\/[\w./-]+\.(jpe?g|png|webp|gif)$/i.test(path) && !path.includes("..");
 }
 
-/** The enquiry form for a guitar: its own, or the default from home.yml. */
+/** The enquiry form for a guitar (its own, or the default), or for "general" (Reach out). */
 export async function readForm(gh, slug) {
+  if (slug === "general") {
+    const home = await gh.read(HOME_PATH);
+    return { guitar: { title: "General enquiry", price: "" }, form: YAML.parse(home.text).enquiry_form };
+  }
   const [home, guitar] = await Promise.all([gh.read(HOME_PATH), gh.read(`${GUITARS_DIR}/${slug}.md`)]);
   if (!guitar) return null;
   const parsed = parseGuitar(guitar.text);

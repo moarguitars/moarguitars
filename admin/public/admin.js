@@ -308,7 +308,6 @@ function introEditor() {
     intro_title: textInput(home.intro_title, { required: true, maxlength: 60 }),
     intro: textArea(home.intro, { rows: 8 }),
     reach_out_label: textInput(home.reach_out_label, { maxlength: 60 }),
-    reach_out_link: textInput(home.reach_out_link, { maxlength: 300 }),
   };
 
   const { bar, run } = saveBar(async () => {
@@ -326,10 +325,7 @@ function introEditor() {
     h("p", { class: "help" }, "The text at the top of the page, under the logo."),
     field("Title", inputs.intro_title),
     field("Text", inputs.intro, "Leave a blank line between paragraphs."),
-    h("div", { class: "row" },
-      field("Button text", inputs.reach_out_label),
-      field("Button link", inputs.reach_out_link, "An email (mailto:you@example.com) or a web address."),
-    ),
+    field("Contact link text", inputs.reach_out_label, "Opens the contact form, which asks the default enquiry questions. Answers arrive in the inbox as “General enquiry”."),
     bar,
   );
 }
@@ -479,7 +475,7 @@ function paymentsSection(e, reload) {
           type: "button",
           class: "button button-quiet button-small",
           onclick: () => {
-            if (confirm(`Cancel this payment request? ${e.name} will be told by PayPal.`)) reload(api("POST", `/api/payments/${p.id}/cancel`), "Payment request cancelled.");
+            if (confirm(`Cancel this payment request? The invoice link stops working; Stripe doesn’t email ${e.name} about it, so let them know.`)) reload(api("POST", `/api/payments/${p.id}/cancel`), "Payment request cancelled.");
           },
         }, "Cancel request"),
       ),
@@ -490,14 +486,14 @@ function paymentsSection(e, reload) {
   const amount = textInput("", { inputmode: "decimal", placeholder: "1500", maxlength: 12 });
   const currency = h("select", {}, ["USD", "EUR", "DKK", "GBP"].map((c) => h("option", { value: c }, c)));
   const note = textArea("", { rows: 2, placeholder: "Optional message shown on the invoice" });
-  const send = h("button", { type: "submit", class: "button" }, "Send PayPal invoice");
+  const send = h("button", { type: "submit", class: "button" }, "Send invoice");
 
   const form = h("form", {
     class: "request-payment",
     onsubmit: async (event) => {
       event.preventDefault();
       if (!amount.value.trim()) return toast("Enter an amount.", { type: "error" });
-      if (!confirm(`Email ${e.name} a PayPal invoice for ${currency.value} ${amount.value}?`)) return;
+      if (!confirm(`Email ${e.name} a Stripe invoice for ${currency.value} ${amount.value}?`)) return;
       send.disabled = true;
       send.textContent = "Sending…";
       try {
@@ -513,7 +509,7 @@ function paymentsSection(e, reload) {
       } catch (error) {
         showError(error);
         send.disabled = false;
-        send.textContent = "Send PayPal invoice";
+        send.textContent = "Send invoice";
       }
     },
   },
@@ -521,7 +517,7 @@ function paymentsSection(e, reload) {
     field("What it's for", description),
     h("div", { class: "row row-amount" }, field("Amount", amount), field("Currency", currency)),
     field("Message", note),
-    h("p", { class: "help" }, `PayPal emails the invoice to ${e.email}. They can pay by card or PayPal.`),
+    h("p", { class: "help" }, `Stripe emails the invoice to ${e.email}. They pay on Stripe’s secure page by card, Apple Pay or Google Pay. It’s due within 14 days.`),
     send,
   );
 

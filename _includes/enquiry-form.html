@@ -1,11 +1,12 @@
 {%- comment -%}
-  Enquiry form for one guitar. Params: guitar, form (the guitar's own form or the default).
+  An enquiry form. Params: slug (the guitar's, or "general" for the Reach out form),
+  form (the guitar's own form or the default).
   Name and email are always asked first; the rest comes from the form definition.
 {%- endcomment -%}
-{%- assign guitar = include.guitar -%}
+{%- assign slug = include.slug -%}
 {%- assign form = include.form -%}
-<div class="enquiry" id="enquire-{{ guitar.slug }}" hidden>
-  <form class="enquiry-form" data-enquiry-form data-guitar="{{ guitar.slug }}" novalidate>
+<div class="enquiry" id="enquire-{{ slug }}" hidden>
+  <form class="enquiry-form" data-enquiry-form data-guitar="{{ slug }}" novalidate>
     {%- if form.intro and form.intro != "" %}
     <p class="enquiry-intro">{{ form.intro }}</p>
     {%- endif %}
@@ -20,7 +21,7 @@
     </label>
 
     {%- for field in form.fields %}
-    {%- capture id %}{{ guitar.slug }}-q{{ forloop.index }}{% endcapture %}
+    {%- capture id %}{{ slug }}-q{{ forloop.index }}{% endcapture %}
     {%- capture star %}{% if field.required %} <abbr title="required">*</abbr>{% endif %}{% endcapture %}
     {%- if field.type == "radio" or field.type == "checkboxes" %}
     <fieldset class="question" data-question="{{ field.label | escape }}" data-type="{{ field.type }}"{% if field.required %} data-required{% endif %}>
