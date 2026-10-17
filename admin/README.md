@@ -87,7 +87,9 @@ npx wrangler secret put STRIPE_SECRET_KEY
 npx wrangler secret put STRIPE_WEBHOOK_SECRET
 npx wrangler secret put RESEND_API_KEY
 ```
-`npm run users` asks for each person's username and password (at least 10 characters). To add, remove or reset someone, run that line again with everyone's details; it replaces the whole list.
+`npm run users` asks for each person's username and password (at least 10 characters). It sets everyone's starting password and who is allowed in.
+
+After that, people change their own password in the admin (**Change password** in the top bar), which signs them out on their other devices. To add or remove someone, or reset a forgotten password, run the `npm run users` line again with everyone's details; it replaces the whole list, and a reset password takes priority over one changed in the admin.
 
 ### 5. Deploy
 ```bash

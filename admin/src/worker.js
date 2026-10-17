@@ -1,7 +1,7 @@
 // admin.moarguitars.com: a small editor for the site's content.
 // Static files in ./public are the editor UI; /api/* is handled here.
 
-import { currentUser, login, logoutCookie } from "./auth.js";
+import { changePassword, currentUser, login, logoutCookie } from "./auth.js";
 import { github } from "./github.js";
 import { deleteGuitar, isImagePath, readContent, saveGuitar, saveHome, saveOrder } from "./content.js";
 import {
@@ -94,6 +94,9 @@ async function handleApi(request, env, url) {
   if (!user) return json({ error: "Please sign in." }, 401);
   const gh = github(env);
 
+  if (path === "/api/password" && method === "POST") {
+    return json({ ok: true }, 200, { "Set-Cookie": await changePassword(env, user, await body()) });
+  }
   if (path === "/api/me" && method === "GET") {
     return json({ user, siteUrl: env.SITE_URL });
   }

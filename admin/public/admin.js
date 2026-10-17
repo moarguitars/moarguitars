@@ -104,7 +104,7 @@ async function loadContent() {
   state.dirty = false;
   state.order = null;
   const slugs = state.content.guitars.map((g) => g.slug);
-  if (!["inbox", "form", "intro", "fine-print", "new", ...slugs].includes(state.selected)) state.selected = "inbox";
+  if (!["inbox", "form", "intro", "fine-print", "new", "password", ...slugs].includes(state.selected)) state.selected = "inbox";
   render();
 }
 
@@ -157,6 +157,7 @@ function render() {
   userBox.replaceChildren(
     h("a", { href: state.siteUrl, target: "_blank", rel: "noopener" }, "View site"),
     h("span", {}, state.user),
+    h("button", { class: "link-button", type: "button", onclick: () => select("password") }, "Change password"),
     h("button", { class: "button button-quiet button-small", onclick: logout }, "Sign out"),
   );
   app.replaceChildren(h("div", { class: "layout" }, renderNav(), renderEditor()));
@@ -242,6 +243,7 @@ function renderOrderActions() {
 
 function renderEditor() {
   if (state.selected === "inbox") return inboxView();
+  if (state.selected === "password") return passwordEditor();
   if (state.selected === "form") return defaultFormEditor();
   if (state.selected === "intro") return introEditor();
   if (state.selected === "fine-print") return finePrintEditor();
@@ -326,6 +328,36 @@ function introEditor() {
     field("Title", inputs.intro_title),
     field("Text", inputs.intro, "Leave a blank line between paragraphs."),
     field("Contact link text", inputs.reach_out_label, "Opens the contact form, which asks the default enquiry questions. Answers arrive in the inbox as “General enquiry”."),
+    bar,
+  );
+}
+
+// ---------- Change password ----------
+
+function passwordEditor() {
+  const input = (autocomplete) => h("input", { type: "password", autocomplete, required: true, maxlength: 200 });
+  const current = input("current-password");
+  const next = input("new-password");
+  const repeat = input("new-password");
+
+  const { bar, run } = saveBar(async () => {
+    if (next.value.length < 10) throw new Error("Use at least 10 characters for the new password.");
+    if (next.value !== repeat.value) throw new Error("The two new passwords don’t match.");
+    await api("POST", "/api/password", { current: current.value, next: next.value });
+    state.dirty = false;
+    state.selected = "inbox";
+    render();
+    toast("Password changed. You’re still signed in here; other devices will need the new password.");
+  });
+
+  return h(
+    "form",
+    { class: "editor", onsubmit: (e) => { e.preventDefault(); run(); } },
+    h("h1", {}, "Change password"),
+    h("p", { class: "help" }, `Signed in as ${state.user}. Changing your password signs you out on your other devices.`),
+    field("Current password", current),
+    field("New password", next, "At least 10 characters. A few random words works well."),
+    field("New password again", repeat),
     bar,
   );
 }
