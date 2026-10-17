@@ -1,11 +1,14 @@
 ---
 title: Offset
 order: 3
-price: ""
-price_note: All prices in USD. Shipping and local taxes are added at checkout.
+price: 10,000
+price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
-  - /assets/images/offset/1.jpg
+  - /assets/images/offset/1792243224274-1.jpg
+  - /assets/images/offset/1792243224274-2.jpg
+  - /assets/images/offset/1792243224274-3.jpg
   - /assets/images/offset/2.jpg
+  - /assets/images/offset/1.jpg
 ---
 
 A modern, light and versatile guitar, designed around an all-access neck joint that gives it its unique shape.
