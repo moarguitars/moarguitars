@@ -4,7 +4,7 @@ compatibility_date = "2025-06-01"
 # No per-version preview URLs: only the real admin address should exist.
 preview_urls = false
 
-# Serves admin.moarguitars.com once the domain's DNS is on Cloudflare (see README).
+# Only if moarguitars.com's DNS ever moves to Cloudflare: serve the admin at admin.moarguitars.com.
 # routes = [{ pattern = "admin.moarguitars.com", custom_domain = true }]
 
 [assets]

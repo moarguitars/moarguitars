@@ -1,6 +1,6 @@
 # Moar admin
 
-The admin at **admin.moarguitars.com** lets collaborators sign in with a username and password and:
+The admin at **https://moar-admin.moarguitars.workers.dev** lets collaborators sign in with a username and password and:
 
 - edit the intro, guitars (text, price, photos, order) and fine print;
 - edit the **enquiry form**: a default set of questions, and optionally different questions for any guitar;
@@ -17,7 +17,7 @@ It runs on Cloudflare Workers' free plan; the site itself stays on GitHub Pages.
 moarguitars.com (GitHub Pages)
    └─ Enquire form ── POST /api/enquiries ──┐
                                             ▼
-admin.moarguitars.com (Cloudflare Worker)
+moar-admin.moarguitars.workers.dev (Cloudflare Worker)
    ├─ public/            the admin UI
    ├─ src/worker.js      routes; everything except the two public endpoints needs sign-in
    ├─ src/auth.js        username/password (PBKDF2 hashes), signed session cookies
@@ -61,7 +61,7 @@ npm run db:remote
 In the [Stripe dashboard](https://dashboard.stripe.com) for the Moar account:
 1. **API key:** Developers → API keys → **Create restricted key**, named "Moar admin". Set **Customers**, **Invoices** and **Invoice items** to **Write** and leave everything else at None. Copy the key (`rk_live_…`).
 2. **Webhook:** Developers → Webhooks → **Add endpoint**:
-   - URL: `https://moar-admin.moarguitars.workers.dev/api/stripe/webhook` (switch it to `admin.moarguitars.com` after step 6)
+   - URL: `https://moar-admin.moarguitars.workers.dev/api/stripe/webhook`
    - Events: `invoice.paid` and `invoice.voided`
 
    Then reveal and copy the **Signing secret** (`whsec_…`).
@@ -91,16 +91,17 @@ After that, people change their own password in the admin (**Change password** i
 ```bash
 npm run deploy
 ```
-It works straight away at the `*.workers.dev` address Wrangler prints. Until step 6 is done, put that address in the site's `_config.yml` (`enquiry_endpoint: "https://moar-admin.<you>.workers.dev/api/enquiries"`) and in `ADMIN_URL`.
+It's served at `https://moar-admin.moarguitars.workers.dev`. The site's `_config.yml` (`enquiry_endpoint`) and `ADMIN_URL` in `wrangler.toml` both point there.
 
-### 6. admin.moarguitars.com and spam protection
-These need moarguitars.com's DNS on Cloudflare (it's at GoDaddy now):
-1. In Cloudflare, choose **Add a domain** → `moarguitars.com` (Free plan). It copies the existing DNS records. Check that the GitHub Pages records are there (four `A` records for `moarguitars.com` and a `CNAME` for `www` to `moarguitars.github.io`) and set them to **DNS only** (grey cloud).
-2. At GoDaddy, change the nameservers to the two Cloudflare gives you. This is usually done within an hour, and the site keeps working throughout.
-3. Uncomment the `routes` line in `wrangler.toml`.
-4. Make sure the Google `MX` records (mail) were copied across too.
-5. **Spam check:** in Cloudflare, go to Turnstile → Add widget for `moarguitars.com`. Put the site key in the site's `_config.yml` (`turnstile_site_key`) and run `npx wrangler secret put TURNSTILE_SECRET` with the secret key.
-6. Run `npm run deploy` again.
+The domain's DNS stays at GoDaddy, so the admin keeps its `workers.dev` address. (Moving moarguitars.com's DNS to Cloudflare would allow `admin.moarguitars.com` via the commented-out `routes` line in `wrangler.toml`, but it isn't needed.)
+
+### 6. Optional: spam check (Cloudflare Turnstile)
+Turnstile works with the domain's DNS anywhere, including GoDaddy.
+1. In Cloudflare, go to **Turnstile** → **Add widget**: name it "Moar enquiry forms", add the hostname `moarguitars.com`, and leave the mode on **Managed**.
+2. Put the **site key** in the site's `_config.yml` (`turnstile_site_key`) and push.
+3. Run `npx wrangler secret put TURNSTILE_SECRET` with the **secret key**. The check applies straight away, with no redeploy needed.
+
+Do steps 2 and 3 together. With only the secret set, every enquiry is rejected; with only the site key, the check is shown but not enforced.
 
 ### 7. Optional: payments in Google Analytics
 In GA, go to Admin → Data streams → your stream → **Measurement Protocol API secrets** → Create. Then run:

@@ -1,6 +1,6 @@
 # moarguitars.com
 
-A single-page Jekyll site served by GitHub Pages from `master`. Collaborators edit it through the admin at admin.moarguitars.com (see [admin/README.md](admin/README.md)).
+A single-page Jekyll site served by GitHub Pages from `master`. Collaborators edit it through the admin at https://moar-admin.moarguitars.workers.dev (see [admin/README.md](admin/README.md)).
 
 | What | Where |
 | --- | --- |

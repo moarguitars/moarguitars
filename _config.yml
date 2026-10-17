@@ -9,7 +9,6 @@ markdown: kramdown
 google_analytics_id: "G-0SN8NVW37D"
 
 # Where enquiry forms are sent (the admin Worker). Empty hides the Enquire link.
-# Until admin.moarguitars.com is set up, use the Worker's *.workers.dev address.
 enquiry_endpoint: "https://moar-admin.moarguitars.workers.dev/api/enquiries"
 # Cloudflare Turnstile spam check (site key). Empty turns it off.
 turnstile_site_key: ""
