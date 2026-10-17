@@ -16,4 +16,4 @@ images:
 
 Built on a perfect foundation, the Morty is all you need in a guitar and nothing else.
 
-Stainless steel frets, an all-access set neck joint and handwound pickups made to your specs. Everything unnecessary is removed. A distilled, pure and refined instrument.
+Stainless steel frets, an all-access set neck joint and handwound pickups made to your specs.
