@@ -24,7 +24,7 @@ admin.moarguitars.com (Cloudflare Worker)
    ├─ src/content.js     reads/writes _data/home.yml and _guitars/*.md via GitHub
    ├─ src/enquiries.js   stores enquiries (D1), inbox, payment requests
    ├─ src/stripe.js      Stripe invoices + webhook signature checks
-   └─ src/notify.js      email alerts (Resend), server-side Google Analytics events
+   └─ src/notify.js      email alerts (Formspree), server-side Google Analytics events
             │                         │
             ▼                         ▼
    GitHub (commits)          Stripe ── webhook ──> POST /api/stripe/webhook ──> marks "Paid"
@@ -69,13 +69,10 @@ In the [Stripe dashboard](https://dashboard.stripe.com) for the Moar account:
 
 To try it with fake money first, use **Test mode** keys and webhook (`rk_test_…`) and Stripe's test card `4242 4242 4242 4242`.
 
-### 3b. Resend (email alerts)
-Alerts are sent through [Resend](https://resend.com) (free for up to 3,000 emails/month). This leaves the Google Workspace mail for moarguitars.com untouched.
-1. Create a Resend account and choose Domains → **Add domain** → `moarguitars.com` (region: Ireland).
-2. Add the DNS records it shows at your DNS host (GoDaddy now, Cloudflare after step 6). They live on subdomains (`resend._domainkey`, `send`), so the existing Google `MX` records stay as they are. Then click **Verify**.
-3. API keys → **Create API key** with **Sending access** for `moarguitars.com` only. Copy it (`re_…`).
+### 3b. Email alerts (Formspree)
+New enquiries and payments are emailed to you by submitting them to the existing Formspree form `xgebpvey` (`FORMSPREE_FORM` in `wrangler.toml`). Formspree emails whoever that form is set up to deliver to; change that in the Formspree dashboard. Replying to an alert replies to the customer. Nothing needs adding to DNS, and the Google Workspace mail is untouched.
 
-Alerts go from `enquiries@moarguitars.com` to `atelier@moarguitars.com` (`NOTIFY_FROM` / `NOTIFY_TO` in `wrangler.toml`; `NOTIFY_TO` can list several addresses separated by commas). Replying to an alert replies to the customer.
+Formspree's free plan allows **50 submissions a month**. If it runs out, enquiries are still saved in the inbox; only the emails stop until the next month. If Formspree marks alerts as spam, open the form's settings in Formspree and turn off reCAPTCHA/spam filtering for it.
 
 ### 4. Secrets
 They're stored encrypted at Cloudflare, never in the repo.
@@ -85,7 +82,6 @@ npm run --silent users | npx wrangler secret put USERS
 openssl rand -hex 32 | npx wrangler secret put SESSION_SECRET
 npx wrangler secret put STRIPE_SECRET_KEY
 npx wrangler secret put STRIPE_WEBHOOK_SECRET
-npx wrangler secret put RESEND_API_KEY
 ```
 `npm run users` asks for each person's username and password (at least 10 characters). It sets everyone's starting password and who is allowed in.
 
@@ -102,7 +98,7 @@ These need moarguitars.com's DNS on Cloudflare (it's at GoDaddy now):
 1. In Cloudflare, choose **Add a domain** → `moarguitars.com` (Free plan). It copies the existing DNS records. Check that the GitHub Pages records are there (four `A` records for `moarguitars.com` and a `CNAME` for `www` to `moarguitars.github.io`) and set them to **DNS only** (grey cloud).
 2. At GoDaddy, change the nameservers to the two Cloudflare gives you. This is usually done within an hour, and the site keeps working throughout.
 3. Uncomment the `routes` line in `wrangler.toml`.
-4. Make sure the Google `MX` records (mail) and the Resend records were copied across too.
+4. Make sure the Google `MX` records (mail) were copied across too.
 5. **Spam check:** in Cloudflare, go to Turnstile → Add widget for `moarguitars.com`. Put the site key in the site's `_config.yml` (`turnstile_site_key`) and run `npx wrangler secret put TURNSTILE_SECRET` with the secret key.
 6. Run `npm run deploy` again.
 
@@ -115,9 +111,9 @@ Payment requests then show up as `begin_checkout` events and payments as `purcha
 
 ## Working on it locally
 
-Nothing touches GitHub, Stripe or Resend locally. Fake versions run on your machine:
+Nothing touches GitHub, Stripe or Formspree locally. Fake versions run on your machine:
 - `dev/mock-github.mjs` writes saves straight into this checkout, so `jekyll serve` shows them instantly.
-- `dev/mock-stripe.mjs` gives each invoice a pretend payment page with a **Pay** button, which sends a signed webhook just like Stripe's. It also prints the alert emails that Resend would send.
+- `dev/mock-stripe.mjs` gives each invoice a pretend payment page with a **Pay** button, which sends a signed webhook just like Stripe's. It also prints the alerts that would go to Formspree.
 
 ```bash
 # from the repo root: the site, pointed at the local admin

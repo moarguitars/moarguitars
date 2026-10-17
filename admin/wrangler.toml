@@ -20,10 +20,8 @@ ADMIN_URL = "https://moar-admin.moarguitars.workers.dev"
 # Sites allowed to send enquiries to this Worker.
 SITE_ORIGINS = "https://moarguitars.com,https://www.moarguitars.com"
 GA_MEASUREMENT_ID = "G-0SN8NVW37D"
-# Email alerts, sent through Resend (moarguitars.com must be verified there, see README).
-# NOTIFY_TO can be several addresses separated by commas.
-NOTIFY_FROM = "enquiries@moarguitars.com"
-NOTIFY_TO = "atelier@moarguitars.com"
+# Email alerts are submitted to this Formspree form, which emails whoever it's set up for.
+FORMSPREE_FORM = "xgebpvey"
 
 # Enquiries and payment requests. Create with `npx wrangler d1 create moar-admin`
 # and paste the database_id it prints.
@@ -39,6 +37,5 @@ migrations_dir = "migrations"
 #   SESSION_SECRET  any long random string
 #   STRIPE_SECRET_KEY       restricted key: Customers, Invoices, Invoice items = Write
 #   STRIPE_WEBHOOK_SECRET   signing secret (whsec_...) of the webhook endpoint
-#   RESEND_API_KEY          Resend API key with sending access
 #   TURNSTILE_SECRET                         optional spam check (Cloudflare Turnstile)
 #   GA_API_SECRET                            optional: GA Measurement Protocol secret

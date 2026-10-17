@@ -1,4 +1,4 @@
-// A stand-in for Stripe Invoicing (and Resend's email API) for local testing.
+// A stand-in for Stripe Invoicing (and Formspree, for email alerts) for local testing.
 // Invoices get a pretend payment page; clicking "Pay" sends a properly signed
 // invoice.paid webhook, just like Stripe would. Emails are printed, not sent.
 //
@@ -57,11 +57,13 @@ createServer(async (req, res) => {
   const path = url.pathname;
   const raw = req.method === "POST" ? await readBody(req) : "";
 
-  // Resend: print the email.
-  if (path === "/emails" && req.method === "POST") {
-    const email = JSON.parse(raw || "{}");
-    console.log(`\n--- email to ${email.to} (reply-to ${email.reply_to || "-"})\nFrom: ${email.from}\nSubject: ${email.subject}\n\n${email.text}\n---`);
-    return send(res, 200, { id: id("email") });
+  // Formspree: print the alert it would email.
+  const form = path.match(/^\/f\/(.+)$/);
+  if (form && req.method === "POST") {
+    if (!req.headers.accept?.includes("application/json")) return send(res, 400, { error: "Expected JSON" });
+    const alert = JSON.parse(raw || "{}");
+    console.log(`\n--- Formspree form ${form[1]} (reply-to ${alert.email || "-"})\nSubject: ${alert._subject}\n\n${alert.message}\n---`);
+    return send(res, 200, { ok: true, next: "/thanks" });
   }
 
   // Pretend hosted invoice page.
@@ -137,4 +139,4 @@ ${invoice.status === "open" ? `<form method="post" action="/mock/pay/${invoice.i
   }
 
   send(res, 404, { error: { message: "Not found" } });
-}).listen(port, () => console.log(`Mock Stripe + Resend on http://localhost:${port}`));
+}).listen(port, () => console.log(`Mock Stripe + Formspree on http://localhost:${port}`));

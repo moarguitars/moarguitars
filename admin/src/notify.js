@@ -1,24 +1,25 @@
-// Email alerts (via Resend) and server-side Google Analytics events.
+// Email alerts (via Formspree) and server-side Google Analytics events.
 
 /**
- * Email the workshop through Resend. Needs RESEND_API_KEY and NOTIFY_FROM / NOTIFY_TO;
- * without the key (e.g. locally) the email is just logged.
+ * Email the workshop by submitting to a Formspree form, which emails whoever the form
+ * delivers to. Needs FORMSPREE_FORM (the form ID); without it the alert is just logged.
+ * Formspree's free plan allows 50 submissions a month.
  */
 export async function sendAlert(env, { subject, text, replyTo }) {
-  if (!env.RESEND_API_KEY || !env.NOTIFY_FROM || !env.NOTIFY_TO) {
+  if (!env.FORMSPREE_FORM) {
     console.log(`[email] ${subject}\n${text}`);
     return;
   }
   try {
-    const response = await fetch(env.RESEND_API || "https://api.resend.com/emails", {
+    const base = env.FORMSPREE_URL || "https://formspree.io/f/";
+    const response = await fetch(`${base}${encodeURIComponent(env.FORMSPREE_FORM)}`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
-        from: `Moar Guitars website <${env.NOTIFY_FROM}>`,
-        to: env.NOTIFY_TO.split(",").map((address) => address.trim()),
-        subject,
-        text,
-        ...(replyTo && { reply_to: replyTo }),
+        _subject: subject,
+        // Formspree uses "email" as the reply-to address.
+        ...(replyTo && { email: replyTo }),
+        message: text,
       }),
     });
     if (!response.ok) console.error("Email alert failed", response.status, await response.text());
