@@ -1,12 +1,18 @@
 ---
 title: Wayfair
 order: 2
-price: ""
-price_note: All prices in USD. Shipping and local taxes are added at checkout.
+price: 10,000
+price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
-  - /assets/images/wayfair/1.jpg
-  - /assets/images/wayfair/2.jpg
+  - /assets/images/wayfair/1792243138410-1.jpg
+  - /assets/images/wayfair/1792243138410-2.jpg
+  - /assets/images/wayfair/1792243138410-3.jpg
+  - /assets/images/wayfair/1792243138410-4.jpg
+  - /assets/images/wayfair/1792243138410-5.jpg
+  - /assets/images/wayfair/1792243138410-6.jpg
+  - /assets/images/wayfair/1792243138410-7.jpg
   - /assets/images/wayfair/3.jpg
+  - /assets/images/wayfair/1792243138410-9.jpg
 ---
 
 An evolved jazz box, designed to fit the player creatively, ergonomically and visually.
