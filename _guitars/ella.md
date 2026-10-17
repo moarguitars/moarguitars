@@ -1,7 +1,7 @@
 ---
 title: Ella
 order: 1
-price: "$ 8.500"
+price: ""
 price_note: All prices in USD. Shipping and local taxes are added at checkout.
 images:
   - /assets/images/ella/1.jpg
