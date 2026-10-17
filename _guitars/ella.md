@@ -1,7 +1,7 @@
 ---
 title: Ella
 order: 1
-price: 12,500
+price: $12,500
 price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
   - /assets/images/ella/1792242866631-1.jpg
