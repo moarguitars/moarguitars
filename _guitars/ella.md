@@ -1,12 +1,14 @@
 ---
 title: Ella
 order: 1
-price: ""
-price_note: All prices in USD. Shipping and local taxes are added at checkout.
+price: 12,500
+price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
+  - /assets/images/ella/1792242866631-1.jpg
+  - /assets/images/ella/1792242866631-2.jpg
   - /assets/images/ella/1.jpg
-  - /assets/images/ella/2.jpg
   - /assets/images/ella/3.jpg
+  - /assets/images/ella/1792242866631-5.jpg
 ---
 
 Unlike any other acoustic guitar. I set out to create the most versatile, resonant, dynamic, playable and comfortable acoustic guitar my skills could muster, and Ella is the result.
