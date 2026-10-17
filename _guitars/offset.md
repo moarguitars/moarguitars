@@ -1,7 +1,7 @@
 ---
 title: Offset
 order: 3
-price: 10,000
+price: $10,000
 price_note: All prices in USD. Shipping calculated at build completion. Pricing does not include VAT or local taxes/import fees
 images:
   - /assets/images/offset/1792243224274-1.jpg
