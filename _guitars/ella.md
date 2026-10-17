@@ -15,9 +15,9 @@ I set out to create the most versatile, resonant, dynamic, playable and comforta
 
 They can be ordered with either roasted walnut for the body and neck, roasted mahogany for the body and neck or wenge for the body and neck, with an ebony, rosewood or wenge fretboard. 
 
-They come with stainless steel frets, 24.75” scale length and 44mm at the nut. They come with double bound necks and fretboards.
+They come with stainless steel frets, 24.75” scale length and 44mm at the nut
 
-Ella has a small body, and is a parlor size guitar. Sound is picked up by my custom hidden magnetic pickup mounted via the fretboard and a passive piezo both on their own hidden blend pots mounted inside the soundhole.
+Ella is a parlor size guitar. Sound is picked up by my custom designed magnetic pickup mounted through fretboard and a passive piezo system. Both on their own hidden blend pots mounted inside the soundhole.
 
 Typical build weight is 2.2kg / 4.8lbs
 
