@@ -11,6 +11,14 @@ images:
   - /assets/images/ella/1792242866631-5.jpg
 ---
 
-Unlike any other acoustic guitar. I set out to create the most versatile, resonant, dynamic, playable and comfortable acoustic guitar my skills could muster, and Ella is the result.
+I set out to create the most versatile, resonant, dynamic, playable and comfortable acoustic guitar my skills could muster, and Ella is the result. Unlike any other acoustic guitar you have ever played, Ella slots perfectly alongside your body, whilst sounding equally fantastic through a concert hall PA system or your studio valve amp. She can be pushed to crunch without feeding back, and can sing long, sustained cathedral-like notes up and down the fretboard with clarity and focus. Hand carved from a huge piece of roasted wood, they are light in weight, beautiful, and alive under the hands. Ella is delicate, thoughtful, focused, responsive, dynamic, playful and boisterous.
 
-Hand carved from a huge piece of roasted wood, she is light, beautiful and alive under the hands. She can be pushed to crunch without feeding back, and sings long, sustained notes up and down the fretboard with clarity and focus.
+They can be ordered with either roasted walnut for the body and neck, roasted mahogany for the body and neck or wenge for the body and neck, with an ebony, rosewood or wenge fretboard. 
+
+They come with stainless steel frets, 24.75” scale length and 44mm at the nut. They come with double bound necks and fretboards.
+
+Ella has a small body, and is a parlor size guitar. Sound is picked up by my custom hidden magnetic pickup mounted via the fretboard and a passive piezo both on their own hidden blend pots mounted inside the soundhole.
+
+Typical build weight is 2.2kg / 4.8lbs
+
+Ella is named after my daughter, who is also delicate, thoughtful, focused, responsive, beautiful, playful, boisterous and parlor sized.
