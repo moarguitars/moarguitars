@@ -1,0 +1,34 @@
+# Top of the page: the intro under the logo.
+intro_title: Bench Notes
+intro: |-
+  Handcrafted guitars built to order. Each one starts its journey on my bench in Denmark and ends up on stages all around the world.
+
+  Every instrument is carved, wound and set up by hand, for one player. If you can't see what you're after, get in touch. I can probably make it.
+reach_out_label: Reach out
+reach_out_link: mailto:atelier@moarguitars.com
+
+# The "Enquire" link under each guitar opens an email to this address,
+# with the guitar's name in the subject.
+enquiry_email: atelier@moarguitars.com
+enquire_label: Enquire
+
+# Bottom of the page.
+fine_print_title: Fine Print
+fine_print:
+  - label: Commission & Payment
+    body: A deposit secures your place on the waiting list. The remaining balance is due on completion. Payment plans can be arranged, just ask.
+  - label: Lead times
+    body: 'TODO: current lead time, e.g. "Builds currently take around 12 months from deposit to delivery."'
+  - label: Deposit rules
+    body: Deposits are used to buy the agreed materials for your build, so they are non-refundable.
+  - label: Bank transfer details
+    body: Bank details are sent with your invoice.
+contact:
+  - label: Email
+    link: mailto:atelier@moarguitars.com
+  - label: Instagram
+    link: https://www.instagram.com/moarguitars/
+  - label: Facebook
+    link: https://www.facebook.com/moarguitars/
+  - label: WhatsApp
+    link: https://wa.me/4553872888

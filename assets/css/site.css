@@ -1,0 +1,291 @@
+:root {
+  --paper: #fcefea;
+  --ink: #1c1a19;
+  --muted: #7a706b;
+  --rule: #9b938f;
+  --serif: "Times New Roman", Times, "Liberation Serif", serif;
+  --column: 30rem;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.125rem;
+  line-height: 1.3;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+img { display: block; max-width: 100%; }
+
+.masthead,
+main {
+  width: min(100% - 2rem, 44rem);
+  margin-inline: auto;
+}
+
+/* Logo, top right, sitting on a rule */
+.masthead {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5rem 0 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.logo { display: block; width: 7.5rem; color: var(--ink); }
+.logo svg { display: block; width: 100%; height: auto; }
+
+/* An entry: big italic title hanging to the left of a narrow text column */
+.entry {
+  position: relative;
+  margin-inline-start: auto;
+  margin-inline-end: auto;
+  max-width: var(--column);
+  padding-top: 3rem;
+  scroll-margin-top: 1rem;
+}
+
+.entry-title {
+  /* Hang into the gutter, but never past the edge of the screen */
+  margin: 0 0 -1.4rem calc(-1 * min(var(--offset, 2rem), (100vw - var(--column)) / 2 - 1rem));
+  font-size: 2.6rem;
+  font-style: italic;
+  font-weight: normal;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  max-width: 6ch;
+}
+
+/* The mockup staggers each title differently */
+.intro .entry-title        { --offset: 4.5rem; }
+/* (sections are counted from the intro, so the first guitar is the 2nd) */
+.guitar:nth-of-type(3n+2) .entry-title { --offset: 3rem; }
+.guitar:nth-of-type(3n)   .entry-title { --offset: 5.75rem; max-width: none; }
+.guitar:nth-of-type(3n+1) .entry-title { --offset: 4rem; }
+.fine-print .entry-title  { --offset: 3.5rem; }
+
+.prose { padding-top: 1.6rem; }
+.prose p { margin: 0; text-indent: 1.75rem; }
+
+/* Reach out + index */
+.reach-out {
+  margin: 1.5rem 0 0;
+  text-align: right;
+  font-style: italic;
+}
+
+.index {
+  margin-top: 2.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.index ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-style: italic;
+}
+
+.index li + li::before {
+  content: "|";
+  margin: 0 0.6rem;
+  font-style: normal;
+}
+
+.index a { text-decoration: none; }
+.index a:hover,
+.index a:focus-visible { text-decoration: underline; }
+
+/* Guitar */
+.guitar { padding-top: 4rem; }
+
+.price {
+  margin: 1rem 0 0;
+  font-size: 1.35rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.price-note {
+  margin: 0.1rem 0 0;
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--muted);
+}
+
+.guitar-foot {
+  display: flex;
+  align-items: baseline;
+  margin-top: 0.75rem;
+}
+
+.enquire { font-style: italic; }
+
+.to-top {
+  display: block;
+  width: max-content;
+  margin: 0.5rem -1rem 0 auto;
+  font-size: 1.6rem;
+  line-height: 1;
+  font-weight: 200;
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.to-top:hover { color: var(--ink); }
+
+.thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.thumbs a { display: block; }
+
+.thumbs img {
+  width: 5.5rem;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: opacity 0.15s;
+}
+
+.thumbs a:hover img { opacity: 0.85; }
+
+/* Fine print */
+.fine-print { padding-top: 5rem; padding-bottom: 8rem; }
+
+.fine-print-list {
+  margin: 0;
+  padding: 1.6rem 0 0;
+  list-style: none;
+  line-height: 1.25;
+}
+
+.fine-print-list a { text-decoration: none; }
+.fine-print-list a:hover { text-decoration: underline; }
+
+.link-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.link-button:hover { text-decoration: underline; }
+
+.fine-print summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.fine-print summary::-webkit-details-marker { display: none; }
+.fine-print summary:hover { text-decoration: underline; }
+.fine-print details[open] summary { font-style: italic; }
+
+.fine-print details .prose {
+  padding: 0.25rem 0 0.75rem 1.75rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.fine-print details .prose p { text-indent: 0; }
+
+/* Analytics consent */
+.consent {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  left: 1rem;
+  z-index: 5;
+  max-width: 26rem;
+  margin-left: auto;
+  padding: 1rem 1.1rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  box-shadow: 0 8px 24px rgb(28 26 25 / 0.12);
+  font-size: 1rem;
+}
+
+.consent p { margin: 0 0 0.75rem; }
+.consent a { color: var(--muted); }
+.consent-actions { display: flex; gap: 0.5rem; justify-content: flex-end; }
+
+.consent button {
+  padding: 0.35rem 0.9rem;
+  border: 1px solid var(--ink);
+  background: none;
+  font: italic 1rem var(--serif);
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.consent [data-consent="granted"] { background: var(--ink); color: var(--paper); }
+
+/* Lightbox */
+.lightbox {
+  max-width: min(92vw, 60rem);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.lightbox::backdrop { background: rgb(28 26 25 / 0.85); }
+
+.lightbox img {
+  max-height: 88vh;
+  width: auto;
+  margin: auto;
+}
+
+.lightbox form { text-align: right; }
+
+.lightbox button {
+  border: 0;
+  background: none;
+  color: var(--paper);
+  font: 2rem/1 var(--serif);
+  cursor: pointer;
+}
+
+:focus-visible { outline: 1px solid var(--ink); outline-offset: 2px; }
+
+@media (min-width: 48rem) {
+  body { font-size: 1.25rem; }
+  :root { --column: 32rem; }
+  .logo { width: 9rem; }
+  .entry-title { font-size: 3.2rem; }
+  .thumbs img { width: 7rem; }
+}
+
+@media (max-width: 36rem) {
+  .entry { max-width: none; margin-inline: 2.5rem 0; }
+  .entry-title { font-size: 2.2rem; margin-left: calc(-1 * var(--offset)); }
+  .intro .entry-title,
+  .guitar:nth-of-type(3n+1) .entry-title,
+  .guitar:nth-of-type(3n+2) .entry-title,
+  .fine-print .entry-title { --offset: 1.25rem; }
+  .guitar:nth-of-type(3n) .entry-title { --offset: 2.5rem; }
+  .to-top { margin-right: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

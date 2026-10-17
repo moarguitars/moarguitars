@@ -1,0 +1,17 @@
+{
+  "name": "moar-admin",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "mock-github": "node dev/mock-github.mjs ..",
+    "users": "node scripts/users.mjs",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "yaml": "2.8.1"
+  },
+  "devDependencies": {
+    "wrangler": "4.85.0"
+  }
+}

@@ -1,73 +1,67 @@
-# Forty - Jekyll Theme
+# moarguitars.com
 
-A Jekyll version of the "Forty" theme by [HTML5 UP](https://html5up.net/).  
+A single-page Jekyll site served by GitHub Pages from `master`. Collaborators edit it through the admin at admin.moarguitars.com (see [admin/README.md](admin/README.md)).
 
-![Forty Theme](assets/images/forty.jpg "Forty Theme")
+| What | Where |
+| --- | --- |
+| Page template | `index.html` |
+| Styles / scripts | `assets/css/site.css`, `assets/js/` |
+| Intro, Enquire link, fine print, contact links | `_data/home.yml` |
+| One file per guitar (name, price, photos, text) | `_guitars/*.md` |
+| Photos | `assets/images/<guitar>/` |
+| Google Analytics ID | `_config.yml` → `google_analytics_id` |
 
-# How to Use
+Run locally with `jekyll serve --livereload` and open http://localhost:4000.
 
-For those unfamiliar with how Jekyll works, check out [jekyllrb.com](https://jekyllrb.com/) for all the details, 
-or read up on just the basics of [front matter](https://jekyllrb.com/docs/frontmatter/), [writing posts](https://jekyllrb.com/docs/posts/), 
-and [creating pages](https://jekyllrb.com/docs/pages/).
+## How visitors get in touch
 
-- **GitLab**: Simply fork this repository and start editing the `_config.yml` file!  
-- **GitHub**: Fork this repository and create a branch named `gh-pages`, then start editing the `_config.yml` file.
+- **Enquire** under each guitar: opens an email to `enquiry_email` with the subject "Enquiry: <guitar>". This is the main conversion.
+- **Reach out** under the intro, plus the Email / Instagram / Facebook / WhatsApp links in the Fine Print.
 
-# Added Features
+## Google Analytics
 
-* **[Formspree.io](https://formspree.io/) contact form integration** - just add your email to the `_config.yml` and it works!
-* Use `_config.yml` to **set whether the homepage tiles should pull pages or posts**, as well as how many to display.
-* Add your **social profiles** easily in `_config.yml`. Only social profiles buttons you enter in `config.yml` show up on the site footer!
-* Set **featured images** in front matter.
+Analytics is off until you set an ID. When it's on, visitors see a small consent banner, and nothing loads unless they accept. Visitors can change their choice later from "Cookie settings" in the Fine Print. This is required for EU visitors.
 
-# Issues
+### Setup
 
-If you would like to report a bug, ask a question, request a feature, feel free to do so on [the GitLab repository](https://gitlab.com/andrewbanchich/forty-jekyll-theme) and I will be more than happy to help!
+1. In [Google Analytics](https://analytics.google.com), create a GA4 property and a Web data stream for `https://moarguitars.com`. Copy the measurement ID (`G-…`).
+2. Put it in `_config.yml`: `google_analytics_id: "G-…"` and push.
+3. In GA, open Admin → Data display → **Custom definitions** and add these event-scoped custom dimensions/metrics, so they appear in reports:
 
-Alternatively, you can open an issue via email by emailing [incoming+andrewbanchich/forty-jekyll-theme@incoming.gitlab.com](mailto:incoming+andrewbanchich/forty-jekyll-theme@incoming.gitlab.com).
+   | Name | Scope | Event parameter |
+   | --- | --- | --- |
+   | Guitar | Event (dimension) | `guitar` |
+   | Contact method | Event (dimension) | `method` |
+   | Fine print topic | Event (dimension) | `topic` |
+   | Photo number | Event (dimension) | `photo_number` |
+   | Seconds on guitar | Event (metric, seconds) | `engagement_seconds` |
 
-The GitHub repository is simply a mirror of the GitLab repository.
+4. Admin → Data display → **Events**: mark `generate_lead` as a **key event**.
+5. To check it's working, visit `https://moarguitars.com/?ga_debug`, accept the banner, and watch Admin → DebugView.
 
-# Credits
+### What's tracked
 
-Original README from HTML5 UP:
+Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecommerce purchases** item table shows views and clicks per guitar.
 
-```
-Forty by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+| Event | When | Tells you |
+| --- | --- | --- |
+| `view_item_list` | Page load | Baseline: visits |
+| `select_item` | Guitar clicked in the index | Interest before scrolling |
+| `view_item` | Guitar's **price** was on screen for 1s+ | Who actually saw the price |
+| `view_photo` | A photo opened (with photo number) | Interest in detail |
+| `guitar_engagement` | Seconds spent on the guitar | Depth of interest |
+| `view_fine_print` | A fine print topic opened, with the last guitar viewed | Payment intent (e.g. *Commission & Payment*, *Deposit rules*, *Bank transfer details*) |
+| `generate_lead` | **Enquire** clicked (value = guitar price, USD), or a contact link | Conversion |
 
+### Propensity to pay: the funnel report
 
-This is Forty, my latest and greatest addition to HTML5 UP and, per its incredibly
-creative name, my 40th (woohoo)! It's built around a grid of "image tiles" that are
-set up to smoothly transition to secondary landing pages (for which a separate page
-template is provided), and includes a number of neat effects (check out the menu!),
-extra features, and all the usual stuff you'd expect. Hope you dig it!
+In GA, go to **Explore → Funnel exploration** and set up these steps:
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+1. Saw the price: event `view_item`
+2. Engaged: event `view_photo` **or** `guitar_engagement` with *Seconds on guitar* ≥ 20
+3. Looked at payment terms: event `view_fine_print` where *Fine print topic* is Commission & Payment, Deposit rules or Bank transfer details
+4. Enquired: event `generate_lead`
 
-(* = not included)
+Break it down by **Guitar**. For each guitar this shows the share of people who saw the price and then went on to engage, check the payment terms and enquire. A guitar whose price is often seen but rarely followed by step 3 or 4 suggests price friction. A high step 3→4 rate suggests ready buyers.
 
-AJ
-aj@lkn.io | @ajlkn
-
-
-Credits:
-
-	Demo Images:
-		Unsplash (unsplash.com)
-
-	Icons:
-		Font Awesome (fortawesome.github.com/Font-Awesome)
-
-	Other:
-		jQuery (jquery.com)
-		html5shiv.js (@afarkas @jdalton @jon_neal @rem)
-		background-size polyfill (github.com/louisremi)
-		Misc. Sass functions (@HugoGiraudel)
-		Respond.js (j.mp/respondjs)
-		Skel (skel.io)
-```
-
-Repository [Jekyll logo](https://github.com/jekyll/brand) icon licensed under a [Creative Commons Attribution 4.0 International License](http://choosealicense.com/licenses/cc-by-4.0/).
+Because `generate_lead` carries the guitar's price as its value, the **Key events** value total shows the dollar value of enquiries per guitar.

@@ -1,49 +1,21 @@
-# site settings
-title: Moar Guitars 
-subtitle: Hand-made in Copenhagen
-email: mail@johnhayn.es
-description:  The world's local guitar builder. My unique and carefully hand-crafted guitars are played on stages all around the world, but each one starts its journey from my workshop in Copenhagen, Denmark.
-baseurl: "/" # the subpath of your site, e.g. /blog
-url: https://www.moarguitars.com # the base hostname & protocol for your site
-author:
-street_address: Mønvej 105,
-city: Præstø,
-state: 
-zip_code: 4720,
-country: Denmark
-phone: (0045) 5387 2888
-permalink: /:title/
+title: Moar Guitars
+description: Handcrafted guitars built to order in Denmark.
+url: https://moarguitars.com
+baseurl: ""
 
-repository: moarguitars.github.io/moarguitars
-
-# homepage tiles
-tiles-source: pages # accepts "posts" or "pages"
-tiles-count: 5
-
-# social settings
-facebook_url: https://www.facebook.com/moarguitars/ 
-instagram_url: https://www.instagram.com/moarguitars/
-youtube_url: https://www.youtube.com/channel/UCyS4fZAUkx7QRkcIcBEnytA/videos
-
-# build settings
 markdown: kramdown
 
-sass:
-  style: compressed
+# Google Analytics 4 measurement ID (e.g. G-ABC123XYZ). Leave empty to turn analytics off.
+google_analytics_id: ""
 
-# sitemap
-plugins:
-  - jekyll-sitemap
-  - jekyll-airtable
-  - environment_variables_generator
+collections:
+  guitars:
+    output: false
+    sort_by: order
 
-airtable:
-  enable_sync: true
-  base_uid: 'appp7C1MblPCnMePn'
-  airtable_api_key: ${{ secrets.GH_PAGES_TOKEN }}
-  tables:
-    - name: 'Use Cases' 
-    - name: 'Whitepapers'    
-    - name: 'Quotes'
-      long_text_columns:
-        - 'column name'
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - admin

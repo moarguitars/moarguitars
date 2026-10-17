@@ -1,0 +1,21 @@
+name = "moar-admin"
+main = "src/worker.js"
+compatibility_date = "2025-06-01"
+
+# Serves admin.moarguitars.com once the domain's DNS is on Cloudflare (see README).
+# routes = [{ pattern = "admin.moarguitars.com", custom_domain = true }]
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+[vars]
+GITHUB_REPO = "moarguitars/moarguitars"
+GITHUB_BRANCH = "master"
+SITE_URL = "https://moarguitars.com"
+
+# Secrets (set with `npx wrangler secret put <NAME>`, never committed):
+#   GITHUB_TOKEN    fine-grained token with Contents: read & write on the repo
+#   USERS           JSON of usernames to password hashes, made by `npm run users`
+#   SESSION_SECRET  any long random string

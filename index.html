@@ -1,0 +1,101 @@
+---
+---
+{%- assign home = site.data.home -%}
+{%- assign guitars = site.guitars | sort: "order" -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:image" content="{{ '/assets/images/moar-guitars--og.png' | absolute_url }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon/moar-32.png' | relative_url }}">
+  <link rel="apple-touch-icon" href="{{ '/assets/images/favicon/moar-180.ico' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body id="top">
+  <header class="masthead">
+    <a class="logo" href="#top">{% include logo.svg %}</a>
+  </header>
+
+  <main>
+    <section class="entry intro">
+      <h1 class="entry-title">{{ home.intro_title }}</h1>
+      <div class="prose">{{ home.intro | markdownify }}</div>
+      <p class="reach-out"><a href="{{ home.reach_out_link }}" data-contact="{{ home.reach_out_label }}">{{ home.reach_out_label }}</a></p>
+    </section>
+
+    <nav class="index" aria-label="Guitars">
+      <ul>
+        {%- for guitar in guitars %}
+        <li><a href="#{{ guitar.title | slugify }}">{{ guitar.title }}</a></li>
+        {%- endfor %}
+        <li><a href="#fine-print">{{ home.fine_print_title }}</a></li>
+      </ul>
+    </nav>
+
+    {%- for guitar in guitars %}
+    <section class="entry guitar" id="{{ guitar.title | slugify }}" data-guitar="{{ guitar.slug }}" data-guitar-name="{{ guitar.title | escape }}" data-price="{{ guitar.price | escape }}">
+      <h2 class="entry-title">{{ guitar.title }}</h2>
+      <div class="prose">{{ guitar.content | markdownify }}</div>
+      <p class="price">{% if guitar.price != "" %}{{ guitar.price }}{% else %}Price on request{% endif %}</p>
+      {%- if guitar.price_note %}<p class="price-note">{{ guitar.price_note }}</p>{% endif %}
+      <div class="guitar-foot">
+        {%- if home.enquiry_email %}
+        <a class="enquire" href="mailto:{{ home.enquiry_email }}?subject={{ 'Enquiry: ' | append: guitar.title | uri_escape }}" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
+        {%- endif %}
+        <a class="to-top" href="#top" aria-label="Back to top">&uarr;</a>
+      </div>
+      {%- if guitar.images %}
+      <ul class="thumbs">
+        {%- for image in guitar.images %}
+        <li><a href="{{ image | relative_url }}" data-lightbox><img src="{{ image | relative_url }}" alt="{{ guitar.title }}, photo {{ forloop.index }}" loading="lazy"></a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </section>
+    {%- endfor %}
+
+    <section class="entry fine-print" id="fine-print">
+      <h2 class="entry-title">{{ home.fine_print_title }}</h2>
+      <ul class="fine-print-list">
+        {%- for item in home.fine_print %}
+        <li>
+          <details data-fine-print="{{ item.label | escape }}">
+            <summary>{{ item.label }}</summary>
+            <div class="prose">{{ item.body | markdownify }}</div>
+          </details>
+        </li>
+        {%- endfor %}
+        {%- for item in home.contact %}
+        <li><a href="{{ item.link }}" data-contact="{{ item.label | escape }}"{% unless item.link contains "mailto:" %} target="_blank" rel="noopener"{% endunless %}>{{ item.label }}</a></li>
+        {%- endfor %}
+        {%- if site.google_analytics_id != "" and site.google_analytics_id %}
+        <li><button class="link-button" type="button" data-consent-reset>Cookie settings</button></li>
+        {%- endif %}
+      </ul>
+      <a class="to-top" href="#top" aria-label="Back to top">&uarr;</a>
+    </section>
+  </main>
+
+  <dialog class="lightbox" aria-label="Photo">
+    <form method="dialog"><button aria-label="Close">&times;</button></form>
+    <img alt="">
+  </dialog>
+
+  {%- if site.google_analytics_id != "" and site.google_analytics_id %}
+  <div class="consent" hidden>
+    <p>May we use analytics cookies to see which guitars people look at? <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">How Google uses data</a></p>
+    <div class="consent-actions">
+      <button type="button" data-consent="denied">No thanks</button>
+      <button type="button" data-consent="granted">Accept</button>
+    </div>
+  </div>
+  <script src="{{ '/assets/js/analytics.js' | relative_url }}" data-ga-id="{{ site.google_analytics_id }}" defer></script>
+  {%- endif %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+</body>
+</html>
