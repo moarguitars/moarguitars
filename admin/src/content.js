@@ -1,12 +1,14 @@
 // Reads and writes the site's content files:
-//   _data/home.yml     intro, fine print, contact links
-//   _guitars/*.md      one file per guitar (front matter + description)
+//   _data/home.yml     intro, default enquiry form, fine print, contact links
+//   _guitars/*.md      one file per guitar (front matter + description, optional own form)
 
 import YAML from "yaml";
 
 const HOME_PATH = "_data/home.yml";
 const GUITARS_DIR = "_guitars";
 const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+export const FIELD_TYPES = ["text", "textarea", "select", "radio", "checkboxes"];
+const CHOICE_TYPES = ["select", "radio", "checkboxes"];
 
 export async function readContent(gh) {
   const [homeFile, guitarFiles] = await Promise.all([gh.read(HOME_PATH), gh.list(GUITARS_DIR)]);
@@ -43,10 +45,8 @@ export async function saveHome(gh, input, user) {
   doc.set("intro", text(home.intro));
   doc.set("reach_out_label", text(home.reach_out_label, 60));
   doc.set("reach_out_link", safeLink(home.reach_out_link));
-  const email = text(home.enquiry_email, 200);
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw badRequest(`"${email}" isn't a valid email address.`);
-  doc.set("enquiry_email", email);
   doc.set("enquire_label", text(home.enquire_label, 60));
+  doc.set("enquiry_form", normalizeForm(home.enquiry_form));
   doc.set("fine_print_title", required(text(home.fine_print_title, 60), "Fine print title"));
   doc.set("fine_print", links(home.fine_print, [["label", 80], ["body", 4000]]));
   doc.set(
@@ -103,6 +103,8 @@ export async function saveGuitar(gh, slug, input, user, { create = false } = {})
     price_note: clean(input.price_note, 200),
     images,
   };
+  // No form means the guitar uses the default enquiry form.
+  if (input.form) frontMatter.form = normalizeForm(input.form);
   const body = clean(input.body, 20000);
   files.push({ path, text: `---\n${YAML.stringify(frontMatter, { lineWidth: 0 })}---\n\n${body}\n` });
 
@@ -142,7 +144,51 @@ export function isImagePath(path) {
   return typeof path === "string" && /^\/assets\/images\/[\w./-]+\.(jpe?g|png|webp|gif)$/i.test(path) && !path.includes("..");
 }
 
-function parseGuitar(text) {
+/** The enquiry form for a guitar: its own, or the default from home.yml. */
+export async function readForm(gh, slug) {
+  const [home, guitar] = await Promise.all([gh.read(HOME_PATH), gh.read(`${GUITARS_DIR}/${slug}.md`)]);
+  if (!guitar) return null;
+  const parsed = parseGuitar(guitar.text);
+  return { guitar: parsed, form: parsed.form || YAML.parse(home.text).enquiry_form };
+}
+
+/**
+ * Clean up a form definition from the admin:
+ * { intro, submit_label, thanks, fields: [{ label, type, required?, help?, options? }] }
+ * Name and email are always asked first and aren't part of `fields`.
+ */
+export function normalizeForm(form) {
+  const input = form || {};
+  const seen = new Set();
+  const fields = (Array.isArray(input.fields) ? input.fields : []).slice(0, 20).map((field) => {
+    const label = clean(field?.label, 120);
+    if (!label) throw badRequest("Every question needs a label.");
+    if (seen.has(label.toLowerCase())) throw badRequest(`There are two questions called "${label}".`);
+    seen.add(label.toLowerCase());
+
+    const type = FIELD_TYPES.includes(field?.type) ? field.type : "text";
+    const out = { label, type };
+    if (field?.required) out.required = true;
+    const help = clean(field?.help, 200);
+    if (help) out.help = help;
+    if (CHOICE_TYPES.includes(type)) {
+      const raw = Array.isArray(field.options) ? field.options : String(field.options || "").split("\n");
+      const options = [...new Set(raw.map((option) => clean(option, 120)).filter(Boolean))].slice(0, 20);
+      if (!options.length) throw badRequest(`"${label}" needs at least one option.`);
+      out.options = options;
+    }
+    return out;
+  });
+
+  return {
+    intro: clean(input.intro, 1000),
+    fields,
+    submit_label: clean(input.submit_label, 60) || "Send enquiry",
+    thanks: clean(input.thanks, 500) || "Thank you. I'll be in touch soon.",
+  };
+}
+
+export function parseGuitar(text) {
   const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
   const data = match ? YAML.parse(match[1]) || {} : {};
   return {
@@ -151,6 +197,7 @@ function parseGuitar(text) {
     price: data.price ?? "",
     price_note: data.price_note ?? "",
     images: Array.isArray(data.images) ? data.images : [],
+    ...(data.form && { form: data.form }),
     body: (match ? match[2] : text).trim(),
   };
 }

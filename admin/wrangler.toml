@@ -14,8 +14,34 @@ run_worker_first = true
 GITHUB_REPO = "moarguitars/moarguitars"
 GITHUB_BRANCH = "master"
 SITE_URL = "https://moarguitars.com"
+ADMIN_URL = "https://admin.moarguitars.com"
+# Sites allowed to send enquiries to this Worker.
+SITE_ORIGINS = "https://moarguitars.com,https://www.moarguitars.com"
+# Sandbox while testing: https://api-m.sandbox.paypal.com
+PAYPAL_API = "https://api-m.paypal.com"
+GA_MEASUREMENT_ID = "G-0SN8NVW37D"
+# Email alerts (needs Cloudflare Email Routing on moarguitars.com, see README).
+NOTIFY_FROM = "enquiries@moarguitars.com"
+NOTIFY_TO = "atelier@moarguitars.com"
+
+# Enquiries and payment requests. Create with `npx wrangler d1 create moar-admin`
+# and paste the database_id it prints.
+[[d1_databases]]
+binding = "DB"
+database_name = "moar-admin"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+# Uncomment once Email Routing is on and NOTIFY_TO is a verified destination.
+# [[send_email]]
+# name = "NOTIFY"
+# destination_address = "atelier@moarguitars.com"
 
 # Secrets (set with `npx wrangler secret put <NAME>`, never committed):
 #   GITHUB_TOKEN    fine-grained token with Contents: read & write on the repo
 #   USERS           JSON of usernames to password hashes, made by `npm run users`
 #   SESSION_SECRET  any long random string
+#   PAYPAL_CLIENT_ID, PAYPAL_CLIENT_SECRET   from a PayPal REST app (developer.paypal.com)
+#   PAYPAL_WEBHOOK_ID                        the webhook's ID from that app
+#   TURNSTILE_SECRET                         optional spam check (Cloudflare Turnstile)
+#   GA_API_SECRET                            optional: GA Measurement Protocol secret

@@ -8,10 +8,26 @@ const state = {
   user: null,
   siteUrl: "",
   content: null,
-  selected: "intro", // "intro" | "fine-print" | "new" | a guitar slug
+  selected: "inbox", // "inbox" | "form" | "intro" | "fine-print" | "new" | a guitar slug
   dirty: false,
   order: null, // pending guitar order (array of slugs) before it's saved
+  enquiryId: null, // open enquiry in the inbox
+  showArchived: false,
 };
+
+// Links in alert emails open an enquiry directly: /#enquiry=<id>
+function openLinkedEnquiry() {
+  const linked = location.hash.match(/^#enquiry=([0-9a-f-]{36})$/);
+  if (!linked) return false;
+  state.selected = "inbox";
+  state.enquiryId = linked[1];
+  history.replaceState(null, "", location.pathname);
+  return true;
+}
+openLinkedEnquiry();
+window.addEventListener("hashchange", () => {
+  if (openLinkedEnquiry() && state.user && state.content) render();
+});
 
 // ---------- API ----------
 
@@ -88,7 +104,7 @@ async function loadContent() {
   state.dirty = false;
   state.order = null;
   const slugs = state.content.guitars.map((g) => g.slug);
-  if (!["intro", "fine-print", "new", ...slugs].includes(state.selected)) state.selected = "intro";
+  if (!["inbox", "form", "intro", "fine-print", "new", ...slugs].includes(state.selected)) state.selected = "inbox";
   render();
 }
 
@@ -147,7 +163,8 @@ function render() {
 }
 
 function select(key) {
-  if (key === state.selected) return;
+  if (key === "inbox") state.enquiryId = null;
+  if (key === state.selected && key !== "inbox") return;
   if (state.dirty && !confirm("You have unsaved changes. Discard them?")) return;
   state.dirty = false;
   state.selected = key;
@@ -177,6 +194,11 @@ function renderNav() {
   return h(
     "nav",
     { class: "nav", "aria-label": "Sections" },
+    h("h2", {}, "Enquiries"),
+    h("ul", {},
+      h("li", {}, navLink("inbox", "Inbox")),
+      h("li", {}, navLink("form", "Enquiry form")),
+    ),
     h("h2", {}, "Top of page"),
     h("ul", {}, h("li", {}, navLink("intro", state.content.home.intro_title || "Intro"))),
     h("h2", {}, "Guitars"),
@@ -219,6 +241,8 @@ function renderOrderActions() {
 }
 
 function renderEditor() {
+  if (state.selected === "inbox") return inboxView();
+  if (state.selected === "form") return defaultFormEditor();
   if (state.selected === "intro") return introEditor();
   if (state.selected === "fine-print") return finePrintEditor();
   if (state.selected === "new") return guitarEditor(null);
@@ -285,8 +309,6 @@ function introEditor() {
     intro: textArea(home.intro, { rows: 8 }),
     reach_out_label: textInput(home.reach_out_label, { maxlength: 60 }),
     reach_out_link: textInput(home.reach_out_link, { maxlength: 300 }),
-    enquire_label: textInput(home.enquire_label, { maxlength: 60 }),
-    enquiry_email: textInput(home.enquiry_email, { maxlength: 200, type: "email" }),
   };
 
   const { bar, run } = saveBar(async () => {
@@ -308,14 +330,311 @@ function introEditor() {
       field("Button text", inputs.reach_out_label),
       field("Button link", inputs.reach_out_link, "An email (mailto:you@example.com) or a web address."),
     ),
-    h("fieldset", {},
-      h("legend", {}, "Enquire link"),
-      h("p", { class: "help" }, "Shown under every guitar. It opens an email with the guitar’s name in the subject."),
-      h("div", { class: "row" },
-        field("Link text", inputs.enquire_label),
-        field("Send enquiries to", inputs.enquiry_email, "Leave empty to hide the link."),
+    bar,
+  );
+}
+
+// ---------- Enquiries inbox ----------
+
+const STATUS_LABELS = { new: "New", replied: "Replied", archived: "Archived" };
+const PAYMENT_LABELS = { sent: "Payment requested", paid: "Paid", cancelled: "Request cancelled" };
+
+function formatDate(iso) {
+  return new Date(iso).toLocaleString(undefined, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
+}
+
+function badge(text, kind) {
+  return h("span", { class: `badge badge-${kind}` }, text);
+}
+
+function inboxView() {
+  const box = h("div", { class: "editor" }, h("p", { class: "loading" }, "Loading enquiries…"));
+  (state.enquiryId ? renderEnquiry(box, state.enquiryId) : renderInbox(box)).catch((error) => {
+    showError(error);
+    box.replaceChildren(h("p", { class: "status status-error" }, "Couldn't load enquiries."));
+  });
+  return box;
+}
+
+async function renderInbox(box) {
+  const enquiries = await api("GET", `/api/enquiries${state.showArchived ? "?archived=1" : ""}`);
+  const toggle = h("div", { class: "order-actions" },
+    h("button", { type: "button", class: "button button-quiet button-small", onclick: () => render() }, "Refresh"),
+    h("button", {
+      type: "button",
+      class: "button button-quiet button-small",
+      onclick: () => { state.showArchived = !state.showArchived; render(); },
+    }, state.showArchived ? "Back to inbox" : "Show archived"),
+  );
+
+  box.replaceChildren(
+    h("div", { class: "inbox-head" }, h("h1", {}, state.showArchived ? "Archived" : "Inbox"), toggle),
+    enquiries.length === 0
+      ? h("p", { class: "help" }, state.showArchived ? "Nothing archived." : "No enquiries yet. They’ll appear here when someone fills in a form on the site.")
+      : h("ul", { class: "inbox" },
+          enquiries.map((e) =>
+            h("li", {},
+              h("button", {
+                type: "button",
+                class: `inbox-row${e.status === "new" ? " inbox-row-new" : ""}`,
+                onclick: () => { state.enquiryId = e.id; render(); },
+              },
+                h("span", { class: "inbox-name" }, e.name),
+                h("span", { class: "inbox-guitar" }, e.guitar_name),
+                h("span", { class: "inbox-meta" },
+                  e.status === "new" && badge("New", "new"),
+                  e.payment_status && badge(PAYMENT_LABELS[e.payment_status], e.payment_status),
+                  h("time", { datetime: e.created_at }, formatDate(e.created_at)),
+                ),
+              ),
+            ),
+          ),
+        ),
+  );
+}
+
+async function renderEnquiry(box, id) {
+  const e = await api("GET", `/api/enquiries/${id}`);
+  // Opening a new enquiry doesn't change its status; replying or requesting payment does.
+
+  const reload = async (promise, message) => {
+    try {
+      await promise;
+      if (message) toast(message);
+      render();
+    } catch (error) {
+      showError(error);
+    }
+  };
+  const setStatus = (status, message) => reload(api("PATCH", `/api/enquiries/${id}`, { status }), message);
+
+  const notes = textArea(e.notes, { rows: 3, placeholder: "Private notes for the team" });
+  const saveNotes = h("button", {
+    type: "button",
+    class: "button button-quiet button-small",
+    onclick: async () => {
+      try {
+        await api("PATCH", `/api/enquiries/${id}`, { notes: notes.value });
+        state.dirty = false;
+        toast("Notes saved.");
+      } catch (error) {
+        showError(error);
+      }
+    },
+  }, "Save notes");
+
+  const answer = (value) => (Array.isArray(value) ? value.join(", ") : value) || h("span", { class: "muted" }, "No answer");
+
+  box.replaceChildren(
+    h("button", { type: "button", class: "back", onclick: () => { state.enquiryId = null; render(); } }, "← All enquiries"),
+    h("h1", {}, e.name),
+    h("p", { class: "enquiry-meta" },
+      h("strong", {}, e.guitar_name), e.guitar_price && ` · listed at ${e.guitar_price}`, " · ", formatDate(e.created_at), " ",
+      badge(STATUS_LABELS[e.status], e.status),
+    ),
+    h("div", { class: "enquiry-actions" },
+      h("a", {
+        class: "button",
+        href: `mailto:${e.email}?subject=${encodeURIComponent(`Your ${e.guitar_name} enquiry`)}`,
+        onclick: () => { if (e.status === "new") setStatus("replied"); },
+      }, `Reply to ${e.email}`),
+      e.status === "new" && h("button", { type: "button", class: "button button-quiet", onclick: () => setStatus("replied", "Marked as replied.") }, "Mark as replied"),
+      e.status !== "archived"
+        ? h("button", { type: "button", class: "button button-quiet", onclick: () => { state.enquiryId = null; setStatus("archived", "Archived."); } }, "Archive")
+        : h("button", { type: "button", class: "button button-quiet", onclick: () => setStatus("replied", "Moved back to the inbox.") }, "Move to inbox"),
+    ),
+    h("dl", { class: "answers" },
+      h("dt", {}, "Email"), h("dd", {}, e.email),
+      e.answers.flatMap((a) => [h("dt", {}, a.question), h("dd", {}, answer(a.answer))]),
+    ),
+    h("fieldset", {}, h("legend", {}, "Notes"), notes, h("div", { class: "order-actions" }, saveNotes)),
+    h("fieldset", {}, h("legend", {}, "Payments"), paymentsSection(e, reload)),
+  );
+}
+
+function paymentsSection(e, reload) {
+  const rows = e.payments.map((p) =>
+    h("div", { class: "payment" },
+      h("div", { class: "payment-main" },
+        h("strong", {}, `${p.currency} ${Number(p.amount).toLocaleString(undefined, { minimumFractionDigits: 2 })}`),
+        " ", p.description, " ",
+        badge(PAYMENT_LABELS[p.status], p.status),
+      ),
+      h("div", { class: "payment-meta" },
+        `Invoice ${p.invoice_number} · requested by ${p.created_by} ${formatDate(p.created_at)}`,
+        p.paid_at && ` · paid ${formatDate(p.paid_at)}`,
+      ),
+      p.status === "sent" && h("div", { class: "order-actions" },
+        p.invoice_url && h("a", { class: "button button-quiet button-small", href: p.invoice_url, target: "_blank", rel: "noopener" }, "View invoice"),
+        p.invoice_url && h("button", {
+          type: "button",
+          class: "button button-quiet button-small",
+          onclick: async () => {
+            await navigator.clipboard.writeText(p.invoice_url);
+            toast("Payment link copied.");
+          },
+        }, "Copy link"),
+        h("button", { type: "button", class: "button button-quiet button-small", onclick: () => reload(api("POST", `/api/payments/${p.id}/refresh`), "Status updated.") }, "Check status"),
+        h("button", {
+          type: "button",
+          class: "button button-quiet button-small",
+          onclick: () => {
+            if (confirm(`Cancel this payment request? ${e.name} will be told by PayPal.`)) reload(api("POST", `/api/payments/${p.id}/cancel`), "Payment request cancelled.");
+          },
+        }, "Cancel request"),
       ),
     ),
+  );
+
+  const description = textInput(`Deposit for ${e.guitar_name}`, { maxlength: 120 });
+  const amount = textInput("", { inputmode: "decimal", placeholder: "1500", maxlength: 12 });
+  const currency = h("select", {}, ["USD", "EUR", "DKK", "GBP"].map((c) => h("option", { value: c }, c)));
+  const note = textArea("", { rows: 2, placeholder: "Optional message shown on the invoice" });
+  const send = h("button", { type: "submit", class: "button" }, "Send PayPal invoice");
+
+  const form = h("form", {
+    class: "request-payment",
+    onsubmit: async (event) => {
+      event.preventDefault();
+      if (!amount.value.trim()) return toast("Enter an amount.", { type: "error" });
+      if (!confirm(`Email ${e.name} a PayPal invoice for ${currency.value} ${amount.value}?`)) return;
+      send.disabled = true;
+      send.textContent = "Sending…";
+      try {
+        await api("POST", `/api/enquiries/${e.id}/payments`, {
+          description: description.value,
+          amount: amount.value,
+          currency: currency.value,
+          note: note.value,
+        });
+        state.dirty = false;
+        toast(`Invoice sent to ${e.email}. You’ll see “Paid” here once it’s paid.`);
+        render();
+      } catch (error) {
+        showError(error);
+        send.disabled = false;
+        send.textContent = "Send PayPal invoice";
+      }
+    },
+  },
+    h("h3", {}, "Request a payment"),
+    field("What it's for", description),
+    h("div", { class: "row row-amount" }, field("Amount", amount), field("Currency", currency)),
+    field("Message", note),
+    h("p", { class: "help" }, `PayPal emails the invoice to ${e.email}. They can pay by card or PayPal.`),
+    send,
+  );
+
+  return h("div", {}, rows.length ? rows : h("p", { class: "help" }, "No payments requested yet."), form);
+}
+
+// ---------- Enquiry forms ----------
+
+const FIELD_TYPES = [
+  ["text", "Short answer"],
+  ["textarea", "Long answer"],
+  ["select", "Dropdown"],
+  ["radio", "Multiple choice (pick one)"],
+  ["checkboxes", "Checkboxes (pick any)"],
+];
+const CHOICE_TYPES = ["select", "radio", "checkboxes"];
+
+// An editor for one form. Returns the element and a function that reads its current value.
+function formBuilder(initial) {
+  const form = structuredClone(initial || { fields: [] });
+  form.fields ??= [];
+  const box = h("div");
+
+  const intro = textArea(form.intro, { rows: 2 });
+  const submitLabel = textInput(form.submit_label || "Send enquiry", { maxlength: 60 });
+  const thanks = textArea(form.thanks, { rows: 2 });
+
+  const move = (index, delta) => {
+    const list = form.fields;
+    [list[index], list[index + delta]] = [list[index + delta], list[index]];
+    markDirty();
+    draw();
+  };
+
+  function draw() {
+    box.replaceChildren(
+      h("div", { class: "list-item list-item-fixed" },
+        h("p", { class: "fixed-fields" }, h("strong", {}, "Name"), " and ", h("strong", {}, "Email"), " are always asked first."),
+      ),
+      ...form.fields.map((question, index) => {
+        const label = textInput(question.label, { maxlength: 120, placeholder: "Your question" });
+        label.addEventListener("input", () => { question.label = label.value; });
+
+        const type = h("select", { onchange: () => { question.type = type.value; markDirty(); draw(); } },
+          FIELD_TYPES.map(([value, name]) => h("option", { value, selected: (question.type || "text") === value }, name)),
+        );
+
+        const requiredBox = h("input", { type: "checkbox", checked: !!question.required, onchange: () => { question.required = requiredBox.checked; markDirty(); } });
+        const help = textInput(question.help, { maxlength: 200, placeholder: "Optional hint under the question" });
+        help.addEventListener("input", () => { question.help = help.value; });
+
+        const isChoice = CHOICE_TYPES.includes(question.type);
+        const options = isChoice && textArea((question.options || []).join("\n"), { rows: 4 });
+        if (options) options.addEventListener("input", () => { question.options = options.value.split("\n"); });
+
+        return h("div", { class: "list-item" },
+          h("div", { class: "list-item-tools" },
+            h("button", { type: "button", class: "icon-button", "aria-label": "Move up", disabled: index === 0, onclick: () => move(index, -1) }, "↑"),
+            h("button", { type: "button", class: "icon-button", "aria-label": "Move down", disabled: index === form.fields.length - 1, onclick: () => move(index, 1) }, "↓"),
+            h("button", { type: "button", class: "icon-button", "aria-label": "Remove question", onclick: () => { form.fields.splice(index, 1); markDirty(); draw(); } }, "✕"),
+          ),
+          field(`Question ${index + 1}`, label),
+          h("div", { class: "row row-type" },
+            field("Answer type", type),
+            h("label", { class: "field checkbox-field" }, requiredBox, h("span", {}, "Required")),
+          ),
+          options && field("Options", options, "One per line."),
+          field("Hint", help),
+        );
+      }),
+      h("button", {
+        type: "button",
+        class: "button button-quiet button-small",
+        onclick: () => { form.fields.push({ label: "", type: "text" }); markDirty(); draw(); },
+      }, "+ Add a question"),
+    );
+  }
+  draw();
+
+  const element = h("div", { class: "form-builder" },
+    field("Intro", intro, "Shown above the questions."),
+    box,
+    h("div", { class: "row" },
+      field("Button text", submitLabel),
+      field("After sending", thanks, "The message people see once their enquiry is sent."),
+    ),
+  );
+
+  return {
+    element,
+    value: () => ({ ...form, intro: intro.value, submit_label: submitLabel.value, thanks: thanks.value }),
+  };
+}
+
+function defaultFormEditor() {
+  const home = state.content.home;
+  const enquireLabel = textInput(home.enquire_label || "Enquire", { maxlength: 60 });
+  const builder = formBuilder(home.enquiry_form);
+
+  const { bar, run } = saveBar(async () => {
+    const updated = { ...home, enquire_label: enquireLabel.value, enquiry_form: builder.value() };
+    await api("PUT", "/api/home", { home: updated, sha: state.content.homeSha });
+    await loadContent();
+    savedToast();
+  });
+
+  return h(
+    "form",
+    { class: "editor", onsubmit: (e) => { e.preventDefault(); run(); } },
+    h("h1", {}, "Enquiry form"),
+    h("p", { class: "help" }, "The questions people answer when they click Enquire under a guitar. Any guitar can have its own questions instead (set on the guitar)."),
+    field("Link text under each guitar", enquireLabel),
+    builder.element,
     bar,
   );
 }
@@ -431,6 +750,31 @@ function guitarEditor(guitar) {
   };
   drawPhotos();
 
+  // Enquiry form: the default, or this guitar's own questions.
+  let ownForm = guitar.form ? formBuilder(guitar.form) : null;
+  const formBox = h("div");
+  const drawForm = () => {
+    const choice = (value, label) =>
+      h("label", { class: "choice" },
+        h("input", {
+          type: "radio",
+          name: "form-choice",
+          checked: (value === "own") === !!ownForm,
+          onchange: () => {
+            ownForm = value === "own" ? formBuilder(state.content.home.enquiry_form) : null;
+            markDirty();
+            drawForm();
+          },
+        }),
+        label,
+      );
+    formBox.replaceChildren(
+      h("div", { class: "choices" }, choice("default", "Use the default questions"), choice("own", "Ask its own questions")),
+      ownForm && ownForm.element,
+    );
+  };
+  drawForm();
+
   const remove = !isNew && h("button", {
     type: "button",
     class: "button button-danger",
@@ -455,6 +799,7 @@ function guitarEditor(guitar) {
       price_note: inputs.price_note.value,
       body: inputs.body.value,
       images: photos.map((p) => (p.upload ? { upload: p.upload } : { path: p.path })),
+      form: ownForm ? ownForm.value() : null,
       order: guitar.order,
       sha: guitar.sha,
     };
@@ -477,6 +822,7 @@ function guitarEditor(guitar) {
     ),
     field("Description", inputs.body, "Leave a blank line between paragraphs."),
     h("fieldset", {}, h("legend", {}, "Photos"), photosBox, h("small", { class: "help" }, "Shown as thumbnails under the description, in this order. Photos are resized automatically.")),
+    h("fieldset", {}, h("legend", {}, "Enquiry form"), formBox),
     bar,
   );
 }

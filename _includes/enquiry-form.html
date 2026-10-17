@@ -1,0 +1,67 @@
+{%- comment -%}
+  Enquiry form for one guitar. Params: guitar, form (the guitar's own form or the default).
+  Name and email are always asked first; the rest comes from the form definition.
+{%- endcomment -%}
+{%- assign guitar = include.guitar -%}
+{%- assign form = include.form -%}
+<div class="enquiry" id="enquire-{{ guitar.slug }}" hidden>
+  <form class="enquiry-form" data-enquiry-form data-guitar="{{ guitar.slug }}" novalidate>
+    {%- if form.intro and form.intro != "" %}
+    <p class="enquiry-intro">{{ form.intro }}</p>
+    {%- endif %}
+
+    <label class="question">
+      <span class="question-label">Name <abbr title="required">*</abbr></span>
+      <input type="text" name="name" autocomplete="name" maxlength="120" required>
+    </label>
+    <label class="question">
+      <span class="question-label">Email <abbr title="required">*</abbr></span>
+      <input type="email" name="email" autocomplete="email" maxlength="200" required>
+    </label>
+
+    {%- for field in form.fields %}
+    {%- capture id %}{{ guitar.slug }}-q{{ forloop.index }}{% endcapture %}
+    {%- capture star %}{% if field.required %} <abbr title="required">*</abbr>{% endif %}{% endcapture %}
+    {%- if field.type == "radio" or field.type == "checkboxes" %}
+    <fieldset class="question" data-question="{{ field.label | escape }}" data-type="{{ field.type }}"{% if field.required %} data-required{% endif %}>
+      <legend class="question-label">{{ field.label }}{{ star }}</legend>
+      {%- if field.help %}<small class="question-help">{{ field.help }}</small>{% endif %}
+      {%- for option in field.options %}
+      <label class="option">
+        <input type="{% if field.type == 'radio' %}radio{% else %}checkbox{% endif %}" name="{{ id }}" value="{{ option | escape }}">
+        {{ option }}
+      </label>
+      {%- endfor %}
+    </fieldset>
+    {%- else %}
+    <label class="question" data-question="{{ field.label | escape }}" data-type="{{ field.type }}"{% if field.required %} data-required{% endif %}>
+      <span class="question-label">{{ field.label }}{{ star }}</span>
+      {%- if field.help %}<small class="question-help">{{ field.help }}</small>{% endif %}
+      {%- if field.type == "textarea" %}
+      <textarea name="{{ id }}" rows="4" maxlength="4000"{% if field.required %} required{% endif %}></textarea>
+      {%- elsif field.type == "select" %}
+      <select name="{{ id }}"{% if field.required %} required{% endif %}>
+        <option value="">Choose…</option>
+        {%- for option in field.options %}
+        <option>{{ option }}</option>
+        {%- endfor %}
+      </select>
+      {%- else %}
+      <input type="text" name="{{ id }}" maxlength="500"{% if field.required %} required{% endif %}>
+      {%- endif %}
+    </label>
+    {%- endif %}
+    {%- endfor %}
+
+    {%- comment %} Spam trap: hidden from people, bots fill it in. {% endcomment %}
+    <label class="trap" aria-hidden="true">Leave this empty <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+
+    {%- if site.turnstile_site_key and site.turnstile_site_key != "" %}
+    <div class="cf-turnstile" data-sitekey="{{ site.turnstile_site_key }}" data-size="flexible" data-theme="light"></div>
+    {%- endif %}
+
+    <p class="form-error" role="alert" hidden></p>
+    <button class="send" type="submit">{{ form.submit_label | default: "Send enquiry" }}</button>
+  </form>
+  <p class="enquiry-thanks" role="status" tabindex="-1" hidden>{{ form.thanks | default: "Thank you. I'll be in touch soon." }}</p>
+</div>

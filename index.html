@@ -14,7 +14,7 @@
   <meta property="og:image" content="{{ '/assets/images/moar-guitars--og.png' | absolute_url }}">
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon/moar-32.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicon/moar-180.ico' | relative_url }}">
-  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
 </head>
 <body id="top">
   <header class="masthead">
@@ -44,11 +44,15 @@
       <p class="price">{% if guitar.price != "" %}{{ guitar.price }}{% else %}Price on request{% endif %}</p>
       {%- if guitar.price_note %}<p class="price-note">{{ guitar.price_note }}</p>{% endif %}
       <div class="guitar-foot">
-        {%- if home.enquiry_email %}
-        <a class="enquire" href="mailto:{{ home.enquiry_email }}?subject={{ 'Enquiry: ' | append: guitar.title | uri_escape }}" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
+        {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
+        <a class="enquire" href="#enquire-{{ guitar.slug }}" aria-controls="enquire-{{ guitar.slug }}" aria-expanded="false" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
         {%- endif %}
         <a class="to-top" href="#top" aria-label="Back to top">&uarr;</a>
       </div>
+      {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
+      {%- assign enquiry_form = guitar.form | default: home.enquiry_form %}
+      {%- include enquiry-form.html guitar=guitar form=enquiry_form %}
+      {%- endif %}
       {%- if guitar.images %}
       <ul class="thumbs">
         {%- for image in guitar.images %}
@@ -94,8 +98,11 @@
       <button type="button" data-consent="granted">Accept</button>
     </div>
   </div>
-  <script src="{{ '/assets/js/analytics.js' | relative_url }}" data-ga-id="{{ site.google_analytics_id }}" defer></script>
+  <script src="{{ '/assets/js/analytics.js' | relative_url }}?v={{ site.time | date: '%s' }}" data-ga-id="{{ site.google_analytics_id }}" defer></script>
   {%- endif %}
-  <script src="{{ '/assets/js/site.js' | relative_url }}" defer></script>
+  {%- if site.turnstile_site_key and site.turnstile_site_key != "" %}
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  {%- endif %}
+  <script src="{{ '/assets/js/site.js' | relative_url }}?v={{ site.time | date: '%s' }}" data-enquiry-endpoint="{{ site.enquiry_endpoint }}" defer></script>
 </body>
 </html>

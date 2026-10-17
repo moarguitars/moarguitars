@@ -6,7 +6,10 @@
     "dev": "wrangler dev --port 8787",
     "mock-github": "node dev/mock-github.mjs ..",
     "users": "node scripts/users.mjs",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy",
+    "mock-paypal": "node dev/mock-paypal.mjs 8789",
+    "db:local": "wrangler d1 migrations apply moar-admin --local",
+    "db:remote": "wrangler d1 migrations apply moar-admin --remote"
   },
   "dependencies": {
     "yaml": "2.8.1"

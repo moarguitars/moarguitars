@@ -7,9 +7,13 @@
 //   view_photo         opened one of its photos
 //   guitar_engagement  seconds spent on it (sent when the tab is hidden or closed)
 //   view_fine_print    read a fine print topic (e.g. Commission & Payment)
-//   generate_lead      clicked Enquire (with the guitar's price as value) or a contact link
+//   enquiry_open       opened the guitar's enquiry form
+//   generate_lead      sent the enquiry form (value = guitar price), or clicked a contact link
+// Payment requests and payments are sent later from the admin server (begin_checkout,
+// purchase), tied to the same visitor via the client ID passed with the enquiry.
 //
-// Add ?ga_debug to the URL to see events live in GA's DebugView.
+// On the live site, add ?ga_debug to the URL to see events in GA's DebugView.
+// Anywhere else (a local preview), events are only logged to the browser console.
 
 const GA_ID = document.currentScript.dataset.gaId;
 const CONSENT_KEY = "moar-analytics-consent";
@@ -56,6 +60,19 @@ document.addEventListener("click", (event) => {
 
 function startAnalytics() {
   window.dataLayer = window.dataLayer || [];
+
+  // Off the live site (e.g. a local preview), log events to the console instead of
+  // sending them to Google, so testing doesn't pollute the real numbers.
+  const isLive = /(^|\.)moarguitars\.com$/.test(location.hostname);
+  if (!isLive && !location.search.includes("ga_debug")) {
+    window.gtag = function gtag(command, name, params) {
+      window.dataLayer.push(arguments);
+      if (command === "event") console.info(`[analytics] ${name}`, params);
+    };
+    trackGuitars();
+    return;
+  }
+
   window.gtag = function gtag() {
     window.dataLayer.push(arguments);
   };
@@ -67,6 +84,10 @@ function startAnalytics() {
   });
   gtag("js", new Date());
   gtag("config", GA_ID, location.search.includes("ga_debug") ? { debug_mode: true } : {});
+  // Sent with enquiries so later payments can be tied back to this visitor.
+  gtag("get", GA_ID, "client_id", (id) => {
+    window.moarAnalyticsClientId = id;
+  });
 
   const script = document.createElement("script");
   script.async = true;
@@ -169,8 +190,9 @@ function trackGuitars() {
     if (!link) return;
 
     if (link.matches("[data-enquire]")) {
+      if (link.getAttribute("aria-expanded") !== "true") return; // only count opening
       const g = guitarFor(link);
-      gtag("event", "generate_lead", { ...value(g), method: "enquire", guitar: g.item.item_name, items: [g.item] });
+      gtag("event", "enquiry_open", { guitar: g.item.item_name, items: [g.item] });
       return;
     }
 
@@ -193,6 +215,11 @@ function trackGuitars() {
         ...(lastGuitar && { guitar: lastGuitar.item.item_name }),
       });
     }
+  });
+
+  document.addEventListener("moar:enquiry-sent", (event) => {
+    const g = guitarFor(event.target);
+    gtag("event", "generate_lead", { ...value(g), method: "enquiry_form", guitar: g.item.item_name, items: [g.item] });
   });
 
   // Fine print topics (toggle doesn't bubble, so listen while capturing).
