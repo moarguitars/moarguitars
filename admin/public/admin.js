@@ -417,7 +417,7 @@ function renderInsights(box, data) {
       h("table", { class: "insights-table" },
         h("thead", {}, h("tr", {},
           head("Guitar"),
-          head("Saw price", "ga"),
+          head("Opened", "ga"),
           head("Photos opened", "ga"),
           head("Avg. time", "ga"),
           head("Opened form", "ga"),
@@ -432,7 +432,7 @@ function renderInsights(box, data) {
     ),
     h("p", { class: "help footnote" },
       "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
-      "Enquiry rate is the share of people who saw a guitar's price and then sent its form. ",
+      "Opened means they clicked Description and pricing (or followed a link to the guitar), which shows the price. Enquiry rate is the share of those who then sent its form. ",
       "Inbox columns are exact."),
   ].filter(Boolean));
 }

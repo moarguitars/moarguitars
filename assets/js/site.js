@@ -16,6 +16,34 @@ lightbox.addEventListener("click", (event) => {
   if (event.target === lightbox) lightbox.close();
 });
 
+// ---------- Guitars: teaser until opened ----------
+
+// Opening a guitar ("Description and pricing") shows its description, price and Enquire.
+// Analytics listens for "moar:guitar-open" (see analytics.js).
+function openGuitar(section, how) {
+  if (!section || section.classList.contains("is-open")) return;
+  section.classList.add("is-open");
+  section.querySelector("[data-read-more]")?.setAttribute("aria-expanded", "true");
+  section.dispatchEvent(new CustomEvent("moar:guitar-open", { bubbles: true, detail: { how } }));
+}
+
+document.querySelectorAll("[data-read-more]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const section = button.closest(".guitar");
+    openGuitar(section, "read_more");
+    section.querySelector(".guitar-more .prose p, .guitar-more .price")?.setAttribute("tabindex", "-1");
+    section.querySelector(".guitar-more .prose p, .guitar-more .price")?.focus({ preventScroll: true });
+  });
+});
+
+// Links to a guitar (the index, or a shared link like moarguitars.com/#ella) open it.
+function openFromHash() {
+  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target?.classList.contains("guitar")) openGuitar(target, "link");
+}
+window.addEventListener("hashchange", openFromHash);
+openFromHash();
+
 // ---------- Enquiry forms ----------
 
 const ENQUIRY_ENDPOINT = document.currentScript.dataset.enquiryEndpoint;

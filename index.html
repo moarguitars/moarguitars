@@ -15,6 +15,8 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{{ '/assets/images/favicon/moar-32.png' | relative_url }}">
   <link rel="apple-touch-icon" href="{{ '/assets/images/favicon/moar-180.ico' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  {%- comment %} Guitars start collapsed only when scripts run, so nothing is unreachable without them. {% endcomment %}
+  <script>document.documentElement.classList.add("js");</script>
 </head>
 <body id="top">
   <header class="masthead">
@@ -43,10 +45,13 @@
     {%- for guitar in guitars %}
     <section class="entry guitar" id="{{ guitar.title | slugify }}" data-guitar="{{ guitar.slug }}" data-guitar-name="{{ guitar.title | escape }}" data-price="{{ guitar.price | escape }}">
       <h2 class="entry-title">{{ guitar.title }}</h2>
-      <div class="prose">{{ guitar.content | markdownify }}</div>
-      <p class="price">{% if guitar.price != "" %}{{ guitar.price }}{% else %}Price on request{% endif %}</p>
-      {%- if guitar.price_note %}<p class="price-note">{{ guitar.price_note }}</p>{% endif %}
+      <div class="guitar-more" id="more-{{ guitar.slug }}">
+        <div class="prose">{{ guitar.content | markdownify }}</div>
+        <p class="price">{% if guitar.price != "" %}{{ guitar.price }}{% else %}Price on request{% endif %}</p>
+        {%- if guitar.price_note %}<p class="price-note">{{ guitar.price_note }}</p>{% endif %}
+      </div>
       <div class="guitar-foot">
+        <button class="read-more" type="button" aria-expanded="false" aria-controls="more-{{ guitar.slug }}" data-read-more>Description and pricing</button>
         {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
         <a class="enquire" href="#enquire-{{ guitar.slug }}" aria-controls="enquire-{{ guitar.slug }}" aria-expanded="false" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
         {%- endif %}

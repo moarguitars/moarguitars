@@ -3,9 +3,9 @@
 // Guitar interactions are sent as GA4 ecommerce events (each guitar is an "item"),
 // so GA's item reports show a funnel per guitar:
 //   select_item        clicked the guitar in the index
-//   view_item          looked at its price (price line on screen for 1s+)
+//   view_item          opened the guitar ("Description and pricing" or a link to it), which shows its price
 //   view_photo         opened one of its photos
-//   guitar_engagement  seconds spent on it (sent when the tab is hidden or closed)
+//   guitar_engagement  seconds spent on it while open (sent when the tab is hidden or closed)
 //   view_fine_print    read a fine print topic (e.g. Commission & Payment)
 //   enquiry_open       opened the guitar's enquiry form
 //   generate_lead      sent the enquiry form (value = guitar price), or clicked a contact link
@@ -109,8 +109,7 @@ function trackGuitars() {
     return {
       section,
       item: { item_id: section.dataset.guitar, item_name: section.dataset.guitarName, ...(price && { price }) },
-      priceSeen: false,
-      priceTimer: null,
+      viewed: false,
       inFocus: false,
       focusStart: null,
       seconds: 0,
@@ -123,23 +122,26 @@ function trackGuitars() {
 
   gtag("event", "view_item_list", { item_list_name: "Guitars", items: guitars.map((g) => g.item) });
 
-  // Price seen: the price line is fully on screen for a second.
-  const priceObserver = new IntersectionObserver(
-    (entries) => {
-      for (const entry of entries) {
-        const g = guitarFor(entry.target);
-        clearTimeout(g.priceTimer);
-        if (!entry.isIntersecting || g.priceSeen) continue;
-        g.priceTimer = setTimeout(() => {
-          g.priceSeen = true;
-          gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, items: [g.item] });
-        }, 1000);
-      }
-    },
-    { threshold: 1 },
-  );
+  const isOpen = (g) => g.section.classList.contains("is-open");
 
-  // Time spent: the guitar's section crosses the middle of the screen.
+  // Opened: a deliberate "Description and pricing" click (or a link to the guitar), which reveals the price.
+  document.addEventListener("moar:guitar-open", (event) => {
+    const g = guitarFor(event.target);
+    if (!g || g.viewed) return;
+    g.viewed = true;
+    lastGuitar = g;
+    if (g.inFocus) g.focusStart ??= performance.now();
+    gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, open_method: event.detail?.how || "read_more", items: [g.item] });
+  });
+  // A guitar opened before analytics started (e.g. arriving on moarguitars.com/#ella).
+  for (const g of guitars) {
+    if (isOpen(g) && !g.viewed) {
+      g.viewed = true;
+      gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, open_method: "link", items: [g.item] });
+    }
+  }
+
+  // Time spent: an open guitar's section crosses the middle of the screen.
   const focusObserver = new IntersectionObserver(
     (entries) => {
       const now = performance.now();
@@ -147,7 +149,7 @@ function trackGuitars() {
         const g = guitarFor(entry.target);
         g.inFocus = entry.isIntersecting;
         if (g.inFocus) {
-          g.focusStart ??= now;
+          if (isOpen(g)) g.focusStart ??= now;
           lastGuitar = g;
         } else if (g.focusStart !== null) {
           g.seconds += (now - g.focusStart) / 1000;
@@ -158,11 +160,7 @@ function trackGuitars() {
     { rootMargin: "-45% 0px -45% 0px" },
   );
 
-  for (const g of guitars) {
-    const price = g.section.querySelector(".price");
-    if (price) priceObserver.observe(price);
-    focusObserver.observe(g.section);
-  }
+  for (const g of guitars) focusObserver.observe(g.section);
 
   // Send time spent whenever the page is hidden (tab switch, app switch, close).
   document.addEventListener("visibilitychange", () => {
@@ -181,7 +179,7 @@ function trackGuitars() {
         g.seconds = 0;
       }
     } else {
-      for (const g of guitars) if (g.inFocus) g.focusStart = now;
+      for (const g of guitars) if (g.inFocus && isOpen(g)) g.focusStart = now;
     }
   });
 

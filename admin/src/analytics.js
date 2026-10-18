@@ -11,7 +11,7 @@ let cachedToken = null; // { value, expires }
 // Events the site sends (see assets/js/analytics.js), keyed by what the Insights page calls them.
 const EVENTS = {
   select_item: "clicked",
-  view_item: "priceSeen",
+  view_item: "priceSeen", // opened the guitar, which reveals its price
   view_photo: "photos",
   enquiry_open: "formOpened",
   generate_lead: "enquired",

@@ -133,6 +133,27 @@ main {
 
 .enquire { font-style: italic; }
 
+/* Collapsed guitars: just the name and photos until "Description and pricing" (only when scripts run). */
+.read-more { display: none; }
+.js .read-more {
+  display: inline;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: italic 1em var(--serif);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.js .guitar:not(.is-open) .guitar-more,
+.js .guitar:not(.is-open) .enquire,
+.js .guitar:not(.is-open) .enquiry { display: none; }
+.js .guitar.is-open .read-more { display: none; }
+.guitar.is-open .guitar-more { animation: reveal 0.35s ease-out; }
+.js .guitar:not(.is-open) .guitar-foot { margin-top: 2.25rem; }
+@keyframes reveal { from { transform: translateY(-0.4rem); } }
+@media (prefers-reduced-motion: reduce) { .guitar.is-open .guitar-more { animation: none; } }
+
 .to-top {
   display: block;
   width: max-content;
@@ -146,10 +167,11 @@ main {
 
 .to-top:hover { color: var(--ink); }
 
+/* The photos are what people see first, so they fill the column in rows of three. */
 .thumbs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
   margin: 0.75rem 0 0;
   padding: 0;
   list-style: none;
@@ -158,7 +180,7 @@ main {
 .thumbs a { display: block; }
 
 .thumbs img {
-  width: 5.5rem;
+  width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
   transition: opacity 0.15s;
@@ -337,7 +359,6 @@ main {
   :root { --column: 32rem; }
   .logo { width: 9rem; }
   .entry-title { font-size: 3.2rem; }
-  .thumbs img { width: 7rem; }
 }
 
 @media (max-width: 36rem) {

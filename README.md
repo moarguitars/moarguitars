@@ -50,9 +50,9 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 | --- | --- | --- |
 | `view_item_list` | Page load | Baseline: visits |
 | `select_item` | Guitar clicked in the index | Interest before scrolling |
-| `view_item` | Guitar's **price** was on screen for 1s+ | Who actually saw the price |
+| `view_item` | Guitar **opened** ("Description and pricing" or a link to it), which reveals the price (`open_method`: read_more / link) | Deliberate interest; who saw the price |
 | `view_photo` | A photo opened (with photo number) | Interest in detail |
-| `guitar_engagement` | Seconds spent on the guitar | Depth of interest |
+| `guitar_engagement` | Seconds spent on the guitar while it was open | Depth of interest |
 | `view_fine_print` | A fine print topic opened, with the last guitar viewed | Payment intent (e.g. *Commission & Payment*, *Deposit rules*, *Bank transfer details*) |
 | `enquiry_open` | Enquiry form opened | Serious interest |
 | `generate_lead` | Enquiry form **sent** (value = guitar price, USD), or a contact link clicked | Conversion |
@@ -65,7 +65,7 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 
 In GA, go to **Explore → Funnel exploration** and set up these steps:
 
-1. Saw the price: event `view_item`
+1. Opened the guitar (and so saw the price): event `view_item`
 2. Engaged: event `view_photo` **or** `guitar_engagement` with *Seconds on guitar* ≥ 20
 3. Looked at payment terms: event `view_fine_print` where *Fine print topic* is Commission & Payment, Deposit rules or Bank transfer details
 4. Enquired: event `generate_lead`
