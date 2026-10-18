@@ -61,6 +61,8 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 
 `begin_checkout` and `purchase` are sent by the admin server and linked to the visitor who enquired, so they appear in the same funnel. They need the GA API secret (admin README, step 7) and only work for visitors who accepted analytics cookies.
 
+**Country.** GA records each visitor's country by itself (from their connection, no extra event). Separately, the admin stores the country every enquiry was sent from (Cloudflare's two-letter code; enquiries from before this was added show as Unknown), shows it in the inbox and in the alert email, and counts invoices and payments by it. The admin's **Insights** page puts both side by side in a **By country** table: Analytics visitors and people who opened a guitar, then inbox enquiries, invoices and paid. Analytics only counts visitors who accepted cookies, so use the inbox columns for exact numbers. This is for measuring only; prices are the same everywhere.
+
 ### Propensity to pay: the funnel report
 
 In GA, go to **Explore → Funnel exploration** and set up these steps:

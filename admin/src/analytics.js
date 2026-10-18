@@ -5,7 +5,7 @@
 
 const SCOPE = "https://www.googleapis.com/auth/analytics.readonly";
 const CACHE_MS = 15 * 60 * 1000; // GA data isn't real-time anyway
-const reportCache = new Map(); // days -> { at, value }
+const reportCache = new Map(); // "guitars:30" -> { at, value }
 let cachedToken = null; // { value, expires }
 
 // Events the site sends (see assets/js/analytics.js), keyed by what the Insights page calls them.
@@ -30,7 +30,7 @@ export const OPENS_SINCE = "2026-10-18";
  */
 export async function guitarAnalytics(env, days) {
   if (!env.GA_SERVICE_ACCOUNT || !env.GA_PROPERTY_ID) return { configured: false };
-  const hit = reportCache.get(days);
+  const hit = reportCache.get(`guitars:${days}`);
   if (hit && Date.now() - hit.at < CACHE_MS) return hit.value;
 
   const dateRanges = [{ startDate: `${days}daysAgo`, endDate: "today" }];
@@ -92,10 +92,57 @@ export async function guitarAnalytics(env, days) {
       guitars,
       engagementAvailable: Boolean(engagement),
     };
-    reportCache.set(days, { at: Date.now(), value });
+    reportCache.set(`guitars:${days}`, { at: Date.now(), value });
     return value;
   } catch (error) {
     console.error("Analytics report failed", error);
+    return { configured: true, error: explain(error) };
+  }
+}
+
+/**
+ * GA numbers per visitor country for the last `days` days:
+ * { configured, error?, countries: { [code]: { name, visitors, opened } } }
+ * Both counts are people: visitors to the site, and visitors who opened at least one guitar
+ * (opened counts from OPENS_SINCE only, like the per-guitar table).
+ * `code` is GA's two-letter countryId ('' when GA couldn't tell).
+ */
+export async function countryAnalytics(env, days) {
+  if (!env.GA_SERVICE_ACCOUNT || !env.GA_PROPERTY_ID) return { configured: false };
+  const hit = reportCache.get(`countries:${days}`);
+  if (hit && Date.now() - hit.at < CACHE_MS) return hit.value;
+
+  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: "today" }];
+  const periodStart = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  const openRanges = periodStart < OPENS_SINCE ? [{ startDate: OPENS_SINCE, endDate: "today" }] : dateRanges;
+  const dimensions = [{ name: "countryId" }, { name: "country" }];
+  const countries = {};
+  const row = (r) => {
+    const [id, name] = r.dimensionValues.map((d) => d.value);
+    const code = /^[A-Z]{2}$/.test(id) ? id : "";
+    return (countries[code] ??= { name: code ? name : "Unknown", visitors: 0, opened: 0 });
+  };
+
+  try {
+    const [visitors, opened] = await Promise.all([
+      runReport(env, { dateRanges, dimensions, metrics: [{ name: "totalUsers" }], limit: 250 }),
+      runReport(env, {
+        dateRanges: openRanges,
+        dimensions,
+        metrics: [{ name: "totalUsers" }],
+        dimensionFilter: { filter: { fieldName: "eventName", stringFilter: { value: "view_item" } } },
+        limit: 250,
+      }),
+    ]);
+    // (not set) rows may share the '' code with each other, so add rather than assign.
+    for (const r of visitors.rows || []) row(r).visitors += Number(r.metricValues[0].value);
+    for (const r of opened.rows || []) row(r).opened += Number(r.metricValues[0].value);
+
+    const value = { configured: true, countries };
+    reportCache.set(`countries:${days}`, { at: Date.now(), value });
+    return value;
+  } catch (error) {
+    console.error("Analytics country report failed", error);
     return { configured: true, error: explain(error) };
   }
 }

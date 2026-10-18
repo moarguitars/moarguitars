@@ -411,6 +411,22 @@ function renderInsights(box, data) {
     );
   });
 
+  const maxVisitors = Math.max(1, ...data.countries.map((c) => c.ga?.visitors || 0));
+  const countryRows = data.countries.map((c) => {
+    const a = c.ga || {};
+    return h("tr", {},
+      h("th", { scope: "row" }, c.name, c.code && h("span", { class: "muted" }, ` ${c.code}`)),
+      h("td", { class: "num" },
+        h("span", { class: "meter", style: `--w:${hasGa ? Math.round(((a.visitors || 0) / maxVisitors) * 100) : 0}%` }),
+        hasGa ? num(a.visitors || 0) : "–"),
+      h("td", { class: "num" }, hasGa ? num(a.opened || 0) : "–"),
+      h("td", { class: "num strong" }, num(c.enquiries)),
+      h("td", { class: "num" }, num(c.invoiced)),
+      h("td", { class: "num" }, c.paid ? h("span", { class: "badge badge-paid" }, `${c.paid} · ${money(c.paidTotals)}`) : "0"),
+    );
+  });
+  const countryNotice = ga.countriesError && h("div", { class: "notice notice-error" }, h("strong", {}, "Google Analytics (countries): "), ga.countriesError);
+
   box.replaceChildren(...[
     h("div", { class: "inbox-head" }, h("h1", {}, "Insights"), periods),
     h("p", { class: "help" }, `Last ${data.days} days, per guitar: who looked, who asked, who paid.`),
@@ -438,11 +454,29 @@ function renderInsights(box, data) {
         h("tbody", {}, rows),
       ),
     ),
+    h("h2", {}, "By country"),
+    h("p", { class: "help" }, `Last ${data.days} days, per visitor country. Inbox countries come from the connection each enquiry was sent from.`),
+    countryNotice,
+    data.countries.length === 0
+      ? h("p", { class: "help muted" }, "No visitors or enquiries in this period yet.")
+      : h("div", { class: "table-wrap" },
+          h("table", { class: "insights-table" },
+            h("thead", {}, h("tr", {},
+              head("Country"),
+              head("Visitors", "ga"),
+              head("Opened a guitar", "ga", sinceNote),
+              head("Enquiries", "inbox"),
+              head("Invoiced", "inbox"),
+              head("Paid", "inbox"),
+            )),
+            h("tbody", {}, countryRows),
+          ),
+        ),
     h("p", { class: "help footnote" },
       "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
       "Opened means they clicked Description and pricing (or followed a link to the guitar), which shows the price. Enquiry rate is the share of those who then sent its form. ",
       since ? `Guitars became click-to-open on ${since}, so Opened, Avg. time and Enquiry rate only count from then. ` : "",
-      "Inbox columns are exact."),
+      "Inbox columns are exact. Enquiries sent before countries were recorded show as Unknown."),
   ].filter(Boolean));
 }
 
@@ -485,6 +519,18 @@ function formatDate(iso) {
   return new Date(iso).toLocaleString(undefined, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit" });
 }
 
+const countryNames = new Intl.DisplayNames([navigator.language || "en", "en"], { type: "region" });
+
+// "US" -> "United States"; '' (older enquiries, local testing) -> null.
+function countryName(code) {
+  if (!code) return null;
+  try {
+    return countryNames.of(code) || code;
+  } catch {
+    return code;
+  }
+}
+
 function badge(text, kind) {
   return h("span", { class: `badge badge-${kind}` }, text);
 }
@@ -522,7 +568,7 @@ async function renderInbox(box) {
                 onclick: () => { state.enquiryId = e.id; render(); },
               },
                 h("span", { class: "inbox-name" }, e.name),
-                h("span", { class: "inbox-guitar" }, e.guitar_name),
+                h("span", { class: "inbox-guitar" }, e.guitar_name, e.country && h("span", { class: "inbox-country" }, ` · ${countryName(e.country)}`)),
                 h("span", { class: "inbox-meta" },
                   e.status === "new" && badge("New", "new"),
                   e.payment_status && badge(PAYMENT_LABELS[e.payment_status], e.payment_status),
@@ -587,6 +633,7 @@ async function renderEnquiry(box, id) {
     ),
     h("dl", { class: "answers" },
       h("dt", {}, "Email"), h("dd", {}, e.email),
+      h("dt", {}, "Country"), h("dd", {}, e.country ? `${countryName(e.country)} (${e.country})` : h("span", { class: "muted" }, "Unknown")),
       e.answers.flatMap((a) => [h("dt", {}, a.question), h("dd", {}, answer(a.answer))]),
     ),
     h("fieldset", {}, h("legend", {}, "Notes"), notes, h("div", { class: "order-actions" }, saveNotes)),
