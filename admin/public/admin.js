@@ -360,7 +360,10 @@ function renderInsights(box, data) {
     const s = Math.round(seconds % 60);
     return m ? `${m}m ${String(s).padStart(2, "0")}s` : `${s}s`;
   };
-  const maxSeen = Math.max(1, ...data.guitars.map((g) => g.ga?.priceSeen || 0));
+  const maxOpened = Math.max(1, ...data.guitars.map((g) => g.ga?.opened || 0));
+  // Opens, time and the enquiry rate only count from the day guitars became click-to-open.
+  const since = ga.opensSince &&
+    new Date(`${ga.opensSince}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "short" });
 
   const periods = h("div", { class: "segmented", role: "group", "aria-label": "Period" },
     [7, 30, 90].map((days) =>
@@ -381,19 +384,24 @@ function renderInsights(box, data) {
         "The columns marked “Analytics” fill in once the admin has read access to Google Analytics (see the setup steps in the admin README). Inbox numbers below are already live.")
     : ga.error && h("div", { class: "notice notice-error" }, h("strong", {}, "Google Analytics: "), ga.error);
 
-  const head = (label, source) => h("th", { scope: "col" }, label, source && h("span", { class: `source source-${source}` }, source === "ga" ? "Analytics" : "Inbox"));
+  const head = (label, source, note) =>
+    h("th", { scope: "col" },
+      label,
+      source && h("span", { class: `source source-${source}` }, source === "ga" ? "Analytics" : "Inbox"),
+      note && h("span", { class: "source-note" }, note));
+  const sinceNote = since && `since ${since}`;
 
   const rows = data.guitars.map((g) => {
     const a = g.ga || {};
-    const rate = hasGa && a.priceSeen ? Math.round(((a.enquired || 0) / a.priceSeen) * 100) : null;
+    const rate = hasGa && a.opened ? Math.min(100, Math.round(((a.enquiredSinceOpen || 0) / a.opened) * 100)) : null;
     const budgets = Object.entries(g.budgets);
     return h("tr", {},
       h("th", { scope: "row" }, g.name, !g.onSite && h("span", { class: "muted" }, " (no longer on site)")),
       h("td", { class: "num" },
-        h("span", { class: "meter", style: `--w:${hasGa ? Math.round(((a.priceSeen || 0) / maxSeen) * 100) : 0}%` }),
-        hasGa ? num(a.priceSeen || 0) : "–"),
+        h("span", { class: "meter", style: `--w:${hasGa ? Math.round(((a.opened || 0) / maxOpened) * 100) : 0}%` }),
+        hasGa ? num(a.opened || 0) : "–"),
       h("td", { class: "num" }, hasGa ? num(a.photos || 0) : "–"),
-      h("td", { class: "num" }, hasGa && ga.engagementAvailable && a.priceSeen ? duration((a.seconds || 0) / Math.max(1, a.priceSeen)) : "–"),
+      h("td", { class: "num" }, hasGa && ga.engagementAvailable && a.opened ? duration((a.seconds || 0) / a.opened) : "–"),
       h("td", { class: "num" }, hasGa ? num(a.formOpened || 0) : "–"),
       h("td", { class: "num" }, rate === null ? "–" : `${rate}%`),
       h("td", { class: "num strong" }, num(g.enquiries)),
@@ -433,11 +441,11 @@ function renderInsights(box, data) {
       h("table", { class: "insights-table" },
         h("thead", {}, h("tr", {},
           head("Guitar"),
-          head("Opened", "ga"),
+          head("Opened", "ga", sinceNote),
           head("Photos opened", "ga"),
-          head("Avg. time", "ga"),
+          head("Avg. time", "ga", sinceNote),
           head("Opened form", "ga"),
-          head("Enquiry rate", "ga"),
+          head("Enquiry rate", "ga", sinceNote),
           head("Enquiries", "inbox"),
           head("Invoiced", "inbox"),
           head("Paid", "inbox"),
@@ -456,7 +464,7 @@ function renderInsights(box, data) {
             h("thead", {}, h("tr", {},
               head("Country"),
               head("Visitors", "ga"),
-              head("Opened a guitar", "ga"),
+              head("Opened a guitar", "ga", sinceNote),
               head("Enquiries", "inbox"),
               head("Invoiced", "inbox"),
               head("Paid", "inbox"),
@@ -467,6 +475,7 @@ function renderInsights(box, data) {
     h("p", { class: "help footnote" },
       "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
       "Opened means they clicked Description and pricing (or followed a link to the guitar), which shows the price. Enquiry rate is the share of those who then sent its form. ",
+      since ? `Guitars became click-to-open on ${since}, so Opened, Avg. time and Enquiry rate only count from then. ` : "",
       "Inbox columns are exact. Enquiries sent before countries were recorded show as Unknown."),
   ].filter(Boolean));
 }

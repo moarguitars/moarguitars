@@ -93,6 +93,7 @@ export async function insights(env, gh, daysParam) {
       error: ga.error,
       visitors: ga.totals?.visitors ?? null,
       engagementAvailable: ga.engagementAvailable ?? false,
+      opensSince: ga.opensSince ?? null,
       countriesError: ga.error ? null : gaCountries.error || null,
     },
     guitars,
