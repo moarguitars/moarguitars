@@ -273,6 +273,16 @@ main {
 .enquiry-thanks { margin: 0; font-style: italic; }
 .enquiry-thanks:focus { outline: none; }
 
+/* Deposit */
+.deposit { display: grid; gap: 0.75rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
+.deposit-note { margin: 0; font-size: 0.95rem; }
+.deposit-accept { display: flex; align-items: baseline; gap: 0.5rem; cursor: pointer; font-style: italic; }
+.deposit-accept input { accent-color: var(--ink); }
+.deposit-pay { justify-self: start; }
+.deposit .form-error { margin: 0; }
+.deposit-return { margin: 1rem 0 0; padding: 0.75rem 0.9rem; border: 1px solid var(--rule); font-style: italic; }
+.deposit-return:focus { outline: none; }
+
 /* Fine print */
 .fine-print { padding-top: 5rem; padding-bottom: 8rem; }
 

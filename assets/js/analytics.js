@@ -10,6 +10,7 @@
 //   view_fine_print    read a fine print topic (e.g. Commission & Payment)
 //   enquiry_open       opened the guitar's enquiry form
 //   generate_lead      sent the enquiry form (value = guitar price), or clicked a contact link
+//   begin_checkout     clicked "Lock in your build" (value = deposit) and went to Stripe
 // Payment requests and payments are sent later from the admin server (begin_checkout,
 // purchase), tied to the same visitor via the client ID passed with the enquiry.
 //
@@ -210,6 +211,14 @@ function trackGuitars() {
         ...(lastGuitar && { guitar: lastGuitar.item.item_name }),
       });
     }
+  });
+
+  // "Lock in your build": heading to Stripe to pay the deposit (the payment itself is
+  // recorded by the admin server as a purchase).
+  document.addEventListener("moar:deposit-start", (event) => {
+    const g = guitarFor(event.target);
+    if (!g) return;
+    gtag("event", "begin_checkout", { currency: "USD", value: event.detail.amount, guitar: g.item.item_name, payment_type: "deposit", items: [{ ...g.item, price: event.detail.amount }] });
   });
 
   document.addEventListener("moar:enquiry-sent", (event) => {

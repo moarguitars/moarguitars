@@ -708,8 +708,10 @@ function paymentsSection(e, reload) {
         badge(PAYMENT_LABELS[p.status], p.status),
       ),
       h("div", { class: "payment-meta" },
-        `Invoice ${p.invoice_number} · requested by ${p.created_by} ${formatDate(p.created_at)}`,
-        p.paid_at && ` · paid ${formatDate(p.paid_at)}`,
+        p.created_by === "website"
+          ? `Paid online at checkout ${formatDate(p.created_at)}`
+          : `Invoice ${p.invoice_number} · requested by ${p.created_by} ${formatDate(p.created_at)}`,
+        p.paid_at && p.created_by !== "website" && ` · paid ${formatDate(p.paid_at)}`,
       ),
       p.status === "sent" && h("div", { class: "order-actions" },
         p.invoice_url && h("a", { class: "button button-quiet button-small", href: p.invoice_url, target: "_blank", rel: "noopener" }, "View invoice"),
@@ -952,6 +954,7 @@ function guitarEditor(guitar) {
     title: textInput(guitar.title, { required: true, maxlength: 60 }),
     price: textInput(guitar.price, { maxlength: 40, placeholder: "$ 15.000" }),
     price_note: textInput(guitar.price_note, { maxlength: 200 }),
+    deposit: textInput(guitar.deposit, { maxlength: 12, inputmode: "numeric", placeholder: "1500" }),
     body: textArea(guitar.body, { rows: 10 }),
   };
 
@@ -1004,6 +1007,7 @@ function guitarEditor(guitar) {
       title: inputs.title.value,
       price: inputs.price.value,
       price_note: inputs.price_note.value,
+      deposit: inputs.deposit.value,
       body: inputs.body.value,
       images: photoEditor.value(),
       form: ownForm ? ownForm.value() : null,
@@ -1027,6 +1031,7 @@ function guitarEditor(guitar) {
       field("Price", inputs.price, "Leave empty to show “Price on request”."),
       field("Price note", inputs.price_note),
     ),
+    field("Deposit (USD)", inputs.deposit, "Buyers can pay this online to lock in their build. It's deducted from the final price and non-refundable. Leave empty for no deposit button."),
     field("Description", inputs.body, "Line breaks show on the site as you type them. Leave a blank line to start a new paragraph."),
     h("fieldset", {}, h("legend", {}, "Photos"), photoEditor.element, h("small", { class: "help" }, "Shown under the guitar's name, in this order. Photos are resized automatically.")),
     h("fieldset", {}, h("legend", {}, "Enquiry form"), formBox),

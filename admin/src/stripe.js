@@ -62,6 +62,33 @@ export function stripe(env) {
       return { status: invoice.status, url: invoice.hosted_invoice_url || "" };
     },
 
+    /** A Stripe-hosted Checkout page for one fixed amount. Returns { id, url }. */
+    async createCheckout({ amount, currency, name, description, notice, successUrl, cancelUrl, metadata }) {
+      const session = await call("POST", "/v1/checkout/sessions", {
+        mode: "payment",
+        submit_type: "pay",
+        line_items: {
+          0: {
+            quantity: 1,
+            price_data: {
+              currency: currency.toLowerCase(),
+              unit_amount: Math.round(Number(amount) * 100),
+              product_data: { name, description },
+            },
+          },
+        },
+        customer_creation: "always",
+        billing_address_collection: "required",
+        phone_number_collection: { enabled: true },
+        custom_text: { submit: { message: notice } },
+        payment_intent_data: { description: name, metadata },
+        metadata,
+        success_url: successUrl,
+        cancel_url: cancelUrl,
+      });
+      return { id: session.id, url: session.url };
+    },
+
     async voidInvoice(id) {
       await call("POST", `/v1/invoices/${id}/void`);
     },

@@ -53,6 +53,73 @@ function openFromHash() {
 window.addEventListener("hashchange", openFromHash);
 openFromHash();
 
+// ---------- Deposits ("Lock in your build") ----------
+// The button opens Stripe's secure checkout for this guitar's deposit (amount set in the admin).
+
+const DEPOSIT_ENDPOINT = document.currentScript.dataset.enquiryEndpoint?.replace(/\/api\/enquiries$/, "/api/deposits");
+const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+
+document.querySelectorAll("[data-deposit]").forEach((box) => {
+  const section = box.closest(".guitar");
+  const accept = box.querySelector("[data-deposit-accept]");
+  const pay = box.querySelector("[data-deposit-pay]");
+  const error = box.querySelector(".form-error");
+  const amount = Number(box.dataset.deposit);
+  box.querySelectorAll("[data-deposit-amount]").forEach((el) => { el.textContent = usd.format(amount); });
+  box.hidden = !DEPOSIT_ENDPOINT;
+
+  accept.addEventListener("change", () => { pay.disabled = !accept.checked; });
+
+  // "deposit rules" opens that item in the Fine Print.
+  box.querySelector("[data-deposit-rules]").addEventListener("click", (event) => {
+    const rules = document.querySelector('[data-fine-print="Deposit rules"]');
+    if (!rules) return;
+    event.preventDefault();
+    rules.open = true;
+    rules.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+
+  pay.addEventListener("click", async () => {
+    error.hidden = true;
+    pay.disabled = true;
+    const label = pay.innerHTML;
+    pay.textContent = "Opening secure checkout…";
+    section.dispatchEvent(new CustomEvent("moar:deposit-start", { bubbles: true, detail: { amount } }));
+    try {
+      const response = await fetch(DEPOSIT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ guitar: section.dataset.guitar, accepted: accept.checked, analytics_client_id: window.moarAnalyticsClientId || "" }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result.url) throw new Error(result.error || "Sorry, checkout couldn't open. Please try again or email atelier@moarguitars.com.");
+      location.href = result.url;
+    } catch (err) {
+      error.textContent = err instanceof TypeError ? "Sorry, checkout couldn't open. Please check your connection and try again." : err.message;
+      error.hidden = false;
+      pay.innerHTML = label;
+      pay.disabled = !accept.checked;
+    }
+  });
+});
+
+// Back from Stripe: thank them (or confirm nothing was charged) under that guitar.
+(() => {
+  const params = new URLSearchParams(location.search);
+  const outcome = params.get("deposit");
+  const section = document.querySelector(`.guitar[data-guitar="${CSS.escape(params.get("guitar") || "")}"]`);
+  if (!outcome || !section) return;
+  openGuitar(section, "deposit_return");
+  const message = section.querySelector(".deposit-return");
+  message.textContent = outcome === "paid"
+    ? "Thank you. Your deposit is paid and your build is locked in. Stripe has emailed your receipt, and I'll be in touch soon."
+    : "Payment cancelled. Nothing was charged.";
+  message.hidden = false;
+  message.scrollIntoView({ block: "center" });
+  message.focus({ preventScroll: true });
+  history.replaceState(null, "", location.pathname + location.hash);
+})();
+
 // ---------- Enquiry forms ----------
 
 const ENQUIRY_ENDPOINT = document.currentScript.dataset.enquiryEndpoint;

@@ -2,6 +2,7 @@
 // Static files in ./public are the editor UI; /api/* is handled here.
 
 import { changePassword, currentUser, login, logoutCookie } from "./auth.js";
+import { startDeposit } from "./deposits.js";
 import { github } from "./github.js";
 import { insights } from "./insights.js";
 import { publishStatus, publishStatusChanged } from "./publish.js";
@@ -30,7 +31,10 @@ export default {
 
     // Public endpoints: the site's enquiry form and Stripe's webhook.
     if (url.pathname === "/api/enquiries" && (request.method === "POST" || request.method === "OPTIONS")) {
-      return publicEnquiry(request, env);
+      return fromSite(request, env, (input) => submitEnquiry(request, env, github(env), input));
+    }
+    if (url.pathname === "/api/deposits" && (request.method === "POST" || request.method === "OPTIONS")) {
+      return fromSite(request, env, (input) => startDeposit(env, github(env), input));
     }
     if (url.pathname === "/api/stripe/webhook" && request.method === "POST") {
       const { status, body } = await handleStripeWebhook(request, env);
@@ -45,8 +49,9 @@ export default {
   },
 };
 
-async function publicEnquiry(request, env) {
-  // Only the site itself may post enquiries from a browser.
+// Public endpoints the site calls from visitors' browsers (enquiries, deposits).
+async function fromSite(request, env, handle) {
+  // Only the site itself may call these from a browser.
   const origin = request.headers.get("Origin") || "";
   const allowed = (env.SITE_ORIGINS || "").split(",").map((o) => o.trim()).filter(Boolean);
   const cors = allowed.includes(origin)
@@ -59,7 +64,7 @@ async function publicEnquiry(request, env) {
     const input = await request.json().catch(() => {
       throw Object.assign(new Error("Invalid request."), { status: 400 });
     });
-    return json(await submitEnquiry(request, env, github(env), input), 200, cors);
+    return json(await handle(input), 200, cors);
   } catch (error) {
     const response = errorResponse(error);
     for (const [key, value] of Object.entries(cors)) response.headers.set(key, value);

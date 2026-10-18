@@ -91,6 +91,9 @@ export async function saveGuitar(gh, slug, input, user, { create = false } = {})
     price_note: clean(input.price_note, 200),
     images,
   };
+  // Deposit (USD) buyers can pay online; empty means no deposit button.
+  const deposit = parseDeposit(input.deposit);
+  if (deposit) frontMatter.deposit = deposit;
   // No form means the guitar uses the default enquiry form.
   if (input.form) frontMatter.form = normalizeForm(input.form);
   const body = clean(input.body, 20000);
@@ -149,6 +152,18 @@ function collectImages(list, folder) {
     }
   }
   return { files, images };
+}
+
+/** "1500", "1.500", "1,500.00" -> "1500" (whole dollars); empty -> "". */
+function parseDeposit(value) {
+  const text = String(value ?? "").trim();
+  if (!text) return "";
+  const whole = text.replace(/[.,]\d{1,2}$/, "").replace(/[^\d]/g, "");
+  const amount = Number(whole);
+  if (!whole || !Number.isInteger(amount) || amount < 1 || amount > 100000) {
+    throw badRequest("Enter the deposit as a whole number of dollars, e.g. 1500, or leave it empty.");
+  }
+  return String(amount);
 }
 
 export function isImagePath(path) {
@@ -211,6 +226,7 @@ export function parseGuitar(text) {
     order: data.order,
     price: data.price ?? "",
     price_note: data.price_note ?? "",
+    ...(data.deposit && { deposit: String(data.deposit) }),
     images: Array.isArray(data.images) ? data.images : [],
     ...(data.form && { form: data.form }),
     body: (match ? match[2] : text).trim(),

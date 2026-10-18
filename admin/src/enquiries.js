@@ -2,6 +2,7 @@
 
 import { readForm } from "./content.js";
 import { sendAlert, trackServerEvent } from "./notify.js";
+import { recordDeposit } from "./deposits.js";
 import { stripe, verifyStripeSignature } from "./stripe.js";
 
 const CURRENCIES = ["USD", "EUR", "DKK", "GBP"];
@@ -195,13 +196,17 @@ export async function refreshPayment(env, paymentId) {
   return getEnquiry(env, payment.enquiry_id);
 }
 
-/** Stripe calls this when an invoice is paid or voided. */
+/** Stripe calls this when an invoice is paid or voided, or a deposit checkout completes. */
 export async function handleStripeWebhook(request, env) {
   const raw = await request.text();
   if (!(await verifyStripeSignature(env, request.headers.get("Stripe-Signature"), raw))) {
     return { status: 400, body: { error: "Invalid signature" } };
   }
   const event = JSON.parse(raw);
+  if (event.type === "checkout.session.completed") {
+    await recordDeposit(env, event.data?.object || {});
+    return { status: 200, body: { received: true } };
+  }
   const invoiceId = event.data?.object?.id;
   const payment = invoiceId && (await env.DB.prepare("SELECT * FROM payments WHERE invoice_id = ?").bind(invoiceId).first());
   if (payment) {

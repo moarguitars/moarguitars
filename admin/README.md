@@ -6,6 +6,7 @@ The admin at **https://moar-admin.moarguitars.workers.dev** lets collaborators s
 - edit the **enquiry form**: a default set of questions, and optionally different questions for any guitar;
 - work through the **Enquiries inbox**: read enquiries, keep private notes, archive them;
 - **request payments**: email the customer a Stripe invoice for any amount and see when it's paid.
+- **take deposits online**: give a guitar a **Deposit (USD)** and the site shows "Lock in your build: $X" (with a note that it's deducted from the final price and non-refundable, and an "I accept the deposit rules" tick box). It opens Stripe's secure Checkout; paid deposits appear in the inbox as **Paid** with the buyer's name, email, phone and address, and you get an alert.
 - see whether saved changes are **live yet**: the light in the top bar shows Live, Publishing… (usually about a minute) or "Publishing is slow". Click it to see recent changes, who made them and whether each is live. It compares the site's `/version.json` (written when GitHub Pages builds the site) with the latest commits.
 
 Content edits are commits to `moarguitars/moarguitars`, so GitHub Pages republishes the site about a minute later and every change is in the git history. Enquiries and payments are stored in a Cloudflare D1 database.
@@ -60,13 +61,13 @@ npm run db:remote
 
 ### 3. Stripe
 In the [Stripe dashboard](https://dashboard.stripe.com) for the Moar account:
-1. **API key:** Developers → API keys → **Create restricted key**, named "Moar admin". Set **Customers**, **Invoices** and **Invoice items** to **Write** and leave everything else at None. Copy the key (`rk_live_…`).
+1. **API key:** Developers → API keys → **Create restricted key**, named "Moar admin". Set **Customers**, **Invoices**, **Invoice items** and **Checkout Sessions** to **Write** and leave everything else at None. Copy the key (`rk_live_…`).
 2. **Webhook:** Developers → Webhooks → **Add endpoint**:
    - URL: `https://moar-admin.moarguitars.workers.dev/api/stripe/webhook`
-   - Events: `invoice.paid` and `invoice.voided`
+   - Events: `invoice.paid`, `invoice.voided` and `checkout.session.completed` (online deposits)
 
    Then reveal and copy the **Signing secret** (`whsec_…`).
-3. **Optional:** under Settings → Payment methods you can turn on MobilePay, and Settings → Invoices sets the invoice branding (logo, colours, footer).
+3. **Optional:** under Settings → Payment methods you can turn on MobilePay; Settings → Branding sets the logo and colours on invoices and the Checkout page; and Settings → Customer emails → "Successful payments" sends deposit buyers a receipt.
 
 To try it with fake money first, use **Test mode** keys and webhook (`rk_test_…`) and Stripe's test card `4242 4242 4242 4242`.
 

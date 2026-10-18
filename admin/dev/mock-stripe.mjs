@@ -28,19 +28,21 @@ async function readBody(req) {
   return Buffer.concat(chunks).toString();
 }
 
-// "metadata[enquiry_id]=x" -> { metadata: { enquiry_id: "x" } }
+// "a[b][c]=x" -> { a: { b: { c: "x" } } }
 function parseForm(text) {
   const out = {};
   for (const [key, value] of new URLSearchParams(text)) {
-    const [head, ...rest] = key.split("[");
-    if (!rest.length) out[head] = value;
-    else (out[head] ??= {})[rest[0].replace("]", "")] = value;
+    const parts = key.replace(/\]/g, "").split("[");
+    let node = out;
+    parts.slice(0, -1).forEach((part) => { node = node[part] ??= {}; });
+    node[parts.at(-1)] = value;
   }
   return out;
 }
+const sessions = new Map();
 
-async function webhook(type, invoice) {
-  const body = JSON.stringify({ id: id("evt"), type, data: { object: invoice } });
+async function webhook(type, object) {
+  const body = JSON.stringify({ id: id("evt"), type, data: { object } });
   const t = Math.floor(Date.now() / 1000);
   const v1 = createHmac("sha256", webhookSecret).update(`${t}.${body}`).digest("hex");
   await fetch(webhookUrl, {
@@ -64,6 +66,49 @@ createServer(async (req, res) => {
     const alert = JSON.parse(raw || "{}");
     console.log(`\n--- Formspree form ${form[1]} (reply-to ${alert.email || "-"})\nSubject: ${alert._subject}\n\n${alert.message}\n---`);
     return send(res, 200, { ok: true, next: "/thanks" });
+  }
+
+  // Pretend Stripe Checkout page.
+  const checkout = path.match(/^\/c\/([^/]+)$/);
+  if (checkout) {
+    const session = sessions.get(checkout[1]);
+    if (!session) return send(res, 404, "Not found", "text/plain");
+    const item = session.line_items["0"].price_data;
+    return send(res, 200, `<!doctype html><meta name="viewport" content="width=device-width"><title>Mock Stripe Checkout</title>
+<body style="font-family:system-ui;max-width:28rem;margin:3rem auto;padding:0 1rem">
+<p style="color:#888">MOCK STRIPE CHECKOUT (local testing)</p>
+<h1>${escape(item.product_data.name)}</h1>
+<p>${escape(item.product_data.description)}</p>
+<p style="font-size:2rem">${escape(item.currency.toUpperCase())} ${(Number(item.unit_amount) / 100).toFixed(2)}</p>
+<p style="color:#555">${escape(session.custom_text?.submit?.message || "")}</p>
+<form method="post" action="/c/${session.id}/pay" style="display:grid;gap:.5rem">
+<input name="name" placeholder="Name" value="Test Buyer"><input name="email" placeholder="Email" value="buyer@example.com">
+<button style="font-size:1.2rem;padding:.6rem 1.5rem">Pay</button></form>
+<p><a href="${escape(session.cancel_url)}">← Cancel</a></p></body>`, "text/html");
+  }
+  const checkoutPay = path.match(/^\/c\/([^/]+)\/pay$/);
+  if (checkoutPay && req.method === "POST") {
+    const session = sessions.get(checkoutPay[1]);
+    const form = new URLSearchParams(raw);
+    const item = session.line_items["0"].price_data;
+    const completed = {
+      id: session.id,
+      object: "checkout.session",
+      payment_status: "paid",
+      amount_total: Number(item.unit_amount),
+      currency: item.currency,
+      metadata: session.metadata,
+      customer_details: {
+        name: form.get("name"),
+        email: form.get("email"),
+        phone: "+45 12 34 56 78",
+        address: { line1: "Testvej 1", postal_code: "4720", city: "Præstø", country: "DK" },
+      },
+    };
+    console.log(`checkout paid ${session.id}`);
+    await webhook("checkout.session.completed", completed);
+    res.writeHead(303, { Location: session.success_url });
+    return res.end();
   }
 
   // Pretend hosted invoice page.
@@ -95,6 +140,16 @@ ${invoice.status === "open" ? `<form method="post" action="/mock/pay/${invoice.i
 
   if (!req.headers.authorization?.startsWith("Bearer sk_")) return send(res, 401, { error: { message: "Invalid API key" } });
   const params = parseForm(req.method === "GET" ? url.search.slice(1) : raw);
+
+  if (path === "/v1/checkout/sessions" && req.method === "POST") {
+    const amount = Number(params.line_items?.["0"]?.price_data?.unit_amount);
+    if (!Number.isInteger(amount) || amount <= 0) return send(res, 400, { error: { message: "Invalid amount" } });
+    const session = { id: `cs_mock${randomBytes(6).toString("hex")}`, ...params };
+    session.url = `http://localhost:${port}/c/${session.id}`;
+    sessions.set(session.id, session);
+    console.log(`checkout session ${session.id}: ${params.line_items["0"].price_data.product_data.name} ${amount / 100}`);
+    return send(res, 200, { id: session.id, url: session.url });
+  }
 
   if (path === "/v1/customers" && req.method === "GET") {
     return send(res, 200, { data: [...customers.values()].filter((c) => c.email === params.email).slice(0, 1) });

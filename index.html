@@ -56,7 +56,20 @@
         <div class="prose">{{ guitar.content | markdownify }}</div>
         <p class="price">{% if guitar.price != "" %}{{ guitar.price }}{% else %}Price on request{% endif %}</p>
         {%- if guitar.price_note %}<p class="price-note">{{ guitar.price_note }}</p>{% endif %}
+        {%- if guitar.deposit and guitar.deposit != "" and site.enquiry_endpoint and site.enquiry_endpoint != "" %}
+        {%- comment %} Shown by site.js (paying needs scripts). {% endcomment %}
+        <div class="deposit" data-deposit="{{ guitar.deposit }}" hidden>
+          <p class="deposit-note">Lock in your build with a <strong data-deposit-amount>${{ guitar.deposit }}</strong> deposit. It's deducted from the final price, with the balance due on completion. Deposits are non-refundable.</p>
+          <label class="deposit-accept">
+            <input type="checkbox" data-deposit-accept>
+            <span>I accept the <a href="#fine-print" data-deposit-rules>deposit rules</a></span>
+          </label>
+          <button type="button" class="send deposit-pay" data-deposit-pay disabled>Lock in your build: <span data-deposit-amount>${{ guitar.deposit }}</span></button>
+          <p class="form-error" role="alert" hidden></p>
+        </div>
+        {%- endif %}
       </div>
+      <p class="deposit-return" role="status" tabindex="-1" hidden></p>
       <div class="guitar-foot">
         <button class="read-more" type="button" aria-expanded="false" aria-controls="more-{{ guitar.slug }}" data-read-more>Description and pricing</button>
         {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}

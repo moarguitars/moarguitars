@@ -17,6 +17,7 @@ Run locally with `jekyll serve --livereload --config _config.yml,_config.dev.yml
 ## How visitors get in touch
 
 - **Enquire** under each guitar opens that guitar's form. The questions are edited in the admin: one default set, and any guitar can have its own. Answers go to the admin's Enquiries inbox, and atelier@ gets an email. This is the main conversion.
+- **Lock in your build:** guitars with a deposit set in the admin show a button that takes the buyer to Stripe's secure checkout to pay it (non-refundable, deducted from the final price). It arrives in the inbox as a paid deposit.
 - From the inbox you can **request a payment** (deposit, balance, anything): the customer gets a Stripe invoice by email and pays on Stripe's page (card, Apple Pay, Google Pay).
 - **Reach out** under the intro opens a general contact form (the default questions); it arrives in the inbox as "General enquiry".
 - The Email / Instagram / Facebook / WhatsApp links in the Fine Print.
@@ -56,8 +57,8 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 | `view_fine_print` | A fine print topic opened, with the last guitar viewed | Payment intent (e.g. *Commission & Payment*, *Deposit rules*, *Bank transfer details*) |
 | `enquiry_open` | Enquiry form opened | Serious interest |
 | `generate_lead` | Enquiry form **sent** (value = guitar price, USD), or a contact link clicked | Conversion |
-| `begin_checkout` | You requested a payment from the admin (value = amount) | Deal in progress (sent by the server) |
-| `purchase` | The Stripe invoice was paid (value = amount) | Money in (sent by the server) |
+| `begin_checkout` | Buyer clicked "Lock in your build" (value = deposit), or you requested a payment from the admin (value = amount) | Ready to pay |
+| `purchase` | A deposit was paid online, or a Stripe invoice was paid (value = amount; `payment_type: deposit` for deposits) | Money in (sent by the server) |
 
 `begin_checkout` and `purchase` are sent by the admin server and linked to the visitor who enquired, so they appear in the same funnel. They need the GA API secret (admin README, step 7) and only work for visitors who accepted analytics cookies.
 
