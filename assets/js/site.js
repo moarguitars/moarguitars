@@ -61,11 +61,12 @@ const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD",
 
 document.querySelectorAll("[data-deposit]").forEach((box) => {
   const section = box.closest(".guitar");
-  const pay = box.querySelector("[data-deposit-pay]");
+  const pay = section.querySelector("[data-deposit-pay]");
   const error = box.querySelector(".form-error");
   const amount = Number(box.dataset.deposit);
-  box.querySelectorAll("[data-deposit-amount]").forEach((el) => { el.textContent = usd.format(amount); });
+  section.querySelectorAll("[data-deposit-amount]").forEach((el) => { el.textContent = usd.format(amount); });
   box.hidden = !DEPOSIT_ENDPOINT;
+  pay.hidden = !DEPOSIT_ENDPOINT;
 
   pay.addEventListener("click", async () => {
     error.hidden = true;

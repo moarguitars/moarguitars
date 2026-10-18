@@ -138,7 +138,22 @@ main {
   margin-top: 0.75rem;
 }
 
-.enquire { font-style: italic; }
+/* Enquire and "Lock in your build": a matching pair of buttons. */
+.guitar-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.action {
+  display: inline-block;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  font: italic 1.05rem/1.3 var(--serif);
+  text-decoration: none;
+  cursor: pointer;
+}
+.action:hover,
+.action:focus-visible,
+.action[aria-expanded="true"] { background: var(--ink); color: var(--paper); }
+.action:disabled { opacity: 0.6; cursor: progress; }
 
 /* Collapsed guitars: just the name and photos until "Description and pricing" (only when scripts run). */
 .read-more { display: none; }
@@ -153,7 +168,7 @@ main {
   cursor: pointer;
 }
 .js .guitar:not(.is-open) .guitar-more,
-.js .guitar:not(.is-open) .enquire,
+.js .guitar:not(.is-open) .guitar-actions,
 .js .guitar:not(.is-open) .enquiry { display: none; }
 .js .guitar.is-open .read-more { display: none; }
 .guitar.is-open .guitar-more { animation: reveal 0.35s ease-out; }
@@ -276,7 +291,6 @@ main {
 /* Deposit */
 .deposit { display: grid; gap: 0.75rem; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--rule); }
 .deposit-note { margin: 0; font-size: 0.95rem; }
-.deposit-pay { justify-self: start; }
 .deposit .form-error { margin: 0; }
 .deposit-return { margin: 1rem 0 0; padding: 0.75rem 0.9rem; border: 1px solid var(--rule); font-style: italic; }
 .deposit-return:focus { outline: none; }

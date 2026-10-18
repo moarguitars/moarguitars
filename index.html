@@ -60,7 +60,6 @@
         {%- comment %} Shown by site.js (paying needs scripts). {% endcomment %}
         <div class="deposit" data-deposit="{{ guitar.deposit }}" hidden>
           <p class="deposit-note">Lock in your build with a <strong data-deposit-amount>${{ guitar.deposit }}</strong> deposit. It's deducted from the final price, with the balance due on completion. Deposits are non-refundable.</p>
-          <button type="button" class="send deposit-pay" data-deposit-pay>Lock in your build: <span data-deposit-amount>${{ guitar.deposit }}</span></button>
           <p class="form-error" role="alert" hidden></p>
         </div>
         {%- endif %}
@@ -69,7 +68,13 @@
       <div class="guitar-foot">
         <button class="read-more" type="button" aria-expanded="false" aria-controls="more-{{ guitar.slug }}" data-read-more>Description and pricing</button>
         {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
-        <a class="enquire" href="#enquire-{{ guitar.slug }}" aria-controls="enquire-{{ guitar.slug }}" aria-expanded="false" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
+        {%- comment %} Enquire and Lock in sit side by side with equal weight. {% endcomment %}
+        <div class="guitar-actions">
+          <a class="action enquire" href="#enquire-{{ guitar.slug }}" aria-controls="enquire-{{ guitar.slug }}" aria-expanded="false" data-enquire>{{ home.enquire_label | default: "Enquire" }}</a>
+          {%- if guitar.deposit and guitar.deposit != "" %}
+          <button type="button" class="action lock-in" data-deposit-pay hidden>Lock in your build: <span data-deposit-amount>${{ guitar.deposit }}</span></button>
+          {%- endif %}
+        </div>
         {%- endif %}
         <a class="to-top" href="#top" aria-label="Back to top">&uarr;</a>
       </div>
