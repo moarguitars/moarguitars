@@ -6,7 +6,7 @@ The admin at **https://moar-admin.moarguitars.workers.dev** lets collaborators s
 - edit the **enquiry form**: a default set of questions, and optionally different questions for any guitar;
 - work through the **Enquiries inbox**: read enquiries, keep private notes, archive them;
 - **request payments**: email the customer a Stripe invoice for any amount and see when it's paid.
-- **take deposits online**: give a guitar a **Deposit (USD)** and the site shows "Lock in your build: $X" (with a note that it's deducted from the final price and non-refundable, and an "I accept the deposit rules" tick box). It opens Stripe's secure Checkout; paid deposits appear in the inbox as **Paid** with the buyer's name, email, phone and address, and you get an alert.
+- **take deposits online**: give a guitar a **Deposit (USD)** and the site shows "Lock in your build: $X" (with a note that it's deducted from the final price and non-refundable). It opens Stripe's secure Checkout; paid deposits appear in the inbox as **Paid** with the buyer's name, email, phone and address, and you get an alert.
 - see whether saved changes are **live yet**: the light in the top bar shows Live, Publishing… (usually about a minute) or "Publishing is slow". Click it to see recent changes, who made them and whether each is live. It compares the site's `/version.json` (written when GitHub Pages builds the site) with the latest commits.
 
 Content edits are commits to `moarguitars/moarguitars`, so GitHub Pages republishes the site about a minute later and every change is in the git history. Enquiries and payments are stored in a Cloudflare D1 database.

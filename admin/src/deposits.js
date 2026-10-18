@@ -11,7 +11,6 @@ const NOTICE =
 
 /** Public: start a deposit payment. Returns { url } of the Stripe Checkout page. */
 export async function startDeposit(env, gh, input) {
-  if (input.accepted !== true) throw badRequest("Please accept the deposit rules first.");
   const slug = String(input.guitar || "");
   if (!/^[a-z0-9-]+$/.test(slug)) throw badRequest("Unknown guitar.");
 

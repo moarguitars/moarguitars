@@ -61,23 +61,11 @@ const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD",
 
 document.querySelectorAll("[data-deposit]").forEach((box) => {
   const section = box.closest(".guitar");
-  const accept = box.querySelector("[data-deposit-accept]");
   const pay = box.querySelector("[data-deposit-pay]");
   const error = box.querySelector(".form-error");
   const amount = Number(box.dataset.deposit);
   box.querySelectorAll("[data-deposit-amount]").forEach((el) => { el.textContent = usd.format(amount); });
   box.hidden = !DEPOSIT_ENDPOINT;
-
-  accept.addEventListener("change", () => { pay.disabled = !accept.checked; });
-
-  // "deposit rules" opens that item in the Fine Print.
-  box.querySelector("[data-deposit-rules]").addEventListener("click", (event) => {
-    const rules = document.querySelector('[data-fine-print="Deposit rules"]');
-    if (!rules) return;
-    event.preventDefault();
-    rules.open = true;
-    rules.scrollIntoView({ behavior: "smooth", block: "center" });
-  });
 
   pay.addEventListener("click", async () => {
     error.hidden = true;
@@ -89,7 +77,7 @@ document.querySelectorAll("[data-deposit]").forEach((box) => {
       const response = await fetch(DEPOSIT_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ guitar: section.dataset.guitar, accepted: accept.checked, analytics_client_id: window.moarAnalyticsClientId || "" }),
+        body: JSON.stringify({ guitar: section.dataset.guitar, analytics_client_id: window.moarAnalyticsClientId || "" }),
       });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || !result.url) throw new Error(result.error || "Sorry, checkout couldn't open. Please try again or email atelier@moarguitars.com.");
@@ -98,7 +86,7 @@ document.querySelectorAll("[data-deposit]").forEach((box) => {
       error.textContent = err instanceof TypeError ? "Sorry, checkout couldn't open. Please check your connection and try again." : err.message;
       error.hidden = false;
       pay.innerHTML = label;
-      pay.disabled = !accept.checked;
+      pay.disabled = false;
     }
   });
 });
