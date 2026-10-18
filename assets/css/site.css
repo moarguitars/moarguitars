@@ -72,7 +72,7 @@ main {
 .fine-print .entry-title  { --offset: 3.5rem; }
 
 .prose { padding-top: 1.6rem; }
-.prose p { margin: 0; text-indent: 1.75rem; }
+.prose p { margin: 0; }
 /* A blank line in the admin starts a new paragraph; show it as a gap, as it was typed. */
 .prose p + p,
 .prose p + ul, .prose p + ol, .prose ul + p, .prose ol + p { margin-top: 0.9em; }
@@ -114,6 +114,9 @@ main {
 
 /* Guitar */
 .guitar { padding-top: 4rem; }
+/* Guitar names sit just above their content rather than overlapping its first line. */
+.guitar .entry-title { margin-bottom: 0.6rem; }
+.guitar .guitar-more .prose { padding-top: 0; }
 
 .price {
   margin: 1rem 0 0;
@@ -154,7 +157,7 @@ main {
 .js .guitar:not(.is-open) .enquiry { display: none; }
 .js .guitar.is-open .read-more { display: none; }
 .guitar.is-open .guitar-more { animation: reveal 0.35s ease-out; }
-.js .guitar:not(.is-open) .guitar-foot { margin-top: 2.25rem; }
+.js .guitar:not(.is-open) .guitar-foot { margin-top: 0; }
 @keyframes reveal { from { transform: translateY(-0.4rem); } }
 @media (prefers-reduced-motion: reduce) { .guitar.is-open .guitar-more { animation: none; } }
 
