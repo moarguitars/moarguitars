@@ -8,6 +8,7 @@ images:
   - /assets/images/bass/1.jpg
   - /assets/images/bass/2.jpg
   - /assets/images/bass/3.jpg
+deposit: "2500"
 ---
 
 I love making basses, and I would love to make you one.
