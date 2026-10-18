@@ -11,38 +11,38 @@ let cachedToken = null; // { value, expires }
 // Events the site sends (see assets/js/analytics.js), keyed by what the Insights page calls them.
 const EVENTS = {
   select_item: "clicked",
+  view_item: "opened", // opened the guitar, which reveals its price
   view_photo: "photos",
   enquiry_open: "formOpened",
   generate_lead: "enquired",
 };
 
-// On this day guitars became click-to-open. Before it, view_item meant "price scrolled into
-// view" and time was counted while merely visible, so opens, time and the enquiry rate are
-// only counted from here on.
-export const OPENS_SINCE = "2026-10-18";
+// Insights counts nothing before this day: the site's tracking changed to click-to-open
+// guitars here, and earlier data (and test enquiries) would muddy the numbers.
+export const TRACKING_SINCE = "2026-10-18";
+
+/** The start of the last `days` days, but never before TRACKING_SINCE: { start, clamped } (YYYY-MM-DD). */
+export function periodStart(days) {
+  const start = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
+  return start < TRACKING_SINCE ? { start: TRACKING_SINCE, clamped: true } : { start, clamped: false };
+}
 
 /**
- * Per-guitar GA numbers for the last `days` days:
- * { configured, error?, opensSince, totals: { visitors },
- *   guitars: { [name]: { clicked, photos, formOpened, enquired, opened, enquiredSinceOpen, seconds } } }
- * Counts are people (unique users), except photos (opens) and seconds (total time).
- * opened, enquiredSinceOpen and seconds cover the period from opensSince only.
+ * Per-guitar GA numbers for the period:
+ * { configured, error?, totals: { visitors }, guitars: { [name]: { clicked, opened, photos, formOpened, enquired, seconds } } }
+ * Counts are people (unique users), except photos (opens) and seconds (total time while open).
  */
 export async function guitarAnalytics(env, days) {
   if (!env.GA_SERVICE_ACCOUNT || !env.GA_PROPERTY_ID) return { configured: false };
   const hit = reportCache.get(days);
   if (hit && Date.now() - hit.at < CACHE_MS) return hit.value;
 
-  const dateRanges = [{ startDate: `${days}daysAgo`, endDate: "today" }];
-  const periodStart = new Date(Date.now() - days * 864e5).toISOString().slice(0, 10);
-  const opensSince = periodStart < OPENS_SINCE ? OPENS_SINCE : null;
-  const openRanges = opensSince ? [{ startDate: opensSince, endDate: "today" }] : dateRanges;
+  const dateRanges = [{ startDate: periodStart(days).start, endDate: "today" }];
   const guitars = {};
-  const row = (name) =>
-    (guitars[name] ??= { clicked: 0, photos: 0, formOpened: 0, enquired: 0, opened: 0, enquiredSinceOpen: 0, seconds: 0 });
+  const row = (name) => (guitars[name] ??= { clicked: 0, opened: 0, photos: 0, formOpened: 0, enquired: 0, seconds: 0 });
 
   try {
-    const [events, opens, engagement, totals] = await Promise.all([
+    const [events, engagement, totals] = await Promise.all([
       runReport(env, {
         dateRanges,
         dimensions: [{ name: "eventName" }, { name: "customEvent:guitar" }],
@@ -50,16 +50,8 @@ export async function guitarAnalytics(env, days) {
         dimensionFilter: { filter: { fieldName: "eventName", inListFilter: { values: Object.keys(EVENTS) } } },
         limit: 1000,
       }),
-      // Opens and the enquiries that follow them, in the same window so the rate is fair.
       runReport(env, {
-        dateRanges: openRanges,
-        dimensions: [{ name: "eventName" }, { name: "customEvent:guitar" }],
-        metrics: [{ name: "totalUsers" }],
-        dimensionFilter: { filter: { fieldName: "eventName", inListFilter: { values: ["view_item", "generate_lead"] } } },
-        limit: 1000,
-      }),
-      runReport(env, {
-        dateRanges: openRanges,
+        dateRanges,
         dimensions: [{ name: "customEvent:guitar" }],
         metrics: [{ name: "customEvent:engagement_seconds" }],
         dimensionFilter: { filter: { fieldName: "eventName", stringFilter: { value: "guitar_engagement" } } },
@@ -75,11 +67,6 @@ export async function guitarAnalytics(env, days) {
       // Photos count opens; everything else counts people.
       row(guitar)[key] = Number(r.metricValues[key === "photos" ? 1 : 0].value);
     }
-    for (const r of opens.rows || []) {
-      const [eventName, guitar] = r.dimensionValues.map((d) => d.value);
-      if (!guitar || guitar === "(not set)") continue;
-      row(guitar)[eventName === "view_item" ? "opened" : "enquiredSinceOpen"] = Number(r.metricValues[0].value);
-    }
     for (const r of engagement?.rows || []) {
       const guitar = r.dimensionValues[0].value;
       if (guitar && guitar !== "(not set)") row(guitar).seconds = Math.round(Number(r.metricValues[0].value));
@@ -87,7 +74,6 @@ export async function guitarAnalytics(env, days) {
 
     const value = {
       configured: true,
-      opensSince,
       totals: { visitors: Number(totals.rows?.[0]?.metricValues?.[0]?.value || 0) },
       guitars,
       engagementAvailable: Boolean(engagement),

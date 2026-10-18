@@ -15,6 +15,7 @@ const root = resolve(process.argv[2] || "..");
 const port = Number(process.argv[3] || 8788);
 
 let head = randomBytes(20).toString("hex");
+const startedAt = new Date().toISOString();
 const blobs = new Map(); // sha -> Buffer
 const trees = new Map(); // sha -> [{ path, sha }]
 const commits = new Map(); // sha -> { tree, parent, message, author }
@@ -69,6 +70,19 @@ createServer(async (req, res) => {
     }
 
     if (req.method === "GET" && route.startsWith("git/ref/heads/")) return send(res, 200, { object: { sha: head } });
+
+    // Recent commits, newest first (only those made through this mock, plus a starting one).
+    if (req.method === "GET" && route === "commits") {
+      const list = [];
+      for (let sha = head; sha && list.length < Number(url.searchParams.get("per_page") || 8); sha = commits.get(sha)?.parent) {
+        const c = commits.get(sha);
+        list.push(c
+          ? { sha, commit: { message: c.message, committer: { date: c.date } } }
+          : { sha, commit: { message: "Starting point", committer: { date: startedAt } } });
+        if (!c) break;
+      }
+      return send(res, 200, list);
+    }
     if (req.method === "GET" && route.startsWith("git/commits/")) return send(res, 200, { tree: { sha: `tree-${route.split("/").pop()}` } });
 
     const body = await readBody(req);
@@ -86,7 +100,7 @@ createServer(async (req, res) => {
     }
     if (req.method === "POST" && route === "git/commits") {
       const sha = randomBytes(20).toString("hex");
-      commits.set(sha, { tree: body.tree, parent: body.parents[0], message: body.message, author: body.author });
+      commits.set(sha, { tree: body.tree, parent: body.parents[0], message: body.message, author: body.author, date: new Date().toISOString() });
       return send(res, 201, { sha });
     }
 

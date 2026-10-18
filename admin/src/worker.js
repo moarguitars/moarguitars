@@ -4,6 +4,7 @@
 import { changePassword, currentUser, login, logoutCookie } from "./auth.js";
 import { github } from "./github.js";
 import { insights } from "./insights.js";
+import { publishStatus, publishStatusChanged } from "./publish.js";
 import { deleteGuitar, isImagePath, readContent, saveGuitar, saveHome, saveOrder } from "./content.js";
 import {
   cancelPayment,
@@ -101,6 +102,11 @@ async function handleApi(request, env, url) {
   if (path === "/api/me" && method === "GET") {
     return json({ user, siteUrl: env.SITE_URL });
   }
+  if (path === "/api/publish-status" && method === "GET") {
+    return json(await publishStatus(env, gh));
+  }
+  // Any content change starts a new publish.
+  if (method !== "GET" && /^\/api\/(home|guitars|order)/.test(path)) publishStatusChanged();
   if (path === "/api/insights" && method === "GET") {
     return json(await insights(env, gh, url.searchParams.get("days")));
   }

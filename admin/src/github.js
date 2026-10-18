@@ -46,6 +46,12 @@ export function github(env) {
       }
     },
 
+    /** The latest commits on the branch, newest first: [{ sha, message, date }] */
+    async commits(limit = 8) {
+      const list = await (await call("GET", `/commits?sha=${branch}&per_page=${limit}`)).json();
+      return list.map((c) => ({ sha: c.sha, message: c.commit.message, date: c.commit.committer?.date || c.commit.author?.date }));
+    },
+
     /** A file's raw bytes as a Response (used for image previews). */
     raw(path) {
       return call("GET", contentsPath(path), undefined, "application/vnd.github.raw");

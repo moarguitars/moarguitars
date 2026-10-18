@@ -6,6 +6,7 @@ The admin at **https://moar-admin.moarguitars.workers.dev** lets collaborators s
 - edit the **enquiry form**: a default set of questions, and optionally different questions for any guitar;
 - work through the **Enquiries inbox**: read enquiries, keep private notes, archive them;
 - **request payments**: email the customer a Stripe invoice for any amount and see when it's paid.
+- see whether saved changes are **live yet**: the light in the top bar shows Live, Publishing… (usually about a minute) or "Publishing is slow". Click it to see recent changes, who made them and whether each is live. It compares the site's `/version.json` (written when GitHub Pages builds the site) with the latest commits.
 
 Content edits are commits to `moarguitars/moarguitars`, so GitHub Pages republishes the site about a minute later and every change is in the git history. Enquiries and payments are stored in a Cloudflare D1 database.
 
@@ -111,7 +112,7 @@ npx wrangler secret put GA_API_SECRET
 Payment requests then show up as `begin_checkout` events and payments as `purchase` events, tied to the visitor who enquired (if they accepted analytics cookies).
 
 ### 8. Optional: the Insights page (read access to Google Analytics)
-The admin's **Insights** page shows each guitar's funnel: people who saw the price, opened photos, spent time, opened the form, enquired, were invoiced and paid. The inbox numbers work straight away. The Google Analytics columns need the admin to have read-only access to the GA property (`GA_PROPERTY_ID` in `wrangler.toml`), through a Google "service account":
+The admin's **Insights** page (which counts nothing before 18 October 2026, when the site's tracking changed) shows each guitar's funnel: people who saw the price, opened photos, spent time, opened the form, enquired, were invoiced and paid. The inbox numbers work straight away. The Google Analytics columns need the admin to have read-only access to the GA property (`GA_PROPERTY_ID` in `wrangler.toml`), through a Google "service account":
 
 1. Go to [console.cloud.google.com](https://console.cloud.google.com). In the project picker at the top, choose **New project**, name it "Moar website", and create it.
 2. Search the top bar for **Google Analytics Data API**, open it, and click **Enable**.

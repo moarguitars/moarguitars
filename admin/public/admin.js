@@ -100,6 +100,10 @@ async function start() {
 }
 
 async function loadContent() {
+  if (!publish.started) {
+    publish.started = true;
+    publish.refresh();
+  }
   app.replaceChildren(h("p", { class: "loading" }, "Loading content…"));
   state.content = await api("GET", "/api/content");
   state.dirty = false;
@@ -156,6 +160,7 @@ async function logout() {
 function render() {
   userBox.hidden = false;
   userBox.replaceChildren(
+    publish.element,
     h("a", { href: state.siteUrl, target: "_blank", rel: "noopener" }, "View site"),
     h("span", {}, state.user),
     h("button", { class: "link-button", type: "button", onclick: () => select("password") }, "Change password"),
@@ -295,10 +300,106 @@ function toast(message, { type = "ok", action } = {}) {
 }
 
 function savedToast(what = "Saved") {
-  toast(`${what}. The live site updates in about a minute.`, {
-    action: h("a", { class: "toast-action", href: state.siteUrl, target: "_blank", rel: "noopener" }, "View site"),
-  });
+  toast(`${what}. Publishing to the live site, usually about a minute.`);
+  publish.saved();
 }
+
+// ---------- Publish status (top bar) ----------
+// Shows whether moarguitars.com has caught up with the latest save, and who changed what.
+
+const publish = (() => {
+  const LABELS = {
+    live: "Live",
+    publishing: "Publishing…",
+    delayed: "Publishing is slow",
+    unknown: "Status unavailable",
+  };
+  const HINTS = {
+    live: "The live site has all saved changes.",
+    publishing: "A save is on its way to the live site. This usually takes about a minute and updates by itself.",
+    delayed: "A save has taken more than 10 minutes to publish. It may still arrive; if not, ask John to check GitHub Pages.",
+    unknown: "Couldn't check the live site right now.",
+  };
+  let status = null;
+  let timer = null;
+  let open = false;
+
+  const dot = h("span", { class: "publish-dot", "aria-hidden": "true" });
+  const label = h("span", { class: "publish-label" }, "Checking…");
+  const button = h("button", {
+    type: "button",
+    class: "publish-pill",
+    "aria-expanded": "false",
+    "aria-controls": "publish-panel",
+    onclick: () => { open = !open; draw(); },
+  }, dot, label);
+  const panel = h("div", { class: "publish-panel", id: "publish-panel", hidden: true });
+  const element = h("div", { class: "publish" }, button, panel);
+
+  document.addEventListener("click", (event) => {
+    if (open && !element.contains(event.target)) { open = false; draw(); }
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && state.user) refresh();
+  });
+
+  const ago = (iso) => {
+    const minutes = Math.round((Date.now() - Date.parse(iso)) / 60000);
+    if (minutes < 1) return "just now";
+    if (minutes < 60) return `${minutes} min ago`;
+    const hours = Math.round(minutes / 60);
+    if (hours < 24) return `${hours} h ago`;
+    return new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  };
+
+  function draw() {
+    const state = status?.state || "unknown";
+    element.dataset.state = status ? state : "checking";
+    label.textContent = status ? LABELS[state] : "Checking…";
+    button.setAttribute("aria-expanded", String(open));
+    button.title = status ? HINTS[state] : "";
+    panel.hidden = !open;
+    if (!open || !status) return;
+    panel.replaceChildren(
+      h("p", { class: "publish-hint" }, HINTS[state]),
+      h("h3", {}, "Recent changes"),
+      h("ul", {},
+        status.changes.map((c) =>
+          h("li", {},
+            h("span", { class: `badge badge-${c.live ? "paid" : "sent"}` }, c.live ? "Live" : "Pending"),
+            h("span", { class: "publish-what" }, c.what),
+            h("span", { class: "publish-meta" }, `${c.who} · ${ago(c.date)}`),
+          ),
+        ),
+      ),
+    );
+  }
+
+  async function refresh() {
+    clearTimeout(timer);
+    try {
+      status = await api("GET", "/api/publish-status");
+    } catch (error) {
+      if (error.message === "signed out") return;
+      status = { state: "unknown", changes: status?.changes || [] };
+    }
+    draw();
+    // Check often while something is publishing, rarely otherwise.
+    timer = setTimeout(refresh, status.state === "live" ? 60_000 : 15_000);
+  }
+
+  return {
+    element,
+    refresh,
+    // Right after a save, show "Publishing…" straight away, then confirm with the server.
+    saved() {
+      status = { ...(status || { changes: [] }), state: "publishing" };
+      draw();
+      clearTimeout(timer);
+      timer = setTimeout(refresh, 3000);
+    },
+  };
+})();
 
 function showError(error) {
   if (error.message === "signed out") return;
@@ -364,9 +465,9 @@ function renderInsights(box, data) {
     return m ? `${m}m ${String(s).padStart(2, "0")}s` : `${s}s`;
   };
   const maxOpened = Math.max(1, ...data.guitars.map((g) => g.ga?.opened || 0));
-  // Opens, time and the enquiry rate only count from the day guitars became click-to-open.
-  const since = ga.opensSince &&
-    new Date(`${ga.opensSince}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  // Nothing is counted before the day tracking changed (shown when the period reaches back past it).
+  const since = data.since &&
+    new Date(`${data.since}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "long" });
 
   const periods = h("div", { class: "segmented", role: "group", "aria-label": "Period" },
     [7, 30, 90].map((days) =>
@@ -392,11 +493,11 @@ function renderInsights(box, data) {
       label,
       source && h("span", { class: `source source-${source}` }, source === "ga" ? "Analytics" : "Inbox"),
       note && h("span", { class: "source-note" }, note));
-  const sinceNote = since && `since ${since}`;
+
 
   const rows = data.guitars.map((g) => {
     const a = g.ga || {};
-    const rate = hasGa && a.opened ? Math.min(100, Math.round(((a.enquiredSinceOpen || 0) / a.opened) * 100)) : null;
+    const rate = hasGa && a.opened ? Math.min(100, Math.round(((a.enquired || 0) / a.opened) * 100)) : null;
     const budgets = Object.entries(g.budgets);
     return h("tr", {},
       h("th", { scope: "row" }, g.name, !g.onSite && h("span", { class: "muted" }, " (no longer on site)")),
@@ -416,7 +517,10 @@ function renderInsights(box, data) {
 
   box.replaceChildren(...[
     h("div", { class: "inbox-head" }, h("h1", {}, "Insights"), periods),
-    h("p", { class: "help" }, `Last ${data.days} days, per guitar: who looked, who asked, who paid.`),
+    h("p", { class: "help" },
+      since
+        ? `Since ${since} (counting starts then), per guitar: who looked, who asked, who paid.`
+        : `Last ${data.days} days, per guitar: who looked, who asked, who paid.`),
     gaNotice,
     h("div", { class: "stats" },
       stat("Visitors", hasGa ? num(ga.visitors) : "–", "Analytics"),
@@ -428,11 +532,11 @@ function renderInsights(box, data) {
       h("table", { class: "insights-table" },
         h("thead", {}, h("tr", {},
           head("Guitar"),
-          head("Opened", "ga", sinceNote),
+          head("Opened", "ga"),
           head("Photos opened", "ga"),
-          head("Avg. time", "ga", sinceNote),
+          head("Avg. time", "ga"),
           head("Opened form", "ga"),
-          head("Enquiry rate", "ga", sinceNote),
+          head("Enquiry rate", "ga"),
           head("Enquiries", "inbox"),
           head("Invoiced", "inbox"),
           head("Paid", "inbox"),
@@ -444,7 +548,7 @@ function renderInsights(box, data) {
     h("p", { class: "help footnote" },
       "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
       "Opened means they clicked Description and pricing (or followed a link to the guitar), which shows the price. Enquiry rate is the share of those who then sent its form. ",
-      since ? `Guitars became click-to-open on ${since}, so Opened, Avg. time and Enquiry rate only count from then. ` : "",
+      "Everything counts from 18 October 2026, when the site's tracking changed; earlier visits and test enquiries are left out. ",
       "Inbox columns are exact."),
   ].filter(Boolean));
 }

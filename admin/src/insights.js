@@ -1,7 +1,7 @@
 // The Insights page: Google Analytics numbers per guitar next to what the admin itself
 // knows (enquiries, budgets given, invoices sent and paid).
 
-import { guitarAnalytics } from "./analytics.js";
+import { guitarAnalytics, periodStart } from "./analytics.js";
 import { readContent } from "./content.js";
 
 const ALLOWED_DAYS = [7, 30, 90];
@@ -9,7 +9,9 @@ const GENERAL = "General enquiry";
 
 export async function insights(env, gh, daysParam) {
   const days = ALLOWED_DAYS.includes(Number(daysParam)) ? Number(daysParam) : 30;
-  const since = new Date(Date.now() - days * 864e5).toISOString();
+  // Inbox numbers use the same window as Google Analytics, never before TRACKING_SINCE.
+  const period = periodStart(days);
+  const since = `${period.start}T00:00:00Z`;
 
   const [content, ga, enquiries, payments] = await Promise.all([
     readContent(gh),
@@ -62,8 +64,8 @@ export async function insights(env, gh, daysParam) {
       error: ga.error,
       visitors: ga.totals?.visitors ?? null,
       engagementAvailable: ga.engagementAvailable ?? false,
-      opensSince: ga.opensSince ?? null,
     },
+    since: period.clamped ? period.start : null,
     guitars,
     general,
     totals: {

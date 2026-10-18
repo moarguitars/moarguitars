@@ -1,0 +1,9 @@
+---
+layout: null
+permalink: /version.json
+---
+{%- comment -%}
+  Lets the admin tell whether the live site has caught up with the latest save.
+  build_revision is the commit GitHub Pages built (null when built locally).
+{%- endcomment -%}
+{"commit": {{ site.github.build_revision | jsonify }}, "built": {{ site.time | date_to_xmlschema | jsonify }}}
