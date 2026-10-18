@@ -57,7 +57,13 @@ export async function insights(env, gh, daysParam) {
 
   return {
     days,
-    analytics: { configured: ga.configured, error: ga.error, visitors: ga.totals?.visitors ?? null, engagementAvailable: ga.engagementAvailable ?? false },
+    analytics: {
+      configured: ga.configured,
+      error: ga.error,
+      visitors: ga.totals?.visitors ?? null,
+      engagementAvailable: ga.engagementAvailable ?? false,
+      opensSince: ga.opensSince ?? null,
+    },
     guitars,
     general,
     totals: {
