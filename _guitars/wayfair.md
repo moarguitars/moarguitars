@@ -13,6 +13,7 @@ images:
   - /assets/images/wayfair/1792243138410-7.jpg
   - /assets/images/wayfair/3.jpg
   - /assets/images/wayfair/1792243138410-9.jpg
+deposit: "2500"
 ---
 
 The original model that put me on the map, my Wayfairs are like nothing else. 
