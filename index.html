@@ -24,6 +24,15 @@
   </header>
 
   <main>
+    <nav class="index" aria-label="Guitars">
+      <ul>
+        {%- for guitar in guitars %}
+        <li><a href="#{{ guitar.title | slugify }}">{{ guitar.title }}</a></li>
+        {%- endfor %}
+        <li><a href="#fine-print">{{ home.fine_print_title }}</a></li>
+      </ul>
+    </nav>
+
     <section class="entry intro">
       <h1 class="visually-hidden">{{ site.title }}</h1>
       <div class="prose">{{ home.intro | markdownify }}</div>
@@ -40,14 +49,6 @@
       {%- endif %}
     </section>
 
-    <nav class="index" aria-label="Guitars">
-      <ul>
-        {%- for guitar in guitars %}
-        <li><a href="#{{ guitar.title | slugify }}">{{ guitar.title }}</a></li>
-        {%- endfor %}
-        <li><a href="#fine-print">{{ home.fine_print_title }}</a></li>
-      </ul>
-    </nav>
 
     {%- for guitar in guitars %}
     <section class="entry guitar" id="{{ guitar.title | slugify }}" data-guitar="{{ guitar.slug }}" data-guitar-name="{{ guitar.title | escape }}" data-price="{{ guitar.price | escape }}">

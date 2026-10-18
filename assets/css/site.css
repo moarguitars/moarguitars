@@ -85,9 +85,10 @@ main {
   font-style: italic;
 }
 
+/* The guitar list sits just under the logo, above the intro. */
 .index {
-  margin-top: 2.5rem;
-  padding-bottom: 1rem;
+  margin-top: 0.9rem;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--rule);
 }
 
