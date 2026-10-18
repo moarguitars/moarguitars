@@ -205,7 +205,7 @@ function renderNav() {
       h("li", {}, navLink("form", "Enquiry form")),
     ),
     h("h2", {}, "Top of page"),
-    h("ul", {}, h("li", {}, navLink("intro", state.content.home.intro_title || "Intro"))),
+    h("ul", {}, h("li", {}, navLink("intro", "Intro"))),
     h("h2", {}, "Guitars"),
     h(
       "ul",
@@ -312,13 +312,14 @@ function showError(error) {
 function introEditor() {
   const home = state.content.home;
   const inputs = {
-    intro_title: textInput(home.intro_title, { required: true, maxlength: 60 }),
     intro: textArea(home.intro, { rows: 8 }),
     reach_out_label: textInput(home.reach_out_label, { maxlength: 60 }),
   };
 
+  const introPhotos = photosEditor(home.intro_images);
+
   const { bar, run } = saveBar(async () => {
-    const updated = { ...home };
+    const updated = { ...home, intro_images: introPhotos.value() };
     for (const [key, input] of Object.entries(inputs)) updated[key] = input.value;
     await api("PUT", "/api/home", { home: updated, sha: state.content.homeSha });
     await loadContent();
@@ -329,9 +330,9 @@ function introEditor() {
     "form",
     { class: "editor", onsubmit: (e) => { e.preventDefault(); run(); } },
     h("h1", {}, "Intro"),
-    h("p", { class: "help" }, "The text at the top of the page, under the logo."),
-    field("Title", inputs.intro_title),
-    field("Text", inputs.intro, "Leave a blank line between paragraphs."),
+    h("p", { class: "help" }, "The text and photos at the top of the page, under the logo."),
+    field("Text", inputs.intro, "Line breaks show on the site as you type them. Leave a blank line to start a new paragraph."),
+    h("fieldset", {}, h("legend", {}, "Photos"), introPhotos.element, h("small", { class: "help" }, "Shown under the intro text, in this order. Photos are resized automatically.")),
     field("Contact link text", inputs.reach_out_label, "Opens the contact form, which asks the default enquiry questions. Answers arrive in the inbox as “General enquiry”."),
     bar,
   );
@@ -852,47 +853,7 @@ function guitarEditor(guitar) {
     body: textArea(guitar.body, { rows: 10 }),
   };
 
-  // Photos: existing ones are { path }, new ones are { upload: { data }, preview }.
-  const photos = guitar.images.map((path) => ({ path }));
-  const photosBox = h("div", { class: "photos" });
-
-  const drawPhotos = () => {
-    photosBox.replaceChildren(
-      ...photos.map((photo, index) =>
-        h("div", { class: `photo${photo.upload ? " photo-new" : ""}` },
-          h("img", { src: photo.preview || `/api/image?path=${encodeURIComponent(photo.path)}`, alt: `Photo ${index + 1}`, loading: "lazy" }),
-          h("div", { class: "photo-tools" },
-            h("button", { type: "button", class: "icon-button", "aria-label": "Move left", disabled: index === 0, onclick: () => { [photos[index - 1], photos[index]] = [photos[index], photos[index - 1]]; markDirty(); drawPhotos(); } }, "←"),
-            h("button", { type: "button", class: "icon-button", "aria-label": "Remove photo", onclick: () => { photos.splice(index, 1); markDirty(); drawPhotos(); } }, "✕"),
-            h("button", { type: "button", class: "icon-button", "aria-label": "Move right", disabled: index === photos.length - 1, onclick: () => { [photos[index + 1], photos[index]] = [photos[index], photos[index + 1]]; markDirty(); drawPhotos(); } }, "→"),
-          ),
-        ),
-      ),
-      photos.length < 12 &&
-        h("label", { class: "photo-add" },
-          h("span", {}, "+ Add photos"),
-          h("input", {
-            type: "file",
-            accept: "image/*",
-            multiple: true,
-            onchange: async (event) => {
-              for (const file of event.target.files) {
-                if (photos.length >= 12) break;
-                try {
-                  const data = await resizeImage(file);
-                  photos.push({ upload: { data }, preview: `data:image/jpeg;base64,${data}` });
-                } catch {
-                  toast(`${file.name} couldn't be read. Try saving it as a JPEG first.`, { type: "error" });
-                }
-              }
-              markDirty();
-              drawPhotos();
-            },
-          }),
-        ),
-    );
-  };
-  drawPhotos();
+  const photoEditor = photosEditor(guitar.images);
 
   // Enquiry form: the default, or this guitar's own questions.
   let ownForm = guitar.form ? formBuilder(guitar.form) : null;
@@ -942,7 +903,7 @@ function guitarEditor(guitar) {
       price: inputs.price.value,
       price_note: inputs.price_note.value,
       body: inputs.body.value,
-      images: photos.map((p) => (p.upload ? { upload: p.upload } : { path: p.path })),
+      images: photoEditor.value(),
       form: ownForm ? ownForm.value() : null,
       order: guitar.order,
       sha: guitar.sha,
@@ -964,11 +925,61 @@ function guitarEditor(guitar) {
       field("Price", inputs.price, "Leave empty to show “Price on request”."),
       field("Price note", inputs.price_note),
     ),
-    field("Description", inputs.body, "Leave a blank line between paragraphs."),
-    h("fieldset", {}, h("legend", {}, "Photos"), photosBox, h("small", { class: "help" }, "Shown as thumbnails under the description, in this order. Photos are resized automatically.")),
+    field("Description", inputs.body, "Line breaks show on the site as you type them. Leave a blank line to start a new paragraph."),
+    h("fieldset", {}, h("legend", {}, "Photos"), photoEditor.element, h("small", { class: "help" }, "Shown under the guitar's name, in this order. Photos are resized automatically.")),
     h("fieldset", {}, h("legend", {}, "Enquiry form"), formBox),
     bar,
   );
+}
+
+// Photos: existing ones are { path }, new ones are { upload: { data }, preview }.
+// Returns the editor element and a function giving the photos to save, in order.
+function photosEditor(paths, max = 12) {
+  const photos = (paths || []).map((path) => ({ path }));
+  const photosBox = h("div", { class: "photos" });
+
+  const drawPhotos = () => {
+    photosBox.replaceChildren(
+      ...photos.map((photo, index) =>
+        h("div", { class: `photo${photo.upload ? " photo-new" : ""}` },
+          h("img", { src: photo.preview || `/api/image?path=${encodeURIComponent(photo.path)}`, alt: `Photo ${index + 1}`, loading: "lazy" }),
+          h("div", { class: "photo-tools" },
+            h("button", { type: "button", class: "icon-button", "aria-label": "Move left", disabled: index === 0, onclick: () => { [photos[index - 1], photos[index]] = [photos[index], photos[index - 1]]; markDirty(); drawPhotos(); } }, "←"),
+            h("button", { type: "button", class: "icon-button", "aria-label": "Remove photo", onclick: () => { photos.splice(index, 1); markDirty(); drawPhotos(); } }, "✕"),
+            h("button", { type: "button", class: "icon-button", "aria-label": "Move right", disabled: index === photos.length - 1, onclick: () => { [photos[index + 1], photos[index]] = [photos[index], photos[index + 1]]; markDirty(); drawPhotos(); } }, "→"),
+          ),
+        ),
+      ),
+      photos.length < max &&
+        h("label", { class: "photo-add" },
+          h("span", {}, "+ Add photos"),
+          h("input", {
+            type: "file",
+            accept: "image/*",
+            multiple: true,
+            onchange: async (event) => {
+              for (const file of event.target.files) {
+                if (photos.length >= max) break;
+                try {
+                  const data = await resizeImage(file);
+                  photos.push({ upload: { data }, preview: `data:image/jpeg;base64,${data}` });
+                } catch {
+                  toast(`${file.name} couldn't be read. Try saving it as a JPEG first.`, { type: "error" });
+                }
+              }
+              markDirty();
+              drawPhotos();
+            },
+          }),
+        ),
+    );
+  };
+  drawPhotos();
+
+  return {
+    element: photosBox,
+    value: () => photos.map((p) => (p.upload ? { upload: p.upload } : { path: p.path })),
+  };
 }
 
 // Shrink photos before upload (max 2000px on the long side), returned as base64 JPEG.

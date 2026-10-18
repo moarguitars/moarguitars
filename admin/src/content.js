@@ -41,8 +41,10 @@ export async function saveHome(gh, input, user) {
       return out;
     });
 
-  doc.set("intro_title", required(text(home.intro_title, 60), "Intro title"));
+  doc.delete("intro_title"); // the intro no longer has a heading
   doc.set("intro", text(home.intro));
+  const photos = collectImages(home.intro_images, "intro");
+  doc.set("intro_images", photos.images);
   doc.set("reach_out_label", text(home.reach_out_label, 60));
   doc.delete("reach_out_link"); // Reach out now opens the contact form
   doc.set("enquire_label", text(home.enquire_label, 60));
@@ -57,7 +59,7 @@ export async function saveHome(gh, input, user) {
   await gh.commit({
     message: `Update intro and fine print (admin: ${user})`,
     author: author(user),
-    files: [{ path: HOME_PATH, text: doc.toString({ lineWidth: 0 }) }],
+    files: [...photos.files, { path: HOME_PATH, text: doc.toString({ lineWidth: 0 }) }],
   });
 }
 
@@ -80,21 +82,7 @@ export async function saveGuitar(gh, slug, input, user, { create = false } = {})
     order = Math.max(0, ...existing.guitars.map((g) => g.order || 0)) + 1;
   }
 
-  // Keep existing photos (in the order given) and add any new uploads.
-  const files = [];
-  const images = [];
-  const stamp = Date.now();
-  for (const [index, image] of (input.images || []).slice(0, 12).entries()) {
-    if (image.upload) {
-      const base64 = String(image.upload.data || "");
-      if (base64.length * 0.75 > MAX_IMAGE_BYTES) throw badRequest("One of the photos is too large.");
-      const repoPath = `assets/images/${slug}/${stamp}-${index + 1}.jpg`;
-      files.push({ path: repoPath, base64 });
-      images.push(`/${repoPath}`);
-    } else if (isImagePath(image.path)) {
-      images.push(image.path);
-    }
-  }
+  const { files, images } = collectImages(input.images, slug);
 
   const frontMatter = {
     title,
@@ -138,6 +126,29 @@ export async function saveOrder(gh, input, user) {
     files.push({ path, text: `---\n${YAML.stringify(frontMatter, { lineWidth: 0 })}---\n\n${body}\n` });
   }
   if (files.length) await gh.commit({ message: `Reorder guitars (admin: ${user})`, author: author(user), files });
+}
+
+/**
+ * Photos from the admin, in order: existing ones ({ path } or a plain path) are kept,
+ * new uploads ({ upload: { data } }) become files under assets/images/<folder>/.
+ */
+function collectImages(list, folder) {
+  const files = [];
+  const images = [];
+  const stamp = Date.now();
+  for (const [index, image] of (Array.isArray(list) ? list : []).slice(0, 12).entries()) {
+    if (image?.upload) {
+      const base64 = String(image.upload.data || "");
+      if (base64.length * 0.75 > MAX_IMAGE_BYTES) throw badRequest("One of the photos is too large.");
+      const repoPath = `assets/images/${folder}/${stamp}-${index + 1}.jpg`;
+      files.push({ path: repoPath, base64 });
+      images.push(`/${repoPath}`);
+    } else {
+      const path = typeof image === "string" ? image : image?.path;
+      if (isImagePath(path)) images.push(path);
+    }
+  }
+  return { files, images };
 }
 
 export function isImagePath(path) {

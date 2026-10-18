@@ -25,8 +25,15 @@
 
   <main>
     <section class="entry intro">
-      <h1 class="entry-title">{{ home.intro_title }}</h1>
+      <h1 class="visually-hidden">{{ site.title }}</h1>
       <div class="prose">{{ home.intro | markdownify }}</div>
+      {%- if home.intro_images and home.intro_images.size > 0 %}
+      <ul class="thumbs intro-photos">
+        {%- for image in home.intro_images %}
+        <li><a href="{{ image | relative_url }}" data-lightbox><img src="{{ image | relative_url }}" alt="From the Moar workshop, photo {{ forloop.index }}" loading="lazy"></a></li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
       {%- if site.enquiry_endpoint and site.enquiry_endpoint != "" %}
       <p class="reach-out"><a href="#enquire-general" aria-controls="enquire-general" aria-expanded="false" data-enquire>{{ home.reach_out_label | default: "Reach out" }}</a></p>
       {%- include enquiry-form.html slug="general" form=home.enquiry_form %}

@@ -4,6 +4,10 @@ url: https://moarguitars.com
 baseurl: ""
 
 markdown: kramdown
+kramdown:
+  input: GFM
+  # A single line break typed in the admin shows as a line break on the site.
+  hard_wrap: true
 
 # Google Analytics 4 measurement ID (e.g. G-ABC123XYZ). Leave empty to turn analytics off.
 google_analytics_id: "G-0SN8NVW37D"

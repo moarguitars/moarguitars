@@ -167,6 +167,19 @@ main {
 
 .to-top:hover { color: var(--ink); }
 
+/* Kept for screen readers and search engines; the logo is the visible heading. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.intro .prose { padding-top: 0; }
+.intro-photos { margin-top: 1.25rem; }
+
 /* The photos are what people see first, so they fill the column in rows of three. */
 .thumbs {
   display: grid;

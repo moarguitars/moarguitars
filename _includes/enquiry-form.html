@@ -8,7 +8,7 @@
 <div class="enquiry" id="enquire-{{ slug }}" hidden>
   <form class="enquiry-form" data-enquiry-form data-guitar="{{ slug }}" novalidate>
     {%- if form.intro and form.intro != "" %}
-    <p class="enquiry-intro">{{ form.intro }}</p>
+    <p class="enquiry-intro">{{ form.intro | escape | newline_to_br }}</p>
     {%- endif %}
 
     <label class="question">
@@ -64,5 +64,5 @@
     <p class="form-error" role="alert" hidden></p>
     <button class="send" type="submit">{{ form.submit_label | default: "Send enquiry" }}</button>
   </form>
-  <p class="enquiry-thanks" role="status" tabindex="-1" hidden>{{ form.thanks | default: "Thank you. I'll be in touch soon." }}</p>
+  <p class="enquiry-thanks" role="status" tabindex="-1" hidden>{{ form.thanks | default: "Thank you. I'll be in touch soon." | escape | newline_to_br }}</p>
 </div>

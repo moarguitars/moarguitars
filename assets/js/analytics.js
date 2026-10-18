@@ -196,6 +196,7 @@ function trackGuitars() {
 
     if (link.matches("[data-lightbox]")) {
       const g = guitarFor(link);
+      if (!g) return gtag("event", "view_photo", { area: "intro" }); // workshop photos in the intro
       const photos = [...g.section.querySelectorAll("[data-lightbox]")];
       gtag("event", "view_photo", { guitar: g.item.item_name, photo_number: photos.indexOf(link) + 1, items: [g.item] });
       return;
