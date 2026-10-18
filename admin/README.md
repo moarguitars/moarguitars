@@ -110,6 +110,23 @@ npx wrangler secret put GA_API_SECRET
 ```
 Payment requests then show up as `begin_checkout` events and payments as `purchase` events, tied to the visitor who enquired (if they accepted analytics cookies).
 
+### 8. Optional: the Insights page (read access to Google Analytics)
+The admin's **Insights** page shows each guitar's funnel: people who saw the price, opened photos, spent time, opened the form, enquired, were invoiced and paid. The inbox numbers work straight away. The Google Analytics columns need the admin to have read-only access to the GA property (`GA_PROPERTY_ID` in `wrangler.toml`), through a Google "service account":
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com). In the project picker at the top, choose **New project**, name it "Moar website", and create it.
+2. Search the top bar for **Google Analytics Data API**, open it, and click **Enable**.
+3. Menu → **IAM & Admin** → **Service accounts** → **Create service account**. Name it `moar-admin-insights`, click **Create and continue**, skip the optional role and user steps, then **Done**.
+4. Click the new service account → **Keys** → **Add key** → **Create new key** → **JSON**. A `.json` file downloads. Copy the service account's email address (it ends `.iam.gserviceaccount.com`).
+5. In Google Analytics: **Admin** → **Property access management** → **+** → **Add users**. Paste that email, choose the **Viewer** role, untick "Notify new users", and click **Add**.
+6. Save the key as a secret, then delete the downloaded file:
+   ```bash
+   npx wrangler secret put GA_SERVICE_ACCOUNT < ~/Downloads/<the-file>.json
+   ```
+
+If step 4 says key creation is disabled, the Google account belongs to a Google Workspace organisation that blocks keys. Either ask its admin to allow service account keys for this project, or make the Cloud project with a personal Google account; the service account only needs Viewer access in GA (step 5).
+
+The page also needs the custom dimension **Guitar** (event parameter `guitar`) and the metric **Seconds on guitar** (`engagement_seconds`) from the main README. GA can take a day to show new data.
+
 ## Working on it locally
 
 Nothing touches GitHub, Stripe or Formspree locally. Fake versions run on your machine:
@@ -123,6 +140,7 @@ jekyll serve --livereload --config _config.yml,_config.dev.yml
 npm run db:local
 npm run mock-github
 npm run mock-stripe
+npm run mock-google        # fake Google Analytics for the Insights page
 npm run dev                # http://localhost:8787
 ```
 

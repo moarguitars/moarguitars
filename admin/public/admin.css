@@ -209,6 +209,39 @@ legend { margin-bottom: 0.6rem; font: italic 1.4rem var(--serif); }
 .request-payment h3 { margin: 0 0 0.75rem; font: italic 1.3rem var(--serif); }
 .row-amount { grid-template-columns: 2fr 1fr; }
 
+/* Insights */
+.insights { display: grid; gap: 1.25rem; }
+.insights h1 { margin: 0; }
+.insights .help { margin: 0; }
+.segmented { display: inline-flex; border: 1px solid var(--rule); border-radius: 4px; overflow: hidden; }
+.segmented button { padding: 0.35rem 0.75rem; border: 0; background: none; font-size: 0.875rem; cursor: pointer; color: var(--muted); }
+.segmented button + button { border-left: 1px solid var(--rule); }
+.segmented button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr)); gap: 0.75rem; }
+.stat { display: grid; gap: 0.1rem; padding: 0.75rem 0.9rem; border: 1px solid var(--rule); border-radius: 4px; background: var(--paper); }
+.stat-value { font: 1.8rem/1.1 var(--serif); font-variant-numeric: tabular-nums; }
+.stat-label { font-size: 0.85rem; font-weight: 600; }
+.stat-note { font-size: 0.75rem; color: var(--muted); }
+
+.notice { padding: 0.75rem 0.9rem; border-radius: 4px; background: #f3e2b8; font-size: 0.9rem; }
+.notice-error { background: #f4d8d0; }
+
+.table-wrap { overflow-x: auto; }
+.insights-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.insights-table th, .insights-table td { padding: 0.55rem 0.5rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+.insights-table thead th { font-size: 0.75rem; font-weight: 600; color: var(--muted); white-space: nowrap; vertical-align: bottom; }
+.insights-table tbody th { font: 1.1rem var(--serif); white-space: nowrap; }
+.insights-table .num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.insights-table .strong { font-weight: 700; }
+.source { display: block; margin-top: 0.15rem; font-size: 0.65rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+.source-ga { color: #7a6ba8; }
+.source-inbox { color: var(--ok); }
+.meter { display: block; height: 3px; margin-bottom: 0.3rem; margin-left: auto; width: var(--w); background: #7a6ba8; border-radius: 2px; }
+.budgets { min-width: 10rem; }
+.chip { display: inline-block; margin: 0 0.25rem 0.25rem 0; padding: 0.05rem 0.45rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.75rem; white-space: nowrap; }
+.footnote { font-size: 0.8rem; }
+
 /* Form builder */
 select {
   width: 100%;

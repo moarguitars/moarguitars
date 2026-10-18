@@ -13,6 +13,7 @@ const state = {
   order: null, // pending guitar order (array of slugs) before it's saved
   enquiryId: null, // open enquiry in the inbox
   showArchived: false,
+  insightsDays: 30,
 };
 
 // Links in alert emails open an enquiry directly: /#enquiry=<id>
@@ -104,7 +105,7 @@ async function loadContent() {
   state.dirty = false;
   state.order = null;
   const slugs = state.content.guitars.map((g) => g.slug);
-  if (!["inbox", "form", "intro", "fine-print", "new", "password", ...slugs].includes(state.selected)) state.selected = "inbox";
+  if (!["inbox", "insights", "form", "intro", "fine-print", "new", "password", ...slugs].includes(state.selected)) state.selected = "inbox";
   render();
 }
 
@@ -198,6 +199,7 @@ function renderNav() {
     h("h2", {}, "Enquiries"),
     h("ul", {},
       h("li", {}, navLink("inbox", "Inbox")),
+      h("li", {}, navLink("insights", "Insights")),
       h("li", {}, navLink("form", "Enquiry form")),
     ),
     h("h2", {}, "Top of page"),
@@ -244,6 +246,7 @@ function renderOrderActions() {
 function renderEditor() {
   if (state.selected === "inbox") return inboxView();
   if (state.selected === "password") return passwordEditor();
+  if (state.selected === "insights") return insightsView();
   if (state.selected === "form") return defaultFormEditor();
   if (state.selected === "intro") return introEditor();
   if (state.selected === "fine-print") return finePrintEditor();
@@ -330,6 +333,108 @@ function introEditor() {
     field("Contact link text", inputs.reach_out_label, "Opens the contact form, which asks the default enquiry questions. Answers arrive in the inbox as “General enquiry”."),
     bar,
   );
+}
+
+// ---------- Insights ----------
+
+function insightsView() {
+  const box = h("div", { class: "editor insights" }, h("p", { class: "loading" }, "Loading insights…"));
+  api("GET", `/api/insights?days=${state.insightsDays}`)
+    .then((data) => renderInsights(box, data))
+    .catch((error) => {
+      showError(error);
+      box.replaceChildren(h("p", { class: "status status-error" }, "Couldn't load insights."));
+    });
+  return box;
+}
+
+function renderInsights(box, data) {
+  const ga = data.analytics;
+  const hasGa = ga.configured && !ga.error;
+  const num = (n) => (n === null || n === undefined ? "–" : Number(n).toLocaleString());
+  const money = (totals) =>
+    Object.entries(totals).map(([currency, amount]) => `${currency} ${amount.toLocaleString(undefined, { maximumFractionDigits: 0 })}`).join(" + ");
+  const duration = (seconds) => {
+    if (!seconds) return "–";
+    const m = Math.floor(seconds / 60);
+    const s = Math.round(seconds % 60);
+    return m ? `${m}m ${String(s).padStart(2, "0")}s` : `${s}s`;
+  };
+  const maxSeen = Math.max(1, ...data.guitars.map((g) => g.ga?.priceSeen || 0));
+
+  const periods = h("div", { class: "segmented", role: "group", "aria-label": "Period" },
+    [7, 30, 90].map((days) =>
+      h("button", {
+        type: "button",
+        "aria-pressed": String(data.days === days),
+        onclick: () => { state.insightsDays = days; render(); },
+      }, `${days} days`),
+    ),
+  );
+
+  const stat = (label, value, note) =>
+    h("div", { class: "stat" }, h("span", { class: "stat-value" }, value), h("span", { class: "stat-label" }, label), note && h("span", { class: "stat-note" }, note));
+
+  const gaNotice = !ga.configured
+    ? h("div", { class: "notice" },
+        h("strong", {}, "Google Analytics isn't connected yet. "),
+        "The columns marked “Analytics” fill in once the admin has read access to Google Analytics (see the setup steps in the admin README). Inbox numbers below are already live.")
+    : ga.error && h("div", { class: "notice notice-error" }, h("strong", {}, "Google Analytics: "), ga.error);
+
+  const head = (label, source) => h("th", { scope: "col" }, label, source && h("span", { class: `source source-${source}` }, source === "ga" ? "Analytics" : "Inbox"));
+
+  const rows = data.guitars.map((g) => {
+    const a = g.ga || {};
+    const rate = hasGa && a.priceSeen ? Math.round(((a.enquired || 0) / a.priceSeen) * 100) : null;
+    const budgets = Object.entries(g.budgets);
+    return h("tr", {},
+      h("th", { scope: "row" }, g.name, !g.onSite && h("span", { class: "muted" }, " (no longer on site)")),
+      h("td", { class: "num" },
+        h("span", { class: "meter", style: `--w:${hasGa ? Math.round(((a.priceSeen || 0) / maxSeen) * 100) : 0}%` }),
+        hasGa ? num(a.priceSeen || 0) : "–"),
+      h("td", { class: "num" }, hasGa ? num(a.photos || 0) : "–"),
+      h("td", { class: "num" }, hasGa && ga.engagementAvailable && a.priceSeen ? duration((a.seconds || 0) / Math.max(1, a.priceSeen)) : "–"),
+      h("td", { class: "num" }, hasGa ? num(a.formOpened || 0) : "–"),
+      h("td", { class: "num" }, rate === null ? "–" : `${rate}%`),
+      h("td", { class: "num strong" }, num(g.enquiries)),
+      h("td", { class: "num" }, num(g.invoiced)),
+      h("td", { class: "num" }, g.paid ? h("span", { class: "badge badge-paid" }, `${g.paid} · ${money(g.paidTotals)}`) : "0"),
+      h("td", { class: "budgets" }, budgets.length ? budgets.map(([label, count]) => h("span", { class: "chip" }, `${label}${count > 1 ? ` ×${count}` : ""}`)) : h("span", { class: "muted" }, "–")),
+    );
+  });
+
+  box.replaceChildren(...[
+    h("div", { class: "inbox-head" }, h("h1", {}, "Insights"), periods),
+    h("p", { class: "help" }, `Last ${data.days} days, per guitar: who looked, who asked, who paid.`),
+    gaNotice,
+    h("div", { class: "stats" },
+      stat("Visitors", hasGa ? num(ga.visitors) : "–", "Analytics"),
+      stat("Enquiries", num(data.totals.enquiries), data.general?.enquiries ? `incl. ${data.general.enquiries} general` : "Inbox"),
+      stat("Invoices sent", num(data.totals.invoiced), "Inbox"),
+      stat("Paid", num(data.totals.paid), "Inbox"),
+    ),
+    h("div", { class: "table-wrap" },
+      h("table", { class: "insights-table" },
+        h("thead", {}, h("tr", {},
+          head("Guitar"),
+          head("Saw price", "ga"),
+          head("Photos opened", "ga"),
+          head("Avg. time", "ga"),
+          head("Opened form", "ga"),
+          head("Enquiry rate", "ga"),
+          head("Enquiries", "inbox"),
+          head("Invoiced", "inbox"),
+          head("Paid", "inbox"),
+          head("Budgets given", "inbox"),
+        )),
+        h("tbody", {}, rows),
+      ),
+    ),
+    h("p", { class: "help footnote" },
+      "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
+      "Enquiry rate is the share of people who saw a guitar's price and then sent its form. ",
+      "Inbox columns are exact."),
+  ].filter(Boolean));
 }
 
 // ---------- Change password ----------

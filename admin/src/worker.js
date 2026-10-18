@@ -3,6 +3,7 @@
 
 import { changePassword, currentUser, login, logoutCookie } from "./auth.js";
 import { github } from "./github.js";
+import { insights } from "./insights.js";
 import { deleteGuitar, isImagePath, readContent, saveGuitar, saveHome, saveOrder } from "./content.js";
 import {
   cancelPayment,
@@ -99,6 +100,9 @@ async function handleApi(request, env, url) {
   }
   if (path === "/api/me" && method === "GET") {
     return json({ user, siteUrl: env.SITE_URL });
+  }
+  if (path === "/api/insights" && method === "GET") {
+    return json(await insights(env, gh, url.searchParams.get("days")));
   }
   if (path === "/api/content" && method === "GET") {
     return json(await readContent(gh));

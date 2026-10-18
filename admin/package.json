@@ -9,7 +9,8 @@
     "deploy": "wrangler deploy",
     "db:local": "wrangler d1 migrations apply moar-admin --local",
     "db:remote": "wrangler d1 migrations apply moar-admin --remote",
-    "mock-stripe": "node dev/mock-stripe.mjs 8789"
+    "mock-stripe": "node dev/mock-stripe.mjs 8789",
+    "mock-google": "node dev/mock-google.mjs 8790"
   },
   "dependencies": {
     "yaml": "2.8.1"

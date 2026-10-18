@@ -20,6 +20,8 @@ ADMIN_URL = "https://moar-admin.moarguitars.workers.dev"
 # Sites allowed to send enquiries to this Worker.
 SITE_ORIGINS = "https://moarguitars.com,https://www.moarguitars.com"
 GA_MEASUREMENT_ID = "G-0SN8NVW37D"
+# The GA4 property the Insights page reads (needs the GA_SERVICE_ACCOUNT secret).
+GA_PROPERTY_ID = "361392069"
 # Email alerts are submitted to this Formspree form, which emails whoever it's set up for.
 FORMSPREE_FORM = "xgebpvey"
 
@@ -39,3 +41,4 @@ migrations_dir = "migrations"
 #   STRIPE_WEBHOOK_SECRET   signing secret (whsec_...) of the webhook endpoint
 #   TURNSTILE_SECRET                         optional spam check (Cloudflare Turnstile)
 #   GA_API_SECRET                            optional: GA Measurement Protocol secret
+#   GA_SERVICE_ACCOUNT      optional: Google service account JSON key, for the Insights page
