@@ -46,8 +46,9 @@ document.querySelectorAll(".index a[href^='#']").forEach((link) => {
 
 // A link straight to a guitar (e.g. moarguitars.com/#ella shared on Instagram) opens it.
 function openFromHash() {
-  const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
-  if (target?.classList.contains("guitar")) openGuitar(target, "link");
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id ? document.getElementById(id) : null;
+  if (target && target.classList.contains("guitar")) openGuitar(target, "link");
 }
 window.addEventListener("hashchange", openFromHash);
 openFromHash();
