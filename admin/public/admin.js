@@ -166,8 +166,6 @@ function render() {
     h("button", { class: "link-button", type: "button", onclick: () => select("password") }, "Change password"),
     h("button", { class: "button button-quiet button-small", onclick: logout }, "Sign out"),
   );
-  // Insights uses the full width of big screens; everything else stays at a readable width.
-  app.classList.toggle("wide", state.selected === "insights");
   app.replaceChildren(h("div", { class: "layout" }, renderNav(), renderEditor()));
 }
 
