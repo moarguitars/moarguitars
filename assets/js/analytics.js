@@ -3,9 +3,8 @@
 // Guitar interactions are sent as GA4 ecommerce events (each guitar is an "item"),
 // so GA's item reports show a funnel per guitar:
 //   select_item        clicked the guitar in the index
-//   view_item          opened the guitar, which shows its price. open_method says how:
-//                      read_more (the "Description and pricing" button), index (the list at the
-//                      top) or link (arrived on a link straight to the guitar)
+//   view_item          clicked "Description and pricing", which shows its description and price
+//                      (opening a guitar from the index or a link to it isn't counted)
 //   view_photo         opened one of its photos
 //   guitar_engagement  seconds spent on it while open (sent when the tab is hidden or closed)
 //   view_fine_print    read a fine print topic (e.g. Commission & Payment)
@@ -126,22 +125,17 @@ function trackGuitars() {
 
   const isOpen = (g) => g.section.classList.contains("is-open");
 
-  // Opened: a deliberate "Description and pricing" click (or a link to the guitar), which reveals the price.
+  // Opened: only a click on "Description and pricing" counts. A guitar opened from the index
+  // or a link to it still starts its time-spent clock, but isn't counted as opened.
   document.addEventListener("moar:guitar-open", (event) => {
     const g = guitarFor(event.target);
-    if (!g || g.viewed) return;
-    g.viewed = true;
+    if (!g) return;
     lastGuitar = g;
     if (g.inFocus) g.focusStart ??= performance.now();
-    gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, open_method: event.detail?.how || "read_more", items: [g.item] });
+    if (event.detail?.how !== "read_more" || g.viewed) return;
+    g.viewed = true;
+    gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, items: [g.item] });
   });
-  // A guitar opened before analytics started (e.g. arriving on moarguitars.com/#ella).
-  for (const g of guitars) {
-    if (isOpen(g) && !g.viewed) {
-      g.viewed = true;
-      gtag("event", "view_item", { ...value(g), guitar: g.item.item_name, open_method: "link", items: [g.item] });
-    }
-  }
 
   // Time spent: an open guitar's section crosses the middle of the screen.
   const focusObserver = new IntersectionObserver(

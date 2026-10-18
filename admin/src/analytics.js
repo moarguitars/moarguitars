@@ -11,7 +11,7 @@ let cachedToken = null; // { value, expires }
 // Events the site sends (see assets/js/analytics.js), keyed by what the Insights page calls them.
 const EVENTS = {
   select_item: "clicked",
-  view_item: "opened", // opened the guitar, which reveals its price
+  view_item: "opened", // clicked "Description and pricing", which reveals its price
   view_photo: "photos",
   enquiry_open: "formOpened",
   generate_lead: "enquired",
@@ -29,8 +29,7 @@ export function periodStart(days) {
 
 /**
  * Per-guitar GA numbers for the period:
- * { configured, error?, totals: { visitors }, openMethodsAvailable,
- *   guitars: { [name]: { clicked, opened, openedBy: { read_more, index, link }, photos, formOpened, enquired, seconds } } }
+ * { configured, error?, totals: { visitors }, guitars: { [name]: { clicked, opened, photos, formOpened, enquired, seconds } } }
  * Counts are people (unique users), except photos (opens) and seconds (total time while open).
  */
 export async function guitarAnalytics(env, days) {
@@ -40,11 +39,10 @@ export async function guitarAnalytics(env, days) {
 
   const dateRanges = [{ startDate: periodStart(days).start, endDate: "today" }];
   const guitars = {};
-  const row = (name) =>
-    (guitars[name] ??= { clicked: 0, opened: 0, openedBy: {}, photos: 0, formOpened: 0, enquired: 0, seconds: 0 });
+  const row = (name) => (guitars[name] ??= { clicked: 0, opened: 0, photos: 0, formOpened: 0, enquired: 0, seconds: 0 });
 
   try {
-    const [events, openedBy, engagement, totals] = await Promise.all([
+    const [events, engagement, totals] = await Promise.all([
       runReport(env, {
         dateRanges,
         dimensions: [{ name: "eventName" }, { name: "customEvent:guitar" }],
@@ -52,14 +50,6 @@ export async function guitarAnalytics(env, days) {
         dimensionFilter: { filter: { fieldName: "eventName", inListFilter: { values: Object.keys(EVENTS) } } },
         limit: 1000,
       }),
-      // How each guitar was opened (needs the "Open method" custom dimension in GA).
-      runReport(env, {
-        dateRanges,
-        dimensions: [{ name: "customEvent:guitar" }, { name: "customEvent:open_method" }],
-        metrics: [{ name: "totalUsers" }],
-        dimensionFilter: { filter: { fieldName: "eventName", stringFilter: { value: "view_item" } } },
-        limit: 1000,
-      }).catch(() => null),
       runReport(env, {
         dateRanges,
         dimensions: [{ name: "customEvent:guitar" }],
@@ -77,11 +67,6 @@ export async function guitarAnalytics(env, days) {
       // Photos count opens; everything else counts people.
       row(guitar)[key] = Number(r.metricValues[key === "photos" ? 1 : 0].value);
     }
-    for (const r of openedBy?.rows || []) {
-      const [guitar, method] = r.dimensionValues.map((d) => d.value);
-      if (!guitar || guitar === "(not set)" || !method || method === "(not set)") continue;
-      row(guitar).openedBy[method] = Number(r.metricValues[0].value);
-    }
     for (const r of engagement?.rows || []) {
       const guitar = r.dimensionValues[0].value;
       if (guitar && guitar !== "(not set)") row(guitar).seconds = Math.round(Number(r.metricValues[0].value));
@@ -92,7 +77,6 @@ export async function guitarAnalytics(env, days) {
       totals: { visitors: Number(totals.rows?.[0]?.metricValues?.[0]?.value || 0) },
       guitars,
       engagementAvailable: Boolean(engagement),
-      openMethodsAvailable: Boolean(openedBy),
     };
     reportCache.set(days, { at: Date.now(), value });
     return value;
