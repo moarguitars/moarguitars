@@ -9,6 +9,7 @@ images:
   - /assets/images/ella/1.jpg
   - /assets/images/ella/3.jpg
   - /assets/images/ella/1792242866631-5.jpg
+deposit: "2500"
 ---
 
 I set out to create the most versatile, resonant, dynamic, playable and comfortable acoustic guitar my skills could muster, and Ella is the result. Unlike any other acoustic guitar you have ever played, Ella slots perfectly alongside your body, whilst sounding equally fantastic through a concert hall PA system or your studio valve amp. She can be pushed to crunch without feeding back, and can sing long, sustained cathedral-like notes up and down the fretboard with clarity and focus. Hand carved from a huge piece of roasted wood, they are light in weight, beautiful, and alive under the hands. Ella is delicate, thoughtful, focused, responsive, dynamic, playful and boisterous.
