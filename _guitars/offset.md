@@ -9,6 +9,7 @@ images:
   - /assets/images/offset/1792243224274-3.jpg
   - /assets/images/offset/2.jpg
   - /assets/images/offset/1.jpg
+deposit: "2500"
 ---
 
 A modern, light and versatile guitar, designed around an all-access neck joint that gives it its unique shape.
