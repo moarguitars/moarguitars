@@ -15,6 +15,10 @@ images:
   - /assets/images/wayfair/1792243138410-9.jpg
 ---
 
-An evolved jazz box, designed to fit the player creatively, ergonomically and visually.
+The original model that put me on the map, my Wayfairs are like nothing else. 
 
-I started the first one as a solid block of wood the size of a traditional archtop and carved away material until it sat comfortably against my body. The deep belly and arm cuts, and the thin upper side, are a by-product of comfort.
+I have a unique approach to luthiery and construction. These guitars are made in a way that no other builder uses, which allows me to make hollow, resonant, light, ergonomic, responsive and beautiful instruments, that play like nothing else. 
+
+Wayfairs are all made to order, and can be customised in any way you can imagine. I have made them with just about every scale length, headstock shape, pickup configuration, body/neck/fretboard wood combinations, trem/bridge setups, etc. They are made one at a time, for a specific client, with that person at the centre of my mind from the moment I select the wood, to the moment I put the guitar in the flight case. 
+
+I love them.
