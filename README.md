@@ -37,6 +37,7 @@ Analytics is off until you set an ID. When it's on, visitors see a small consent
    | Contact method | Event (dimension) | `method` |
    | Fine print topic | Event (dimension) | `topic` |
    | Photo number | Event (dimension) | `photo_number` |
+   | Open method | Event (dimension) | `open_method` |
    | Seconds on guitar | Event (metric, seconds) | `engagement_seconds` |
 
 4. Admin → Data display → **Events**: mark `generate_lead` as a **key event**.
@@ -50,7 +51,7 @@ Each guitar is a GA "item", so the built-in **Reports → Monetization → Ecomm
 | --- | --- | --- |
 | `view_item_list` | Page load | Baseline: visits |
 | `select_item` | Guitar clicked in the index | Interest before scrolling |
-| `view_item` | Guitar **opened** ("Description and pricing" or a link to it), which reveals the price (`open_method`: read_more / link) | Deliberate interest; who saw the price |
+| `view_item` | Guitar **opened**, which reveals the price. `open_method`: `read_more` (Description and pricing button), `index` (list at the top) or `link` (arrived on a link to the guitar) | Deliberate interest; who saw the price |
 | `view_photo` | A photo opened (with photo number) | Interest in detail |
 | `guitar_engagement` | Seconds spent on the guitar while it was open | Depth of interest |
 | `view_fine_print` | A fine print topic opened, with the last guitar viewed | Payment intent (e.g. *Commission & Payment*, *Deposit rules*, *Bank transfer details*) |

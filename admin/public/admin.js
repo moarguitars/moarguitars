@@ -463,6 +463,12 @@ function renderInsights(box, data) {
     return m ? `${m}m ${String(s).padStart(2, "0")}s` : `${s}s`;
   };
   const maxOpened = Math.max(1, ...data.guitars.map((g) => g.ga?.opened || 0));
+  // How people opened each guitar: the button, the index at the top, or a link straight to it.
+  const METHODS = [["read_more", "button"], ["index", "index"], ["link", "link"]];
+  const openedBy = (by = {}) => {
+    const parts = METHODS.filter(([key]) => by[key]).map(([key, name]) => `${by[key]} ${name}`);
+    return parts.length ? h("span", { class: "opened-by" }, parts.join(" · ")) : null;
+  };
   // Nothing is counted before the day tracking changed (shown when the period reaches back past it).
   const since = data.since &&
     new Date(`${data.since}T12:00:00`).toLocaleDateString(undefined, { day: "numeric", month: "long" });
@@ -501,7 +507,8 @@ function renderInsights(box, data) {
       h("th", { scope: "row" }, g.name, !g.onSite && h("span", { class: "muted" }, " (no longer on site)")),
       h("td", { class: "num" },
         h("span", { class: "meter", style: `--w:${hasGa ? Math.round(((a.opened || 0) / maxOpened) * 100) : 0}%` }),
-        hasGa ? num(a.opened || 0) : "–"),
+        hasGa ? num(a.opened || 0) : "–",
+        hasGa && ga.openMethodsAvailable && a.opened > 0 && openedBy(a.openedBy)),
       h("td", { class: "num" }, hasGa ? num(a.photos || 0) : "–"),
       h("td", { class: "num" }, hasGa && ga.engagementAvailable && a.opened ? duration((a.seconds || 0) / a.opened) : "–"),
       h("td", { class: "num" }, hasGa ? num(a.formOpened || 0) : "–"),
@@ -545,7 +552,7 @@ function renderInsights(box, data) {
     ),
     h("p", { class: "help footnote" },
       "Analytics columns only count visitors who accepted cookies, and Google Analytics can lag a day behind. ",
-      "Opened means they clicked Description and pricing (or followed a link to the guitar), which shows the price. Enquiry rate is the share of those who then sent its form. ",
+      "Opened means they opened the guitar, which shows the price: with the Description and pricing button, from the index at the top, or by arriving on a link straight to it (the small line under each number splits these). Enquiry rate is the share of those who then sent its form. ",
       "Everything counts from 18 October 2026, when the site's tracking changed; earlier visits and test enquiries are left out. ",
       "Inbox columns are exact."),
   ].filter(Boolean));

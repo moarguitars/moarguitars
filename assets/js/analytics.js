@@ -3,7 +3,9 @@
 // Guitar interactions are sent as GA4 ecommerce events (each guitar is an "item"),
 // so GA's item reports show a funnel per guitar:
 //   select_item        clicked the guitar in the index
-//   view_item          opened the guitar ("Description and pricing" or a link to it), which shows its price
+//   view_item          opened the guitar, which shows its price. open_method says how:
+//                      read_more (the "Description and pricing" button), index (the list at the
+//                      top) or link (arrived on a link straight to the guitar)
 //   view_photo         opened one of its photos
 //   guitar_engagement  seconds spent on it while open (sent when the tab is hidden or closed)
 //   view_fine_print    read a fine print topic (e.g. Commission & Payment)

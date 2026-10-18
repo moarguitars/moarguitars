@@ -290,6 +290,7 @@ legend { margin-bottom: 0.6rem; font: italic 1.4rem var(--serif); }
 .source-note { display: block; font-size: 0.65rem; font-weight: 400; color: var(--muted); text-transform: none; letter-spacing: 0; }
 .meter { display: block; height: 3px; margin-bottom: 0.3rem; margin-left: auto; width: var(--w); background: #7a6ba8; border-radius: 2px; }
 .budgets { min-width: 10rem; }
+.opened-by { display: block; margin-top: 0.15rem; font-size: 0.7rem; color: var(--muted); }
 .chip { display: inline-block; margin: 0 0.25rem 0.25rem 0; padding: 0.05rem 0.45rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.75rem; white-space: nowrap; }
 .footnote { font-size: 0.8rem; }
 

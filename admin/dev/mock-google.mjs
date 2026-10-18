@@ -93,6 +93,17 @@ createServer(async (req, res) => {
       }
       return send(res, 200, { rows });
     }
+    if (dims.join() === "customEvent:guitar,customEvent:open_method") {
+      const rows = [];
+      for (const [guitar, v] of Object.entries(SAMPLE)) {
+        const opened = v[1];
+        const split = { read_more: Math.round(opened * 0.6), index: Math.round(opened * 0.25), link: Math.round(opened * 0.15) };
+        for (const [method, count] of Object.entries(split)) {
+          if (count) rows.push({ dimensionValues: [{ value: guitar }, { value: method }], metricValues: [{ value: n(count) }] });
+        }
+      }
+      return send(res, 200, { rows });
+    }
     if (dims.join() === "customEvent:guitar") {
       return send(res, 200, { rows: Object.entries(SAMPLE).map(([guitar, v]) => ({ dimensionValues: [{ value: guitar }], metricValues: [{ value: n(v[5]) }] })) });
     }

@@ -36,7 +36,15 @@ document.querySelectorAll("[data-read-more]").forEach((button) => {
   });
 });
 
-// Links to a guitar (the index, or a shared link like moarguitars.com/#ella) open it.
+// The index at the top opens the guitar it jumps to (counted as "index" in analytics).
+document.querySelectorAll(".index a[href^='#']").forEach((link) => {
+  link.addEventListener("click", () => {
+    const target = document.getElementById(decodeURIComponent(link.getAttribute("href").slice(1)));
+    if (target?.classList.contains("guitar")) openGuitar(target, "index");
+  });
+});
+
+// A link straight to a guitar (e.g. moarguitars.com/#ella shared on Instagram) opens it.
 function openFromHash() {
   const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
   if (target?.classList.contains("guitar")) openGuitar(target, "link");
