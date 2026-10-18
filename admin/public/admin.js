@@ -64,6 +64,11 @@ function h(tag, attrs = {}, ...children) {
   return el;
 }
 
+// Replace an element's contents, skipping empty parts (null/false/undefined), like h() does.
+function fill(el, ...children) {
+  el.replaceChildren(...children.flat().filter((c) => c !== null && c !== undefined && c !== false));
+}
+
 function field(label, input, hint) {
   return h("label", { class: "field" }, h("span", {}, label), input, hint && h("small", {}, hint));
 }
@@ -95,7 +100,7 @@ async function start() {
     Object.assign(state, { user: me.user, siteUrl: me.siteUrl });
     await loadContent();
   } catch (error) {
-    app.replaceChildren(h("p", { class: "status status-error" }, error.message));
+    fill(app, h("p", { class: "status status-error" }, error.message));
   }
 }
 
@@ -104,7 +109,7 @@ async function loadContent() {
     publish.started = true;
     publish.refresh();
   }
-  app.replaceChildren(h("p", { class: "loading" }, "Loading content…"));
+  fill(app, h("p", { class: "loading" }, "Loading content…"));
   state.content = await api("GET", "/api/content");
   state.dirty = false;
   state.order = null;
@@ -143,7 +148,7 @@ function renderLogin(message) {
     button,
     status,
   );
-  app.replaceChildren(form);
+  fill(app, form);
   form.querySelector("input").focus();
 }
 
@@ -159,14 +164,14 @@ async function logout() {
 
 function render() {
   userBox.hidden = false;
-  userBox.replaceChildren(
+  fill(userBox, 
     publish.element,
     h("a", { href: state.siteUrl, target: "_blank", rel: "noopener" }, "View site"),
     h("span", {}, state.user),
     h("button", { class: "link-button", type: "button", onclick: () => select("password") }, "Change password"),
     h("button", { class: "button button-quiet button-small", onclick: logout }, "Sign out"),
   );
-  app.replaceChildren(h("div", { class: "layout" }, renderNav(), renderEditor()));
+  fill(app, h("div", { class: "layout" }, renderNav(), renderEditor()));
 }
 
 function select(key) {
@@ -281,7 +286,7 @@ function saveBar(onSave, extra) {
 const toasts = document.body.appendChild(h("div", { class: "toasts", "aria-live": "assertive" }));
 
 function toast(message, { type = "ok", action } = {}) {
-  toasts.replaceChildren();
+  fill(toasts);
   const close = () => {
     note.classList.add("toast-leaving");
     setTimeout(() => note.remove(), 250);
@@ -358,7 +363,7 @@ const publish = (() => {
     button.title = status ? HINTS[state] : "";
     panel.hidden = !open;
     if (!open || !status) return;
-    panel.replaceChildren(
+    fill(panel, 
       h("p", { class: "publish-hint" }, HINTS[state]),
       h("h3", {}, "Recent changes"),
       h("ul", {},
@@ -402,7 +407,7 @@ const publish = (() => {
 function showError(error) {
   if (error.message === "signed out") return;
   const reload = error.status === 409 &&
-    h("button", { class: "toast-action", type: "button", onclick: () => { state.dirty = false; toasts.replaceChildren(); loadContent(); } }, "Reload");
+    h("button", { class: "toast-action", type: "button", onclick: () => { state.dirty = false; fill(toasts); loadContent(); } }, "Reload");
   toast(error.message, { type: "error", action: reload });
 }
 
@@ -445,7 +450,7 @@ function insightsView() {
     .then((data) => renderInsights(box, data))
     .catch((error) => {
       showError(error);
-      box.replaceChildren(h("p", { class: "status status-error" }, "Couldn't load insights."));
+      fill(box, h("p", { class: "status status-error" }, "Couldn't load insights."));
     });
   return box;
 }
@@ -513,7 +518,7 @@ function renderInsights(box, data) {
     );
   });
 
-  box.replaceChildren(...[
+  fill(box, ...[
     h("div", { class: "inbox-head" }, h("h1", {}, "Insights"), periods),
     h("p", { class: "help" },
       since
@@ -598,7 +603,7 @@ function inboxView() {
   const box = h("div", { class: "editor" }, h("p", { class: "loading" }, "Loading enquiries…"));
   (state.enquiryId ? renderEnquiry(box, state.enquiryId) : renderInbox(box)).catch((error) => {
     showError(error);
-    box.replaceChildren(h("p", { class: "status status-error" }, "Couldn't load enquiries."));
+    fill(box, h("p", { class: "status status-error" }, "Couldn't load enquiries."));
   });
   return box;
 }
@@ -614,7 +619,7 @@ async function renderInbox(box) {
     }, state.showArchived ? "Back to inbox" : "Show archived"),
   );
 
-  box.replaceChildren(
+  fill(box, 
     h("div", { class: "inbox-head" }, h("h1", {}, state.showArchived ? "Archived" : "Inbox"), toggle),
     enquiries.length === 0
       ? h("p", { class: "help" }, state.showArchived ? "Nothing archived." : "No enquiries yet. They’ll appear here when someone fills in a form on the site.")
@@ -672,7 +677,7 @@ async function renderEnquiry(box, id) {
 
   const answer = (value) => (Array.isArray(value) ? value.join(", ") : value) || h("span", { class: "muted" }, "No answer");
 
-  box.replaceChildren(
+  fill(box, 
     h("button", { type: "button", class: "back", onclick: () => { state.enquiryId = null; render(); } }, "← All enquiries"),
     h("h1", {}, e.name),
     h("p", { class: "enquiry-meta" },
@@ -806,7 +811,7 @@ function formBuilder(initial) {
   };
 
   function draw() {
-    box.replaceChildren(
+    fill(box, 
       h("div", { class: "list-item list-item-fixed" },
         h("p", { class: "fixed-fields" }, h("strong", {}, "Name"), " and ", h("strong", {}, "Email"), " are always asked first."),
       ),
@@ -902,7 +907,7 @@ function finePrintEditor() {
   // A small editable list with move up/down and remove.
   function listEditor(box, list, fields, blank, addLabel) {
     const draw = () => {
-      box.replaceChildren(
+      fill(box, 
         ...list.map((item, index) =>
           h("div", { class: "list-item" },
             h("div", { class: "list-item-tools" },
@@ -978,7 +983,7 @@ function guitarEditor(guitar) {
         }),
         label,
       );
-    formBox.replaceChildren(
+    fill(formBox, 
       h("div", { class: "choices" }, choice("default", "Use the default questions"), choice("own", "Ask its own questions")),
       ownForm && ownForm.element,
     );
@@ -1046,7 +1051,7 @@ function photosEditor(paths, max = 12) {
   const photosBox = h("div", { class: "photos" });
 
   const drawPhotos = () => {
-    photosBox.replaceChildren(
+    fill(photosBox, 
       ...photos.map((photo, index) =>
         h("div", { class: `photo${photo.upload ? " photo-new" : ""}` },
           h("img", { src: photo.preview || `/api/image?path=${encodeURIComponent(photo.path)}`, alt: `Photo ${index + 1}`, loading: "lazy" }),
