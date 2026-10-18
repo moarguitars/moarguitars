@@ -64,11 +64,13 @@ export async function submitEnquiry(request, env, gh, input) {
     name,
     email,
     answers,
+    // Two-letter code from the sender's connection (Cloudflare); missing in local dev.
+    country: /^[A-Z]{2}$/.test(request.cf?.country || "") ? request.cf.country : "",
   };
 
   await env.DB.prepare(
-    `INSERT INTO enquiries (id, created_at, guitar_slug, guitar_name, guitar_price, name, email, answers, analytics_client_id, sender_hash)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+    `INSERT INTO enquiries (id, created_at, guitar_slug, guitar_name, guitar_price, name, email, answers, analytics_client_id, sender_hash, country)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
   )
     .bind(
       enquiry.id,
@@ -81,14 +83,16 @@ export async function submitEnquiry(request, env, gh, input) {
       JSON.stringify(answers),
       clean(input.analytics_client_id, 100),
       senderHash,
+      enquiry.country,
     )
     .run();
 
+  const from = enquiry.country ? `From: ${countryName(enquiry.country)} (${enquiry.country})` : "From: unknown country";
   const lines = answers.map((a) => `${a.question}\n${Array.isArray(a.answer) ? a.answer.join(", ") || "-" : a.answer || "-"}`);
   await sendAlert(env, {
     subject: slug === "general" ? `New enquiry from ${name}` : `New enquiry: ${guitar.title} from ${name}`,
     replyTo: email,
-    text: [slug === "general" ? `${name} <${email}> sent a general enquiry.` : `${name} <${email}> asked about ${guitar.title}.`, "", ...lines.flatMap((line) => [line, ""]), `Open in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`].join("\n"),
+    text: [slug === "general" ? `${name} <${email}> sent a general enquiry.` : `${name} <${email}> asked about ${guitar.title}.`, from, "", ...lines.flatMap((line) => [line, ""]), `Open in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`].join("\n"),
   });
 
   return { ok: true };
@@ -98,7 +102,7 @@ export async function submitEnquiry(request, env, gh, input) {
 
 export async function listEnquiries(env, { archived = false } = {}) {
   const { results } = await env.DB.prepare(
-    `SELECT e.id, e.created_at, e.guitar_name, e.name, e.email, e.status,
+    `SELECT e.id, e.created_at, e.guitar_name, e.name, e.email, e.status, e.country,
             (SELECT p.status FROM payments p WHERE p.enquiry_id = e.id ORDER BY p.created_at DESC LIMIT 1) AS payment_status
        FROM enquiries e
       WHERE (e.status = 'archived') = ?
@@ -224,7 +228,7 @@ async function markPaid(env, payment) {
   await sendAlert(env, {
     subject: `Paid: ${payment.currency} ${payment.amount} from ${enquiry.name} (${enquiry.guitar_name})`,
     replyTo: enquiry.email,
-    text: `${enquiry.name} paid ${payment.currency} ${payment.amount} for “${payment.description}”.\n\nInvoice ${payment.invoice_number}\nOpen in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`,
+    text: `${enquiry.name} paid ${payment.currency} ${payment.amount} for “${payment.description}”.${enquiry.country ? `\nFrom: ${countryName(enquiry.country)} (${enquiry.country})` : ""}\n\nInvoice ${payment.invoice_number}\nOpen in the admin: ${env.ADMIN_URL || ""}/#enquiry=${enquiry.id}`,
   });
   await trackServerEvent(env, enquiry.analytics_client_id, "purchase", {
     transaction_id: payment.invoice_id,
@@ -236,6 +240,16 @@ async function markPaid(env, payment) {
 }
 
 // ---------- Helpers ----------
+
+const countryNames = new Intl.DisplayNames(["en"], { type: "region" });
+
+export function countryName(code) {
+  try {
+    return countryNames.of(code) || code;
+  } catch {
+    return code;
+  }
+}
 
 async function cachedForm(gh, slug) {
   const hit = formCache.get(slug);

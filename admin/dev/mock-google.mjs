@@ -37,6 +37,17 @@ const SAMPLE = {
   Dolly: [1, 22, 5, 0, 0, 600],
   Bass: [2, 30, 9, 2, 1, 1100],
 };
+const COUNTRIES = {
+  // countryId: [country, visitors, opened a guitar]
+  US: ["United States", 290, 150],
+  GB: ["United Kingdom", 34, 18],
+  DE: ["Germany", 26, 14],
+  DK: ["Denmark", 21, 12],
+  CA: ["Canada", 18, 9],
+  AU: ["Australia", 11, 5],
+  JP: ["Japan", 6, 2],
+  "(not set)": ["(not set)", 4, 0],
+};
 const EVENT_INDEX = { select_item: 0, view_item: 1, view_photo: 2, enquiry_open: 3, generate_lead: 4 };
 
 const send = (res, status, body) => {
@@ -95,6 +106,13 @@ createServer(async (req, res) => {
     }
     if (dims.join() === "customEvent:guitar") {
       return send(res, 200, { rows: Object.entries(SAMPLE).map(([guitar, v]) => ({ dimensionValues: [{ value: guitar }], metricValues: [{ value: n(v[5]) }] })) });
+    }
+    if (dims.join() === "countryId,country") {
+      const opened = body.dimensionFilter?.filter?.stringFilter?.value === "view_item";
+      const rows = Object.entries(COUNTRIES)
+        .filter(([, v]) => v[opened ? 2 : 1])
+        .map(([id, v]) => ({ dimensionValues: [{ value: id }, { value: v[0] }], metricValues: [{ value: n(v[opened ? 2 : 1]) }] }));
+      return send(res, 200, { rows });
     }
     return send(res, 400, { error: { message: `Unexpected report: ${dims.join(", ")}` } });
   }

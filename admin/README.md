@@ -32,7 +32,7 @@ moar-admin.moarguitars.workers.dev (Cloudflare Worker)
 
 **How an enquiry flows through:**
 1. A visitor fills in the form under a guitar.
-2. The Worker checks the answers against that guitar's actual questions, runs a spam check (Turnstile, a hidden trap field, and a limit of 5 per hour per visitor), stores the enquiry and emails atelier@.
+2. The Worker checks the answers against that guitar's actual questions, runs a spam check (Turnstile, a hidden trap field, and a limit of 5 per hour per visitor), stores the enquiry with the visitor's country (from Cloudflare, e.g. `US`) and emails atelier@.
 3. In the inbox you click **Send invoice**. Stripe emails the customer, who pays on Stripe's hosted page (card, Apple Pay, Google Pay; due within 14 days).
 4. When it's paid, Stripe notifies the Worker. The inbox shows **Paid**, you get an email, and Google Analytics records a `purchase` against the guitar and the original visitor.
 
@@ -91,6 +91,10 @@ After that, people change their own password in the admin (**Change password** i
 ```bash
 npm run deploy
 ```
+When a change adds a file to `migrations/` (e.g. `0003_enquiry_country.sql`), apply it to the live database **before** deploying the code that uses it:
+```bash
+npm run db:remote
+```
 It's served at `https://moar-admin.moarguitars.workers.dev`. The site's `_config.yml` (`enquiry_endpoint`) and `ADMIN_URL` in `wrangler.toml` both point there.
 
 The domain's DNS stays at GoDaddy, so the admin keeps its `workers.dev` address. (Moving moarguitars.com's DNS to Cloudflare would allow `admin.moarguitars.com` via the commented-out `routes` line in `wrangler.toml`, but it isn't needed.)
@@ -111,7 +115,7 @@ npx wrangler secret put GA_API_SECRET
 Payment requests then show up as `begin_checkout` events and payments as `purchase` events, tied to the visitor who enquired (if they accepted analytics cookies).
 
 ### 8. Optional: the Insights page (read access to Google Analytics)
-The admin's **Insights** page shows each guitar's funnel: people who saw the price, opened photos, spent time, opened the form, enquired, were invoiced and paid. The inbox numbers work straight away. The Google Analytics columns need the admin to have read-only access to the GA property (`GA_PROPERTY_ID` in `wrangler.toml`), through a Google "service account":
+The admin's **Insights** page shows each guitar's funnel: people who saw the price, opened photos, spent time, opened the form, enquired, were invoiced and paid. Below it, **By country** shows visitors and people who opened a guitar per country (GA's `countryId`/`country` dimensions), next to enquiries, invoices and payments per country from the inbox (the country each enquiry was sent from). The inbox numbers work straight away. The Google Analytics columns need the admin to have read-only access to the GA property (`GA_PROPERTY_ID` in `wrangler.toml`), through a Google "service account":
 
 1. Go to [console.cloud.google.com](https://console.cloud.google.com). In the project picker at the top, choose **New project**, name it "Moar website", and create it.
 2. Search the top bar for **Google Analytics Data API**, open it, and click **Enable**.
@@ -132,6 +136,8 @@ The page also needs the custom dimension **Guitar** (event parameter `guitar`) a
 Nothing touches GitHub, Stripe or Formspree locally. Fake versions run on your machine:
 - `dev/mock-github.mjs` writes saves straight into this checkout, so `jekyll serve` shows them instantly.
 - `dev/mock-stripe.mjs` gives each invoice a pretend payment page with a **Pay** button, which sends a signed webhook just like Stripe's. It also prints the alerts that would go to Formspree.
+- `dev/mock-google.mjs` answers the Insights page's GA reports (per guitar and per country) with sample numbers.
+- Locally, enquiries get whatever country `wrangler dev` reports for your own connection.
 
 ```bash
 # from the repo root: the site, pointed at the local admin
