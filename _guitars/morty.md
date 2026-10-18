@@ -12,6 +12,7 @@ images:
   - /assets/images/morty/1792243299440-6.jpg
   - /assets/images/morty/1792243299440-7.jpg
   - /assets/images/morty/1792243299440-8.jpg
+deposit: "2500"
 ---
 
 Built on a perfect foundation, the Morty is all you need in a guitar and nothing else.
