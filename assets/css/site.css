@@ -73,6 +73,10 @@ main {
 
 .prose { padding-top: 1.6rem; }
 .prose p { margin: 0; text-indent: 1.75rem; }
+/* A blank line in the admin starts a new paragraph; show it as a gap, as it was typed. */
+.prose p + p,
+.prose p + ul, .prose p + ol, .prose ul + p, .prose ol + p { margin-top: 0.9em; }
+.prose ul, .prose ol { margin: 0; padding-left: 1.75rem; }
 
 /* Reach out + index */
 .reach-out {
