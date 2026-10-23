@@ -7,8 +7,10 @@ images:
   - /assets/images/ella/1792242866631-1.jpg
   - /assets/images/ella/1792242866631-2.jpg
   - /assets/images/ella/1.jpg
+  - /assets/images/ella/1792751506393-4.jpg
   - /assets/images/ella/3.jpg
   - /assets/images/ella/1792242866631-5.jpg
+  - /assets/images/ella/1792751506393-7.jpg
 deposit: "2500"
 ---
 
