@@ -7,7 +7,9 @@ images:
   - /assets/images/bass/1792243443329-1.jpg
   - /assets/images/bass/1.jpg
   - /assets/images/bass/2.jpg
+  - /assets/images/bass/1792768766900-4.jpg
   - /assets/images/bass/3.jpg
+  - /assets/images/bass/1792768766900-6.jpg
 deposit: "2500"
 ---
 
