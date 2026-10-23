@@ -16,6 +16,12 @@ images:
 deposit: "2500"
 ---
 
-A modern, light and versatile guitar, designed around an all-access neck joint that gives it its unique shape.
+A guitar designed around a piece of hardware. 
 
-A totally hollow body with no centre block, big belly and arm cuts, an oversized F-hole and corners in unusual places. A body that wants to be looked at.
+I love trapeze/bridge setups. I like to tune the trapeze arms to ring at specific resonant frequencies, dependent on the guitars voicing, and this model was designed to allow me to do this, and use this setup. 
+
+They are completely hollow, and can be ordered with any wood/pickup/scale combination. 
+
+They are extremely comfortable with an all access neck joint. 
+
+Typical build weight is around 2.5kg /5.5lbs
