@@ -8,10 +8,10 @@ images:
   - /assets/images/wayfair/1792243138410-2.jpg
   - /assets/images/wayfair/1792243138410-3.jpg
   - /assets/images/wayfair/1792243138410-4.jpg
+  - /assets/images/wayfair/1792750546518-5.jpg
   - /assets/images/wayfair/1792243138410-5.jpg
   - /assets/images/wayfair/1792243138410-6.jpg
   - /assets/images/wayfair/1792243138410-7.jpg
-  - /assets/images/wayfair/3.jpg
   - /assets/images/wayfair/1792243138410-9.jpg
 deposit: "2500"
 ---
