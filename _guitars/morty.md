@@ -8,6 +8,7 @@ images:
   - /assets/images/morty/1792243299440-2.jpg
   - /assets/images/morty/1792243299440-3.jpg
   - /assets/images/morty/2.png
+  - /assets/images/morty/1792751340964-5.jpg
   - /assets/images/morty/1792243299440-5.jpg
   - /assets/images/morty/1792243299440-6.jpg
   - /assets/images/morty/1792243299440-7.jpg
