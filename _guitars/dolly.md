@@ -7,6 +7,7 @@ images:
   - /assets/images/dolly/1792243400308-1.jpg
   - /assets/images/dolly/1.jpg
   - /assets/images/dolly/1792243400308-3.jpg
+  - /assets/images/dolly/1792750517475-4.jpg
   - /assets/images/dolly/1792243400308-4.jpg
   - /assets/images/dolly/1792243400308-5.jpg
 deposit: "2500"
