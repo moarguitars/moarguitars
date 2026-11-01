@@ -40,8 +40,6 @@ fine_print_title: Fine Print
 fine_print:
   - label: Commission & Payment
     body: A deposit secures your place on the waiting list. The remaining balance is due on completion. Payment plans can be arranged, just ask.
-  - label: Lead times
-    body: 'TODO: current lead time, e.g. "Builds currently take around 12 months from deposit to delivery."'
   - label: Deposit rules
     body: Deposits are used to buy the agreed materials for your build, so they are non-refundable.
   - label: Bank transfer details
